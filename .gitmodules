@@ -4,19 +4,19 @@
 	ignore = dirty
 [submodule ".vim/bundle/EnhCommentify.vim"]
 	path = .vim/bundle/EnhCommentify.vim
-	url = git://github.com/blue119/EnhCommentify.vim.git
+	url = git@github.com/blue119/EnhCommentify.vim.git
 	ignore = dirty
 [submodule ".vim/bundle/cs-mgmt.vim"]
 	path = .vim/bundle/cs-mgmt.vim
-	url = git://github.com/blue119/cs-mgmt.vim.git
+	url = git@github.com/blue119/cs-mgmt.vim.git
 	ignore = dirty
 [submodule ".vim/bundle/occur.vim"]
 	path = .vim/bundle/occur.vim
-	url = git://github.com/blue119/occur.vim.git
+	url = git@github.com/blue119/occur.vim.git
 	ignore = dirty
 [submodule ".vim/bundle/snipmate.vim"]
 	path = .vim/bundle/snipmate.vim
-	url = git://github.com/blue119/snipmate.vim.git
+	url = git@github.com/blue119/snipmate.vim.git
 	ignore = dirty
 [submodule ".vim/bundle/github-search.vim"]
 	path = .vim/bundle/github-search.vim

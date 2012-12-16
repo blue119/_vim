@@ -2,5 +2,6 @@
 .vim/backup/*~
 .vim/tags/
 .vim/view/
+.vim/doc/tags
 .vim/bundle/*
 
