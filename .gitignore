@@ -1,4 +1,6 @@
-dotFile/.vim/.netrwhist
-dotFile/.vim/backup/*~
-dotFile/.vim/tags/
-dotFile/.vim/view/
+.vim/.netrwhist
+.vim/backup/*~
+.vim/tags/
+.vim/view/
+.vim/bundle/*
+
