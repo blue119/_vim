@@ -1,144 +1,96 @@
 [submodule ".vim/bundle/vim-colors-solarized"]
 	path = .vim/bundle/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
-	ignore = dirty
-[submodule ".vim/bundle/EnhCommentify.vim"]
-	path = .vim/bundle/EnhCommentify.vim
-	url = git@github.com/blue119/EnhCommentify.vim.git
-	ignore = dirty
-[submodule ".vim/bundle/cs-mgmt.vim"]
-	path = .vim/bundle/cs-mgmt.vim
-	url = git@github.com/blue119/cs-mgmt.vim.git
-	ignore = dirty
-[submodule ".vim/bundle/occur.vim"]
-	path = .vim/bundle/occur.vim
-	url = git@github.com/blue119/occur.vim.git
-	ignore = dirty
-[submodule ".vim/bundle/snipmate.vim"]
-	path = .vim/bundle/snipmate.vim
-	url = git@github.com/blue119/snipmate.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/github-search.vim"]
 	path = .vim/bundle/github-search.vim
 	url = git://github.com/gmarik/github-search.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
-	ignore = dirty
 [submodule ".vim/bundle/vim-css3-syntax"]
 	path = .vim/bundle/vim-css3-syntax
 	url = git://github.com/hail2u/vim-css3-syntax.git
-	ignore = dirty
 [submodule ".vim/bundle/vim-golang"]
 	path = .vim/bundle/vim-golang
 	url = git://github.com/jnwhiteh/vim-golang.git
-	ignore = dirty
 [submodule ".vim/bundle/bufexplorer"]
 	path = .vim/bundle/bufexplorer
 	url = git://github.com/joeybeninghove/bufexplorer.git
-	ignore = dirty
 [submodule ".vim/bundle/ctrlp.vim"]
 	path = .vim/bundle/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/mark.vim"]
 	path = .vim/bundle/mark.vim
 	url = git://github.com/mbriggs/mark.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/javascript-syntax.vim"]
 	path = .vim/bundle/javascript-syntax.vim
 	url = git://github.com/othree/javascript-syntax.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/xml.vim"]
 	path = .vim/bundle/xml.vim
 	url = git://github.com/othree/xml.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/AutoComplPop"]
 	path = .vim/bundle/AutoComplPop
 	url = git://github.com/vim-scripts/AutoComplPop.git
-	ignore = dirty
 [submodule ".vim/bundle/CCTree"]
 	path = .vim/bundle/CCTree
 	url = git://github.com/vim-scripts/CCTree.git
-	ignore = dirty
 [submodule ".vim/bundle/Color-Sampler-Pack"]
 	path = .vim/bundle/Color-Sampler-Pack
 	url = git://github.com/vim-scripts/Color-Sampler-Pack.git
-	ignore = dirty
 [submodule ".vim/bundle/Decho"]
 	path = .vim/bundle/Decho
 	url = git://github.com/vim-scripts/Decho.git
-	ignore = dirty
 [submodule ".vim/bundle/DoxygenToolkit.vim"]
 	path = .vim/bundle/DoxygenToolkit.vim
 	url = git://github.com/vim-scripts/DoxygenToolkit.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/DrawIt"]
 	path = .vim/bundle/DrawIt
 	url = git://github.com/vim-scripts/DrawIt.git
-	ignore = dirty
 [submodule ".vim/bundle/FuzzyFinder.git"]
 	path = .vim/bundle/FuzzyFinder.git
 	url = git://github.com/vim-scripts/FuzzyFinder.git
-	ignore = dirty
 [submodule ".vim/bundle/Gundo"]
 	path = .vim/bundle/Gundo
 	url = git://github.com/vim-scripts/Gundo.git
-	ignore = dirty
 [submodule ".vim/bundle/JSON.vim"]
 	path = .vim/bundle/JSON.vim
 	url = git://github.com/vim-scripts/JSON.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/L9"]
 	path = .vim/bundle/L9
 	url = git://github.com/vim-scripts/L9.git
-	ignore = dirty
 [submodule ".vim/bundle/Markdown"]
 	path = .vim/bundle/Markdown
 	url = git://github.com/vim-scripts/Markdown.git
-	ignore = dirty
 [submodule ".vim/bundle/ParseJSON"]
 	path = .vim/bundle/ParseJSON
 	url = git://github.com/vim-scripts/ParseJSON.git
-	ignore = dirty
 [submodule ".vim/bundle/ScrollColors"]
 	path = .vim/bundle/ScrollColors
 	url = git://github.com/vim-scripts/ScrollColors.git
-	ignore = dirty
 [submodule ".vim/bundle/TaskList.vim"]
 	path = .vim/bundle/TaskList.vim
 	url = git://github.com/vim-scripts/TaskList.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/The-NERD-tree"]
 	path = .vim/bundle/The-NERD-tree
 	url = git://github.com/vim-scripts/The-NERD-tree.git
-	ignore = dirty
 [submodule ".vim/bundle/VisIncr"]
 	path = .vim/bundle/VisIncr
 	url = git://github.com/vim-scripts/VisIncr.git
-	ignore = dirty
 [submodule ".vim/bundle/cscope_macros.vim"]
 	path = .vim/bundle/cscope_macros.vim
 	url = git://github.com/vim-scripts/cscope_macros.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/deb.vim"]
 	path = .vim/bundle/deb.vim
 	url = git://github.com/vim-scripts/deb.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/info.vim"]
 	path = .vim/bundle/info.vim
 	url = git://github.com/vim-scripts/info.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/jsbeautify"]
 	path = .vim/bundle/jsbeautify
 	url = git://github.com/vim-scripts/jsbeautify.git
-	ignore = dirty
 [submodule ".vim/bundle/surround.vim"]
 	path = .vim/bundle/surround.vim
 	url = git://github.com/vim-scripts/surround.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/taglist.vim"]
 	path = .vim/bundle/taglist.vim
 	url = git://github.com/vim-scripts/taglist.vim.git
-	ignore = dirty
