@@ -5,6 +5,7 @@ fs+=(.vimrc)
 
 date=`date +"%s"`
 # move same filename to end up with _data.bak for backup old file.
+git submodule init
 git submodule update
 for f in ${fs[*]}
 do
