@@ -126,3 +126,15 @@
 	path = .vim/bundle/taglist.vim
 	url = git://github.com/vim-scripts/taglist.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/EnhCommentify.vim"]
+	path = .vim/bundle/EnhCommentify.vim
+	url = git@github.com:blue119/EnhCommentify.vim.git
+[submodule ".vim/bundle/cs-mgmt.vim"]
+	path = .vim/bundle/cs-mgmt.vim
+	url = git@github.com:blue119/cs-mgmt.vim.git
+[submodule ".vim/bundle/occur.vim"]
+	path = .vim/bundle/occur.vim
+	url = git@github.com:blue119/occur.vim.git
+[submodule ".vim/bundle/snipmate.vim"]
+	path = .vim/bundle/snipmate.vim
+	url = git@github.com:blue119/snipmate.vim.git
