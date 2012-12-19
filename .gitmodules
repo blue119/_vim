@@ -142,3 +142,6 @@
 	path = .vim/bundle/snipmate.vim
 	url = git@github.com:blue119/snipmate.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-ls"]
+	path = .vim/bundle/vim-ls
+	url = git://github.com/gkz/vim-ls.git
