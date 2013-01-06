@@ -1010,11 +1010,12 @@ endif
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd Filetype go call s:ls_custom) {{{
+" autocmd Filetype ls call s:ls_custom) {{{
 function! s:ls_custom()
-    noremap <F2> :% w !lsc -p %<CR>
+    noremap <F2> :% w !lsc %<CR>
 
 endfunction
+set expandtab      " Use spaces for tabs
 if has("autocmd")
     autocmd Filetype ls call s:ls_custom()
 endif
