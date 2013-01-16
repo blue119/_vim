@@ -890,11 +890,11 @@ if has("autocmd")
 endif
 
 autocmd BufWinLeave *
-    \   if expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+    \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
     \|       mkview
     \|  endif
 autocmd BufWinEnter *
-    \   if expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+    \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
     \|      loadview
     \|  endif
 " Restore cursor to file position in previous editing session
