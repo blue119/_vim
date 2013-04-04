@@ -464,6 +464,7 @@ nmap l dp
 "}}}
 
     "nmap <C-c><C-c> :!gcc -Wall % -o %:r.out<CR>nmap <C-c><C-c> :!gcc -Wall % -o %:r.out<CR>
+    
     """"""""""""""""""""""""""""""
     " ctags "{{{
     """"""""""""""""""""""""""""""
@@ -473,7 +474,6 @@ nmap l dp
     " ;: recurse up the file tree if you do not find it
     " ../../../../: stop looking after 4 levels
     " set tags=./tags;/home/blue119/.vim/tags/;../../../../
-    "set autochdir
 "}}}
     """"""""""""""""""""""""""""""
     " cscope "{{{
@@ -861,11 +861,11 @@ nnoremap <C-x> :Hexmode<CR>
 " [ Functions & autocmd ]                                   {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set vim to chdir for each file {{{
-if exists('+autochdir')
-    set autochdir
-else
-    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-endif
+" if exists('+autochdir')
+    " set autochdir
+" else
+    " autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+" endif
 
 " Automatically update 'Last Modified' field
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.

@@ -145,30 +145,40 @@
 [submodule ".vim/bundle/vim-ls"]
 	path = .vim/bundle/vim-ls
 	url = git://github.com/gkz/vim-ls.git
+	ignore = dirty
 [submodule ".vim/bundle/sourcebeautify.vim"]
 	path = .vim/bundle/sourcebeautify.vim
 	url = git://github.com/michalliu/sourcebeautify.vim.git
+	ignore = dirty
 [submodule ".vim/bundle/jsruntime.vim"]
 	path = .vim/bundle/jsruntime.vim
 	url = git://github.com/michalliu/jsruntime.vim.git
+	ignore = dirty
 [submodule ".vim/bundle/jsoncodecs.vim"]
 	path = .vim/bundle/jsoncodecs.vim
 	url = git://github.com/michalliu/jsoncodecs.vim.git
+	ignore = dirty
 [submodule ".vim/bundle/vim-jst"]
 	path = .vim/bundle/vim-jst
 	url = git://github.com/briancollins/vim-jst.git
+	ignore = dirty
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/bundle/vim-javascript
 	url = git://github.com/pangloss/vim-javascript.git
+	ignore = dirty
 [submodule ".vim/bundle/vim-jade"]
 	path = .vim/bundle/vim-jade
 	url = git://github.com/digitaltoad/vim-jade.git
+	ignore = dirty
 [submodule ".vim/bundle/vim-stylus"]
 	path = .vim/bundle/vim-stylus
 	url = git://github.com/wavded/vim-stylus.git
+	ignore = dirty
 [submodule ".vim/bundle/SingleCompile"]
 	path = .vim/bundle/SingleCompile
 	url = https://github.com/xuhdev/SingleCompile.git
+	ignore = dirty
 [submodule ".vim/bundle/EasyGrep"]
 	path = .vim/bundle/EasyGrep
 	url = git://github.com/vim-scripts/EasyGrep.git
+	ignore = dirty
