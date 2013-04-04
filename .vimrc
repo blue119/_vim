@@ -142,6 +142,8 @@ set ignorecase
 set smartcase       " but don't ignore it, when search string contains
 set showmatch       " showmatch: Show the matching bracket for the last ')'?
 
+set hidden
+
 set completeopt=longest,menu,menuone
 "set completeopt=menu,longest,previe
 "
@@ -333,7 +335,7 @@ noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljz
 nnoremap ; :
 
 " insert a space line but don't change to insert mode
-nmap <C-o> o<Esc>
+" nmap <C-o> o<Esc>
 
 " Remove 'recording' key mapping
 " nmap q <Cr>
@@ -564,7 +566,6 @@ nmap l dp
     " let g:miniBufExplorerDebugLevel = 10 
     " let g:miniBufExplorerDebugMode  = 0  " Writes to a file
 
-    " let g:bufExplorerSortBy = "name"
 
     " autocmd BufRead,BufNew :call UMiniBufExplorer
 
@@ -573,8 +574,9 @@ nmap l dp
     """"""""""""""""""""""""""""""
     " => bufExplorer plugin"{{{
     """"""""""""""""""""""""""""""
-    let g:bufExplorerDefaultHelp=0
-    let g:bufExplorerShowRelativePath=1
+    let g:bufExplorerDefaultHelp = 0
+    let g:bufExplorerShowRelativePath = 1
+    let g:bufExplorerSortBy = "fullpath"
     map <leader>o :BufExplorer<cr>
     "}}}
     """"""""""""""""""""""""""""""
@@ -752,9 +754,9 @@ nnoremap <C-x> :Hexmode<CR>
     """"""""""""""""""""""""
     "Grep 'pattern' in the indicate range (need EasyGrep.vim plugin)
     "map <F3> <ESC>\vv
-    "let g:EasyGrepRecursive = 1
-    "let g:EasyGrepIgnoreCase= 0
-    "let g:EasyGrepJumpToMatch= 1
+    let g:EasyGrepRecursive = 1
+    let g:EasyGrepIgnoreCase= 0
+    let g:EasyGrepJumpToMatch= 1
     " }}}
 
     """"""""""""""""""""""""""""""

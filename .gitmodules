@@ -166,3 +166,9 @@
 [submodule ".vim/bundle/vim-stylus"]
 	path = .vim/bundle/vim-stylus
 	url = git://github.com/wavded/vim-stylus.git
+[submodule ".vim/bundle/SingleCompile"]
+	path = .vim/bundle/SingleCompile
+	url = https://github.com/xuhdev/SingleCompile.git
+[submodule ".vim/bundle/EasyGrep"]
+	path = .vim/bundle/EasyGrep
+	url = git://github.com/vim-scripts/EasyGrep.git
