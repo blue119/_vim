@@ -332,7 +332,7 @@ noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljz
 ":let &so=@z         " restore scrolloff
 
 "replace 'SHIFT+:' with ';' COOL!
-nnoremap ; :
+noremap ; :
 
 " insert a space line but don't change to insert mode
 " nmap <C-o> o<Esc>
@@ -861,11 +861,11 @@ nnoremap <C-x> :Hexmode<CR>
 " [ Functions & autocmd ]                                   {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set vim to chdir for each file {{{
-" if exists('+autochdir')
-    " set autochdir
-" else
-    " autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-" endif
+if exists('+autochdir')
+    set autochdir
+else
+    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+endif
 
 " Automatically update 'Last Modified' field
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.
