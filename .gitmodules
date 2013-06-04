@@ -182,3 +182,7 @@
 	path = .vim/bundle/EasyGrep
 	url = git://github.com/vim-scripts/EasyGrep.git
 	ignore = dirty
+[submodule ".vim/bundle/editorconfig-vim"]
+	path = .vim/bundle/editorconfig-vim
+	url = git://github.com/editorconfig/editorconfig-vim.git
+	ignore = dirty
