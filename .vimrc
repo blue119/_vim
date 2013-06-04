@@ -332,7 +332,7 @@ noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljz
 ":let &so=@z         " restore scrolloff
 
 "replace 'SHIFT+:' with ';' COOL!
-nnoremap ; :
+noremap ; :
 
 " insert a space line but don't change to insert mode
 " nmap <C-o> o<Esc>
