@@ -144,8 +144,8 @@ set showmatch       " showmatch: Show the matching bracket for the last ')'?
 
 set hidden
 
-set completeopt=longest,menu,menuone
-"set completeopt=menu,longest,previe
+" set completeopt=longest,menu,menuone
+" set completeopt=menu,longest,previe
 "
 set wildmenu
 "in ESC: (command mode), disbled auto completion next part, Cool!
@@ -542,6 +542,15 @@ nmap l dp
     nnoremap <Leader>af :AcpDisable<CR>
     nnoremap <Leader>an :AcpEnable<CR>
     let g:acp_behaviorSnipmateLength = 1
+
+    autocmd FileType * setl omnifunc=nullcomplete#Complete
+    autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags noci
+    autocmd FileType css setl omnifunc=csscomplete#CompleteCSS noci
+    autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
+    autocmd FileType c setl omnifunc=ccomplete#Complete
+
     "}}}
     """""""""""""""""""""""""""""
     " EnhancedCommentify {{{
@@ -819,17 +828,6 @@ nnoremap <C-x> :Hexmode<CR>
     "}}}
 
     """"""""""""""""""""""""""""""
-    " => autocomplete.vim"{{{
-    """"""""""""""""""""""""""""""
-    autocmd FileType * setl omnifunc=nullcomplete#Complete
-    autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags noci
-    autocmd FileType css setl omnifunc=csscomplete#CompleteCSS noci
-    autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
-    autocmd FileType c setl omnifunc=ccomplete#Complete
-
-    """"""""""""""""""""""""""""""
     " => LanguageTool"{{{
     """"""""""""""""""""""""""""""
     let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
@@ -838,16 +836,16 @@ nnoremap <C-x> :Hexmode<CR>
     " => OmniCppComplete"{{{
     """"""""""""""""""""""""""""""
     " http://aufather.wordpress.com/2010/08/26/omni-completion-in-vim/
-    set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-    let OmniCpp_GlobalScopeSearch   = 1
-    let OmniCpp_DisplayMode         = 1
-    let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-    let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-    let OmniCpp_ShowAccess          = 1 "show access in pop-up
-    let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
+    " set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
+    " let OmniCpp_GlobalScopeSearch   = 1
+    " let OmniCpp_DisplayMode         = 1
+    " let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
+    " let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
+    " let OmniCpp_ShowAccess          = 1 "show access in pop-up
+    " let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
     set completeopt=menuone,menu,longest 
 
-    let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+    " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
     " highlight   clear
     highlight   Pmenu         ctermfg=0 ctermbg=2
     highlight   PmenuSel      ctermfg=0 ctermbg=7
@@ -861,11 +859,11 @@ nnoremap <C-x> :Hexmode<CR>
 " [ Functions & autocmd ]                                   {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set vim to chdir for each file {{{
-" if exists('+autochdir')
-    " set autochdir
-" else
-    " autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-" endif
+if exists('+autochdir')
+    set autochdir
+else
+    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+endif
 
 " Automatically update 'Last Modified' field
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.
