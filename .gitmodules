@@ -62,10 +62,6 @@
 	path = .vim/bundle/DrawIt
 	url = git://github.com/vim-scripts/DrawIt.git
 	ignore = dirty
-[submodule ".vim/bundle/FuzzyFinder.git"]
-	path = .vim/bundle/FuzzyFinder.git
-	url = git://github.com/vim-scripts/FuzzyFinder.git
-	ignore = dirty
 [submodule ".vim/bundle/Gundo"]
 	path = .vim/bundle/Gundo
 	url = git://github.com/vim-scripts/Gundo.git
@@ -185,4 +181,8 @@
 [submodule ".vim/bundle/editorconfig-vim"]
 	path = .vim/bundle/editorconfig-vim
 	url = git://github.com/editorconfig/editorconfig-vim.git
+	ignore = dirty
+[submodule ".vim/bundle/unite.vim"]
+	path = .vim/bundle/unite.vim
+	url = https://github.com/Shougo/unite.vim.git
 	ignore = dirty
