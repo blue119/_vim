@@ -38,10 +38,6 @@
 	path = .vim/bundle/xml.vim
 	url = git://github.com/othree/xml.vim.git
 	ignore = dirty
-[submodule ".vim/bundle/AutoComplPop"]
-	path = .vim/bundle/AutoComplPop
-	url = git://github.com/vim-scripts/AutoComplPop.git
-	ignore = dirty
 [submodule ".vim/bundle/CCTree"]
 	path = .vim/bundle/CCTree
 	url = git://github.com/vim-scripts/CCTree.git
