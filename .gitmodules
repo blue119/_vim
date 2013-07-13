@@ -210,3 +210,19 @@
 	path = .vim/bundle/molokai
 	url = https://github.com/tomasr/molokai.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-snipmate"]
+	path = .vim/bundle/vim-snipmate
+	url = git@github.com:blue119/vim-snipmate.git
+	ignore = dirty
+[submodule ".vim/bundle/tlib_vim"]
+	path = .vim/bundle/tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-addon-mw-utils"]
+	path = .vim/bundle/vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-snippets"]
+	path = .vim/bundle/vim-snippets
+	url = git@github.com:blue119/vim-snippets.git
+	ignore = dirty
