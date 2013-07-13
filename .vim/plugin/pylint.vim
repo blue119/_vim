@@ -6,7 +6,7 @@
 
 autocmd BufRead,BufNewFile *.py call SetPyLint()
 
-function SetPyLint()
+function! SetPyLint()
     if exists("current_compiler")
       finish
     endif

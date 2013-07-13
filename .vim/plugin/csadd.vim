@@ -52,5 +52,5 @@ EOF
 endfunction
 
 :call CSADD('zd', '')
-command -nargs=* Ics call CSADD(<f-args>, '')
+command! -nargs=* Ics call CSADD(<f-args>, '')
 

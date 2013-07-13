@@ -101,7 +101,10 @@ else
     set background=dark
     " set background=light
     " colorscheme solarized
-    colorscheme desert              " vim theme
+    " colorscheme desert            " vim theme
+    colorscheme molokai             " vim theme
+    let g:molokai_original = 1
+    let g:rehash256 = 1
     set t_Co=256
 endif
 " }}}
@@ -218,7 +221,8 @@ highlight Search term=reverse ctermbg=4 ctermfg=7
 """""""""""""""""""""""""""""
 
 " Tab Control"{{{
-nmap <tab> V>
+" nmap <tab> V>
+nmap <tab> V>
 nmap <s-tab> V<
 "nmap <s-tab> V<gv<ESC>
 xmap <tab> >gv
@@ -648,6 +652,18 @@ nmap l dp
         " \ }
     let g:ctrlp_user_command = 'find %s -type f'
     " }}}
+    "
+    """"""""""""""""""""""""""""""
+    " => unite "{{{
+    """"""""""""""""""""""""""""""
+    let g:unite_enable_start_insert=0
+
+    noremap <Leader>ub :Unite buffer<CR> 
+    noremap <Leader>uf :UniteWithBufferDir -buffer-name=files file<CR> 
+    noremap <Leader>ur :Unite file_mru<CR> 
+    noremap <Leader>uy :Unite -buffer-name=register register<CR> 
+    noremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+    " }}}
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1013,6 +1029,7 @@ endif
 " autocmd Filetype ls call s:ls_custom) {{{
 function! s:ls_custom()
     noremap <F2> :% w !lsc %<CR>
+    autocmd FileType ls autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 endfunction
 set expandtab      " Use spaces for tabs

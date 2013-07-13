@@ -134,10 +134,6 @@
 	path = .vim/bundle/occur.vim
 	url = git@github.com:blue119/occur.vim.git
 	ignore = dirty
-[submodule ".vim/bundle/snipmate.vim"]
-	path = .vim/bundle/snipmate.vim
-	url = git@github.com:blue119/snipmate.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/vim-ls"]
 	path = .vim/bundle/vim-ls
 	url = git://github.com/gkz/vim-ls.git
@@ -197,4 +193,20 @@
 [submodule ".vim/bundle/unite-grep"]
 	path = .vim/bundle/unite-grep
 	url = git://github.com/Sixeight/unite-grep.git
+	ignore = dirty
+[submodule ".vim/bundle/unite-tag"]
+	path = .vim/bundle/unite-tag
+	url = git://github.com/tsukkee/unite-tag.git
+	ignore = dirty
+[submodule ".vim/bundle/octave.vim"]
+	path = .vim/bundle/octave.vim
+	url = git://github.com/vim-scripts/octave.vim--.git
+	ignore = dirty
+[submodule ".vim/bundle/unite-outline"]
+	path = .vim/bundle/unite-outline
+	url = git://github.com/h1mesuke/unite-outline.git
+	ignore = dirty
+[submodule ".vim/bundle/molokai"]
+	path = .vim/bundle/molokai
+	url = https://github.com/tomasr/molokai.git
 	ignore = dirty
