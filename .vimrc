@@ -539,7 +539,8 @@ nmap l dp
 
     " Minimum lines used for comment syncing (default 50)
     "let vala_minlines = 120
-"}}}
+    "}}}
+    "
     """""""""""""""""""""""""""""
     " Auto Commplete Pop: ACP"{{{
     "
@@ -556,6 +557,7 @@ nmap l dp
     autocmd FileType c setl omnifunc=ccomplete#Complete
 
     "}}}
+    "
     """""""""""""""""""""""""""""
     " EnhancedCommentify {{{
     "

@@ -222,3 +222,6 @@
 	path = .vim/bundle/vim-snippets
 	url = git@github.com:blue119/vim-snippets.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-autocomplpop"]
+	path = .vim/bundle/vim-autocomplpop
+	url = https://github.com/othree/vim-autocomplpop.git
