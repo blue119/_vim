@@ -1,4 +1,4 @@
-#!/bain/sh
+#!/bin/sh
 
 fs+=(.vim)
 fs+=(.vimrc)
