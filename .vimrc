@@ -546,7 +546,7 @@ nmap l dp
     "
     nnoremap <Leader>af :AcpDisable<CR>
     nnoremap <Leader>an :AcpEnable<CR>
-    let g:acp_behaviorSnipmateLength = 1
+    " let g:acp_behaviorSnipmateLength = 1
 
     autocmd FileType * setl omnifunc=nullcomplete#Complete
     autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
