@@ -210,3 +210,15 @@
 	path = .vim/bundle/vim-autocomplpop
 	url = https://github.com/othree/vim-autocomplpop.git
 	ignore = dirty
+[submodule ".vim/bundle/desertEx"]
+	path = .vim/bundle/desertEx
+	url = https://github.com/mbbill/desertEx.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-indent-guides"]
+	path = .vim/bundle/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides
+	ignore = dirty
+[submodule ".vim/bundle/unite-perforce"]
+	path = .vim/bundle/unite-perforce
+	url = https://github.com/YamasakiKenta/unite-perforce.vim
+	ignore = dirty
