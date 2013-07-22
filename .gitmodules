@@ -188,7 +188,7 @@
 	ignore = dirty
 [submodule ".vim/bundle/molokai"]
 	path = .vim/bundle/molokai
-	url = https://github.com/tomasr/molokai.git
+	url = git@github.com:blue119/molokai.git
 	ignore = dirty
 [submodule ".vim/bundle/vim-snipmate"]
 	path = .vim/bundle/vim-snipmate
