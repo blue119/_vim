@@ -91,18 +91,19 @@ endif
 
 if has("gui_running")
     set guioptions-=T
-    " colorscheme desert256              " vim theme
+    " colorscheme desert256
+    colorscheme molokai
     set background=dark
-    colorscheme solarized
     set gfn=Consolas:h14
-    "set guifont=Lucida\ Console\ 14
     set gfn=Monospace\ 10
+    "set guifont=Lucida\ Console\ 14
 else
     set background=dark
-    " set background=light
-    " colorscheme solarized
-    " colorscheme desert            " vim theme
-    colorscheme molokai             " vim theme
+    " colorscheme desert
+    " colorscheme desertEx
+    " let g:desertEx_statusLineColor = 1
+
+    colorscheme molokai
     let g:molokai_original = 1
     let g:rehash256 = 1
     set t_Co=256
@@ -754,6 +755,15 @@ nnoremap <C-x> :Hexmode<CR>
     " }}}
 
     """"""""""""""""""""""""
+    " vim-indent-guides {{{
+    """"""""""""""""""""""""
+    let g:indent_guides_auto_colors = 0
+    let g:indent_guides_start_level = 2
+    let g:indent_guides_guide_size = 1
+    hi IndentGuidesOdd  ctermbg=black
+    hi IndentGuidesEven ctermbg=darkgrey
+
+    " }}}
 
     """"""""""""""""""""""""
     " NERD_TREE {{{
@@ -818,15 +828,6 @@ nnoremap <C-x> :Hexmode<CR>
     " let g:pydiction_location = '~/.vim/tools/complete-dict'
     " let g:pydiction_menu_height = 20
     " }}}
-
-    """"""""""""""""""""""""""""""
-    " => Command-T"{{{
-    """"""""""""""""""""""""""""""
-    " let g:CommandTMaxHeight = 15
-    " set wildignore+=*.o,*.obj,.git,*.pyc
-    " noremap <leader>j :CommandT<cr>
-    " noremap <leader>y :CommandTFlush<cr>
-    "}}}
 
     """"""""""""""""""""""""""""""
     " => DoxygenToolkit.vim"{{{
