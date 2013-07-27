@@ -658,14 +658,28 @@ nmap l dp
     "
     """"""""""""""""""""""""""""""
     " => unite "{{{
+    " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
     """"""""""""""""""""""""""""""
     let g:unite_enable_start_insert=0
 
-    noremap <Leader>ub :Unite buffer<CR> 
-    noremap <Leader>uf :UniteWithBufferDir -buffer-name=files file<CR> 
-    noremap <Leader>ur :Unite file_mru<CR> 
-    noremap <Leader>uy :Unite -buffer-name=register register<CR> 
-    noremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+    " File searching like ctrlp.vim
+    nnoremap <C-p> :Unite file_rec/async<CR> 
+
+    " Content searching like ack.vim
+    nnoremap <Leader>u/ :Unite grep:.<cr>
+
+    " Yank history like yankring
+    let g:unite_source_history_yank_enable = 1
+    nnoremap <Leader>uy :Unite history/yank<CR>
+
+    " Buffer switching like LustyJuggler
+    nnoremap <Leader>ub :Unite -quick-match buffer<cr>
+    " nnoremap <Leader>ub :Unite buffer<CR> 
+
+    nnoremap <Leader>uf :UniteWithBufferDir -buffer-name=files file<CR> 
+    nnoremap <Leader>ur :Unite file_mru<CR> 
+    nnoremap <Leader>uy :Unite -buffer-name=register register<CR> 
+    nnoremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
     " }}}
 " }}}
 
