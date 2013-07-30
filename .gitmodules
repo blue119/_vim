@@ -228,3 +228,6 @@
 [submodule ".vim/bundle/perforce.vim"]
 	path = .vim/bundle/perforce.vim
 	url = git@github.com:blue119/perforce.vim.git
+[submodule ".vim/bundle/jellybeans.vim"]
+	path = .vim/bundle/jellybeans.vim
+	url = https://github.com/nanotech/jellybeans.vim.git
