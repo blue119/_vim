@@ -3,4 +3,7 @@
 .vim/tags/
 .vim/view/
 .vim/doc/tags
+*.swp
 
+# temperary ignore
+.vim/bundle/powerline
