@@ -225,3 +225,6 @@
 	path = .vim/bundle/unite-perforce
 	url = https://github.com/YamasakiKenta/unite-perforce.vim
 	ignore = dirty
+[submodule ".vim/bundle/perforce.vim"]
+	path = .vim/bundle/perforce.vim
+	url = git@github.com:blue119/perforce.vim.git
