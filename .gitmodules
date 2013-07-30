@@ -210,6 +210,9 @@
 	path = .vim/bundle/vim-autocomplpop
 	url = https://github.com/othree/vim-autocomplpop.git
 	ignore = dirty
+[submodule ".vim/bundle/unite-help"]
+	path = .vim/bundle/unite-help
+	url = https://github.com/tsukkee/unite-help.git
 [submodule ".vim/bundle/desertEx"]
 	path = .vim/bundle/desertEx
 	url = https://github.com/mbbill/desertEx.git
