@@ -29,8 +29,7 @@ if has ('vim_starting')
 endif
 
 " ----------------------------------------------------------------------------
-" Font, Theme & Color Setting                                              {{{
-" ----------------------------------------------------------------------------
+" [ Font, Theme & Color Setting ]                                              {{{
 "
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
@@ -43,15 +42,14 @@ if has("gui_running")
     set gfn=Consolas:h14
     set gfn=Monospace\ 10
 else
+    " colorscheme jellybeans
     colorscheme molokai
 
     let g:molokai_original = 1
     let g:rehash256 = 1
 endif
-
-" ----------------------------------------------------------------------------
-" Font, Theme & Color Setting                                              }}}
-" ----------------------------------------------------------------------------
+"
+" [ Font, Theme & Color Setting ]                                           }}}
 
 " Searching
 set hlsearch        " enable search highlight globally
@@ -230,566 +228,9 @@ noremap <C-LeftMouse> <LeftMouse><Esc><C-V>
 noremap <C-LeftDrag> <LeftDrag>
 "
 " [ Mouse + gVim-Killer Related Setting ]                                   }}}
-" -----------------------------------------------------------------------------
-"
-" [ General Setting ]                                                       }}}
-" =============================================================================
-
-" =============================================================================
-" Function Key Mappings                                                    {{{
-"
-" <F1>: Help
-nmap <F1> [unite]h
-
-" Like \":write\", but only write when the buffer has been modified
-"nmap <F2> :up<CR>
-"imap <F2> <Esc>:up<CR>a
-
-"nnoremap <F2> 
-
-" Find match prev
-nnoremap <F3> :cp<CR>
-
-" Find match next
-nnoremap <F4> :cn<CR>
-
-"nnoremap <F5> 
-
-"nnoremap <F6> 
-
-" Toggle on/off paste mode
-nnoremap <F7> :set paste!<BAr>set paste?<CR>
-
-" search highlight switching
-" map <F8> :set hls!<BAR>set hls?<CR>
-"nnoremap <F8> 
-
-"Visualize some special chars
-set listchars=tab:>-,trail:-,eol:$,nbsp:%,extends:>,precedes:<
-set showbreak=↪
-map <F9> :set list!<bar>set list?<CR>
-
-" p4 edit
-nnoremap <F10> :!p4 edit %<CR>
-
-" Full Screen
-"nnoremap <F11> 
-
-"nnoremap <F12> 
-"
-" Function Key Mappings                                                     }}}
-" =============================================================================
-
-" =============================================================================
-" Leader Keys Mapping                                                       {{{
-"
-" Chagne <Leader> (Default is \) to ","
-let mapleader = ","
-let g:mapleader = ","
-
-" Chagne <LocalLeader> to "\"
-" let maplocalleader = "\"
-" let g:maplocalleader = "\"
-
-" <Leader>1: only
-nnoremap <Leader>1 :only<CR>
-
-" <Leader>2: split
-nnoremap <Leader>1 :split<CR>
-
-" <Leader>3: vsplit 
-nnoremap <Leader>1 :vsplit<CR>
-
-" <Leader>a for Auto Commplete Pop: ACP
-" <Leader>b TODO
-" <Leader>c for cscopequickfix
-" <Leader>d TODO
-" <Leader>e TODO
-" <Leader>f for vimgrep settings
-nnoremap <Leader>fv :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.vala' <CR>
-nnoremap <Leader>fp :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.py' <CR>
-nnoremap <Leader>fc :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.[ch]' <CR>
-nnoremap <Leader>fn :cn <CR>
-nnoremap <Leader>fN :cp <CR>
-
-" <Leader>g TODO
-" <Leader>h for Edit(e) & Generate(g) help tags
-nnoremap <Leader>he :tabedit $HOME/.vim/doc/MyNote.txt <CR>
-nnoremap <Leader>hg :helptags $HOME/.vim/doc <CR>
-
-" <Leader>i TODO
-" <Leader>j TODO
-" <Leader>k TODO
-" <Leader>l TODO
-" <Leader>m TODO
-" <Leader>n for mark 
-" <Leader>nt for NERDTree
-" <Leader>o TODO
-" <Leader>p: Copy the full path of the current file to the clipboard
-nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
-      \ path '".expand("%:p")."' to clipboard"<cr>
-
-" <Leader>q TODO
-" <Leader>r TODO
-" <Leader>s Spell Checking
-" <Leader>t for tag Operation
-" <Leader>u for unite
-" <Leader>v for View text file in two column
-":<C-u>              " clear command line (if in visual mode)
-"let @z=&so          " save scrolloff in register z
-":set so=0 noscb     " set scrolloff to 0 and clear scrollbind
-":bo vs              " split window vertically, new window on right
-"Ljzt                " jump to bottom of window + 1, scroll to top
-":setl scb           " setlocal scrollbind in right window
-"<C-w>p              " jump to previous window
-":setl scb           " setlocal scrollbind in left window
-":let &so=@z         " restore scrolloff
-noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
-
-" <Leader>w Fast saving
-nnoremap <leader>w :w!<cr>
-
-" <Leader>x TODO
-" <Leader>y TODO
-" <Leader>z TODO
-"
-" Leader Keys Mapping                                                       }}}
-" =============================================================================
-
-"===============================================================================
-" Normal Mode Key Mappings                                                   {{{
-"
-" `: cursor to the mark {a-zA-Z0-9}
-" 1~0: TODO
-" -: Remap to 'Window Operations' 
-" =: Remap to 'Window Operations' 
-" -----------------------------------------------------------------------------
-" q: record typed characters into named register {0-9a-zA-Z"} (uppercase to append)
-" w: cursor N words forward
-" e: cursor forward to the end of word N
-" r: replace N chars with {char}
-" t: cursor till before Nth occurrence of {char} to the right
-" y: yank Nmove text [into buffer x]
-" yy: yank N lines [into buffer x]
-" u: undo changes
-" i: insert text before the cursor N times
-" o: begin a new line below the cursor and insert text, repeat N times
-" p: put the text [from register x] after the cursor N times
-" [: square bracket command
-" ]: square bracket command
-" \: TODO
-" -----------------------------------------------------------------------------
-" a: append text after the cursor N times
-" s: (substitute) delete N characters [into buffer x] and start insert
-" addition another search work hls
-map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
-
-" Add new keyword in search under cursor (*)
-map a* :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
-
-" d: delete Nmove text [into buffer x]
-" dd: delete N lines [into buffer x]
-" f: cursor to Nth occurrence of {char} to the right
-" g: extended commands
-" h: cursor N chars to the left
-" j: cursor N lines downward
-" k: cursor N lines upward
-" l: cursor N chars to the right
-" ;: Remap to ':'
-" ': Go to word of make 
-" -----------------------------------------------------------------------------
-" z: commands starting with 'z'
-" x: delete N characters under and after the cursor [into buffer x]
-" c: delete Nmove text [into buffer x] and start insert
-" cc: delete N lines [into buffer x] and start insert
-" v: start characterwise Visual mode
-" b: cursor N words backward
-" n: repeat the latest '/' or '?' N times
-" m: set mark {A-Za-z} at cursor position
-" ,: Remap to '<Leader>'
-" .: repeat last change with count replaced with N
-" /: search forward for the Nth occurrence of {pattern}
-"
-" Normal Mode Key Mappings                                                   }}}
-"===============================================================================
-
-"===============================================================================
-" Normal Mode Shift Key Mappings                                             {{{
-"
-" ~: 'tildeop' off: switch case of N characters under cursor and move the cursor N characters to the right
-" !: filter Nmove text through the {filter} command
-" @{a-z}: execute the contents of register {a-z} N times
-" @:: repeat the previous ":" command N times
-" @@: repeat the previous @{a-z} N times
-" #: search backward for the Nth occurrence of the ident under the cursor
-" $: cursor to the end of Nth next line
-" %: find the next (curly/square) bracket on this line and go to its match, or go to matching comment bracket, or go to matching preprocessor directive.
-" ^: cursor to the first CHAR of the line
-" &: repeat last :s
-" *: search forward for the Nth occurrence of the ident under the cursor
-" (: cursor N sentences backward
-" ): cursor N sentences forward
-" +/_: Remap to 'In/decrement number'
-nnoremap + <c-a>
-nnoremap _ <c-x>
-" -----------------------------------------------------------------------------
-" Q: Remap to 'Closes the window'
-nnoremap Q :q<CR>
-
-" W: Move word forward
-" E: Move to end of word forward
-" R: Enter replace mode
-" T: Finds till backwards
-" Y: yank N lines, like as yy
-" U: Remap to 'Redo' since 'u' undos
-nnoremap U <c-r>
-
-" I: Insert at beginning of line
-" O: Insert line above
-" P: Paste above line
-" {: Beginning of paragraph
-" }: End of paragraph
-" | : Remap to Quick 'vertical splits'
-nnoremap <bar> :vsp<cr>
-" -----------------------------------------------------------------------------
-" A: Insert at end of line
-" S: Delete line and start insert
-" D: Deletes til the end of line
-" F: Finds backwards
-" G: Go to end of file
-" H: Go to top of screen
-" J: Join lines
-" K: Remap to 'Man'
-" L: Go to bottom of screen
-" :: start entering an Ex command
-" ": Handles registers
-" -----------------------------------------------------------------------------
-" Z: TODO
-" X: Deletes character backward
-" C: Deletes rest of line and go to insert mode
-" V: Visual line mode
-" B: Move word backward (TODO Replaced by <C-H>, maybe remap?)
-" N: Remap to 'Find next occurrence backward'
-nnoremap N Nzzzv
-
-" M: Move cursor to mid screen
-" <: Indent left
-" >: Indent right
-" ?: Search backwards
-"
-" Normal Mode Shift Key Mappings                                             }}}
-"===============================================================================
-
-"===============================================================================
-" Normal Mode Ctrl Key Mappings                                              {{{
-"
-" Ctrl-@: TODO
-" Ctrl-`: TODO
-" Ctrl-1~0: TODO
-" Ctrl-^: edit Nth alternate file (equivalent to ":e #N")
-" Ctrl-_: TODO
-"------------------------------------------------------------------------------
-" Ctrl-q: TODO
-" Ctrl-w: Window Command
-" Ctrl-e: Remap to 'end of line'
-nnoremap <c-e> $
-
-" Ctrl-r: Redo
-" Ctrl-t: Jump to previously tag 
-" Ctrl-y: scroll downwards
-" Ctrl-u: scroll upwards
-" Ctrl-i: <Tab>
-" Ctrl-o: Go to older entry
-" Ctrl-p: same as k
-" Ctrl-[: Esc
-" Ctrl-]: Go forward in tag stack
-" Ctrl-\: TODO
-" Ctrl-\ Ctrl-n: go to Normal mode (no-op)
-" Ctrl-\ Ctrl-g: go to mode specified with 'insertmode'
-"------------------------------------------------------------------------------
-" Ctrl-a: Remap to start of line
-nnoremap <c-a> ^
-
-" Ctrl-s: TODO 
-" Ctrl-d: scroll down lines 
-" Ctrl-f: scroll screens forward
-" Ctrl-g: display current file name and position
-" Ctrl-h: Remap to 'Window Operations' 
-" Ctrl-j: Remap to 'Window Operations' 
-" Ctrl-k: Remap to 'Window Operations' 
-" Ctrl-l: Remap to 'Window Operations' 
-" Ctrl-;: Vim can't map this
-" Ctrl-': Vim can't map this
-"------------------------------------------------------------------------------
-" Ctrl-z: suspend program
-" Ctrl-x: subtract N from number at/after cursor
-" Ctrl-c: interrupt current (search) command
-" Ctrl-v: start blockwise Visual mode 
-" Ctrl-b: scroll N screens Backwards
-" Ctrl-n: same as "j"
-" Ctrl-m: Remap to 'Window Operations'
-" Ctrl-,: Vim can't map this
-" Ctrl-.: Vim can't map this
-" Ctrl-/: TODO
-"
-" Normal Mode Ctrl Key Mappings                                              }}}
-"===============================================================================
-
-"===============================================================================
-" Insert Mode Key Mappings                                                   {{{
-"
-" 0 CTRL-D delete all indent in the current line
-" ^ CTRL-D delete all indent in the current line, restore it in the next line
-" 
-" <F1>: : same as <Help>
-" <Help>: stop insert mode and display help window
-" <Insert>: toggle Insert/Replace mode
-" 
-" <C-Home>: cursor to start of file
-" <C-End>: cursor past end of file
-" <C-Left>: cursor one word left
-" <C-Right>: cursor one word right
-" 
-" <S-Up>: same as <PageUp>
-" <S-Down>: same as <PageDown>
-" <S-Left>: cursor one word left
-" <S-Right>: cursor one word right
-"
-" Insert Mode Key Mappings                                                  }}}
-"==============================================================================
-
-"==============================================================================
-" Insert Mode Ctrl Key Mappings                                             {{{
-" Ctrl-@: insert previously inserted text and stop insert
-" Ctrl-1~0: TODO
-" Ctrl--: TODO
-" Ctrl-=: TODO
-" -----------------------------------------------------------------------------
-" Ctrl-q: Quoted insert. Useful for doing key binding
-" Ctrl-w: Delete previous word, create undo point
-inoremap <c-w> <c-g>u<c-w>
-
-" Ctrl-e: insert the character which is below the cursor that remap to go to end of line
-inoremap <c-e> <esc>A
-
-" Ctrl-r: insert the contents of a register
-" Ctrl-t: Indent shiftwidth
-" Ctrl-y: Insert char above cursor
-" Ctrl-u: Delete til beginning of line, create undo point
-inoremap <c-u> <c-g>u<c-u>
-
-" Ctrl-i: Tab
-" Ctrl-o: Execute one normal mode command and return to insert mode
-" Ctrl-p: Auto complete previous
-" Ctrl-[: <esc>
-" Ctrl-]: trigger abbreviation
-" Ctrl-\: others not used
-" Ctrl-\ ctrl-N: go to Normal mode
-" Ctrl-\ ctrl-G: go to mode specified with 'insertmode'
-" -----------------------------------------------------------------------------
-" Ctrl-a: Go to begin of line
-inoremap <c-a> <esc>I
-
-" Ctrl-s: Save
-inoremap <c-s> <esc>:w<CR>
-
-" Ctrl-d: Unindent shiftwidth
-" Ctrl-f: TODO
-" Ctrl-g: TODO
-
-" move your cursor like as in normal mode
-" Ctrl-h: <BS> that remap to <left> 
-" Ctrl-j: <CR> that remap to <down>
-" Ctrl-k: {char1} {char2} enter digraph that remap to <up>
-" Ctrl-l: Leave Insert mode that remap to <right>
-inoremap <c-h> <c-o>h
-inoremap <c-j> <c-o>j
-inoremap <c-k> <c-o>k
-inoremap <c-l> <c-o>l
-
-" Ctrl-;: TODO
-" Ctrl-': TODO
-" -----------------------------------------------------------------------------
-" Ctrl-z: suspend Vim
-" Ctrl-x: enter ctrl-x sub mode
-" ctrl-x ctrl-d:    complete defined identifiers
-" ctrl-x ctrl-e:    scroll up
-" ctrl-x ctrl-f:    complete file names
-" ctrl-x ctrl-i:    complete identifiers
-" ctrl-x ctrl-k:    complete identifiers from dictionary
-" ctrl-x ctrl-l:    complete whole lines
-" ctrl-x ctrl-n:    next completion
-" ctrl-x ctrl-o:    omni completion
-" ctrl-x ctrl-p:    previous completion
-" ctrl-x ctrl-s:    spelling suggestions
-" ctrl-x ctrl-t:    complete identifiers from thesaurus
-" ctrl-x ctrl-y:    scroll down
-" ctrl-x ctrl-u:    complete with 'completefunc'
-" ctrl-x ctrl-v:    complete like in : command line
-" ctrl-x ctrl-]:    complete tags
-" ctrl-x s:         spelling suggestions
-
-" Ctrl-c: quit insert mode, without checking for abbr that remap to inserts line below
-inoremap <c-c> <c-o>o
-
-" Ctrl-v: Paste. For some reason, <c-o> is not creating an undo point in the mapping
-inoremap <c-v> <c-g>u<c-o>gP
-
-" Ctrl-b: TODO
-" Ctrl-n: Auto complete next
-" Ctrl-m: Same as Enter
-
-" Ctrl-,: TODO
-" Ctrl-.: TODO
-" Ctrl-/: Undo
-inoremap <c-_> <c-o>u
-" -----------------------------------------------------------------------------
-" Ctrl-space: TODO
-"
-" Insert Mode Ctrl Key Mappings                                              }}}
-"===============================================================================
-
-"===============================================================================
-" Virtual Mode Ctrl Key Mappings                                             {{{
-"
-vnoremap <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
-" Copy to System-Clipboard
-"if OS == "Linux"
-"    map <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
-"endif
-
-" Tab Control
-vnoremap <tab> >gv
-vnoremap <s-tab> <gv
-"
-" Virtual Mode Ctrl Key Mappings                                             }}}
-"===============================================================================
-
-"===============================================================================
-" Command-line Mode Key Mappings                                             {{{
-"
-" Bash like keys for the command line. These resemble personal zsh mappings
-cnoremap <c-a> <home>
-cnoremap <c-e> <end>
-
-" Ctrl-[hl]: Move left/right by word
-cnoremap <c-h> <s-left>
-cnoremap <c-l> <s-right>
-
-" Ctrl-Space: Show history
-cnoremap <c-@> <c-f>
-
-cnoremap <c-j> <down>
-cnoremap <c-k> <up>
-cnoremap <c-f> <left>
-cnoremap <c-g> <right>
-
-" Ctrl-Delete: Delete previous word. HACK ALERT! Ctrl-Delete sends d in iTerm2
-cnoremap <m-d> <c-w>
-
-" Ctrl-v: Paste
-cnoremap <c-v> <c-r>"
-
-" w!!: Writes using sudo
-cnoremap w!! w !sudo tee % >/dev/null
-"
-" Command-line Mode Key Mappings                                             }}}
-"===============================================================================
-
-"===============================================================================
-" Specific Key Mappings                                                      {{{
 "
 " -----------------------------------------------------------------------------
-" Window Operations                                                         {{{
-" Use Ctrl+hjkl to switch between Window
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-" Maximize current split
-nnoremap <C-m> <C-w>_<C-w><Bar> 
-nnoremap <C-=> <C-w>= 
-nnoremap - <C-w>-
-nnoremap = <C-w>+
-" Define different behavior in left/right window
-if has("autocmd")
-    autocmd BufEnter,BufLeave *
-    \     if winnr() == 1 |
-    \        nmap < <C-w><|
-    \        nmap > <C-w>>|
-    \     else            |
-    \        nmap < <C-w>>|
-    \        nmap > <C-w><|
-    \     endif           |
-endif
-" Window Operations                                                         }}}
-
-" -----------------------------------------------------------------------------
-" Tag Operations                                                            {{{
-" Go to next tab
-nnoremap <Leader>tl gt <CR>
-inoremap <Leader>tl <ESC>gt <CR>
-" Go to Prev tab
-nnoremap <Leader>th gT <CR>
-inoremap <Leader>th <ESC>gT <CR>
-" Create a tab
-nnoremap <Leader>tn :tabnew<CR>
-inoremap <Leader>tn <ESC>:tabnew<CR>
-" Remove the tab
-nnoremap <Leader>tc :tabclose<CR>
-inoremap <Leader>tc <ESC>:tabclose<CR>
-" Show the tab list
-nnoremap <Leader>ts :tabs<CR>
-inoremap <Leader>ts <ESC>:tabs<CR>
-
-" Spell Checking
-nnoremap <Leader>ss :setlocal spell!<cr>
-nnoremap <Leader>sj ]s
-nnoremap <Leader>sk [s
-nnoremap <Leader>sa zg]s
-nnoremap <Leader>sd 1z=
-nnoremap <Leader>sf z=
-"
-" Tag Operations                                                            }}}
-"
-" -----------------------------------------------------------------------------
-" [ Diff related ]                                                          {{{
-"
-"force vim diff to ignore whitespace
-set diffopt+=iwhite
-" highlight diff color
-hi diffchange ctermbg=236
-hi diffadd ctermbg=4
-hi DiffDelete ctermfg=69 ctermbg=234
-hi difftext ctermbg=3 ctermfg=0
-
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
-nmap ,d :DiffSaved<CR>
-
-"DirDiff
-let g:DirDiffExcludes = "*.git,*.svn,.*.swp,tags,cscope.*"
-let g:DirDiffWindowSize = 10
-
-" WinMerge-style (Alt + hjkl) mapping for vimdiff
-nmap j ]c
-nmap k [c
-nmap h do
-nmap l dp
-"
-" [ Diff related End ]                                                      }}}
-"
-" Specific Key Mappings End                                                 }}}
-"==============================================================================
-
-" =============================================================================
-" Abbreviations                                                             {{{
+" [ Abbreviations ]                                                         {{{
 "
 " command mode : cabbrev
 " insert mode : iabbr
@@ -802,75 +243,607 @@ cabbrev hds diffsplit
 cabbrev h help
 cabbrev vh vertical help
 "
-" Abbreviations                                                             }}}
+" [ Abbreviations ]                                                         }}}
+"
+" [ General Setting ]                                                       }}}
 " =============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" [ Programming Language ]                                  {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =============================================================================
+" [ Key Mappings ]                                                   {{{
+"
+    " -------------------------------------------------------------------------
+    " [ Function Key ]                                                {{{
+    "
+    " <F1>: Help
+    nmap <F1> [unite]h
 
-    """"""""""""""""""""""""""""""
-    " cs-mgmt "{{{
-    """"""""""""""""""""""""""""""
+    " Like \":write\", but only write when the buffer has been modified
+    "nmap <F2> :up<CR>
+    "imap <F2> <Esc>:up<CR>a
+    "nnoremap <F2> 
+
+    " Find match prev
+    nnoremap <F3> :cp<CR>
+
+    " Find match next
+    nnoremap <F4> :cn<CR>
+
+    "nnoremap <F5> 
+    "nnoremap <F6> 
+
+    " Toggle on/off paste mode
+    nnoremap <F7> :set paste!<BAr>set paste?<CR>
+
+    " search highlight switching
+    " map <F8> :set hls!<BAR>set hls?<CR>
+    "nnoremap <F8> 
+
+    "Visualize some special chars
+    set listchars=tab:>-,trail:-,eol:$,nbsp:%,extends:>,precedes:<
+    set showbreak=↪
+    map <F9> :set list!<bar>set list?<CR>
+
+    " p4 edit
+    nnoremap <F10> :!p4 edit %<CR>
+
+    "nnoremap <F11> Full Screen
+    "nnoremap <F12> 
+    "
+    " [ Function Key ]                                                  }}}
+
+    " -------------------------------------------------------------------------
+    " [ Leader Keys ]                                               {{{
+    "
+    " Chagne <Leader> (Default is \) to ","
+    let mapleader = ","
+    let g:mapleader = ","
+
+    " Chagne <LocalLeader> to "\"
+    " let maplocalleader = "\"
+    " let g:maplocalleader = "\"
+
+    " <Leader>1: only
+    nnoremap <Leader>1 :only<CR>
+
+    " <Leader>2: split
+    nnoremap <Leader>1 :split<CR>
+
+    " <Leader>3: vsplit 
+    nnoremap <Leader>1 :vsplit<CR>
+
+    " <Leader>a for Auto Commplete Pop: ACP
+    " <Leader>b TODO
+    " <Leader>c TODO
+    " <Leader>cq for cscopequickfix
+    " <Leader>d TODO
+    " <Leader>e TODO
+    " <Leader>f for vimgrep settings
+    nnoremap <Leader>fv :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.vala' <CR>
+    nnoremap <Leader>fp :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.py' <CR>
+    nnoremap <Leader>fc :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.[ch]' <CR>
+    nnoremap <Leader>fn :cn <CR>
+    nnoremap <Leader>fN :cp <CR>
+
+    " <Leader>g TODO
+    " <Leader>h for Edit(e) & Generate(g) help tags
+    nnoremap <Leader>he :tabedit $HOME/.vim/doc/MyNote.txt <CR>
+    nnoremap <Leader>hg :helptags $HOME/.vim/doc <CR>
+
+    " <Leader>i TODO
+    " <Leader>j TODO
+    " <Leader>k TODO
+    " <Leader>l TODO
+    " <Leader>m TODO
+    " <Leader>n Remap to mark 
+    " <Leader>nt Remap to NERDTree
+    " <Leader>o Remmap to bufExplorer
+    " <Leader>p: Copy the full path of the current file to the clipboard
+    nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
+        \ path '".expand("%:p")."' to clipboard"<cr>
+
+    " <Leader>q TODO
+    " <Leader>r TODO
+    " <Leader>s Spell Checking
+    " <Leader>t for tag Operation
+    " <Leader>u for unite
+    " <Leader>v for View text file in two column
+    ":<C-u>              " clear command line (if in visual mode)
+    "let @z=&so          " save scrolloff in register z
+    ":set so=0 noscb     " set scrolloff to 0 and clear scrollbind
+    ":bo vs              " split window vertically, new window on right
+    "Ljzt                " jump to bottom of window + 1, scroll to top
+    ":setl scb           " setlocal scrollbind in right window
+    "<C-w>p              " jump to previous window
+    ":setl scb           " setlocal scrollbind in left window
+    ":let &so=@z         " restore scrolloff
+    noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+
+    " <Leader>w Fast saving
+    nnoremap <leader>w :w!<cr>
+
+    " <Leader>x TODO
+    " <Leader>y TODO
+    " <Leader>z TODO
+    "
+    " [ Leader Keys ]                                                   }}}
+
+    " -------------------------------------------------------------------------
+    " [ Normal Mode ]                                                   {{{
+    "
+    " `: cursor to the mark {a-zA-Z0-9}
+    " 1~0: TODO
+    " -: Remap to 'Window Operations' 
+    " =: Remap to 'Window Operations' 
+    " -----------------------------------------------------------------------------
+    " q: record typed characters into named register {0-9a-zA-Z"} (uppercase to append)
+    " w: cursor N words forward
+    " e: cursor forward to the end of word N
+    " r: replace N chars with {char}
+    " t: cursor till before Nth occurrence of {char} to the right
+    " y: yank Nmove text [into buffer x]
+    " yy: yank N lines [into buffer x]
+    " u: undo changes
+    " i: insert text before the cursor N times
+    " o: begin a new line below the cursor and insert text, repeat N times
+    " p: put the text [from register x] after the cursor N times
+    " [: square bracket command
+    " ]: square bracket command
+    " \: TODO
+    " -----------------------------------------------------------------------------
+    " a: append text after the cursor N times
+    " s: (substitute) delete N characters [into buffer x] and start insert
+    " addition another search work hls
+    map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
+
+    " Add new keyword in search under cursor (*)
+    map a* :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
+
+    " d: delete Nmove text [into buffer x]
+    " dd: delete N lines [into buffer x]
+    " f: cursor to Nth occurrence of {char} to the right
+    " g: extended commands
+    " h: cursor N chars to the left
+    " j: cursor N lines downward
+    " k: cursor N lines upward
+    " l: cursor N chars to the right
+    " ;: Remap to ':'
+    " ': Go to word of make 
+    " -----------------------------------------------------------------------------
+    " z: commands starting with 'z'
+    " x: delete N characters under and after the cursor [into buffer x]
+    " c: delete Nmove text [into buffer x] and start insert
+    " cc: delete N lines [into buffer x] and start insert
+    " v: start characterwise Visual mode
+    " b: cursor N words backward
+    " n: repeat the latest '/' or '?' N times
+    " m: set mark {A-Za-z} at cursor position
+    " ,: Remap to '<Leader>'
+    " .: repeat last change with count replaced with N
+    " /: search forward for the Nth occurrence of {pattern}
+    "
+    " [ Normal Mode ]                                                  }}}
+
+    " -------------------------------------------------------------------------
+    " [ Normal Mode + Shift ]                                        {{{
+    "
+    " ~: 'tildeop' off: switch case of N characters under cursor and move the cursor N characters to the right
+    " !: filter Nmove text through the {filter} command
+    " @{a-z}: execute the contents of register {a-z} N times
+    " @:: repeat the previous ":" command N times
+    " @@: repeat the previous @{a-z} N times
+    " #: search backward for the Nth occurrence of the ident under the cursor
+    " $: cursor to the end of Nth next line
+    " %: find the next (curly/square) bracket on this line and go to its match, or go to matching comment bracket, or go to matching preprocessor directive.
+    " ^: cursor to the first CHAR of the line
+    " &: repeat last :s
+    " *: search forward for the Nth occurrence of the ident under the cursor
+    " (: cursor N sentences backward
+    " ): cursor N sentences forward
+    " +/_: Remap to 'In/decrement number'
+    nnoremap + <c-a>
+    nnoremap _ <c-x>
+    " -----------------------------------------------------------------------------
+    " Q: Remap to 'Closes the window'
+    nnoremap Q :q<CR>
+
+    " W: Move word forward
+    " E: Move to end of word forward
+    " R: Enter replace mode
+    " T: Finds till backwards
+    " Y: yank N lines, like as yy
+    " U: Remap to 'Redo' since 'u' undos
+    nnoremap U <c-r>
+
+    " I: Insert at beginning of line
+    " O: Insert line above
+    " P: Paste above line
+    " {: Beginning of paragraph
+    " }: End of paragraph
+    " | : Remap to Quick 'vertical splits'
+    nnoremap <bar> :vsp<cr>
+    " -----------------------------------------------------------------------------
+    " A: Insert at end of line
+    " S: Delete line and start insert
+    " D: Deletes til the end of line
+    " F: Finds backwards
+    " G: Go to end of file
+    " H: Go to top of screen
+    " J: Join lines
+    " K: Remap to 'Man'
+    " L: Go to bottom of screen
+    " :: start entering an Ex command
+    " ": Handles registers
+    " -----------------------------------------------------------------------------
+    " Z: TODO
+    " X: Deletes character backward
+    " C: Deletes rest of line and go to insert mode
+    " V: Visual line mode
+    " B: Move word backward (TODO Replaced by <C-H>, maybe remap?)
+    " N: Remap to 'Find next occurrence backward'
+    nnoremap N Nzzzv
+
+    " M: Move cursor to mid screen
+    " <: Indent left
+    " >: Indent right
+    " ?: Search backwards
+    "
+    " [ Normal Mode + Shift ]                                        }}}
+
+    " -------------------------------------------------------------------------
+    " [ Normal Mode + Ctrl ]                                         {{{
+    "
+    " Ctrl-@: TODO
+    " Ctrl-`: TODO
+    " Ctrl-1~0: TODO
+    " Ctrl-^: edit Nth alternate file (equivalent to ":e #N")
+    " Ctrl-_: TODO
+    "--------------------------------------------------------------------------
+    " Ctrl-q: TODO
+    " Ctrl-w: Window Command
+    " Ctrl-e: Remap to 'end of line'
+    nnoremap <c-e> $
+
+    " Ctrl-r: Redo
+    " Ctrl-t: Jump to previously tag 
+    " Ctrl-y: scroll downwards
+    " Ctrl-u: scroll upwards
+    " Ctrl-i: <Tab>
+    " Ctrl-o: Go to older entry
+    " Ctrl-p: same as k
+    " Ctrl-[: Esc
+    " Ctrl-]: Go forward in tag stack
+    " Ctrl-\: TODO
+    " Ctrl-\ Ctrl-n: go to Normal mode (no-op)
+    " Ctrl-\ Ctrl-g: go to mode specified with 'insertmode'
+    "------------------------------------------------------------------------------
+    " Ctrl-a: Remap to start of line
+    nnoremap <c-a> ^
+
+    " Ctrl-s: TODO 
+    " Ctrl-d: scroll down lines 
+    " Ctrl-f: scroll screens forward
+    " Ctrl-g: display current file name and position
+    " Ctrl-h: Remap to 'Window Operations' 
+    " Ctrl-j: Remap to 'Window Operations' 
+    " Ctrl-k: Remap to 'Window Operations' 
+    " Ctrl-l: Remap to 'Window Operations' 
+    " Ctrl-;: Vim can't map this
+    " Ctrl-': Vim can't map this
+    "------------------------------------------------------------------------------
+    " Ctrl-z: suspend program
+    " Ctrl-x: Remap to Hexmode
+    " Ctrl-c: interrupt current (search) command
+    " Ctrl-v: start blockwise Visual mode 
+    " Ctrl-b: scroll N screens Backwards
+    " Ctrl-n: same as "j"
+    " Ctrl-m: Remap to 'Window Operations'
+    " Ctrl-,: Vim can't map this
+    " Ctrl-.: Vim can't map this
+    " Ctrl-/: TODO
+    "
+    " [ Normal Mode + Ctrl ]                                          }}}
+
+    " -------------------------------------------------------------------------
+    " [ Insert Mode ]                                                   {{{
+    "
+    " 0 CTRL-D delete all indent in the current line
+    " ^ CTRL-D delete all indent in the current line, restore it in the next line
+    " 
+    " <F1>: : same as <Help>
+    " <Help>: stop insert mode and display help window
+    " <Insert>: toggle Insert/Replace mode
+    " 
+    " <C-Home>: cursor to start of file
+    " <C-End>: cursor past end of file
+    " <C-Left>: cursor one word left
+    " <C-Right>: cursor one word right
+    " 
+    " <S-Up>: same as <PageUp>
+    " <S-Down>: same as <PageDown>
+    " <S-Left>: cursor one word left
+    " <S-Right>: cursor one word right
+    "
+    " [ Inhsert Mode ]                                                  }}}
+
+    " -------------------------------------------------------------------------
+    " [ Insert Mode + Ctrl ]                                             {{{
+    " Ctrl-@: insert previously inserted text and stop insert
+    " Ctrl-1~0: TODO
+    " Ctrl--: TODO
+    " Ctrl-=: TODO
+    " -----------------------------------------------------------------------------
+    " Ctrl-q: Quoted insert. Useful for doing key binding
+    " Ctrl-w: Delete previous word, create undo point
+    inoremap <c-w> <c-g>u<c-w>
+
+    " Ctrl-e: insert the character which is below the cursor that remap to go to end of line
+    inoremap <c-e> <esc>A
+
+    " Ctrl-r: insert the contents of a register
+    " Ctrl-t: Indent shiftwidth
+    " Ctrl-y: Insert char above cursor
+    " Ctrl-u: Delete til beginning of line, create undo point
+    inoremap <c-u> <c-g>u<c-u>
+
+    " Ctrl-i: Tab
+    " Ctrl-o: Execute one normal mode command and return to insert mode
+    " Ctrl-p: Auto complete previous
+    " Ctrl-[: <esc>
+    " Ctrl-]: trigger abbreviation
+    " Ctrl-\: others not used
+    " Ctrl-\ ctrl-N: go to Normal mode
+    " Ctrl-\ ctrl-G: go to mode specified with 'insertmode'
+    " -----------------------------------------------------------------------------
+    " Ctrl-a: Go to begin of line
+    inoremap <c-a> <esc>I
+
+    " Ctrl-s: Save
+    inoremap <c-s> <esc>:w<CR>
+
+    " Ctrl-d: Unindent shiftwidth
+    " Ctrl-f: TODO
+    " Ctrl-g: TODO
+
+    " move your cursor like as in normal mode
+    " Ctrl-h: <BS> that remap to <left> 
+    " Ctrl-j: <CR> that remap to <down>
+    " Ctrl-k: {char1} {char2} enter digraph that remap to <up>
+    " Ctrl-l: Leave Insert mode that remap to <right>
+    inoremap <c-h> <c-o>h
+    inoremap <c-j> <c-o>j
+    inoremap <c-k> <c-o>k
+    inoremap <c-l> <c-o>l
+
+    " Ctrl-;: TODO
+    " Ctrl-': TODO
+    " -----------------------------------------------------------------------------
+    " Ctrl-z: suspend Vim
+    " Ctrl-x: enter ctrl-x sub mode
+    " ctrl-x ctrl-d:    complete defined identifiers
+    " ctrl-x ctrl-e:    scroll up
+    " ctrl-x ctrl-f:    complete file names
+    " ctrl-x ctrl-i:    complete identifiers
+    " ctrl-x ctrl-k:    complete identifiers from dictionary
+    " ctrl-x ctrl-l:    complete whole lines
+    " ctrl-x ctrl-n:    next completion
+    " ctrl-x ctrl-o:    omni completion
+    " ctrl-x ctrl-p:    previous completion
+    " ctrl-x ctrl-s:    spelling suggestions
+    " ctrl-x ctrl-t:    complete identifiers from thesaurus
+    " ctrl-x ctrl-y:    scroll down
+    " ctrl-x ctrl-u:    complete with 'completefunc'
+    " ctrl-x ctrl-v:    complete like in : command line
+    " ctrl-x ctrl-]:    complete tags
+    " ctrl-x s:         spelling suggestions
+
+    " Ctrl-c: quit insert mode, without checking for abbr that remap to inserts line below
+    inoremap <c-c> <c-o>o
+
+    " Ctrl-v: Paste. For some reason, <c-o> is not creating an undo point in the mapping
+    inoremap <c-v> <c-g>u<c-o>gP
+
+    " Ctrl-b: TODO
+    " Ctrl-n: Auto complete next
+    " Ctrl-m: Same as Enter
+
+    " Ctrl-,: TODO
+    " Ctrl-.: TODO
+    " Ctrl-/: Undo
+    inoremap <c-_> <c-o>u
+    " -----------------------------------------------------------------------------
+    " Ctrl-space: TODO
+    "
+    " [ Insert Mode + Ctrl ]                                              }}}
+
+    " -------------------------------------------------------------------------
+    " [ Virtual Mode + Ctrl ]                                       {{{
+    "
+    vnoremap <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
+    " Copy to System-Clipboard
+    "if OS == "Linux"
+    "    map <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
+    "endif
+
+    " Tab Control
+    vnoremap <tab> >gv
+    vnoremap <s-tab> <gv
+    "
+    " [ Virtual Mode + Ctrl ]                                        }}}
+
+    " -------------------------------------------------------------------------
+    " [ Command-line Mode ]                                         {{{
+    "
+    " Bash like keys for the command line. These resemble personal zsh mappings
+    cnoremap <c-a> <home>
+    cnoremap <c-e> <end>
+
+    " Ctrl-[hl]: Move left/right by word
+    cnoremap <c-h> <s-left>
+    cnoremap <c-l> <s-right>
+
+    " Ctrl-Space: Show history
+    cnoremap <c-@> <c-f>
+
+    cnoremap <c-j> <down>
+    cnoremap <c-k> <up>
+    cnoremap <c-f> <left>
+    cnoremap <c-g> <right>
+
+    " Ctrl-Delete: Delete previous word. HACK ALERT! Ctrl-Delete sends d in iTerm2
+    cnoremap <m-d> <c-w>
+
+    " Ctrl-v: Paste
+    cnoremap <c-v> <c-r>"
+
+    " w!!: Writes using sudo
+    cnoremap w!! w !sudo tee % >/dev/null
+    "
+    " [ Command-line Mode ]                                            }}}
+
+    " -------------------------------------------------------------------------
+    " [ Specific Hot-Key Group ]                                            {{{
+    "
+    " [ Window Operations ]                                                  {{{
+    " Use Ctrl+hjkl to switch between Window
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+    " Maximize current split
+    nnoremap <C-m> <C-w>_<C-w><Bar> 
+    nnoremap <C-=> <C-w>= 
+    nnoremap - <C-w>-
+    nnoremap = <C-w>+
+    " Define different behavior in left/right window
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd BufEnter,BufLeave *
+            \     if winnr() == 1 |
+            \        nmap < <C-w><|
+            \        nmap > <C-w>>|
+            \     else            |
+            \        nmap < <C-w>>|
+            \        nmap > <C-w><|
+            \     endif           |
+        augroup END
+    endif
+    " [ Window Operations ]                                                 }}}
+
+    " [ Tag Operations ]                                                     {{{
+    " Go to next tab
+    nnoremap <Leader>tl gt <CR>
+    inoremap <Leader>tl <ESC>gt <CR>
+    " Go to Prev tab
+    nnoremap <Leader>th gT <CR>
+    inoremap <Leader>th <ESC>gT <CR>
+    " Create a tab
+    nnoremap <Leader>tn :tabnew<CR>
+    inoremap <Leader>tn <ESC>:tabnew<CR>
+    " Remove the tab
+    nnoremap <Leader>tc :tabclose<CR>
+    inoremap <Leader>tc <ESC>:tabclose<CR>
+    " Show the tab list
+    nnoremap <Leader>ts :tabs<CR>
+    inoremap <Leader>ts <ESC>:tabs<CR>
+
+    " Spell Checking
+    nnoremap <Leader>ss :setlocal spell!<cr>
+    nnoremap <Leader>sj ]s
+    nnoremap <Leader>sk [s
+    nnoremap <Leader>sa zg]s
+    nnoremap <Leader>sd 1z=
+    nnoremap <Leader>sf z=
+    "
+    " [ Tag Operations ]                                                     }}}
+    "
+    " [ Diff related ]                                                      {{{
+    "
+    "force vim diff to ignore whitespace
+    set diffopt+=iwhite
+    " highlight diff color
+    hi diffchange ctermbg=236
+    hi diffadd ctermbg=4
+    hi DiffDelete ctermfg=69 ctermbg=234
+    hi difftext ctermbg=3 ctermfg=0
+
+    function! s:DiffWithSaved()
+    let filetype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+    endfunction
+    com! DiffSaved call s:DiffWithSaved()
+    nmap ,d :DiffSaved<CR>
+
+    "DirDiff
+    let g:DirDiffExcludes = "*.git,*.svn,.*.swp,tags,cscope.*"
+    let g:DirDiffWindowSize = 10
+
+    " WinMerge-style (Alt + hjkl) mapping for vimdiff
+    nmap j ]c
+    nmap k [c
+    nmap h do
+    nmap l dp
+    "
+    " [ Diff related ]                                                      }}}
+    "
+    " [ Specific Hot-Key Group ]                                       }}}
+"
+" Key Mappings                                                     }}}
+" =============================================================================
+
+" =============================================================================
+" [ Programming Related ]                                  {{{
+
+    " -------------------------------------------------------------------------
+    " [ cs-mgmt.vim ]                                                      {{{
+    "
     let g:CsMgmtCtags = 1
     let g:CsMgmtReAttach = 1
-"}}}
+    " [ cs-mgmt.vim ]                                                      }}}
 
-    "nmap <C-c><C-c> :!gcc -Wall % -o %:r.out<CR>nmap <C-c><C-c> :!gcc -Wall % -o %:r.out<CR>
-    
-    """"""""""""""""""""""""""""""
-    " ctags "{{{
-    """"""""""""""""""""""""""""""
-    " Set tags path
-    " ./: starting in the directory where the current file is.
-    " tags: search for a tags file named 'tags'
-    " ;: recurse up the file tree if you do not find it
-    " ../../../../: stop looking after 4 levels
-    " set tags=./tags;/home/blue119/.vim/tags/;../../../../
-"}}}
-    """"""""""""""""""""""""""""""
-    " cscope "{{{
-    """"""""""""""""""""""""""""""
-    " init cscope hotkey
-
-    "nnoremap <F11> <ESC>:cs add ../cscope.out ..<CR>:cs add /home/kent/cscope_ctag/Horus/cscope.out /home/kent/Project/Horus/apps<CR>
-
-    " To avoid using wrong cscope(/opt/montavista/pro5.0/bin/cscope) once sourcing devel_IP8161_VVTK
-    if match(system('ls ~/usr/bin/cscope'), 'cscope') != -1
-        set cscopeprg=~/usr/bin/cscope
-    endif
-"}}}
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " cscopequickfix {{{
+    " -------------------------------------------------------------------------
+    " [ cscope ]                                                           {{{
     "
-    if v:version >= 700 && has("cscope")
-        function! CSCOPE_QuickFixToogle()
-            if exists("g:__cscopequickfix")
-                set cscopequickfix&
-                unmap <C-t>
-                unlet g:__cscopequickfix
-            else
-                " cscope search resule save into quickfix
-                set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
-                " Ctrl-t remapping for cscope with quickfix
-                nmap <C-t> :colder<CR>:cc<CR>
-                let g:__cscopequickfix = bufnr("$")
-            endif
-        endfunction
+        " cscopequickfix {{{
+        "
+        if v:version >= 700 && has("cscope")
+            function! CSCOPE_QuickFixToogle()
+                if exists("g:__cscopequickfix")
+                    set cscopequickfix&
+                    unmap <C-t>
+                    unlet g:__cscopequickfix
+                else
+                    " cscope search resule save into quickfix
+                    set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
+                    " Ctrl-t remapping for cscope with quickfix
+                    nmap <C-t> :colder<CR>:cc<CR>
+                    let g:__cscopequickfix = bufnr("$")
+                endif
+            endfunction
 
-        nmap <Leader>cq :call CSCOPE_QuickFixToogle()<CR>
-    endif
-    " }}}
-    """"""""""""""""""""""""""""""
-    " Javascript"{{{
-    """"""""""""""""""""""""""""""
-    autocmd FileType javascript set dictionary=~/.vim/dict/javascript.dict
-"}}}
-    """"""""""""""""""""""""""""""
-    " vala"{{{
-    """"""""""""""""""""""""""""""
-    autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
-    autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+            nmap <Leader>cq :call CSCOPE_QuickFixToogle()<CR>
+        endif
+        " }}}
+    " [ cscope ]                                                           }}}
+
+    " -------------------------------------------------------------------------
+    " [ Javascript ]                                                       {{{
+    "
+    " json = javascript syntax highlight
+    augroup MyAutoCmd
+        autocmd FileType json setlocal syntax=javascript
+    augroup END
+    " [ Javascript ]                                                       }}}
+
+    " -------------------------------------------------------------------------
+    " [ vala ]                                                             {{{
+    "
+    augroup MyAutoCmd
+        autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+        autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
+    augroup END
     au BufRead,BufNewFile *.vala    setfiletype vala
     au BufRead,BufNewFile *.vapi    setfiletype vala
     " Disable valadoc syntax highlight
@@ -888,65 +861,48 @@ cabbrev vh vertical help
 
     " Minimum lines used for comment syncing (default 50)
     "let vala_minlines = 120
-    "}}}
-    "
-    """""""""""""""""""""""""""""
-    " Auto Commplete Pop: ACP"{{{
+    " [ vala ]                                                             }}}
+    
+    " -------------------------------------------------------------------------
+    " [ Auto Commplete Pop: ACP ]                                           {{{
     "
     nnoremap <Leader>af :AcpDisable<CR>
     nnoremap <Leader>an :AcpEnable<CR>
     " let g:acp_behaviorSnipmateLength = 1
 
-    autocmd FileType * setl omnifunc=nullcomplete#Complete
-    autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html setl omnifunc=htmlcomplete#CompleteTags noci
-    autocmd FileType css setl omnifunc=csscomplete#CompleteCSS noci
-    autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType php setl omnifunc=phpcomplete#CompletePHP
-    autocmd FileType c setl omnifunc=ccomplete#Complete
-
-    "}}}
+    augroup MyAutoCmd
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
+    augroup END
+    " [ Auto Commplete Pop: ACP ]                                           }}}
+    
+    " -------------------------------------------------------------------------
+    " [ EnhancedCommentify ]                                                {{{
     "
-    """""""""""""""""""""""""""""
-    " EnhancedCommentify {{{
+    let g:EnhCommentifyRespectIndent = 'Yes'
+    let g:EnhCommentifyPretty = 'Yes'
+    let g:EnhCommentifyMultiPartBlocks = 'Yes'
+    let g:EnhCommentifyAlignRight = 'Yes'
+    " let g:EnhCommentify = 'Yes'
+    " [ EnhancedCommentify ]                                                }}}
+
+    " -------------------------------------------------------------------------
+    " [ bufExplorer plugin ]                                                {{{
     "
-   let g:EnhCommentifyRespectIndent = 'Yes'
-   let g:EnhCommentifyPretty = 'Yes'
-   let g:EnhCommentifyMultiPartBlocks = 'Yes'
-   let g:EnhCommentifyAlignRight = 'Yes'
-"   let g:EnhCommentify = 'Yes'
-   "}}}
-    """"""""""""""""""""""""""""""
-    " => Minibuffer plugin"{{{
-    """"""""""""""""""""""""""""""
-    " let g:miniBufExplModSelTarget = 1
-    " let g:miniBufExplorerMoreThanOne = 2
-    " let g:miniBufExplModSelTarget = 0
-    " let g:miniBufExplUseSingleClick = 1
-    " let g:miniBufExplMapWindowNavVim = 1
-    " let g:miniBufExplVSplit = 25
-    " let g:miniBufExplSplitBelow = 1
-    " let g:miniBufExplorerAutoUpdate = 0
-    " let g:miniBufExplorerDebugLevel = 10 
-    " let g:miniBufExplorerDebugMode  = 0  " Writes to a file
-
-
-    " autocmd BufRead,BufNew :call UMiniBufExplorer
-
-    " map <leader>u :TMiniBufExplorer<cr>
-    "}}}
-    """"""""""""""""""""""""""""""
-    " => bufExplorer plugin"{{{
-    """"""""""""""""""""""""""""""
     let g:bufExplorerDefaultHelp = 0
     let g:bufExplorerShowRelativePath = 1
     let g:bufExplorerSortBy = "fullpath"
-    map <leader>o :BufExplorer<cr>
-    "}}}
+    nnoremap <leader>o :BufExplorer<cr>
+    " [ bufExplorer plugin ]                                                }}}
+    
+    " -------------------------------------------------------------------------
+    " [ CtrlP ]                                                             {{{
     "
-    """"""""""""""""""""""""""""""
-    " => CtrlP"{{{
-    """"""""""""""""""""""""""""""
     let g:ctrlp_working_path_mode = 'ra'
     set wildignore+=*/tmp/*,*.so,*.swp,*.zip
     let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -956,12 +912,12 @@ cabbrev vh vertical help
         " \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
         " \ }
     let g:ctrlp_user_command = 'find %s -type f'
-    " }}}
-    "
-    """"""""""""""""""""""""""""""
-    " => unite "{{{
+    " [ CtrlP ]                                                             }}}
+    
+    " -------------------------------------------------------------------------
+    " [ unite ]                                                             {{{
     " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
-    """"""""""""""""""""""""""""""
+    "
     let g:unite_enable_start_insert=0
 
     " File searching like ctrlp.vim
@@ -982,84 +938,84 @@ cabbrev vh vertical help
     nnoremap <Leader>ur :Unite file_mru<CR> 
     nnoremap <Leader>uy :Unite -buffer-name=register register<CR> 
     nnoremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-    " }}}
-" }}}
+    " [ unite ]                                                             }}}
+    
+    " -------------------------------------------------------------------------
+    " [ Hex/Binary Edit ]                                       {{{
+    "
+    " autocmds to automatically enter hex mode and handle file writes properly
+   "if has("autocmd")
+   "" vim -b : edit binary using xxd-format!
+   "    augroup MyAutoCmd
+   "        au!
+   "        au BufReadPre *.bin,*.hex,*.pkg,*.img,*.out setlocal binary
+   "        au BufReadPost *
+   "            \ if &binary | Hexmode | endif
+   "        au BufWritePre *
+   "            \ if exists("b:editHex") && b:editHex && &binary |
+   "            \  let oldro=&ro | let &ro=0 |
+   "            \  let oldma=&ma | let &ma=1 |
+   "            \  exe "%!xxd -r" |
+   "            \  let &ma=oldma | let &ro=oldro |
+   "            \  unlet oldma | unlet oldro |
+   "            \ endif
+   "        au BufWritePost *
+   "            \ if exists("b:editHex") && b:editHex && &binary |
+   "            \  let oldro=&ro | let &ro=0 |
+   "            \  let oldma=&ma | let &ma=1 |
+   "            \  exe "%!xxd" |
+   "            \  exe "set nomod" |
+   "            \  let &ma=oldma | let &ro=oldro |
+   "            \  unlet oldma | unlet oldro |
+   "            \ endif
+   "    augroup END
+   "endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" [ Hex/Binary Edit ]                                       {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+   "" ex command for toggling hex mode - define mapping if desired
+   "command! -bar Hexmode call ToggleHex()
+   "" helper function to toggle hex mode
+   "function ToggleHex()
+   "    " hex mode should be considered a read-only operation
+   "    " save values for modified and read-only for restoration later,
+   "    " and clear the read-only flag for now
+   "    let l:modified=&mod
+   "    let l:oldreadonly=&readonly
+   "    let &readonly=0
+   "    let l:oldmodifiable=&modifiable
+   "    let &modifiable=1
+   "    if !exists("b:editHex") || !b:editHex
+   "        " save old options
+   "        let b:oldft=&ft
+   "        let b:oldbin=&bin
+   "        " set new options
+   "        setlocal binary " make sure it overrides any textwidth, etc.
+   "        let &ft="xxd"
+   "        " set status
+   "        let b:editHex=1
+   "        " switch to hex editor
+   "        %!xxd
+   "    else
+   "        " restore old options
+   "        let &ft=b:oldft
+   "        if !b:oldbin
+   "            setlocal nobinary
+   "        endif
+   "        " set status
+   "        let b:editHex=0
+   "        " return to normal editing
+   "        %!xxd -r
+   "    endif
+   "    " restore values for modified and read only state
+   "    let &mod=l:modified
+   "    let &readonly=l:oldreadonly
+   "    let &modifiable=l:oldmodifiable
+   "endfunction
 
-" autocmds to automatically enter hex mode and handle file writes properly
-if has("autocmd")
-  " vim -b : edit binary using xxd-format!
-  augroup Binary
-    au!
-    au BufReadPre *.bin,*.hex,*.pkg,*.img,*.out setlocal binary
-    au BufReadPost *
-          \ if &binary | Hexmode | endif
-    au BufWritePre *
-          \ if exists("b:editHex") && b:editHex && &binary |
-          \  let oldro=&ro | let &ro=0 |
-          \  let oldma=&ma | let &ma=1 |
-          \  exe "%!xxd -r" |
-          \  let &ma=oldma | let &ro=oldro |
-          \  unlet oldma | unlet oldro |
-          \ endif
-    au BufWritePost *
-          \ if exists("b:editHex") && b:editHex && &binary |
-          \  let oldro=&ro | let &ro=0 |
-          \  let oldma=&ma | let &ma=1 |
-          \  exe "%!xxd" |
-          \  exe "set nomod" |
-          \  let &ma=oldma | let &ro=oldro |
-          \  unlet oldma | unlet oldro |
-          \ endif
-  augroup END
-endif
+   "nnoremap <C-x> :Hexmode<CR>
+    " [ Hex/Binary Edit ]                                       }}}
 
-" ex command for toggling hex mode - define mapping if desired
-command -bar Hexmode call ToggleHex()
-" helper function to toggle hex mode
-function ToggleHex()
-    " hex mode should be considered a read-only operation
-    " save values for modified and read-only for restoration later,
-    " and clear the read-only flag for now
-    let l:modified=&mod
-    let l:oldreadonly=&readonly
-    let &readonly=0
-    let l:oldmodifiable=&modifiable
-    let &modifiable=1
-    if !exists("b:editHex") || !b:editHex
-        " save old options
-        let b:oldft=&ft
-        let b:oldbin=&bin
-        " set new options
-        setlocal binary " make sure it overrides any textwidth, etc.
-        let &ft="xxd"
-        " set status
-        let b:editHex=1
-        " switch to hex editor
-        %!xxd
-    else
-        " restore old options
-        let &ft=b:oldft
-        if !b:oldbin
-            setlocal nobinary
-        endif
-        " set status
-        let b:editHex=0
-        " return to normal editing
-        %!xxd -r
-    endif
-    " restore values for modified and read only state
-    let &mod=l:modified
-    let &readonly=l:oldreadonly
-    let &modifiable=l:oldmodifiable
-endfunction
-
-nnoremap <C-x> :Hexmode<CR>
-
-" }}}
+" [ Programming Related ]                                  }}}
+" =============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " [ Plugin configuration ]                                  {{{
@@ -1115,8 +1071,6 @@ nnoremap <C-x> :Hexmode<CR>
     """"""""""""""""""""""""""""""
     " Tag List {{{
     """"""""""""""""""""""""""""""
-    "nmap <F12>   :TlistToggle<CR>
-
     " Split to the right side of the screen
     let g:Tlist_Use_Right_Window = 1
     " Sort by the order
@@ -1129,20 +1083,6 @@ nnoremap <C-x> :Hexmode<CR>
     let g:Tlist_Show_One_File = 1
 
     let g:Tlist_WinWidth = 35
-    " }}}
-
-    """"""""""""""""""""""""""""""
-    " vimgdb {{{
-    """"""""""""""""""""""""""""""
-    " let g:vimgdb_debug_file = ""
-    " run macros/gdb_mappings.vim
-    " }}}
-
-    """"""""""""""""""""""""""""""
-    " pydiction {{{
-    """"""""""""""""""""""""""""""
-    " let g:pydiction_location = '~/.vim/tools/complete-dict'
-    " let g:pydiction_menu_height = 20
     " }}}
 
     """"""""""""""""""""""""""""""
@@ -1172,8 +1112,7 @@ nnoremap <C-x> :Hexmode<CR>
     """"""""""""""""""""""""""""""
     if ! has('gui_running')
         set ttimeoutlen=10
-        augroup FastEscape
-            autocmd!
+        augroup MyAutoCmd
             au InsertEnter * set timeoutlen=0
             au InsertLeave * set timeoutlen=1000
         augroup END
@@ -1217,7 +1156,9 @@ nnoremap <C-x> :Hexmode<CR>
 if exists('+autochdir')
     set autochdir
 else
-    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+    augroup MyAutoCmd
+        autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+    augroup END
 endif
 
 " Automatically update 'Last Modified' field
@@ -1237,31 +1178,36 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remember the line number been edited last time {{{
 if has("autocmd")
-    autocmd BufRead *.txt set tw=78
-    autocmd BufReadPost *
-       \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-       \   exe "normal g'\"" |
-       \ endif
+    augroup MyAutoCmd
+        autocmd BufRead *.txt set tw=78
+        autocmd BufReadPost *
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal g'\"" |
+        \ endif
+
+        autocmd BufWinLeave *
+            \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+            \|       mkview
+            \|  endif
+
+        autocmd BufWinEnter *
+            \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+            \|      loadview
+            \|  endif
+
+        " Restore cursor to file position in previous editing session
+        autocmd BufReadPost *
+            \   if line ("'\"") > 0 && line ("'\"") <= line("$")
+            \|      exe "normal g'\""
+            \|  endif
+    augroup END
 endif
 
-autocmd BufWinLeave *
-    \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
-    \|       mkview
-    \|  endif
-autocmd BufWinEnter *
-    \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
-    \|      loadview
-    \|  endif
-" Restore cursor to file position in previous editing session
-autocmd BufReadPost *
-    \   if line ("'\"") > 0 && line ("'\"") <= line("$")
-    \|      exe "normal g'\""
-    \|  endif
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QUICKFIX WINDOW for :make {{{
-command -bang -nargs=? QFix call QFixToggle(<bang>0)
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
    if exists("g:qfix_win") && a:forced == 0
        cclose
@@ -1278,7 +1224,9 @@ nmap <C-p> :cprev<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove unnecessary spaces in the end of line {{{
-autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+augroup MyAutoCmd
+    autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+augroup End
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1297,17 +1245,17 @@ function! ColumnHighlight()
    endif
 endfunction
 
-autocmd CursorMoved * call ColumnHighlight()
+autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd Filetype sh call s:sh_custom) {{{
 function! s:sh_custom()
     noremap <F2> :% w !bash<CR>
-    autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 endfunction
 if has("autocmd")
-    autocmd Filetype sh call s:sh_custom()
+    autocmd MyAutoCmd Filetype sh call s:sh_custom()
 endif
 " }}}
 
@@ -1316,7 +1264,7 @@ function! s:csv_custom()
     setlocal cc=0
 endfunction
 if has("autocmd")
-    autocmd Filetype csv call s:csv_custom()
+    autocmd MyAutoCmd Filetype csv call s:csv_custom()
 endif
 " }}}
 
@@ -1329,7 +1277,7 @@ function! s:python_custom()
     command! -nargs=1 Man call s:man(<f-args>)
     nnoremap K :!pydoc <cword><CR>
 
-    autocmd FileType python setl omnifunc=pythoncomplete#Complete
+    autocmd MyAutoCmd FileType python setl omnifunc=pythoncomplete#Complete
     " setlocal tabstop=4 noexpandtab shiftwidth=4
     setlocal tabstop=4 shiftwidth=4
     setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
@@ -1341,7 +1289,7 @@ function! s:python_custom()
 
 endfunction
 if has("autocmd")
-    autocmd Filetype python call s:python_custom()
+    autocmd MyAutoCmd Filetype python call s:python_custom()
 endif
 " }}}
 "
@@ -1360,7 +1308,7 @@ function! s:go_custom()
 
 endfunction
 if has("autocmd")
-    autocmd Filetype go call s:go_custom()
+    autocmd MyAutoCmd Filetype go call s:go_custom()
 endif
 " }}}
 
@@ -1368,12 +1316,12 @@ endif
 " autocmd Filetype ls call s:ls_custom) {{{
 function! s:ls_custom()
     noremap <F2> :% w !lsc %<CR>
-    autocmd FileType ls autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    autocmd MyAutoCmd FileType ls autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 endfunction
 set expandtab      " Use spaces for tabs
 if has("autocmd")
-    autocmd Filetype ls call s:ls_custom()
+    autocmd MyAutoCmd Filetype ls call s:ls_custom()
 endif
 " }}}
 "
@@ -1391,7 +1339,7 @@ function! s:c_custom()
     nmap K <esc>:Man <cword><cr>
 endfunction
 if has("autocmd")
-    autocmd Filetype c call s:c_custom()
+    autocmd MyAutoCmd Filetype c call s:c_custom()
 endif
 "}}}
 
@@ -1404,19 +1352,6 @@ endif
 "nmap hdh :call DevHelpCurrentWord()<CR>
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto update ctags {{{
-"
-"function! UPDATE_TAGS()
-"  let _f_ = expand("%:p")
-"  let _cmd_ = '"ctags -a -f /dvr/tags --c++-kinds=+p --fields=+iaS --extra=+q " ' . '"' . _f_ . '"'
-"  let _resp = system(_cmd_)
-"  unlet _cmd_
-"  unlet _f_
-"  unlet _resp
-"endfunction
-"autocmd BufWritePost *.cpp,*.h,*.c call UPDATE_TAGS()
-"}}}
 
 "[End Function & autocmd]}}}
 
