@@ -1017,60 +1017,45 @@ cabbrev vh vertical help
 " [ Programming Related ]                                  }}}
 " =============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =============================================================================
 " [ Plugin configuration ]                                  {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    """"""""""""""""""""""""
-    " yankring {{{
-    """"""""""""""""""""""""
+"
+    " -------------------------------------------------------------------------
+    " [ yankring ]                                                         {{{
+    "
     let g:yankring_history_file = '.yankring_history'
-    " }}}
+    " [ yankring ]                                                         }}}
 
-    """"""""""""""""""""""""
-    " vim-indent-guides {{{
-    """"""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ vim-indent-guides ]                                                {{{
+    "
     let g:indent_guides_auto_colors = 0
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
     hi IndentGuidesOdd  ctermbg=black
     hi IndentGuidesEven ctermbg=darkgrey
+    " [ vim-indent-guides ]                                                }}}
 
-    " }}}
-
-    """"""""""""""""""""""""
-    " NERD_TREE {{{
-    """"""""""""""""""""""""
-    " notes:
-    "
-    " o       Open selected file, or expand selected dir
-    " go      Open selected file, but leave cursor in the NERDTree
-    " t       Open selected node in a new tab
-    " T       Same as 't' but keep the focus on the current tab
-    " <tab>   Open selected file in a split window
-    " g<tab>  Same as <tab>, but leave the cursor on the NERDTree
-    " !       Execute the current file
-    " O       Recursively open the selected directory
-    " x       Close the current nodes parent
-    " X       Recursively close all children of the current node
-    " e       Open a netrw for the current dir
+    " -------------------------------------------------------------------------
+    " [ NERD_TREE ]                                                        {{{
     "
     let NERDTreeChDirMode=2
     nnoremap <Leader>nt :NERDTreeToggle<CR>
-    " }}}
+    " [ NERD_TREE ]                                                        }}}
 
-    """"""""""""""""""""""""
-    " EasyGrep {{{
-    """"""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ EasyGrep ]                                                         {{{
+    "
     "Grep 'pattern' in the indicate range (need EasyGrep.vim plugin)
     "map <F3> <ESC>\vv
     let g:EasyGrepRecursive = 1
     let g:EasyGrepIgnoreCase= 0
     let g:EasyGrepJumpToMatch= 1
-    " }}}
+    " [ EasyGrep ]                                                         }}}
 
-    """"""""""""""""""""""""""""""
-    " Tag List {{{
-    """"""""""""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ Tag List ]                                                         {{{
+    "
     " Split to the right side of the screen
     let g:Tlist_Use_Right_Window = 1
     " Sort by the order
@@ -1083,11 +1068,11 @@ cabbrev vh vertical help
     let g:Tlist_Show_One_File = 1
 
     let g:Tlist_WinWidth = 35
-    " }}}
+    " [ Tag List ]                                                         }}}
 
-    """"""""""""""""""""""""""""""
-    " => DoxygenToolkit.vim"{{{
-    """"""""""""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ DoxygenToolkit.vim ]                                               {{{
+    "
     " Dox :call <SID>DoxygenCommentFunc()
     " DoxLic :call <SID>DoxygenLicenseFunc()
     " DoxAuthor :call <SID>DoxygenAuthorFunc()
@@ -1100,16 +1085,17 @@ cabbrev vh vertical help
     let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
     let g:DoxygenToolkit_authorName="Yao-Po Wang"
     let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
-    "}}}
+    " [ DoxygenToolkit.vim ]                                               }}}
 
-    """"""""""""""""""""""""""""""
-    " => LanguageTool"{{{
-    """"""""""""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ LanguageTool ]                                                     {{{
+    "
     let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
+    " [ LanguageTool ]                                                     }}}
 
-    """"""""""""""""""""""""""""""
-    " => powerline {{{
-    """"""""""""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ powerline ]                                                        {{{
+    "
     if ! has('gui_running')
         set ttimeoutlen=10
         augroup MyAutoCmd
@@ -1123,12 +1109,11 @@ cabbrev vh vertical help
 
     " Hide the default mode text (e.g. -- INSERT -- below the statusline)
     set noshowmode 
+    " [ powerline ]                                                        }}}
 
-    " }}}
-
-    """"""""""""""""""""""""""""""
-    " => OmniCppComplete"{{{
-    """"""""""""""""""""""""""""""
+    " -------------------------------------------------------------------------
+    " [ OmniCppComplete ]                                                  {{{
+    "
     " http://aufather.wordpress.com/2010/08/26/omni-completion-in-vim/
     " set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
     " let OmniCpp_GlobalScopeSearch   = 1
@@ -1145,13 +1130,14 @@ cabbrev vh vertical help
     highlight   PmenuSel      ctermfg=0 ctermbg=7
     highlight   PmenuSbar     ctermfg=7 ctermbg=0
     highlight   PmenuThumb    ctermfg=0 ctermbg=7
-    "}}}
+    " [ OmniCppComplete ]                                                  }}}
 
-" }}}
+" [ Plugin configuration ]                                  }}}
+" =============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" [ Functions & autocmd ]                                   {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =============================================================================
+" [ Functions & autocmd ]                                                  {{{
+"
 " set vim to chdir for each file {{{
 if exists('+autochdir')
     set autochdir
@@ -1160,8 +1146,9 @@ else
         autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
     augroup END
 endif
+" }}}
 
-" Automatically update 'Last Modified' field
+" Automatically update 'Last Modified' field {{{
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.
 "function! LastModified()
 "  if &modified
@@ -1175,7 +1162,6 @@ endif
 "autocmd BufWritePre * call LastModified()
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remember the line number been edited last time {{{
 if has("autocmd")
     augroup MyAutoCmd
@@ -1202,10 +1188,8 @@ if has("autocmd")
             \|  endif
     augroup END
 endif
-
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " QUICKFIX WINDOW for :make {{{
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
@@ -1222,14 +1206,12 @@ nmap <C-n> :cnext<CR>
 nmap <C-p> :cprev<CR>
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove unnecessary spaces in the end of line {{{
 augroup MyAutoCmd
     autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 augroup End
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " [Highlight column matching { } pattern], A very cool stuff(Kent) {{{
 let s:hlflag=0
 function! ColumnHighlight()
@@ -1248,7 +1230,6 @@ endfunction
 autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd Filetype sh call s:sh_custom) {{{
 function! s:sh_custom()
     noremap <F2> :% w !bash<CR>
@@ -1268,7 +1249,6 @@ if has("autocmd")
 endif
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd Filetype python call s:python_custom) {{{
 function! s:python_custom()
     function! s:man(keyword)
@@ -1292,8 +1272,7 @@ if has("autocmd")
     autocmd MyAutoCmd Filetype python call s:python_custom()
 endif
 " }}}
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " autocmd Filetype go call s:python_custom) {{{
 function! s:go_custom()
     " autocmd FileType go setl omnifunc=pythoncomplete#Complete
@@ -1312,7 +1291,6 @@ if has("autocmd")
 endif
 " }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " autocmd Filetype ls call s:ls_custom) {{{
 function! s:ls_custom()
     noremap <F2> :% w !lsc %<CR>
@@ -1324,8 +1302,7 @@ if has("autocmd")
     autocmd MyAutoCmd Filetype ls call s:ls_custom()
 endif
 " }}}
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " autocmd Filetype C/C++ call s:c_custom) {{{
 "if filename is test.c => make test
 function! s:c_custom()
@@ -1343,7 +1320,6 @@ if has("autocmd")
 endif
 "}}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim macro to jump to devhelp topics. {{{
 "function! DevHelpCurrentWord()
 "    let word = expand("<cword>")
@@ -1352,12 +1328,13 @@ endif
 "nmap hdh :call DevHelpCurrentWord()<CR>
 " }}}
 
+"
+" [ Functions & autocmd ]                                                  }}}
+" =============================================================================
 
-"[End Function & autocmd]}}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =============================================================================
 " [ MISC ]                                                  {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
 "  Search code sample from Google code {{{
 "
 "function! OnlineDoc()
@@ -1384,7 +1361,6 @@ endif
 
 
 " vim as a calcuator"{{{
-"
 :command! -nargs=+ Calc :py print <args>
 :py from math import *
 ""}}}
@@ -1398,12 +1374,11 @@ function! CapitalizeCenterAndMoveDown()
 endfunction
 
 nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
-
-" au! CursorHold * nested call To_tell_time()
-" func To_tell_time()
-    " echo strftime("%Y%m%dT%H%M%S", localtime())
-" endfun
-
 " }}}
 
+"
+" [ MISC ]                                                  }}}
+" =============================================================================
+
 " vim:fdm=marker:et:fdl=0:
+
