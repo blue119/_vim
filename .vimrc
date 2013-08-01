@@ -44,6 +44,7 @@ if has("gui_running")
 else
     " colorscheme jellybeans
     colorscheme molokai
+    " colorscheme desert
 
     let g:molokai_original = 1
     let g:rehash256 = 1
@@ -67,7 +68,7 @@ set autoindent      " Auto Indent
 set smartindent     " Smart Indent
 set cindent         " C-style Indent
 set nowrap
-set whichwrap+=h,l,<,>,[,]
+" set whichwrap+=h,l,<,>,[,]
 " set textwidth=78    " Set text width
 " set linebreak
 
@@ -136,7 +137,7 @@ endif
 set splitright      "splitting a window will put the right
 
 " Give one virtual space at end of line
-set virtualedit=onemore
+" set virtualedit=onemore
 
 " listchar=trail is not as flexible, use the below to highlight trailing
 " whitespace. Don't do it for unite windows or readonly files
@@ -154,7 +155,7 @@ set backspace=indent,eol,start
 
 " colorcolumn
 if v:version >= 703
-    :set cc=81
+    :set colorcolumn=80
     :hi colorcolumn guibg=lightgreen
 endif
 
@@ -325,7 +326,7 @@ cabbrev vh vertical help
     " <Leader>cq for cscopequickfix
     " <Leader>d TODO
     " <Leader>e TODO
-    " <Leader>f for vimgrep settings
+    " <Leader>f Remap to  vimgrep settings
     nnoremap <Leader>fv :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.vala' <CR>
     nnoremap <Leader>fp :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.py' <CR>
     nnoremap <Leader>fc :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.[ch]' <CR>
@@ -349,12 +350,12 @@ cabbrev vh vertical help
     nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
         \ path '".expand("%:p")."' to clipboard"<cr>
 
-    " <Leader>q TODO
+    " <Leader>q remap to QFix
     " <Leader>r TODO
     " <Leader>s Spell Checking
     " <Leader>t for tag Operation
     " <Leader>u for unite
-    " <Leader>v for View text file in two column
+    " <Leader>vs for View text file in two column
     ":<C-u>              " clear command line (if in visual mode)
     "let @z=&so          " save scrolloff in register z
     ":set so=0 noscb     " set scrolloff to 0 and clear scrollbind
@@ -365,6 +366,8 @@ cabbrev vh vertical help
     ":setl scb           " setlocal scrollbind in left window
     ":let &so=@z         " restore scrolloff
     noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+
+    " <Leader>vv remap to EasyGrep
 
     " <Leader>w Fast saving
     nnoremap <leader>w :w!<cr>
@@ -401,10 +404,10 @@ cabbrev vh vertical help
     " a: append text after the cursor N times
     " s: (substitute) delete N characters [into buffer x] and start insert
     " addition another search work hls
-    map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
+    " map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
 
     " Add new keyword in search under cursor (*)
-    map a* :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
+    " map a* :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
 
     " d: delete Nmove text [into buffer x]
     " dd: delete N lines [into buffer x]
@@ -517,7 +520,7 @@ cabbrev vh vertical help
     " Ctrl-u: scroll upwards
     " Ctrl-i: <Tab>
     " Ctrl-o: Go to older entry
-    " Ctrl-p: same as k
+    " Ctrl-p: remap to :cprev
     " Ctrl-[: Esc
     " Ctrl-]: Go forward in tag stack
     " Ctrl-\: TODO
@@ -543,7 +546,7 @@ cabbrev vh vertical help
     " Ctrl-c: interrupt current (search) command
     " Ctrl-v: start blockwise Visual mode 
     " Ctrl-b: scroll N screens Backwards
-    " Ctrl-n: same as "j"
+    " Ctrl-n: remap to cnext
     " Ctrl-m: Remap to 'Window Operations'
     " Ctrl-,: Vim can't map this
     " Ctrl-.: Vim can't map this
@@ -718,8 +721,6 @@ cabbrev vh vertical help
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
     " Maximize current split
-    nnoremap <C-m> <C-w>_<C-w><Bar> 
-    nnoremap <C-=> <C-w>= 
     nnoremap - <C-w>-
     nnoremap = <C-w>+
     " Define different behavior in left/right window
@@ -727,12 +728,12 @@ cabbrev vh vertical help
         augroup MyAutoCmd
             autocmd BufEnter,BufLeave *
             \     if winnr() == 1 |
-            \        nmap < <C-w><|
-            \        nmap > <C-w>>|
-            \     else            |
-            \        nmap < <C-w>>|
-            \        nmap > <C-w><|
-            \     endif           |
+            \        nmap < <C-w>< |
+            \        nmap > <C-w>> |
+            \     else |
+            \        nmap < <C-w>> |
+            \        nmap > <C-w>< |
+            \     endif
         augroup END
     endif
     " [ Window Operations ]                                                 }}}
@@ -805,36 +806,125 @@ cabbrev vh vertical help
 " [ Programming Related ]                                  {{{
 
     " -------------------------------------------------------------------------
-    " [ cs-mgmt.vim ]                                                      {{{
+    " [ General ] {{{
     "
-    let g:CsMgmtCtags = 1
-    let g:CsMgmtReAttach = 1
-    " [ cs-mgmt.vim ]                                                      }}}
+    " Remove unnecessary spaces in the end of line 
+    augroup MyAutoCmd
+        autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    augroup End
+    " }}}
 
     " -------------------------------------------------------------------------
-    " [ cscope ]                                                           {{{
+    " [ sh ]                                                                {{{
     "
-        " cscopequickfix {{{
-        "
-        if v:version >= 700 && has("cscope")
-            function! CSCOPE_QuickFixToogle()
-                if exists("g:__cscopequickfix")
-                    set cscopequickfix&
-                    unmap <C-t>
-                    unlet g:__cscopequickfix
-                else
-                    " cscope search resule save into quickfix
-                    set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
-                    " Ctrl-t remapping for cscope with quickfix
-                    nmap <C-t> :colder<CR>:cc<CR>
-                    let g:__cscopequickfix = bufnr("$")
-                endif
-            endfunction
+    function! s:sh_custom()
+        noremap <F2> :% w !bash<CR>
+        autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    endfunction
 
-            nmap <Leader>cq :call CSCOPE_QuickFixToogle()<CR>
-        endif
-        " }}}
-    " [ cscope ]                                                           }}}
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype sh call s:sh_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ csv ]                                                               {{{
+    "
+    function! s:csv_custom()
+        setlocal cc=0
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype csv call s:csv_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ python ]                                                            {{{
+    "
+    function! s:python_custom()
+        function! s:man(keyword)
+            execute '!pydoc ' . a:keyword
+        endfunction
+        command! -nargs=1 Man call s:man(<f-args>)
+        nnoremap K :!pydoc <cword><CR>
+
+        setlocal tabstop=4 shiftwidth=4
+        setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
+
+        " imap iii import IPython; IPython.Shell.IPShellEmbed()()
+        imap iii import IPython; IPython.embed()
+        imap ddd import pdb; pdb.set_trace()
+
+        augroup MyAutoCmd
+            autocmd FileType python setl omnifunc=pythoncomplete#Complete
+        augroup END
+        noremap <F2> :% w !python<CR>
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype python call s:python_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ go ]                                                                {{{
+    "
+    function! s:go_custom()
+        noremap <F2> :% w !go run %<CR>
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype go call s:go_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ ls ]                                                                {{{
+    "
+    function! s:ls_custom()
+        set expandtab      " Use spaces for tabs
+        noremap <F2> :% w !lsc %<CR>
+        augroup MyAutoCmd
+            autocmd FileType ls autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+        augroup END
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype ls call s:ls_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ c ]                                                                 {{{
+    "
+    function! s:c_custom()
+        "set makeprg=make
+        "set errorformat=%f:%l:\ %m
+        setlocal equalprg=indent
+        setlocal noexpandtab
+
+        " color/paged man
+        runtime! ftplugin/man.vim
+        nmap K <esc>:Man <cword><cr>
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype c call s:c_custom()
+        augroup END
+    endif
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ Javascript ]                                                       {{{
@@ -843,7 +933,7 @@ cabbrev vh vertical help
     augroup MyAutoCmd
         autocmd FileType json setlocal syntax=javascript
     augroup END
-    " [ Javascript ]                                                       }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ vala ]                                                             {{{
@@ -869,8 +959,119 @@ cabbrev vh vertical help
 
     " Minimum lines used for comment syncing (default 50)
     "let vala_minlines = 120
-    " [ vala ]                                                             }}}
+    " }}}
     
+    " -------------------------------------------------------------------------
+    " [ Hex/Binary Edit ]                                       {{{
+    "
+    " autocmds to automatically enter hex mode and handle file writes properly
+    if has("autocmd")
+    " vim -b : edit binary using xxd-format!
+        augroup MyAutoCmd
+            au BufReadPre *.bin,*.hex,*.pkg,*.img,*.out setlocal binary
+            au BufReadPost *
+                \ if &binary | Hexmode | endif
+            au BufWritePre *
+                \ if exists("b:editHex") && b:editHex && &binary |
+                \  let oldro=&ro | let &ro=0 |
+                \  let oldma=&ma | let &ma=1 |
+                \  exe "%!xxd -r" |
+                \  let &ma=oldma | let &ro=oldro |
+                \  unlet oldma | unlet oldro |
+                \ endif
+            au BufWritePost *
+                \ if exists("b:editHex") && b:editHex && &binary |
+                \  let oldro=&ro | let &ro=0 |
+                \  let oldma=&ma | let &ma=1 |
+                \  exe "%!xxd" |
+                \  exe "set nomod" |
+                \  let &ma=oldma | let &ro=oldro |
+                \  unlet oldma | unlet oldro |
+                \ endif
+        augroup END
+    endif
+
+    " ex command for toggling hex mode - define mapping if desired
+    command! -bar Hexmode call ToggleHex()
+
+    " helper function to toggle hex mode
+    function! ToggleHex()
+        " hex mode should be considered a read-only operation
+        " save values for modified and read-only for restoration later,
+        " and clear the read-only flag for now
+        let l:modified=&mod
+        let l:oldreadonly=&readonly
+        let &readonly=0
+        let l:oldmodifiable=&modifiable
+        let &modifiable=1
+        if !exists("b:editHex") || !b:editHex
+            " save old options
+            let b:oldft=&ft
+            let b:oldbin=&bin
+            " set new options
+            setlocal binary " make sure it overrides any textwidth, etc.
+            let &ft="xxd"
+            " set status
+            let b:editHex=1
+            " switch to hex editor
+            %!xxd
+        else
+            " restore old options
+            let &ft=b:oldft
+            if !b:oldbin
+                setlocal nobinary
+            endif
+            " set status
+            let b:editHex=0
+            " return to normal editing
+            %!xxd -r
+        endif
+        " restore values for modified and read only state
+        let &mod=l:modified
+        let &readonly=l:oldreadonly
+        let &modifiable=l:oldmodifiable
+    endfunction
+    "nnoremap <C-x> :Hexmode<CR>
+    " }}}
+
+" [ Programming Related ]                                  }}}
+" =============================================================================
+
+" =============================================================================
+" [ Plugin configuration ]                                  {{{
+"
+    " -------------------------------------------------------------------------
+    " [ cs-mgmt.vim ]                                                      {{{
+    "
+    let g:CsMgmtCtags = 1
+    let g:CsMgmtReAttach = 1
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ cscope ]                                                           {{{
+    "
+        " cscopequickfix {{{
+        "
+        if v:version >= 700 && has("cscope")
+            function! CSCOPE_QuickFixToogle()
+                if exists("g:__cscopequickfix")
+                    set cscopequickfix&
+                    unmap <C-t>
+                    unlet g:__cscopequickfix
+                else
+                    " cscope search resule save into quickfix
+                    set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
+                    " Ctrl-t remapping for cscope with quickfix
+                    nmap <C-t> :colder<CR>:cc<CR>
+                    let g:__cscopequickfix = bufnr("$")
+                endif
+            endfunction
+
+            nmap <Leader>cq :call CSCOPE_QuickFixToogle()<CR>
+        endif
+        " }}}
+    " }}}
+
     " -------------------------------------------------------------------------
     " [ Auto Commplete Pop: ACP ]                                           {{{
     "
@@ -887,7 +1088,7 @@ cabbrev vh vertical help
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
         autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
     augroup END
-    " [ Auto Commplete Pop: ACP ]                                           }}}
+    " }}}
     
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
@@ -897,7 +1098,7 @@ cabbrev vh vertical help
     let g:EnhCommentifyMultiPartBlocks = 'Yes'
     let g:EnhCommentifyAlignRight = 'Yes'
     " let g:EnhCommentify = 'Yes'
-    " [ EnhancedCommentify ]                                                }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ bufExplorer plugin ]                                                {{{
@@ -906,7 +1107,7 @@ cabbrev vh vertical help
     let g:bufExplorerShowRelativePath = 1
     let g:bufExplorerSortBy = "fullpath"
     nnoremap <leader>o :BufExplorer<cr>
-    " [ bufExplorer plugin ]                                                }}}
+    " }}}
     
     " -------------------------------------------------------------------------
     " [ CtrlP ]                                                             {{{
@@ -920,7 +1121,7 @@ cabbrev vh vertical help
         " \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
         " \ }
     let g:ctrlp_user_command = 'find %s -type f'
-    " [ CtrlP ]                                                             }}}
+    " }}}
     
     " -------------------------------------------------------------------------
     " [ unite ]                                                             {{{
@@ -946,93 +1147,13 @@ cabbrev vh vertical help
     nnoremap <Leader>ur :Unite file_mru<CR> 
     nnoremap <Leader>uy :Unite -buffer-name=register register<CR> 
     nnoremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-    " [ unite ]                                                             }}}
+    " }}}
     
-    " -------------------------------------------------------------------------
-    " [ Hex/Binary Edit ]                                       {{{
-    "
-    " autocmds to automatically enter hex mode and handle file writes properly
-   "if has("autocmd")
-   "" vim -b : edit binary using xxd-format!
-   "    augroup MyAutoCmd
-   "        au!
-   "        au BufReadPre *.bin,*.hex,*.pkg,*.img,*.out setlocal binary
-   "        au BufReadPost *
-   "            \ if &binary | Hexmode | endif
-   "        au BufWritePre *
-   "            \ if exists("b:editHex") && b:editHex && &binary |
-   "            \  let oldro=&ro | let &ro=0 |
-   "            \  let oldma=&ma | let &ma=1 |
-   "            \  exe "%!xxd -r" |
-   "            \  let &ma=oldma | let &ro=oldro |
-   "            \  unlet oldma | unlet oldro |
-   "            \ endif
-   "        au BufWritePost *
-   "            \ if exists("b:editHex") && b:editHex && &binary |
-   "            \  let oldro=&ro | let &ro=0 |
-   "            \  let oldma=&ma | let &ma=1 |
-   "            \  exe "%!xxd" |
-   "            \  exe "set nomod" |
-   "            \  let &ma=oldma | let &ro=oldro |
-   "            \  unlet oldma | unlet oldro |
-   "            \ endif
-   "    augroup END
-   "endif
-
-   "" ex command for toggling hex mode - define mapping if desired
-   "command! -bar Hexmode call ToggleHex()
-   "" helper function to toggle hex mode
-   "function ToggleHex()
-   "    " hex mode should be considered a read-only operation
-   "    " save values for modified and read-only for restoration later,
-   "    " and clear the read-only flag for now
-   "    let l:modified=&mod
-   "    let l:oldreadonly=&readonly
-   "    let &readonly=0
-   "    let l:oldmodifiable=&modifiable
-   "    let &modifiable=1
-   "    if !exists("b:editHex") || !b:editHex
-   "        " save old options
-   "        let b:oldft=&ft
-   "        let b:oldbin=&bin
-   "        " set new options
-   "        setlocal binary " make sure it overrides any textwidth, etc.
-   "        let &ft="xxd"
-   "        " set status
-   "        let b:editHex=1
-   "        " switch to hex editor
-   "        %!xxd
-   "    else
-   "        " restore old options
-   "        let &ft=b:oldft
-   "        if !b:oldbin
-   "            setlocal nobinary
-   "        endif
-   "        " set status
-   "        let b:editHex=0
-   "        " return to normal editing
-   "        %!xxd -r
-   "    endif
-   "    " restore values for modified and read only state
-   "    let &mod=l:modified
-   "    let &readonly=l:oldreadonly
-   "    let &modifiable=l:oldmodifiable
-   "endfunction
-
-   "nnoremap <C-x> :Hexmode<CR>
-    " [ Hex/Binary Edit ]                                       }}}
-
-" [ Programming Related ]                                  }}}
-" =============================================================================
-
-" =============================================================================
-" [ Plugin configuration ]                                  {{{
-"
     " -------------------------------------------------------------------------
     " [ yankring ]                                                         {{{
     "
     let g:yankring_history_file = '.yankring_history'
-    " [ yankring ]                                                         }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ vim-indent-guides ]                                                {{{
@@ -1042,14 +1163,14 @@ cabbrev vh vertical help
     let g:indent_guides_guide_size = 1
     hi IndentGuidesOdd  ctermbg=black
     hi IndentGuidesEven ctermbg=darkgrey
-    " [ vim-indent-guides ]                                                }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ NERD_TREE ]                                                        {{{
     "
     let NERDTreeChDirMode=2
     nnoremap <Leader>nt :NERDTreeToggle<CR>
-    " [ NERD_TREE ]                                                        }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ EasyGrep ]                                                         {{{
@@ -1059,7 +1180,7 @@ cabbrev vh vertical help
     let g:EasyGrepRecursive = 1
     let g:EasyGrepIgnoreCase= 0
     let g:EasyGrepJumpToMatch= 1
-    " [ EasyGrep ]                                                         }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ Tag List ]                                                         {{{
@@ -1076,7 +1197,7 @@ cabbrev vh vertical help
     let g:Tlist_Show_One_File = 1
 
     let g:Tlist_WinWidth = 35
-    " [ Tag List ]                                                         }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ DoxygenToolkit.vim ]                                               {{{
@@ -1093,19 +1214,19 @@ cabbrev vh vertical help
     let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
     let g:DoxygenToolkit_authorName="Yao-Po Wang"
     let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
-    " [ DoxygenToolkit.vim ]                                               }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ LanguageTool ]                                                     {{{
     "
     let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
-    " [ LanguageTool ]                                                     }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ powerline ]                                                        {{{
     "
     if ! has('gui_running')
-        set ttimeoutlen=10
+        " set ttimeoutlen=10
         augroup MyAutoCmd
             au InsertEnter * set timeoutlen=0
             au InsertLeave * set timeoutlen=1000
@@ -1117,7 +1238,7 @@ cabbrev vh vertical help
 
     " Hide the default mode text (e.g. -- INSERT -- below the statusline)
     set noshowmode 
-    " [ powerline ]                                                        }}}
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
@@ -1138,7 +1259,7 @@ cabbrev vh vertical help
     highlight   PmenuSel      ctermfg=0 ctermbg=7
     highlight   PmenuSbar     ctermfg=7 ctermbg=0
     highlight   PmenuThumb    ctermfg=0 ctermbg=7
-    " [ OmniCppComplete ]                                                  }}}
+    " }}}
 
 " [ Plugin configuration ]                                  }}}
 " =============================================================================
@@ -1146,195 +1267,109 @@ cabbrev vh vertical help
 " =============================================================================
 " [ Functions & autocmd ]                                                  {{{
 "
-" set vim to chdir for each file {{{
-if exists('+autochdir')
-    set autochdir
-else
-    augroup MyAutoCmd
-        autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-    augroup END
-endif
-" }}}
+    " -------------------------------------------------------------------------
+    " set vim to chdir for each file {{{
+    if exists('+autochdir')
+        set autochdir
+    else
+        augroup MyAutoCmd
+            autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+        augroup END
+    endif
+    " }}}
 
-" Automatically update 'Last Modified' field {{{
-" If buffer modified, update any 'Last modified: ' in the first 20 lines.
-"function! LastModified()
-"  if &modified
-"    normal ms
-"    let n = min([20, line("$")])
-"    exe '1,' . n . 's#^\(.\{,10}Last Modified: \).*#\1' .
-"          \ strftime('%a %b %d, %Y  %I:%M%p') . '#e'
-"    normal `s
-"  endif
-"endfun
-"autocmd BufWritePre * call LastModified()
-" }}}
+    " -------------------------------------------------------------------------
+    " Automatically update 'Last Modified' field {{{
+    " If buffer modified, update any 'Last modified: ' in the first 20 lines.
+    "
+    " function! LastModified()
+    "   if &modified
+    "     normal ms
+    "     let n = min([20, line("$")])
+    "     exe '1,' . n . 's#^\(.\{,10}Last Modified: \).*#\1' .
+    "           \ strftime('%a %b %d, %Y  %I:%M%p') . '#e'
+    "     normal `s
+    "   endif
+    " endfun
+    " autocmd BufWritePre * call LastModified()
+    " }}}
 
-" Remember the line number been edited last time {{{
-if has("autocmd")
-    augroup MyAutoCmd
-        autocmd BufRead *.txt set tw=78
-        autocmd BufReadPost *
-        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \   exe "normal g'\"" |
-        \ endif
+    " -------------------------------------------------------------------------
+    " Remember the line number been edited last time {{{
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd BufRead *.txt set tw=78
+            autocmd BufReadPost *
+            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+            \   exe "normal g'\"" |
+            \ endif
 
-        autocmd BufWinLeave *
-            \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
-            \|       mkview
-            \|  endif
+            autocmd BufWinLeave *
+                \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+                \|       mkview
+                \|  endif
 
-        autocmd BufWinEnter *
-            \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
-            \|      loadview
-            \|  endif
+            autocmd BufWinEnter *
+                \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+                \|      loadview
+                \|  endif
 
-        " Restore cursor to file position in previous editing session
-        autocmd BufReadPost *
-            \   if line ("'\"") > 0 && line ("'\"") <= line("$")
-            \|      exe "normal g'\""
-            \|  endif
-    augroup END
-endif
-" }}}
+            " Restore cursor to file position in previous editing session
+            autocmd BufReadPost *
+                \   if line ("'\"") > 0 && line ("'\"") <= line("$")
+                \|      exe "normal g'\""
+                \|  endif
+        augroup END
+    endif
+    " }}}
 
-" QUICKFIX WINDOW for :make {{{
-command! -bang -nargs=? QFix call QFixToggle(<bang>0)
-function! QFixToggle(forced)
-   if exists("g:qfix_win") && a:forced == 0
-       cclose
-       unlet g:qfix_win
-   else
-       copen 6
-       let g:qfix_win = bufnr("$")
-   endif
-endfunction
-nnoremap <leader>q :QFix<CR>
-nmap <C-n> :cnext<CR>
-nmap <C-p> :cprev<CR>
-" }}}
-
-" Remove unnecessary spaces in the end of line {{{
-augroup MyAutoCmd
-    autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-augroup End
-" }}}
-
-" [Highlight column matching { } pattern], A very cool stuff(Kent) {{{
-let s:hlflag=0
-function! ColumnHighlight()
-   let c=getline(line('.'))[col('.') - 1]
-   if c=='{' || c=='}'
-       set cuc
-       let s:hlflag=1
-   else
-       if s:hlflag==1
-           set nocuc
-           let s:hlflag=0
-       endif
-   endif
-endfunction
-
-autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
-" }}}
-
-" autocmd Filetype sh call s:sh_custom) {{{
-function! s:sh_custom()
-    noremap <F2> :% w !bash<CR>
-    autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-endfunction
-if has("autocmd")
-    autocmd MyAutoCmd Filetype sh call s:sh_custom()
-endif
-" }}}
-
-" autocmd Filetype csv call {{{
-function! s:csv_custom()
-    setlocal cc=0
-endfunction
-if has("autocmd")
-    autocmd MyAutoCmd Filetype csv call s:csv_custom()
-endif
-" }}}
-
-" autocmd Filetype python call s:python_custom) {{{
-function! s:python_custom()
-    function! s:man(keyword)
-        execute '!pydoc ' . a:keyword
+    " -------------------------------------------------------------------------
+    " QUICKFIX WINDOW for :make {{{
+    function! QFixToggle(forced)
+        if exists("g:qfix_win") && a:forced == 0
+            cclose
+            unlet g:qfix_win
+        else
+            copen 6
+            let g:qfix_win = bufnr("$")
+        endif
     endfunction
-    command! -nargs=1 Man call s:man(<f-args>)
-    nnoremap K :!pydoc <cword><CR>
 
-    autocmd MyAutoCmd FileType python setl omnifunc=pythoncomplete#Complete
-    " setlocal tabstop=4 noexpandtab shiftwidth=4
-    setlocal tabstop=4 shiftwidth=4
-    setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
+    command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+    nnoremap <leader>q :QFix<CR>
+    nnoremap <C-n> :cnext<CR>
+    nnoremap <C-p> :cprev<CR>
+    " }}}
 
-    " imap iii import IPython; IPython.Shell.IPShellEmbed()()
-    imap iii import IPython; IPython.embed()
-    imap ddd import pdb; pdb.set_trace()
-    noremap <F2> :% w !python<CR>
+    " -------------------------------------------------------------------------
+    " [Highlight column matching { } pattern], A very cool stuff(Kent) {{{
+    let s:hlflag=0
 
-endfunction
-if has("autocmd")
-    autocmd MyAutoCmd Filetype python call s:python_custom()
-endif
-" }}}
+    function! ColumnHighlight()
+        let c=getline(line('.'))[col('.') - 1]
+        if c=='{' || c=='}'
+            set cuc
+            let s:hlflag=1
+        else
+            if s:hlflag==1
+                set nocuc
+                let s:hlflag=0
+            endif
+        endif
+    endfunction
 
-" autocmd Filetype go call s:python_custom) {{{
-function! s:go_custom()
-    " autocmd FileType go setl omnifunc=pythoncomplete#Complete
-    " setlocal tabstop=4 noexpandtab shiftwidth=4
-    " setlocal tabstop=4 shiftwidth=4
-    " setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
+    autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
+    " }}}
 
-    " imap iii import Igo; IPython.Shell.IPShellEmbed()()
-    " imap iii import Igo; IPython.embed()
-    " imap ddd import pdb; pdb.set_trace()
-    noremap <F2> :% w !go run %<CR>
-
-endfunction
-if has("autocmd")
-    autocmd MyAutoCmd Filetype go call s:go_custom()
-endif
-" }}}
-
-" autocmd Filetype ls call s:ls_custom) {{{
-function! s:ls_custom()
-    noremap <F2> :% w !lsc %<CR>
-    autocmd MyAutoCmd FileType ls autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-
-endfunction
-set expandtab      " Use spaces for tabs
-if has("autocmd")
-    autocmd MyAutoCmd Filetype ls call s:ls_custom()
-endif
-" }}}
-
-" autocmd Filetype C/C++ call s:c_custom) {{{
-"if filename is test.c => make test
-function! s:c_custom()
-    "set makeprg=make
-    "set errorformat=%f:%l:\ %m
-    setlocal equalprg=indent
-    setlocal noexpandtab
-
-    " color/paged man
-    runtime! ftplugin/man.vim
-    nmap K <esc>:Man <cword><cr>
-endfunction
-if has("autocmd")
-    autocmd MyAutoCmd Filetype c call s:c_custom()
-endif
-"}}}
-
-" vim macro to jump to devhelp topics. {{{
-"function! DevHelpCurrentWord()
-"    let word = expand("<cword>")
-"    exe "!devhelp -s " . word
-"endfunction
-"nmap hdh :call DevHelpCurrentWord()<CR>
-" }}}
+    " vim macro to jump to devhelp topics. {{{
+    "
+    "function! DevHelpCurrentWord()
+    "    let word = expand("<cword>")
+    "    exe "!devhelp -s " . word
+    "endfunction
+    "
+    "nmap hdh :call DevHelpCurrentWord()<CR>
+    " }}}
 
 "
 " [ Functions & autocmd ]                                                  }}}
@@ -1343,47 +1378,45 @@ endif
 " =============================================================================
 " [ MISC ]                                                  {{{
 "
-"  Search code sample from Google code {{{
-"
-"function! OnlineDoc()
-"    let s:browser = "google-chrome"
-"    let s:wordUnderCursor = expand("<cword>")
-"
-"    if &ft == "cpp" || &ft == "c" || &ft == "ruby" || &ft == "php" || &ft == "python"
-"        let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor."+lang:".&ft
-"    elseif &ft == "vim"
-"        let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor
-"    else
-"        return
-"    endif
-"
-"    let s:cmd = "silent !" . s:browser . " " . s:url
-"    "echo  s:cmd
-"    execute  s:cmd
-"    redraw!
-"endfunction
+    "  Search code sample from Google code {{{
+    "
+    "function! OnlineDoc()
+    "    let s:browser = "google-chrome"
+    "    let s:wordUnderCursor = expand("<cword>")
+    "
+    "    if &ft == "cpp" || &ft == "c" || &ft == "ruby" || &ft == "php" || &ft == "python"
+    "        let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor."+lang:".&ft
+    "    elseif &ft == "vim"
+    "        let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor
+    "    else
+    "        return
+    "    endif
+    "
+    "    let s:cmd = "silent !" . s:browser . " " . s:url
+    "    "echo  s:cmd
+    "    execute  s:cmd
+    "    redraw!
+    "endfunction
 
-" online doc search
-"map <LocalLeader>k :call OnlineDoc()<CR>
-" }}}
+    " online doc search
+    " map <LocalLeader>k :call OnlineDoc()<CR>
+    " }}}
 
+    " vim as a calcuator"{{{
+    :command! -nargs=+ Calc :py print <args>
+    :py from math import *
+    " }}}
 
-" vim as a calcuator"{{{
-:command! -nargs=+ Calc :py print <args>
-:py from math import *
-""}}}
+    " Script test {{{
+    "
+    function! CapitalizeCenterAndMoveDown()
+        s/\<./\u&/g "Built-in substitution capitalizes each word
+        center      "Built-in center command centers entire line
+        +1          "Built-in relative motion (+1 line down)
+    endfunction
 
-" Script test {{{
-"
-function! CapitalizeCenterAndMoveDown()
-    s/\<./\u&/g "Built-in substitution capitalizes each word
-    center      "Built-in center command centers entire line
-    +1          "Built-in relative motion (+1 line down)
-endfunction
-
-nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
-" }}}
-
+    nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
+    " }}}
 "
 " [ MISC ]                                                  }}}
 " =============================================================================
