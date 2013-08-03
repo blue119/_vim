@@ -264,7 +264,7 @@ cabbrev vh vertical help
     " [ Function Key ]                                                {{{
     "
     " <F1>: Help
-    nmap <F1> [unite]h
+    map <F1> [unite]h
 
     " Like \":write\", but only write when the buffer has been modified
     "nmap <F2> :up<CR>
@@ -290,7 +290,7 @@ cabbrev vh vertical help
     "Visualize some special chars
     set listchars=tab:>-,trail:-,eol:$,nbsp:%,extends:>,precedes:<
     set showbreak=↪
-    map <F9> :set list!<bar>set list?<CR>
+    nnoremap <F9> :set list!<bar>set list?<CR>
 
     " p4 edit
     nnoremap <F10> :!p4 edit %<CR>
@@ -315,46 +315,60 @@ cabbrev vh vertical help
     nnoremap <Leader>1 :only<CR>
 
     " <Leader>2: split
-    nnoremap <Leader>1 :split<CR>
+    nnoremap <Leader>2 :split<CR>
 
     " <Leader>3: vsplit 
-    nnoremap <Leader>1 :vsplit<CR>
+    nnoremap <Leader>3 :vsplit<CR>
 
-    " <Leader>a for Auto Commplete Pop: ACP
-    " <Leader>b TODO
-    " <Leader>c TODO
-    " <Leader>cq for cscopequickfix
-    " <Leader>d TODO
+    " <Leader>4-0: TODO
+    " <Leader>-: TODO
+    " <Leader>=: TODO
+    "--------------------------------------------------------------------------
+    " <Leader>q remap to QFix
+    " <Leader>w Fast saving
+    nnoremap <leader>w :w!<cr>
+
     " <Leader>e TODO
-    " <Leader>f Remap to  vimgrep settings
-    nnoremap <Leader>fv :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.vala' <CR>
-    nnoremap <Leader>fp :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.py' <CR>
-    nnoremap <Leader>fc :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.[ch]' <CR>
-    nnoremap <Leader>fn :cn <CR>
-    nnoremap <Leader>fN :cp <CR>
+    " <Leader>r MarkRegex
+    " <Leader>rwp RestoreWinPosn
+    " <Leader>t TaskList
+    " <Leader>t* for tag Operation
+    " <Leader>y TODO
+    " <Leader>u remap to unite
+    " <Leader>i TODO
+    " <Leader>o Remmap to bufExplorer
+    " <Leader>oc Occur
+    " <Leader>p: Copy the full path of the current file to the clipboard
+    nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
+        \ path '".expand("%:p")."' to clipboard"<cr>
+    "--------------------------------------------------------------------------
+    " <Leader>a for Auto Commplete Pop: ACP
+    " <Leader>s remap to Spell Checking
+    " <Leader>sb 48_beautify sourcebeautify.vim
+    " <Leader>swp SaveWinPosn
+    " <Leader>d remap to DiffSaved
+    " <Leader>ds DrawItStop
+    " <Leader>di DrawItStart
+    " <Leader>f Remap to VimGrep
+    " <Leader>ff Jsbeautify
 
     " <Leader>g TODO
     " <Leader>h for Edit(e) & Generate(g) help tags
     nnoremap <Leader>he :tabedit $HOME/.vim/doc/MyNote.txt <CR>
     nnoremap <Leader>hg :helptags $HOME/.vim/doc <CR>
 
-    " <Leader>i TODO
     " <Leader>j TODO
     " <Leader>k TODO
     " <Leader>l TODO
-    " <Leader>m TODO
-    " <Leader>n Remap to mark 
-    " <Leader>nt Remap to NERDTree
-    " <Leader>o Remmap to bufExplorer
-    " <Leader>p: Copy the full path of the current file to the clipboard
-    nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
-        \ path '".expand("%:p")."' to clipboard"<cr>
-
-    " <Leader>q remap to QFix
-    " <Leader>r TODO
-    " <Leader>s Spell Checking
-    " <Leader>t for tag Operation
-    " <Leader>u for unite
+    " <Leader>; TODO
+    " <Leader>' TODO
+    "--------------------------------------------------------------------------
+    " <Leader>z TODO
+    " <Leader>x VisualTraditional EnhancedCommentify.vim
+    " <Leader>c VisualTraditionalj EnhancedCommentify.vim
+    " <Leader>cs CsMgmt
+    " <Leader>cq for cscopequickfix
+    " <Leader>v TODO
     " <Leader>vs for View text file in two column
     ":<C-u>              " clear command line (if in visual mode)
     "let @z=&so          " save scrolloff in register z
@@ -366,15 +380,77 @@ cabbrev vh vertical help
     ":setl scb           " setlocal scrollbind in left window
     ":let &so=@z         " restore scrolloff
     noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
+    " <Leader>v* EasyGrep
 
     " <Leader>vv remap to EasyGrep
+    " <Leader>b TODO
+    " <Leader>bv bufexplorer.vim
+    " <Leader>bs bufexplorer.vim
+    " <Leader>be bufexplorer.vim
 
-    " <Leader>w Fast saving
-    nnoremap <leader>w :w!<cr>
+    " <Leader>n Remap to mark MarkClear
+    " <Leader>nt Remap to NERDTree
+    " <Leader>m MarkSet
+    " <Leader>mo: :Moccur
+    " <Leader>, TODO
+    " <Leader>. TODO
+    " <Leader>/ MarkSearchAnyNext
+    "
+    " [ Leader Keys ]                                                   }}}
 
-    " <Leader>x TODO
-    " <Leader>y TODO
-    " <Leader>z TODO
+    " -------------------------------------------------------------------------
+    " [ Leader Keys + Shift]                                               {{{
+    "
+    " <Leader>~: TODO 
+    " <Leader>!: TODO
+    " <Leader>@: TODO
+    " <Leader>#: MarkSearchCurrentPrev
+    " <Leader>$: TODO
+    " <Leader>%: TODO
+    " <Leader>^: TODO
+    " <Leader>&: TODO
+    " <Leader>*: MarkSearchCurrentNext
+    " <Leader>(: TODO
+    " <Leader>): TODO
+    " <Leader>_: TODO
+    " <Leader>+: TODO
+    "--------------------------------------------------------------------------
+    " <Leader>Q: TODO 
+    " <Leader>W: TODO
+    " <Leader>E: TODO
+    " <Leader>R: TODO
+    " <Leader>T: TODO
+    " <Leader>Y: TODO
+    " <Leader>U: TODO
+    " <Leader>I: TODO
+    " <Leader>O: TODO
+    " <Leader>P: TODO
+    " <Leader>{: TODO
+    " <Leader>}: TODO
+    " <Leader>|: TODO
+    "--------------------------------------------------------------------------
+    " <Leader>A: TODO
+    " <Leader>S: TODO
+    " <Leader>D: TODO
+    " <Leader>F: TODO
+    " <Leader>G: TODO
+    " <Leader>H: TODO
+    " <Leader>J: TODO
+    " <Leader>K: TODO
+    " <Leader>L: TODO
+    " <Leader>:: TODO
+    " <Leader>": TODO
+    "--------------------------------------------------------------------------
+    " <Leader>Z: TODO
+    " <Leader>X: TODO
+    " <Leader>C: TODO
+    " <Leader>V: TODO
+    " <Leader>B: TODO
+    " <Leader>N: TODO
+    " <Leader>M: TODO
+    " <Leader><: TODO
+    " <Leader>>: TODO
+    " <Leader>?: MarkSearchAnyPrev
     "
     " [ Leader Keys ]                                                   }}}
 
@@ -400,6 +476,9 @@ cabbrev vh vertical help
     " [: square bracket command
     " ]: square bracket command
     " \: TODO
+    " \c: show colorscheme name
+    " \n: change to next colorscheme
+    " \p: change to previous colorscheme
     " -----------------------------------------------------------------------------
     " a: append text after the cursor N times
     " s: (substitute) delete N characters [into buffer x] and start insert
@@ -413,6 +492,7 @@ cabbrev vh vertical help
     " dd: delete N lines [into buffer x]
     " f: cursor to Nth occurrence of {char} to the right
     " g: extended commands
+    " gx: NetrwBrowseX
     " h: cursor N chars to the left
     " j: cursor N lines downward
     " k: cursor N lines upward
@@ -442,12 +522,12 @@ cabbrev vh vertical help
     " @{a-z}: execute the contents of register {a-z} N times
     " @:: repeat the previous ":" command N times
     " @@: repeat the previous @{a-z} N times
-    " #: search backward for the Nth occurrence of the ident under the cursor
+    " #: remap to make.vim
     " $: cursor to the end of Nth next line
     " %: find the next (curly/square) bracket on this line and go to its match, or go to matching comment bracket, or go to matching preprocessor directive.
     " ^: cursor to the first CHAR of the line
     " &: repeat last :s
-    " *: search forward for the Nth occurrence of the ident under the cursor
+    " *: remap to make.vim
     " (: cursor N sentences backward
     " ): cursor N sentences forward
     " +/_: Remap to 'In/decrement number'
@@ -487,6 +567,7 @@ cabbrev vh vertical help
     " -----------------------------------------------------------------------------
     " Z: TODO
     " X: Deletes character backward
+    " X*: for cscope at cscope_macros.vim
     " C: Deletes rest of line and go to insert mode
     " V: Visual line mode
     " B: Move word backward (TODO Replaced by <C-H>, maybe remap?)
@@ -494,8 +575,8 @@ cabbrev vh vertical help
     nnoremap N Nzzzv
 
     " M: Move cursor to mid screen
-    " <: Indent left
-    " >: Indent right
+    " <: remap to Indent left
+    " >: remap to Indent right
     " ?: Search backwards
     "
     " [ Normal Mode + Shift ]                                        }}}
@@ -521,9 +602,10 @@ cabbrev vh vertical help
     " Ctrl-i: <Tab>
     " Ctrl-o: Go to older entry
     " Ctrl-p: remap to :cprev
-    " Ctrl-[: Esc
+    " Ctrl-[: <Esc>
     " Ctrl-]: Go forward in tag stack
     " Ctrl-\: TODO
+    " Ctrl-\ d, i, f, e, t, c, g, s: cscope at cscope_macros.vim
     " Ctrl-\ Ctrl-n: go to Normal mode (no-op)
     " Ctrl-\ Ctrl-g: go to mode specified with 'insertmode'
     "------------------------------------------------------------------------------
@@ -765,6 +847,47 @@ cabbrev vh vertical help
     "
     " [ Tag Operations ]                                                     }}}
     "
+    " [ VimGrep ]                                                            {{{
+    nnoremap <Leader>fv :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.vala' <CR>
+    nnoremap <Leader>fp :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.py' <CR>
+    nnoremap <Leader>fc :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.[ch]' <CR>
+    nnoremap <Leader>fn :cn <CR>
+    nnoremap <Leader>fN :cp <CR>
+    " [ VimGrep ]                                                            }}}
+    "
+    " [ EasyGrep ]                                                           {{{
+    " EasyGrep.vim
+    " ,vy* <SNR>27_ToggleFileAssociationsInExplorer()<CR>
+    " ,vy| <SNR>27_EchoOptionsSet()<CR>
+    " ,vyv <SNR>27_EchoGrepCommand()<CR>
+    " ,vy? <SNR>27_ToggleOptionsDisplay()<CR>
+    " ,vym <SNR>27_ToggleReplaceWindowMode()<CR>
+    " ,vys <SNR>27_Sort()<CR>
+    " ,vye <SNR>27_EchoFilesSearched()<CR>
+    " ,vy! <SNR>27_ToggleWholeWord()<CR>
+    " ,vyp <SNR>27_ToggleJumpToMatch()<CR>
+    " ,vyg <SNR>27_ToggleEveryMatch()<CR>
+    " ,vyo <SNR>27_ToggleOpenWindow()<CR>
+    " ,vyw <SNR>27_ToggleWindow()<CR>
+    " ,vyh <SNR>27_ToggleHidden()<CR>
+    " ,vyi <SNR>27_ToggleIgnoreCase()<CR>
+    " ,vyd <SNR>27_ToggleBufferDirectories()<CR>
+    " ,vyr <SNR>27_ToggleRecursion()<CR>
+    " ,vyc <SNR>27_ToggleCommand()<CR>
+    " ,vyx <SNR>27_SetFilesToExclude()<CR>
+    " ,vyu <SNR>27_ActivateUser()<CR>
+    " ,vyt <SNR>27_ActivateTracked()<CR>
+    " ,vyb <SNR>27_ActivateBuffers()<CR>
+    " ,vya <SNR>27_ActivateAll()<CR>
+    " ,vR  <Plug>EgMapReplaceSelection_R
+    " ,vr  <Plug>EgMapReplaceSelection_r
+    " ,vA  <Plug>EgMapGrepSelection_A
+    " ,va  <Plug>EgMapGrepSelection_a
+    " ,vV  <Plug>EgMapGrepSelection_V
+    " ,vv  <Plug>EgMapGrepSelection_v
+    " ,vo  <Plug>EgMapGrepOptions
+    " [ EasyGrep ]                                                           }}}
+    "
     " [ Diff related ]                                                      {{{
     "
     "force vim diff to ignore whitespace
@@ -776,24 +899,25 @@ cabbrev vh vertical help
     hi difftext ctermbg=3 ctermfg=0
 
     function! s:DiffWithSaved()
-    let filetype=&ft
-    diffthis
-    vnew | r # | normal! 1Gdd
-    diffthis
-    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+        let filetype=&ft
+        diffthis
+        vnew | r # | normal! 1Gdd
+        diffthis
+        exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
     endfunction
+
     com! DiffSaved call s:DiffWithSaved()
-    nmap ,d :DiffSaved<CR>
+    nnoremap <Leader>d :DiffSaved<CR>
 
     "DirDiff
     let g:DirDiffExcludes = "*.git,*.svn,.*.swp,tags,cscope.*"
     let g:DirDiffWindowSize = 10
 
     " WinMerge-style (Alt + hjkl) mapping for vimdiff
-    nmap j ]c
-    nmap k [c
-    nmap h do
-    nmap l dp
+    nnoremap j ]c
+    nnoremap k [c
+    nnoremap h do
+    nnoremap l dp
     "
     " [ Diff related ]                                                      }}}
     "
