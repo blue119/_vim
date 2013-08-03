@@ -94,10 +94,6 @@
 	path = .vim/bundle/jsbeautify
 	url = git://github.com/vim-scripts/jsbeautify.git
 	ignore = dirty
-[submodule ".vim/bundle/surround.vim"]
-	path = .vim/bundle/surround.vim
-	url = git://github.com/vim-scripts/surround.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/taglist.vim"]
 	path = .vim/bundle/taglist.vim
 	url = git://github.com/vim-scripts/taglist.vim.git
