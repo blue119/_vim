@@ -58,10 +58,6 @@
 	path = .vim/bundle/L9
 	url = git://github.com/vim-scripts/L9.git
 	ignore = dirty
-[submodule ".vim/bundle/Markdown"]
-	path = .vim/bundle/Markdown
-	url = git://github.com/vim-scripts/Markdown.git
-	ignore = dirty
 [submodule ".vim/bundle/ParseJSON"]
 	path = .vim/bundle/ParseJSON
 	url = git://github.com/vim-scripts/ParseJSON.git
@@ -229,3 +225,6 @@
 	path = .vim/bundle/jellybeans.vim
 	url = https://github.com/nanotech/jellybeans.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-markdown"]
+	path = .vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
