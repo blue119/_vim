@@ -228,3 +228,8 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+	ignore = dirty
+[submodule ".vim/bundle/javascript-libraries-syntax.vim"]
+	path = .vim/bundle/javascript-libraries-syntax.vim
+	url = https://github.com/othree/javascript-libraries-syntax.vim.git
+	ignore = dirty
