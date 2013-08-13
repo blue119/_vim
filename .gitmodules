@@ -205,6 +205,7 @@
 [submodule ".vim/bundle/unite-help"]
 	path = .vim/bundle/unite-help
 	url = https://github.com/tsukkee/unite-help.git
+	ignore = dirty
 [submodule ".vim/bundle/desertEx"]
 	path = .vim/bundle/desertEx
 	url = https://github.com/mbbill/desertEx.git
@@ -236,4 +237,12 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+	ignore = dirty
+[submodule ".vim/bundle/neocomplete.vim"]
+	path = .vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
+	ignore = dirty
+[submodule ".vim/bundle/vimshell.vim"]
+	path = .vim/bundle/vimshell.vim
+	url = https://github.com/Shougo/vimshell.vim.git
 	ignore = dirty
