@@ -233,3 +233,11 @@
 	path = .vim/bundle/javascript-libraries-syntax.vim
 	url = https://github.com/othree/javascript-libraries-syntax.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/neocomplete.vim"]
+	path = .vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
+	ignore = dirty
+[submodule ".vim/bundle/vimshell.vim"]
+	path = .vim/bundle/vimshell.vim
+	url = https://github.com/Shougo/vimshell.vim.git
+	ignore = dirty
