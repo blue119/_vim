@@ -758,8 +758,8 @@ cabbrev vh vertical help
     "endif
 
     " Tab Control
-    vnoremap <tab> >gv
-    vnoremap <s-tab> <gv
+    xnoremap <tab> >gv
+    xnoremap <s-tab> <gv
     "
     " [ Virtual Mode + Ctrl ]                                        }}}
 
