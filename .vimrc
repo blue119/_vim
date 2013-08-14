@@ -1036,7 +1036,7 @@ cabbrev vh vertical help
         "set makeprg=make
         "set errorformat=%f:%l:\ %m
         setlocal equalprg=indent
-        setlocal noexpandtab
+        setlocal expandtab
 
         " color/paged man
         runtime! ftplugin/man.vim
@@ -1045,7 +1045,7 @@ cabbrev vh vertical help
 
     if has("autocmd")
         augroup MyAutoCmd
-            autocmd Filetype c call s:c_custom()
+            autocmd FileType c,cpp autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
         augroup END
     endif
     " }}}
