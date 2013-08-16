@@ -933,9 +933,14 @@ cabbrev vh vertical help
     " [ General ] {{{
     "
     " Remove unnecessary spaces in the end of line 
-    augroup MyAutoCmd
-        autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-    augroup End
+    " augroup MyAutoCmd
+        " autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    " augroup End
+
+    function! YPRemoveTailingSpace()
+        :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    endfunction
+    command! YPRemoveTailingSpace call YPRemoveTailingSpace()
     " }}}
 
     " -------------------------------------------------------------------------
@@ -943,7 +948,7 @@ cabbrev vh vertical help
     "
     function! s:sh_custom()
         noremap <F2> :% w !bash<CR>
-        autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+        " autocmd MyAutoCmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
     endfunction
 
     if has("autocmd")
@@ -1018,7 +1023,7 @@ cabbrev vh vertical help
         set expandtab      " Use spaces for tabs
         noremap <F2> :% w !lsc %<CR>
         augroup MyAutoCmd
-            autocmd FileType ls autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+            " autocmd FileType ls autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
         augroup END
     endfunction
 
@@ -1045,7 +1050,7 @@ cabbrev vh vertical help
 
     if has("autocmd")
         augroup MyAutoCmd
-            autocmd FileType c,cpp autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+            " autocmd FileType c,cpp autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
         augroup END
     endif
     " }}}
