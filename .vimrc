@@ -11,7 +11,7 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-" Use Vim settings, rather then Vi settings (much better!). 
+" Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
@@ -45,8 +45,10 @@ else
     " colorscheme jellybeans
     colorscheme molokai
     " colorscheme desert
+    " colorscheme desert256
+    " colorscheme luna 
 
-    let g:molokai_original = 1
+    " let g:molokai_original = 1
     let g:rehash256 = 1
 endif
 "
@@ -118,7 +120,7 @@ set foldlevelstart=99
 set foldlevel=1000
 set foldnestmax=5
 
-" file encoding setting 
+" file encoding setting
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
@@ -152,7 +154,7 @@ augroup MyAutoCmd
 augroup END
 
 " Allow backspacing over these
-set backspace=indent,eol,start  
+set backspace=indent,eol,start
 
 " colorcolumn
 if v:version >= 703
@@ -173,7 +175,7 @@ set cursorline
 
 "  Status Line
 set ls=2
-set statusline=\ [%F] 
+set statusline=\ [%F]
 set statusline+=\ [%{&encoding}, " encoding
 set statusline+=%{&fileformat}]%m " file format
 set statusline+=%=\ %y\ %l,\ %c\ \<\ %P\ \>
@@ -223,7 +225,7 @@ nnoremap <down> <nop>
 set mouse=nv
 
 " To function correctly in Screen
-set ttymouse=xterm   
+set ttymouse=xterm
 
 " ,p and shift-insert will paste the X buffer, even on the command line
 nmap <LocalLeader>p i<S-MiddleMouse><ESC>
@@ -270,7 +272,7 @@ cabbrev vh vertical help
     " Like \":write\", but only write when the buffer has been modified
     "nmap <F2> :up<CR>
     "imap <F2> <Esc>:up<CR>a
-    "nnoremap <F2> 
+    "nnoremap <F2>
 
     " Find match prev
     nnoremap <F3> :cp<CR>
@@ -278,15 +280,15 @@ cabbrev vh vertical help
     " Find match next
     nnoremap <F4> :cn<CR>
 
-    "nnoremap <F5> 
-    "nnoremap <F6> 
+    "nnoremap <F5>
+    "nnoremap <F6>
 
     " Toggle on/off paste mode
     nnoremap <F7> :set paste!<BAr>set paste?<CR>
 
     " search highlight switching
     " map <F8> :set hls!<BAR>set hls?<CR>
-    "nnoremap <F8> 
+    "nnoremap <F8>
 
     "Visualize some special chars
     set listchars=tab:>-,trail:-,eol:$,nbsp:%,extends:>,precedes:<
@@ -297,7 +299,7 @@ cabbrev vh vertical help
     nnoremap <F10> :!p4 edit %<CR>
 
     "nnoremap <F11> Full Screen
-    "nnoremap <F12> 
+    "nnoremap <F12>
     "
     " [ Function Key ]                                                  }}}
 
@@ -318,7 +320,7 @@ cabbrev vh vertical help
     " <Leader>2: split
     nnoremap <Leader>2 :split<CR>
 
-    " <Leader>3: vsplit 
+    " <Leader>3: vsplit
     nnoremap <Leader>3 :vsplit<CR>
 
     " <Leader>4-0: TODO
@@ -402,7 +404,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ Leader Keys + Shift]                                               {{{
     "
-    " <Leader>~: TODO 
+    " <Leader>~: TODO
     " <Leader>!: TODO
     " <Leader>@: TODO
     " <Leader>#: MarkSearchCurrentPrev
@@ -416,7 +418,7 @@ cabbrev vh vertical help
     " <Leader>_: TODO
     " <Leader>+: TODO
     "--------------------------------------------------------------------------
-    " <Leader>Q: TODO 
+    " <Leader>Q: TODO
     " <Leader>W: TODO
     " <Leader>E: TODO
     " <Leader>R: TODO
@@ -460,8 +462,8 @@ cabbrev vh vertical help
     "
     " `: cursor to the mark {a-zA-Z0-9}
     " 1~0: TODO
-    " -: Remap to 'Window Operations' 
-    " =: Remap to 'Window Operations' 
+    " -: Remap to 'Window Operations'
+    " =: Remap to 'Window Operations'
     " -----------------------------------------------------------------------------
     " q: record typed characters into named register {0-9a-zA-Z"} (uppercase to append)
     " w: cursor N words forward
@@ -499,7 +501,7 @@ cabbrev vh vertical help
     " k: cursor N lines upward
     " l: cursor N chars to the right
     " ;: Remap to ':'
-    " ': Go to word of make 
+    " ': Go to word of make
     " -----------------------------------------------------------------------------
     " z: commands starting with 'z'
     " x: delete N characters under and after the cursor [into buffer x]
@@ -597,7 +599,7 @@ cabbrev vh vertical help
     nnoremap <c-e> $
 
     " Ctrl-r: Redo
-    " Ctrl-t: Jump to previously tag 
+    " Ctrl-t: Jump to previously tag
     " Ctrl-y: scroll downwards
     " Ctrl-u: scroll upwards
     " Ctrl-i: <Tab>
@@ -613,21 +615,21 @@ cabbrev vh vertical help
     " Ctrl-a: Remap to start of line
     nnoremap <c-a> ^
 
-    " Ctrl-s: TODO 
-    " Ctrl-d: scroll down lines 
+    " Ctrl-s: TODO
+    " Ctrl-d: scroll down lines
     " Ctrl-f: scroll screens forward
     " Ctrl-g: display current file name and position
-    " Ctrl-h: Remap to 'Window Operations' 
-    " Ctrl-j: Remap to 'Window Operations' 
-    " Ctrl-k: Remap to 'Window Operations' 
-    " Ctrl-l: Remap to 'Window Operations' 
+    " Ctrl-h: Remap to 'Window Operations'
+    " Ctrl-j: Remap to 'Window Operations'
+    " Ctrl-k: Remap to 'Window Operations'
+    " Ctrl-l: Remap to 'Window Operations'
     " Ctrl-;: Vim can't map this
     " Ctrl-': Vim can't map this
     "------------------------------------------------------------------------------
     " Ctrl-z: suspend program
     " Ctrl-x: Remap to Hexmode
     " Ctrl-c: interrupt current (search) command
-    " Ctrl-v: start blockwise Visual mode 
+    " Ctrl-v: start blockwise Visual mode
     " Ctrl-b: scroll N screens Backwards
     " Ctrl-n: remap to cnext
     " Ctrl-m: Remap to 'Window Operations'
@@ -642,16 +644,16 @@ cabbrev vh vertical help
     "
     " 0 CTRL-D delete all indent in the current line
     " ^ CTRL-D delete all indent in the current line, restore it in the next line
-    " 
+    "
     " <F1>: : same as <Help>
     " <Help>: stop insert mode and display help window
     " <Insert>: toggle Insert/Replace mode
-    " 
+    "
     " <C-Home>: cursor to start of file
     " <C-End>: cursor past end of file
     " <C-Left>: cursor one word left
     " <C-Right>: cursor one word right
-    " 
+    "
     " <S-Up>: same as <PageUp>
     " <S-Down>: same as <PageDown>
     " <S-Left>: cursor one word left
@@ -699,7 +701,7 @@ cabbrev vh vertical help
     " Ctrl-g: TODO
 
     " move your cursor like as in normal mode
-    " Ctrl-h: <BS> that remap to <left> 
+    " Ctrl-h: <BS> that remap to <left>
     " Ctrl-j: <CR> that remap to <down>
     " Ctrl-k: {char1} {char2} enter digraph that remap to <up>
     " Ctrl-l: Leave Insert mode that remap to <right>
@@ -933,7 +935,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ General ] {{{
     "
-    " Remove unnecessary spaces in the end of line 
+    " Remove unnecessary spaces in the end of line
     " augroup MyAutoCmd
         " autocmd FileType vala,perl,python,html,js autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
     " augroup End
@@ -1090,7 +1092,7 @@ cabbrev vh vertical help
     " Minimum lines used for comment syncing (default 50)
     "let vala_minlines = 120
     " }}}
-    
+
     " -------------------------------------------------------------------------
     " [ Hex/Binary Edit ]                                       {{{
     "
@@ -1219,7 +1221,7 @@ cabbrev vh vertical help
         " autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
     " augroup END
     " }}}
-    
+
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
     "
@@ -1238,7 +1240,7 @@ cabbrev vh vertical help
     let g:bufExplorerSortBy = "fullpath"
     nnoremap <leader>o :BufExplorer<cr>
     " }}}
-    
+
     " -------------------------------------------------------------------------
     " [ CtrlP ]                                                             {{{
     "
@@ -1252,7 +1254,7 @@ cabbrev vh vertical help
         " \ }
     let g:ctrlp_user_command = 'find %s -type f'
     " }}}
-    
+
     " -------------------------------------------------------------------------
     " [ unite ]                                                             {{{
     " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
@@ -1260,7 +1262,7 @@ cabbrev vh vertical help
     let g:unite_enable_start_insert=0
 
     " File searching like ctrlp.vim
-    nnoremap <C-p> :Unite file_rec/async<CR> 
+    nnoremap <C-p> :Unite file_rec/async<CR>
 
     " Content searching like ack.vim
     nnoremap <Leader>u/ :Unite grep:.<cr>
@@ -1271,14 +1273,14 @@ cabbrev vh vertical help
 
     " Buffer switching like LustyJuggler
     nnoremap <Leader>ub :Unite -quick-match buffer<cr>
-    " nnoremap <Leader>ub :Unite buffer<CR> 
+    " nnoremap <Leader>ub :Unite buffer<CR>
 
-    nnoremap <Leader>uf :UniteWithBufferDir -buffer-name=files file<CR> 
-    nnoremap <Leader>ur :Unite file_mru<CR> 
-    nnoremap <Leader>uy :Unite -buffer-name=register register<CR> 
+    nnoremap <Leader>uf :UniteWithBufferDir -buffer-name=files file<CR>
+    nnoremap <Leader>ur :Unite file_mru<CR>
+    nnoremap <Leader>uy :Unite -buffer-name=register register<CR>
     nnoremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
     " }}}
-    
+
     " -------------------------------------------------------------------------
     " [ yankring ]                                                         {{{
     "
@@ -1354,9 +1356,11 @@ cabbrev vh vertical help
 
     " -------------------------------------------------------------------------
     " [ powerline ]                                                        {{{
+    " [ airline ]
     "
+    let g:airline_powerline_fonts = 1
     if ! has('gui_running')
-        " set ttimeoutlen=10
+        set ttimeoutlen=10
         augroup MyAutoCmd
             au InsertEnter * set timeoutlen=0
             au InsertLeave * set timeoutlen=1000
@@ -1367,7 +1371,31 @@ cabbrev vh vertical help
     set laststatus=2
 
     " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-    set noshowmode 
+    set noshowmode
+
+    " unicode symbols
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_linecolumn_prefix = '␊ '
+    let g:airline_linecolumn_prefix = '␤ '
+    let g:airline_linecolumn_prefix = '¶ '
+    let g:airline#extensions#branch#symbol = '⎇ '
+    let g:airline#extensions#paste#symbol = 'ρ'
+    let g:airline#extensions#paste#symbol = 'Þ'
+    let g:airline#extensions#paste#symbol = '∥'
+    let g:airline#extensions#whitespace#symbol = 'Ξ'
+
+    " powerline symbols
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline#extensions#branch#symbol = ' '
+    let g:airline#extensions#readonly#symbol = ''
+    let g:airline_linecolumn_prefix = ' '
+
     " }}}
 
     " -------------------------------------------------------------------------
