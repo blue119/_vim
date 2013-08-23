@@ -253,4 +253,15 @@
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/vim-airline"]
+	path = .vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-luna"]
+	path = .vim/bundle/vim-luna
+	url = https://github.com/Pychimp/vim-luna.git
+	ignore = dirty
+[submodule ".vim/bundle/desert256"]
+	path = .vim/bundle/desert256
+	url = https://github.com/vim-scripts/desert256.vim.git
 	ignore = dirty
