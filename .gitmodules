@@ -242,3 +242,15 @@
 	path = .vim/bundle/vimshell.vim
 	url = https://github.com/Shougo/vimshell.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-node"]
+	path = .vim/bundle/vim-node
+	url = https://github.com/moll/vim-node.git
+	ignore = dirty
+[submodule ".vim/bundle/snipmate-nodejs"]
+	path = .vim/bundle/snipmate-nodejs
+	url = https://github.com/jamescarr/snipmate-nodejs.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-surround"]
+	path = .vim/bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+	ignore = dirty
