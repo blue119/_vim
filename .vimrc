@@ -1053,7 +1053,7 @@ cabbrev vh vertical help
 
     if has("autocmd")
         augroup MyAutoCmd
-            " autocmd FileType c,cpp autocmd FileWritePre,BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+            autocmd Filetype c,cpp call s:c_custom()
         augroup END
     endif
     " }}}
@@ -1062,9 +1062,25 @@ cabbrev vh vertical help
     " [ Javascript ]                                                       {{{
     "
     " json = javascript syntax highlight
-    augroup MyAutoCmd
-        autocmd FileType json setlocal syntax=javascript
-    augroup END
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd FileType json setlocal syntax=javascript
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ HTML/xHTML]                                                       {{{
+    "
+    function! s:html_custom()
+        set makeprg=wkhtmltopdf\ %\ /tmp/%<.pdf
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype html,xhtml call s:html_custom()
+        augroup END
+    endif
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1358,6 +1374,8 @@ cabbrev vh vertical help
     " [ powerline ]                                                        {{{
     " [ airline ]
     "
+    " let g:airline_theme='wombat'
+    let g:airline_theme='tomorrow'
     let g:airline_powerline_fonts = 1
     if ! has('gui_running')
         set ttimeoutlen=10
