@@ -265,3 +265,11 @@
 	path = .vim/bundle/desert256
 	url = https://github.com/vim-scripts/desert256.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-gitgutter"]
+	path = .vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+	ignore = dirty
