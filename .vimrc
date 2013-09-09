@@ -46,7 +46,7 @@ else
     colorscheme molokai
     " colorscheme desert
     " colorscheme desert256
-    " colorscheme luna 
+    " colorscheme luna
 
     " let g:molokai_original = 1
     let g:rehash256 = 1
@@ -1041,6 +1041,7 @@ cabbrev vh vertical help
     " [ c ]                                                                 {{{
     "
     function! s:c_custom()
+        " http://stackoverflow.com/questions/729249/how-to-efficiently-make-with-vim
         "set makeprg=make
         "set errorformat=%f:%l:\ %m
         setlocal equalprg=indent
@@ -1295,6 +1296,14 @@ cabbrev vh vertical help
     nnoremap <Leader>ur :Unite file_mru<CR>
     nnoremap <Leader>uy :Unite -buffer-name=register register<CR>
     nnoremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+    let g:unite_source_grep_default_opts = '-iRHn'
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ vimfiler ]                                                         {{{
+    "
+    " let g:vimfiler_as_default_explorer = 1
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1413,6 +1422,20 @@ cabbrev vh vertical help
     let g:airline#extensions#branch#symbol = ' '
     let g:airline#extensions#readonly#symbol = ''
     let g:airline_linecolumn_prefix = ' '
+
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ rooter ]                                                  {{{
+    "
+    " To stop vim-rooter changing directory automatically
+    let g:rooter_manual_only = 1
+
+    " :lcd instead of :cd
+    let g:rooter_use_lcd = 1
+
+    " own directory and file patterns like this:
+    " let g:rooter_patterns = ['Rakefile', '.git/']
 
     " }}}
 
