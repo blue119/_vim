@@ -109,7 +109,7 @@ set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=*.gem
 set wildignore+=log/**
-set wildignore+=tmp/**
+" set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
 set wildignore+=*/.nx/**,*.app
@@ -1192,7 +1192,9 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ cs-mgmt.vim ]                                                      {{{
     "
-    let g:CsMgmtCtags = 1
+    " let g:CsMgmtDebugEnable = 1
+    let g:CsMgmtCscopeEnable = 1
+    let g:CsMgmtCtagsEnable = 1
     let g:CsMgmtReAttach = 1
     " }}}
 
@@ -1262,7 +1264,6 @@ cabbrev vh vertical help
     " [ CtrlP ]                                                             {{{
     "
     let g:ctrlp_working_path_mode = 'ra'
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
     let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     " let g:ctrlp_custom_ignore = {
         " \ 'dir':  '\v[\/]\.(git|hg|svn)$',
