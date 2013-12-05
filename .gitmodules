@@ -298,3 +298,11 @@
 	path = .vim/bundle/vim-golang
 	url = git://github.com/jnwhiteh/vim-golang.git
 	ignore = dirty
+[submodule ".vim/bundle/ack.vim"]
+	path = .vim/bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+	ignore = dirty
+[submodule ".vim/bundle/riv.vim"]
+	path = .vim/bundle/riv.vim
+	url = https://github.com/Rykka/riv.vim.git
+	ignore = dirty
