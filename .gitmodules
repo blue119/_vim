@@ -6,10 +6,6 @@
 	path = .vim/bundle/vim-css3-syntax
 	url = git://github.com/hail2u/vim-css3-syntax.git
 	ignore = dirty
-[submodule ".vim/bundle/vim-golang"]
-	path = .vim/bundle/vim-golang
-	url = git://github.com/jnwhiteh/vim-golang.git
-	ignore = dirty
 [submodule ".vim/bundle/bufexplorer"]
 	path = .vim/bundle/bufexplorer
 	url = git://github.com/joeybeninghove/bufexplorer.git
@@ -294,3 +290,6 @@
 	path = .vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-gocode"]
+	path = .vim/bundle/vim-gocode
+	url = https://github.com/Blackrush/vim-gocode.git
