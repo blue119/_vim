@@ -293,3 +293,8 @@
 [submodule ".vim/bundle/vim-gocode"]
 	path = .vim/bundle/vim-gocode
 	url = https://github.com/Blackrush/vim-gocode.git
+	ignore = dirty
+[submodule ".vim/bundle/vim-golang"]
+	path = .vim/bundle/vim-golang
+	url = git://github.com/jnwhiteh/vim-golang.git
+	ignore = dirty
