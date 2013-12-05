@@ -286,3 +286,11 @@
 	path = .vim/bundle/plantuml-syntax
 	url = https://github.com/aklt/plantuml-syntax.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+	ignore = dirty
+[submodule ".vim/bundle/ultisnips"]
+	path = .vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+	ignore = dirty
