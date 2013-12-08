@@ -10,10 +10,6 @@
 	path = .vim/bundle/bufexplorer
 	url = git://github.com/joeybeninghove/bufexplorer.git
 	ignore = dirty
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
-	url = git://github.com/kien/ctrlp.vim.git
-	ignore = dirty
 [submodule ".vim/bundle/mark.vim"]
 	path = .vim/bundle/mark.vim
 	url = git://github.com/mbriggs/mark.vim.git
@@ -137,10 +133,6 @@
 [submodule ".vim/bundle/SingleCompile"]
 	path = .vim/bundle/SingleCompile
 	url = https://github.com/xuhdev/SingleCompile.git
-	ignore = dirty
-[submodule ".vim/bundle/EasyGrep"]
-	path = .vim/bundle/EasyGrep
-	url = git://github.com/vim-scripts/EasyGrep.git
 	ignore = dirty
 [submodule ".vim/bundle/editorconfig-vim"]
 	path = .vim/bundle/editorconfig-vim
