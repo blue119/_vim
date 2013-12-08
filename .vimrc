@@ -1462,6 +1462,14 @@ cabbrev vh vertical help
     " }}}
 
     " -------------------------------------------------------------------------
+    " [ supertab ]                                                  {{{
+    "
+    "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+        let g:SuperTabDefaultCompletionType = "context"
+
+    " }}}
+
+    " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
     "
     " http://aufather.wordpress.com/2010/08/26/omni-completion-in-vim/
@@ -1486,8 +1494,6 @@ cabbrev vh vertical help
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType go setlocal omnifunc=gocomplete#Complete
     augroup END
-    " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-    let g:SuperTabDefaultCompletionType = "context"
 
     " highlight   clear
     highlight   Pmenu         ctermfg=0 ctermbg=2
