@@ -1003,10 +1003,11 @@ cabbrev vh vertical help
     " }}}
 
     " -------------------------------------------------------------------------
-    " [ go ]                                                                {{{
+    " [ golang ]                                                                {{{
     "
     function! s:go_custom()
         noremap <F2> :% w !go run %<CR>
+        au FileType go map <leader>t :Tmux go test<CR>
     endfunction
 
     if has("autocmd")
@@ -1360,6 +1361,38 @@ cabbrev vh vertical help
     let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
     let g:DoxygenToolkit_authorName="Yao-Po Wang"
     let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ tagbar ]                                                     {{{
+    "
+    let g:tagbar_type_go = {
+                \ 'ctagstype' : 'go',
+                \ 'kinds'     : [
+                \ 'p:package',
+                \ 'i:imports:1',
+                \ 'c:constants',
+                \ 'v:variables',
+                \ 't:types',
+                \ 'n:interfaces',
+                \ 'w:fields',
+                \ 'e:embedded',
+                \ 'm:methods',
+                \ 'r:constructor',
+                \ 'f:functions'
+                \ ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : {
+                \ 't' : 'ctype',
+                \ 'n' : 'ntype'
+                \ },
+                \ 'scope2kind' : {
+                \ 'ctype' : 't',
+                \ 'ntype' : 'n'
+                \ },
+                \ 'ctagsbin'  : 'gotags',
+                \ 'ctagsargs' : '-sort -silent'
+                \ }
     " }}}
 
     " -------------------------------------------------------------------------

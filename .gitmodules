@@ -306,3 +306,11 @@
 	path = .vim/bundle/riv.vim
 	url = https://github.com/Rykka/riv.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/gotags"]
+	path = .vim/bundle/gotags
+	url = https://github.com/jstemmer/gotags.git
+	ignore = dirty
+[submodule ".vim/bundle/tslime.vim"]
+	path = .vim/bundle/tslime.vim
+	url = https://github.com/jgdavey/tslime.vim.git
+	ignore = dirty
