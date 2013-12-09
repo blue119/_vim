@@ -292,3 +292,6 @@
 [submodule ".vim/bundle/riv.vim"]
 	path = .vim/bundle/riv.vim
 	url = https://github.com/Rykka/riv.vim.git
+[submodule ".vim/bundle/minibufexpl.vim"]
+	path = .vim/bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim.git
