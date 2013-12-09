@@ -992,9 +992,6 @@ cabbrev vh vertical help
         imap iii import IPython; IPython.embed()
         imap ddd import pdb; pdb.set_trace()
 
-        augroup MyAutoCmd
-            autocmd FileType python setl omnifunc=pythoncomplete#Complete
-        augroup END
         noremap <F2> :% w !python<CR>
     endfunction
 
@@ -1006,10 +1003,11 @@ cabbrev vh vertical help
     " }}}
 
     " -------------------------------------------------------------------------
-    " [ go ]                                                                {{{
+    " [ golang ]                                                                {{{
     "
     function! s:go_custom()
         noremap <F2> :% w !go run %<CR>
+        au FileType go map <leader>t :Tmux go test<CR>
     endfunction
 
     if has("autocmd")
@@ -1230,15 +1228,6 @@ cabbrev vh vertical help
     " nnoremap <Leader>an :AcpEnable<CR>
     " let g:acp_behaviorSnipmateLength = 1
 
-    " augroup MyAutoCmd
-        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        " autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
-    " augroup END
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1375,6 +1364,38 @@ cabbrev vh vertical help
     " }}}
 
     " -------------------------------------------------------------------------
+    " [ tagbar ]                                                     {{{
+    "
+    let g:tagbar_type_go = {
+                \ 'ctagstype' : 'go',
+                \ 'kinds'     : [
+                \ 'p:package',
+                \ 'i:imports:1',
+                \ 'c:constants',
+                \ 'v:variables',
+                \ 't:types',
+                \ 'n:interfaces',
+                \ 'w:fields',
+                \ 'e:embedded',
+                \ 'm:methods',
+                \ 'r:constructor',
+                \ 'f:functions'
+                \ ],
+                \ 'sro' : '.',
+                \ 'kind2scope' : {
+                \ 't' : 'ctype',
+                \ 'n' : 'ntype'
+                \ },
+                \ 'scope2kind' : {
+                \ 'ctype' : 't',
+                \ 'ntype' : 'n'
+                \ },
+                \ 'ctagsbin'  : 'gotags',
+                \ 'ctagsargs' : '-sort -silent'
+                \ }
+    " }}}
+
+    " -------------------------------------------------------------------------
     " [ LanguageTool ]                                                     {{{
     "
     let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
@@ -1441,19 +1462,39 @@ cabbrev vh vertical help
     " }}}
 
     " -------------------------------------------------------------------------
+    " [ supertab ]                                                  {{{
+    "
+    "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+        let g:SuperTabDefaultCompletionType = "context"
+
+    " }}}
+
+    " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
     "
     " http://aufather.wordpress.com/2010/08/26/omni-completion-in-vim/
-    " set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
+    set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
     " let OmniCpp_GlobalScopeSearch   = 1
     " let OmniCpp_DisplayMode         = 1
     " let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
     " let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
     " let OmniCpp_ShowAccess          = 1 "show access in pop-up
     " let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-    set completeopt=longest,menuone
+    " set completeopt=longest,menuone
+    set completeopt=longest,menu
 
-    " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+    augroup MyAutoCmd
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType go setlocal omnifunc=gocomplete#Complete
+    augroup END
+
     " highlight   clear
     highlight   Pmenu         ctermfg=0 ctermbg=2
     highlight   PmenuSel      ctermfg=0 ctermbg=7
