@@ -298,6 +298,10 @@
 	path = .vim/bundle/riv.vim
 	url = https://github.com/Rykka/riv.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/minibufexpl.vim"]
+	path = .vim/bundle/minibufexpl.vim
+	url = https://github.com/fholgado/minibufexpl.vim.git
+	ignore = dirty
 [submodule ".vim/bundle/gotags"]
 	path = .vim/bundle/gotags
 	url = https://github.com/jstemmer/gotags.git
@@ -309,9 +313,12 @@
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+	ignore = dirty
 [submodule ".vim/bundle/matchit"]
 	path = .vim/bundle/matchit
 	url = https://github.com/tmhedberg/matchit
+	ignore = dirty
 [submodule ".vim/bundle/csv.vim"]
 	path = .vim/bundle/csv.vim
 	url = https://github.com/chrisbra/csv.vim.git
+	ignore = dirty
