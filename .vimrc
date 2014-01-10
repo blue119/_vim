@@ -988,9 +988,8 @@ cabbrev vh vertical help
         setlocal tabstop=4 shiftwidth=4
         setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
 
-        " imap iii import IPython; IPython.Shell.IPShellEmbed()()
-        imap iii import IPython; IPython.embed()
-        imap ddd import pdb; pdb.set_trace()
+        iabbr iii import IPython; IPython.embed()
+        iabbr ddd import pdb; pdb.set_trace()
 
         noremap <F2> :% w !python<CR>
     endfunction
