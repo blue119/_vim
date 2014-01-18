@@ -43,10 +43,10 @@ if has("gui_running")
     set gfn=Monospace\ 10
 else
     " colorscheme jellybeans
-    colorscheme molokai
     " colorscheme desert
     " colorscheme desert256
     " colorscheme luna
+    colorscheme molokai
 
     " let g:molokai_original = 1
     let g:rehash256 = 1
@@ -1271,7 +1271,7 @@ cabbrev vh vertical help
     nnoremap <C-p> :Unite file_rec/async<CR>
 
     " Content searching like ack.vim
-    nnoremap <Leader>u/ :Unite grep:.<cr>
+    nnoremap <Leader>u/ :Unite vimgrep:.<cr>
 
     " Yank history like yankring
     let g:unite_source_history_yank_enable = 1
@@ -1405,6 +1405,10 @@ cabbrev vh vertical help
     " [ airline ]
     "
     " let g:airline_theme='wombat'
+    let g:airline_enable_branch=1
+    let g:airline_enable_syntastic=1
+    let g:airline_detect_paste=1
+
     let g:airline_theme='tomorrow'
     let g:airline_powerline_fonts = 1
     if ! has('gui_running')
@@ -1422,17 +1426,17 @@ cabbrev vh vertical help
     set noshowmode
 
     " unicode symbols
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '▶'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '◀'
-    let g:airline_linecolumn_prefix = '␊ '
+    " let g:airline_left_sep = '»'
+    " let g:airline_left_sep = '▶'
+    " let g:airline_right_sep = '«'
+    " let g:airline_right_sep = '◀'
+    " let g:airline_linecolumn_prefix = '␊ '
     let g:airline_linecolumn_prefix = '␤ '
-    let g:airline_linecolumn_prefix = '¶ '
+    " let g:airline_linecolumn_prefix = '¶ '
     let g:airline#extensions#branch#symbol = '⎇ '
     let g:airline#extensions#paste#symbol = 'ρ'
-    let g:airline#extensions#paste#symbol = 'Þ'
-    let g:airline#extensions#paste#symbol = '∥'
+    " let g:airline#extensions#paste#symbol = 'Þ'
+    " let g:airline#extensions#paste#symbol = '∥'
     let g:airline#extensions#whitespace#symbol = 'Ξ'
 
     " powerline symbols
@@ -1440,9 +1444,9 @@ cabbrev vh vertical help
     let g:airline_left_alt_sep = ''
     let g:airline_right_sep = ''
     let g:airline_right_alt_sep = ''
-    let g:airline#extensions#branch#symbol = ' '
-    let g:airline#extensions#readonly#symbol = ''
-    let g:airline_linecolumn_prefix = ' '
+    " let g:airline#extensions#branch#symbol = ' '
+    " let g:airline#extensions#readonly#symbol = ''
+    " let g:airline_linecolumn_prefix = ' '
 
     " }}}
 
