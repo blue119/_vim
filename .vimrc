@@ -1198,7 +1198,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ cscope ]                                                           {{{
     "
-        " cscopequickfix {{{
+        " put result into QFix Window{{{
         "
         if v:version >= 700 && has("cscope")
             function! CSCOPE_QuickFixToogle()
@@ -1226,9 +1226,17 @@ cabbrev vh vertical help
     " nnoremap <Leader>af :AcpDisable<CR>
     " nnoremap <Leader>an :AcpEnable<CR>
     " let g:acp_behaviorSnipmateLength = 1
+    let g:acp_enableAtStartup = 0
 
     " }}}
 
+    " -------------------------------------------------------------------------
+    " [ Auto Commplete Pop: ACP ]                                           {{{
+    "
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    "
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
     "
@@ -1251,14 +1259,14 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ CtrlP ]                                                             {{{
     "
-    let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+    " let g:ctrlp_working_path_mode = 'ra'
+    " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     " let g:ctrlp_custom_ignore = {
         " \ 'dir':  '\v[\/]\.(git|hg|svn)$',
         " \ 'file': '\v\.(exe|so|dll)$',
         " \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
         " \ }
-    let g:ctrlp_user_command = 'find %s -type f'
+    " let g:ctrlp_user_command = 'find %s -type f'
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1268,7 +1276,16 @@ cabbrev vh vertical help
     let g:unite_enable_start_insert=0
 
     " File searching like ctrlp.vim
-    nnoremap <C-p> :Unite file_rec/async<CR>
+    nnoremap <C-p> :Unite -start-insert file_rec/async buffer<CR>
+
+    " shortcup
+    nnoremap <Leader>um :Unite -start-insert mapping<CR>
+
+    " Execute help.
+    nnoremap <Leader>uh :Unite -start-insert help<CR>
+
+    " outline
+    nnoremap <leader>uo :Unite outline<CR>
 
     " Content searching like ack.vim
     nnoremap <Leader>u/ :Unite vimgrep:.<cr>
@@ -1365,39 +1382,39 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ tagbar ]                                                     {{{
     "
-    let g:tagbar_type_go = {
-                \ 'ctagstype' : 'go',
-                \ 'kinds'     : [
-                \ 'p:package',
-                \ 'i:imports:1',
-                \ 'c:constants',
-                \ 'v:variables',
-                \ 't:types',
-                \ 'n:interfaces',
-                \ 'w:fields',
-                \ 'e:embedded',
-                \ 'm:methods',
-                \ 'r:constructor',
-                \ 'f:functions'
-                \ ],
-                \ 'sro' : '.',
-                \ 'kind2scope' : {
-                \ 't' : 'ctype',
-                \ 'n' : 'ntype'
-                \ },
-                \ 'scope2kind' : {
-                \ 'ctype' : 't',
-                \ 'ntype' : 'n'
-                \ },
-                \ 'ctagsbin'  : 'gotags',
-                \ 'ctagsargs' : '-sort -silent'
-                \ }
+    " let g:tagbar_type_go = {
+                " \ 'ctagstype' : 'go',
+                " \ 'kinds'     : [
+                " \ 'p:package',
+                " \ 'i:imports:1',
+                " \ 'c:constants',
+                " \ 'v:variables',
+                " \ 't:types',
+                " \ 'n:interfaces',
+                " \ 'w:fields',
+                " \ 'e:embedded',
+                " \ 'm:methods',
+                " \ 'r:constructor',
+                " \ 'f:functions'
+                " \ ],
+                " \ 'sro' : '.',
+                " \ 'kind2scope' : {
+                " \ 't' : 'ctype',
+                " \ 'n' : 'ntype'
+                " \ },
+                " \ 'scope2kind' : {
+                " \ 'ctype' : 't',
+                " \ 'ntype' : 'n'
+                " \ },
+                " \ 'ctagsbin'  : 'gotags',
+                " \ 'ctagsargs' : '-sort -silent'
+                " \ }
     " }}}
 
     " -------------------------------------------------------------------------
     " [ LanguageTool ]                                                     {{{
     "
-    let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
+    " let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1581,8 +1598,8 @@ cabbrev vh vertical help
 
     command! -bang -nargs=? QFix call QFixToggle(<bang>0)
     nnoremap <leader>q :QFix<CR>
-    nnoremap <C-n> :cnext<CR>
-    nnoremap <C-p> :cprev<CR>
+    " nnoremap <C-n> :cnext<CR>
+    " nnoremap <C-p> :cprev<CR>
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1654,13 +1671,13 @@ cabbrev vh vertical help
 
     " Script test {{{
     "
-    function! CapitalizeCenterAndMoveDown()
-        s/\<./\u&/g "Built-in substitution capitalizes each word
-        center      "Built-in center command centers entire line
-        +1          "Built-in relative motion (+1 line down)
-    endfunction
+    " function! CapitalizeCenterAndMoveDown()
+        " s/\<./\u&/g "Built-in substitution capitalizes each word
+        " center      "Built-in center command centers entire line
+        " +1          "Built-in relative motion (+1 line down)
+    " endfunction
 
-    nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
+    " nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
     " }}}
 "
 " [ MISC ]                                                  }}}
