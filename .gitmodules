@@ -318,3 +318,7 @@
 	path = .vim/bundle/csv.vim
 	url = https://github.com/chrisbra/csv.vim.git
 	ignore = dirty
+[submodule ".vim/bundle/tarbar"]
+	path = .vim/bundle/tarbar
+	url = https://github.com/majutsushi/tagbar.git
+	ignore = dirty

@@ -1194,7 +1194,7 @@ cabbrev vh vertical help
     let g:CsMgmtCtagsEnable = 1
     let g:CsMgmtReAttach = 1
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ cscope ]                                                           {{{
     "
@@ -1218,8 +1218,9 @@ cabbrev vh vertical help
             nmap <Leader>cq :call CSCOPE_QuickFixToogle()<CR>
         endif
         " }}}
+        "
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ Auto Commplete Pop: ACP ]                                           {{{
     "
@@ -1227,15 +1228,15 @@ cabbrev vh vertical help
     " nnoremap <Leader>an :AcpEnable<CR>
     " let g:acp_behaviorSnipmateLength = 1
     let g:acp_enableAtStartup = 0
-
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ Auto Commplete Pop: ACP ]                                           {{{
     "
     let g:UltiSnipsExpandTrigger="<tab>"
     let g:UltiSnipsJumpForwardTrigger="<tab>"
     let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+    " }}}
     "
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
@@ -1246,7 +1247,7 @@ cabbrev vh vertical help
     let g:EnhCommentifyAlignRight = 'Yes'
     " let g:EnhCommentify = 'Yes'
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ bufExplorer plugin ]                                                {{{
     "
@@ -1255,7 +1256,7 @@ cabbrev vh vertical help
     let g:bufExplorerSortBy = "fullpath"
     nnoremap <leader>o :BufExplorer<cr>
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ CtrlP ]                                                             {{{
     "
@@ -1268,7 +1269,7 @@ cabbrev vh vertical help
         " \ }
     " let g:ctrlp_user_command = 'find %s -type f'
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ unite ]                                                             {{{
     " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
@@ -1288,7 +1289,7 @@ cabbrev vh vertical help
     nnoremap <leader>uo :Unite outline<CR>
 
     " Content searching like ack.vim
-    nnoremap <Leader>u/ :Unite vimgrep:.<cr>
+    nnoremap <Leader>u/ :Unite vimgrep:**<cr>
 
     " Yank history like yankring
     let g:unite_source_history_yank_enable = 1
@@ -1305,19 +1306,19 @@ cabbrev vh vertical help
 
     let g:unite_source_grep_default_opts = '-iRHn'
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ vimfiler ]                                                         {{{
     "
     " let g:vimfiler_as_default_explorer = 1
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ yankring ]                                                         {{{
     "
     let g:yankring_history_file = '.yankring_history'
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ vim-indent-guides ]                                                {{{
     "
@@ -1327,14 +1328,14 @@ cabbrev vh vertical help
     hi IndentGuidesOdd  ctermbg=black
     hi IndentGuidesEven ctermbg=darkgrey
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ NERD_TREE ]                                                        {{{
     "
     let NERDTreeChDirMode=2
     nnoremap <Leader>nt :NERDTreeToggle<CR>
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ EasyGrep ]                                                         {{{
     "
@@ -1344,7 +1345,7 @@ cabbrev vh vertical help
     let g:EasyGrepIgnoreCase= 0
     let g:EasyGrepJumpToMatch= 1
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ Tag List ]                                                         {{{
     "
@@ -1361,7 +1362,7 @@ cabbrev vh vertical help
 
     let g:Tlist_WinWidth = 35
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ DoxygenToolkit.vim ]                                               {{{
     "
@@ -1378,7 +1379,7 @@ cabbrev vh vertical help
     let g:DoxygenToolkit_authorName="Yao-Po Wang"
     let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ tagbar ]                                                     {{{
     "
@@ -1410,13 +1411,13 @@ cabbrev vh vertical help
                 " \ 'ctagsargs' : '-sort -silent'
                 " \ }
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ LanguageTool ]                                                     {{{
     "
     " let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ powerline ]                                                        {{{
     " [ airline ]
@@ -1464,11 +1465,10 @@ cabbrev vh vertical help
     " let g:airline#extensions#branch#symbol = ' '
     " let g:airline#extensions#readonly#symbol = ''
     " let g:airline_linecolumn_prefix = ' '
-
     " }}}
-
+    "
     " -------------------------------------------------------------------------
-    " [ rooter ]                                                  {{{
+    " [ rooter ]                                                            {{{
     "
     " To stop vim-rooter changing directory automatically
     let g:rooter_manual_only = 1
@@ -1478,17 +1478,15 @@ cabbrev vh vertical help
 
     " own directory and file patterns like this:
     " let g:rooter_patterns = ['Rakefile', '.git/']
-
     " }}}
-
+    "
     " -------------------------------------------------------------------------
-    " [ supertab ]                                                  {{{
+    " [ supertab ]                                                          {{{
     "
     "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
         let g:SuperTabDefaultCompletionType = "context"
-
     " }}}
-
+    "
     " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
     "
@@ -1522,14 +1520,14 @@ cabbrev vh vertical help
     highlight   PmenuThumb    ctermfg=0 ctermbg=7
     " }}}
 
-" [ Plugin configuration ]                                  }}}
+" [ Plugin configuration ]                                                  }}}
 " =============================================================================
 
 " =============================================================================
 " [ Functions & autocmd ]                                                  {{{
 "
     " -------------------------------------------------------------------------
-    " set vim to chdir for each file {{{
+    " set vim to chdir for each file                                       {{{
     if exists('+autochdir')
         set autochdir
     else
@@ -1638,9 +1636,9 @@ cabbrev vh vertical help
 " =============================================================================
 
 " =============================================================================
-" [ MISC ]                                                  {{{
+" [ MISC ]                                                                 {{{
 "
-    "  Search code sample from Google code {{{
+    "  Search code sample from Google code                                 {{{
     "
     "function! OnlineDoc()
     "    let s:browser = "google-chrome"
@@ -1664,12 +1662,12 @@ cabbrev vh vertical help
     " map <LocalLeader>k :call OnlineDoc()<CR>
     " }}}
 
-    " vim as a calcuator"{{{
+    " vim as a calcuator"                                                  {{{
     :command! -nargs=+ Calc :py print <args>
     :py from math import *
     " }}}
 
-    " Script test {{{
+    " Script test                                                          {{{
     "
     " function! CapitalizeCenterAndMoveDown()
         " s/\<./\u&/g "Built-in substitution capitalizes each word
@@ -1680,7 +1678,7 @@ cabbrev vh vertical help
     " nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
     " }}}
 "
-" [ MISC ]                                                  }}}
+" [ MISC ]                                                                 }}}
 " =============================================================================
 
 " vim:fdm=marker:et:fdl=0:
