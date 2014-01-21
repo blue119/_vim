@@ -1315,6 +1315,13 @@ cabbrev vh vertical help
 
     " Content searching like ack.vim
     nnoremap <Leader>u/ :Unite vimgrep:**<cr>
+    nnoremap <Leader>ug :Unite grep:. -buffer-name=search-buffer<cr>
+
+    " カーソル位置の単語をgrep検索
+    nnoremap <Leader>ucg :Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+    " grep検索結果の再呼出
+    nnoremap <Leader>urg :UniteResume search-buffer<cr>
 
     " Yank history like yankring
     let g:unite_source_history_yank_enable = 1
