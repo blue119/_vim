@@ -322,3 +322,6 @@
 	path = .vim/bundle/tarbar
 	url = https://github.com/majutsushi/tagbar.git
 	ignore = dirty
+[submodule ".vim/bundle/vim-unite-ack"]
+	path = .vim/bundle/vim-unite-ack
+	url = https://github.com/t9md/vim-unite-ack.git
