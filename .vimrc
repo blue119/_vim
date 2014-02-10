@@ -1241,7 +1241,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ Ack ]                                                {{{
     "
-    if executable("/usr/bin/ag")
+    if executable("ag")
         let g:ackprg = 'ag --nogroup --nocolor --column'
     endif
     " let g:EnhCommentify = 'Yes'
@@ -1283,58 +1283,71 @@ cabbrev vh vertical help
     " [ unite ]                                                             {{{
     " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
     "
-    let g:unite_enable_start_insert=0
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
+    call unite#set_profile('files', 'smartcase', 1)
+    let g:unite_enable_start_insert=0
+    let g:unite_enable_ignore_case = 1
+    let g:unite_enable_smart_case = 1
     let g:unite_source_rec_max_cache_files=5000
+    let g:unite_data_directory='~/.vim/.cache'
     let g:unite_prompt='» '
 
     if executable('ag')
         let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup --hidden'
+        let g:unite_source_grep_default_opts='--nocolor --nogroup'
         let g:unite_source_grep_recursive_opt=''
-    elseif executable('ack')
-        let g:unite_source_grep_command='ack'
-        let g:unite_source_grep_default_opts='--no-heading --no-color -a'
+    elseif executable('ack-grep')
+        let g:unite_source_grep_command='ack-grep'
+        let g:unite_source_grep_default_opts='--no-group --no-color'
         let g:unite_source_grep_recursive_opt=''
     else
         let g:unite_source_grep_default_opts = '-iRHn'
     endif
+    let g:unite_source_grep_max_candidates = 200
+
+    function! s:unite_settings()
+        imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+        imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+    endfunction
+    autocmd FileType unite call s:unite_settings()
+    nnoremap [unite] <Nop>
+    nmap <Leader>u [unite]
 
     " File searching like ctrlp.vim
     nnoremap <C-p> :Unite -start-insert file_rec/async buffer<CR>
 
     " shortcup
-    nnoremap <Leader>um :Unite -start-insert mapping<CR>
+    nnoremap <silent> [unite]m :Unite -start-insert mapping<CR>
 
     " Execute help.
-    nnoremap <Leader>uh :Unite -start-insert help<CR>
+    nnoremap <silent> [unite]h :Unite -start-insert help<CR>
 
     " outline
     nnoremap <leader>uo :Unite outline<CR>
 
     " Content searching like ack.vim
-    nnoremap <Leader>u/ :Unite vimgrep:**<cr>
-    nnoremap <Leader>ug :Unite grep:. -buffer-name=search-buffer<cr>
+    nnoremap <silent> [unite]/ :Unite vimgrep:**<cr>
+    nnoremap <silent> [unite]g :Unite grep:.<cr>
 
     " カーソル位置の単語をgrep検索
-    nnoremap <Leader>ucg :Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+    " nnoremap <silent> [unite]gb :Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><cr>
 
     " grep検索結果の再呼出
-    nnoremap <Leader>urg :UniteResume search-buffer<cr>
+    " nnoremap <silent> [unite]rg :UniteResume search-buffer<cr>
 
     " Yank history like yankring
     let g:unite_source_history_yank_enable = 1
-    nnoremap <Leader>uy :Unite history/yank<CR>
+    nnoremap <silent> [unite]y :Unite history/yank<CR>
 
     " Buffer switching like LustyJuggler
-    nnoremap <Leader>ub :Unite -quick-match buffer<cr>
-    " nnoremap <Leader>ub :Unite buffer<CR>
+    nnoremap <silent> [unite]b :Unite -quick-match buffer<cr>
+    " nnoremap <silent> [unite]b :Unite buffer<CR>
 
-    nnoremap <Leader>uf :UniteWithBufferDir -buffer-name=files file<CR>
-    nnoremap <Leader>ur :Unite file_mru<CR>
-    nnoremap <Leader>uy :Unite -buffer-name=register register<CR>
-    nnoremap <Leader>ua :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+    nnoremap <silent> [unite]f :UniteWithBufferDir -buffer-name=files file<CR>
+    nnoremap <silent> [unite]r :Unite file_mru<CR>
+    nnoremap <silent> [unite]y :Unite -buffer-name=register register<CR>
+    nnoremap <silent> [unite]a :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 
     " }}}
     "

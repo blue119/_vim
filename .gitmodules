@@ -325,3 +325,6 @@
 [submodule ".vim/bundle/vim-unite-ack"]
 	path = .vim/bundle/vim-unite-ack
 	url = https://github.com/t9md/vim-unite-ack.git
+[submodule ".vim/bundle/robotframework-vim"]
+	path = .vim/bundle/robotframework-vim
+	url = https://github.com/mfukar/robotframework-vim.git
