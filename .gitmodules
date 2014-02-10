@@ -22,10 +22,6 @@
 	path = .vim/bundle/xml.vim
 	url = git://github.com/othree/xml.vim.git
 	ignore = dirty
-[submodule ".vim/bundle/CCTree"]
-	path = .vim/bundle/CCTree
-	url = git://github.com/vim-scripts/CCTree.git
-	ignore = dirty
 [submodule ".vim/bundle/Decho"]
 	path = .vim/bundle/Decho
 	url = git://github.com/vim-scripts/Decho.git
