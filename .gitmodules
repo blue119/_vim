@@ -321,6 +321,12 @@
 [submodule ".vim/bundle/vim-unite-ack"]
 	path = .vim/bundle/vim-unite-ack
 	url = https://github.com/t9md/vim-unite-ack.git
+	ignore = dirty
 [submodule ".vim/bundle/robotframework-vim"]
 	path = .vim/bundle/robotframework-vim
 	url = https://github.com/mfukar/robotframework-vim.git
+	ignore = dirty
+[submodule ".vim/bundle/unite-colorscheme"]
+	path = .vim/bundle/unite-colorscheme
+	url = https://github.com/ujihisa/unite-colorscheme.git
+	ignore = dirty
