@@ -326,3 +326,6 @@
 	path = .vim/bundle/unite-colorscheme
 	url = https://github.com/ujihisa/unite-colorscheme.git
 	ignore = dirty
+[submodule ".vim/bundle/ultisnips"]
+	path = .vim/bundle/ultisnips
+	url = https://github.com/blue119/ultisnips.git
