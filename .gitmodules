@@ -329,3 +329,21 @@
 [submodule ".vim/bundle/ultisnips"]
 	path = .vim/bundle/ultisnips
 	url = https://github.com/blue119/ultisnips.git
+[submodule ".vim/bundle/vim-lucius"]
+	path = .vim/bundle/vim-lucius
+	url = https://github.com/jonathanfilip/vim-lucius.git
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git
+[submodule ".vim/bundle/vim-colors-pencil"]
+	path = .vim/bundle/vim-colors-pencil
+	url = https://github.com/reedes/vim-colors-pencil.git
+[submodule ".vim/bundle/summerfruit256.vim"]
+	path = .vim/bundle/summerfruit256.vim
+	url = https://github.com/vim-scripts/summerfruit256.vim.git
+[submodule ".vim/bundle/vim-tomorrow-theme"]
+	path = .vim/bundle/vim-tomorrow-theme
+	url = https://github.com/chriskempson/vim-tomorrow-theme.git
+[submodule ".vim/bundle/Dockerfile.vim"]
+	path = .vim/bundle/Dockerfile.vim
+	url = https://github.com/ekalinin/Dockerfile.vim.git

@@ -34,7 +34,8 @@ endif
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
 
-set background=dark
+" set background=dark
+" set background=light
 
 if has("gui_running")
     colorscheme molokai
@@ -42,14 +43,28 @@ if has("gui_running")
     set gfn=Consolas:h14
     set gfn=Monospace\ 10
 else
+    " Light
+    " colorscheme summerfruit256
+    " colorscheme Tomorrow
+
+    " Dark
     " colorscheme jellybeans
-    " colorscheme desert
     " colorscheme desert256
     " colorscheme luna
-    colorscheme molokai
+    " colorscheme lucius
 
-    " let g:molokai_original = 1
+    " {{{
+    " let g:pencil_higher_contrast_ui = 0   " 0=low (def), 1=high
+    " let g:pencil_neutral_headings = 1   " 0=blue (def), 1=normal
+    " let g:airline_theme = 'pencil'
+    " colorscheme pencil
+    " }}}
+
+    "{{{ molokai
+    colorscheme molokai
+    let g:molokai_original = 1
     let g:rehash256 = 1
+    "}}}
 endif
 "
 " [ Font, Theme & Color Setting ]                                           }}}
@@ -1283,6 +1298,7 @@ cabbrev vh vertical help
     " [ unite ]                                                             {{{
     " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
     "
+
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
     call unite#set_profile('files', 'smartcase', 1)
@@ -1296,7 +1312,7 @@ cabbrev vh vertical help
 
     if executable('ag')
         let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup'
+        let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
         let g:unite_source_grep_recursive_opt=''
     elseif executable('ack-grep')
         let g:unite_source_grep_command='ack-grep'
@@ -1329,13 +1345,12 @@ cabbrev vh vertical help
 
     " Content searching like ack.vim
     nnoremap <silent> [unite]/ :Unite vimgrep:**<cr>
-    nnoremap <silent> [unite]g :Unite grep:.<cr>
-
+    nnoremap <silent> [unite]g :Unite grep:. -buffer-name=search-buffer`<cr>
     " カーソル位置の単語をgrep検索
-    " nnoremap <silent> [unite]gb :Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><cr>
+    nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
     " grep検索結果の再呼出
-    " nnoremap <silent> [unite]rg :UniteResume search-buffer<cr>
+    nnoremap <silent> [unite]rg :UniteResume search-buffer<cr>
 
     " Yank history like yankring
     let g:unite_source_history_yank_enable = 1
@@ -1527,7 +1542,26 @@ cabbrev vh vertical help
     " own directory and file patterns like this:
     " let g:rooter_patterns = ['Rakefile', '.git/']
     " }}}
+
+    " -------------------------------------------------------------------------
+    " [ makr.vim ]                                                          {{{
     "
+    function! s:DefaultHighlightings()
+        highlight def MarkWord1  ctermbg=9   ctermfg=Black  guibg=#8CCBEA   guifg=Black
+        highlight def MarkWord2  ctermbg=10  ctermfg=Black  guibg=#A4E57E   guifg=Black
+        highlight def MarkWord3  ctermbg=11  ctermfg=Black  guibg=#FFDB72   guifg=Black
+        highlight def MarkWord4  ctermbg=12  ctermfg=Black  guibg=#FF7272   guifg=Black
+        highlight def MarkWord5  ctermbg=13  ctermfg=Black  guibg=#FFB3FF   guifg=Black
+        highlight def MarkWord6  ctermbg=14  ctermfg=Black  guibg=#9999FF   guifg=Black
+        highlight def MarkWord7  ctermbg=15  ctermfg=Black  guibg=#9999FF   guifg=Black
+        highlight def MarkWord8  ctermbg=178 ctermfg=Black  guibg=#9999FF   guifg=Black
+        highlight def MarkWord9  ctermbg=105 ctermfg=Black  guibg=#9999FF   guifg=Black
+        highlight def MarkWord10 ctermbg=50  ctermfg=Black  guibg=#9999FF   guifg=Black
+    endfunction
+    call s:DefaultHighlightings()
+    autocmd ColorScheme * call <SID>DefaultHighlightings()
+    " }}}
+
     " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
     "
