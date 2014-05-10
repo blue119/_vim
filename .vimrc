@@ -1259,6 +1259,9 @@ cabbrev vh vertical help
     if executable("ag")
         let g:ackprg = 'ag --nogroup --nocolor --column'
     endif
+
+    " nnoremap <silent> <leader>a/ :Ack<CR><C-R><C-W>
+    nnoremap <silent> <leader>a/ :Ack<CR>
     " let g:EnhCommentify = 'Yes'
     " }}}
     "
@@ -1537,7 +1540,7 @@ cabbrev vh vertical help
     let g:rooter_manual_only = 1
 
     " :lcd instead of :cd
-    let g:rooter_use_lcd = 1
+    " let g:rooter_use_lcd = 1
 
     " own directory and file patterns like this:
     " let g:rooter_patterns = ['Rakefile', '.git/']
