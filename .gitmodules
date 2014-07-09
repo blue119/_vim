@@ -105,17 +105,17 @@
     branch = master
 [submodule ".vim/bundle/EnhCommentify.vim"]
 	path = .vim/bundle/EnhCommentify.vim
-	url = git@github.com:blue119/EnhCommentify.vim.git
+	url = git://github.com/blue119/EnhCommentify.vim.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/cs-mgmt.vim"]
 	path = .vim/bundle/cs-mgmt.vim
-	url = git@github.com:blue119/cs-mgmt.vim.git
+	url = git://github.com/blue119/cs-mgmt.vim.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/occur.vim"]
 	path = .vim/bundle/occur.vim
-	url = git@github.com:blue119/occur.vim.git
+	url = git://github.com/blue119/occur.vim.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/vim-ls"]
@@ -205,12 +205,12 @@
     branch = master
 [submodule ".vim/bundle/molokai"]
 	path = .vim/bundle/molokai
-	url = git@github.com:blue119/molokai.git
+	url = git://github.com/blue119/molokai.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/vim-snipmate"]
 	path = .vim/bundle/vim-snipmate
-	url = git@github.com:blue119/vim-snipmate.git
+	url = git://github.com/blue119/vim-snipmate.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/tlib_vim"]
@@ -225,7 +225,7 @@
     branch = master
 [submodule ".vim/bundle/vim-snippets"]
 	path = .vim/bundle/vim-snippets
-	url = git@github.com:blue119/vim-snippets.git
+	url = https://github.com/honza/vim-snippets.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/vim-autocomplpop"]
@@ -255,7 +255,7 @@
     branch = master
 [submodule ".vim/bundle/perforce.vim"]
 	path = .vim/bundle/perforce.vim
-	url = git@github.com:blue119/perforce.vim.git
+	url = git://github.com/blue119/perforce.vim.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/jellybeans.vim"]
@@ -325,7 +325,7 @@
     branch = master
 [submodule ".vim/bundle/vim-rooter"]
 	path = .vim/bundle/vim-rooter
-	url = git@github.com:blue119/vim-rooter.git
+	url = git://github.com/blue119/vim-rooter.git
 	ignore = dirty
     branch = master
 [submodule ".vim/bundle/vimfiler.vim"]
