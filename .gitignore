@@ -8,3 +8,4 @@
 # temperary ignore
 .vim/bundle/powerline
 .vim/.cache/
+.vim/bundle/unite-rf/
