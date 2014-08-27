@@ -343,16 +343,6 @@
 	url = https://github.com/tpope/vim-fugitive.git
 	ignore = dirty
     branch = master
-[submodule ".vim/bundle/vim-gocode"]
-	path = .vim/bundle/vim-gocode
-	url = https://github.com/Blackrush/vim-gocode.git
-	ignore = dirty
-    branch = master
-[submodule ".vim/bundle/vim-golang"]
-	path = .vim/bundle/vim-golang
-	url = git://github.com/jnwhiteh/vim-golang.git
-	ignore = dirty
-    branch = master
 [submodule ".vim/bundle/ack.vim"]
 	path = .vim/bundle/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
@@ -452,3 +442,6 @@
 [submodule ".vim/bundle/vim-easymotion"]
 	path = .vim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
