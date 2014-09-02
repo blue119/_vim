@@ -1595,7 +1595,7 @@ cabbrev vh vertical help
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
         autocmd FileType java setlocal omnifunc=eclim#java#complete#CodeComplete
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType go setlocal omnifunc=gocomplete#Complete
+        autocmd FileType go setlocal omnifunc=go#complete#Complete
     augroup END
 
     " highlight   clear
