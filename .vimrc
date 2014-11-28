@@ -1331,7 +1331,7 @@ cabbrev vh vertical help
 
     call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
-    call unite#set_profile('files', 'smartcase', 1)
+    " call unite#set_profile('files', 'smartcase', 1)
     let g:unite_enable_start_insert        = 0
     let g:unite_enable_ignore_case         = 1
     let g:unite_enable_smart_case          = 1
@@ -1503,6 +1503,7 @@ cabbrev vh vertical help
                 " \ 'ctagsbin'  : 'gotags',
                 " \ 'ctagsargs' : '-sort -silent'
                 " \ }
+        let g:tagbar_autofocus = 1
     " }}}
     "
     " -------------------------------------------------------------------------
