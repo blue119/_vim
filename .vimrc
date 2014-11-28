@@ -1007,6 +1007,8 @@ cabbrev vh vertical help
         iabbr ddd import pdb; pdb.set_trace()
 
         noremap <F2> :% w !python<CR>
+        " let g:pymode_lint_write = 0
+        let g:syntastic_python_checkers = 0
     endfunction
 
     if has("autocmd")
@@ -1045,6 +1047,31 @@ cabbrev vh vertical help
     if has("autocmd")
         augroup MyAutoCmd
             autocmd Filetype ls call s:ls_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ haskell ]                                                                 {{{
+    "
+
+    autocmd BufEnter *.hs compiler ghc
+    let g:ghc="/usr/bin/ghc"
+    let g:haddock_browser="/home/blue119/iOpt/stow/firefox-bin/bin/firefox"
+
+    function! s:hs_custom()
+        " Tab specific option
+        set tabstop=8                   "A tab is 8 spaces
+        set expandtab                   "Always uses spaces instead of tabs
+        set softtabstop=4               "Insert 4 spaces when tab is pressed
+        set shiftwidth=4                "An indent is 4 spaces
+        set shiftround                  "Round indent to nearest shiftwidth multiple
+
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype hs,haskell call s:hs_custom()
         augroup END
     endif
     " }}}
@@ -1587,6 +1614,8 @@ cabbrev vh vertical help
     set completeopt=longest,menu
 
     augroup MyAutoCmd
+        autocmd FileType hs setlocal omnifunc=necoghc#omnifunc
+        " setlocal omnifunc=necoghc#omnifunc
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS

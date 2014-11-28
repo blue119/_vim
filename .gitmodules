@@ -445,3 +445,9 @@
 [submodule ".vim/bundle/vim-go"]
 	path = .vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/bundle/haskellmode-vim"]
+	path = .vim/bundle/haskellmode-vim
+	url = https://github.com/lukerandall/haskellmode-vim.git
+[submodule ".vim/bundle/neco-ghc"]
+	path = .vim/bundle/neco-ghc
+	url = https://github.com/eagletmt/neco-ghc.git

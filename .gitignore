@@ -9,3 +9,4 @@
 .vim/bundle/powerline
 .vim/.cache/
 .vim/bundle/unite-rf/
+.vim/haskellmode.config
