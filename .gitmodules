@@ -454,3 +454,6 @@
 [submodule ".vim/bundle/vim-hdevtools"]
 	path = .vim/bundle/vim-hdevtools
 	url = https://github.com/bitc/vim-hdevtools.git
+[submodule ".vim/bundle/neocomplete.vim"]
+	path = .vim/bundle/neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
