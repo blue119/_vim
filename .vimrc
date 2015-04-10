@@ -1086,6 +1086,8 @@ cabbrev vh vertical help
         setlocal equalprg=indent
         setlocal expandtab
 
+        let g:syntastic_cpp_compiler_options = ' -std=c++14 -stdlib=libc++'
+
         " color/paged man
         runtime! ftplugin/man.vim
         nmap K <esc>:Man <cword><cr>
@@ -1102,11 +1104,18 @@ cabbrev vh vertical help
     " [ Javascript ]                                                       {{{
     "
     " json = javascript syntax highlight
-    if has("autocmd")
-        augroup MyAutoCmd
-            autocmd FileType json setlocal syntax=javascript
-        augroup END
-    endif
+    " if has("autocmd")
+        " augroup MyAutoCmd
+            " autocmd FileType json setlocal syntax=javascript
+        " augroup END
+    " endif
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ vim-cpp-enhanced-highlight ]                                                       {{{
+    "
+    let g:cpp_class_scope_highlight = 1
+    " let g:cpp_experimental_template_highlight = 1
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1561,7 +1570,6 @@ cabbrev vh vertical help
     " let g:airline_linecolumn_prefix = ' '
     " }}}
 
-
     " -------------------------------------------------------------------------
     " [ rooter ]                                                            {{{
     "
@@ -1574,7 +1582,6 @@ cabbrev vh vertical help
     " own directory and file patterns like this:
     " let g:rooter_patterns = ['Rakefile', '.git/']
     " }}}
-
 
     " -------------------------------------------------------------------------
     " [ neocomplete ]                                                            {{{
@@ -1726,13 +1733,13 @@ cabbrev vh vertical help
 "
     " -------------------------------------------------------------------------
     " set vim to chdir for each file                                       {{{
-    if exists('+autochdir')
-        set autochdir
-    else
+    " if exists('+autochdir')
+        " set autochdir
+    " else
         augroup MyAutoCmd
             autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
         augroup END
-    endif
+    " endif
     " }}}
 
     " -------------------------------------------------------------------------
