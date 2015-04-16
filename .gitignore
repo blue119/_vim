@@ -4,6 +4,7 @@
 .vim/view/
 .vim/doc/tags
 *.swp
+*.pyc
 
 # temperary ignore
 .vim/bundle/powerline
