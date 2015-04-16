@@ -8,12 +8,142 @@
 " [ General Setting ]                                                      {{{
 "
 " For pathogen.vim: auto load all plugins in .vim/bundle
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" call pathogen#runtime_append_all_bundles()
+" call pathogen#helptags()
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off                  " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+"
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'blue119/molokai'
+
+" colorscheme
+Plugin 'summerfruit256.vim'
+
+" colorscheme
+Plugin 'desert256.vim'
+
+" surround.vim: quoting/parenthesizing made simple
+Plugin 'tpope/vim-fugitive'
+
+" fugitive.vim: a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-surround'
+
+" Some utility functions for VIM
+Plugin 'tomtom/tlib_vim'
+
+" Markdown Vim Mode
+Plugin 'plasticboy/vim-markdown'
+
+" json Vim Mode
+Plugin 'elzr/vim-json'
+
+" go Vim Mode
+Plugin 'fatih/vim-go'
+
+" Vim plugin for the Perl module / CLI script 'ack'
+Plugin 'mileszs/ack.vim'
+
+" Tools and environment to make Vim superb for developing with Node.js.
+Plugin 'moll/vim-node'
+
+" Vim script internal debugger (output in separate window, tab, or remote vim)
+Plugin 'Decho'
+
+" Visualize your undo tree.
+Plugin 'Gundo'
+
+" Vim-script library
+Plugin 'L9'
+
+" Eclipse like task list
+Plugin 'TaskList.vim'
+
+" Produce increasing/decreasing columns of numbers, dates, or daynames
+Plugin 'VisIncr'
+
+" basic cscope settings and key mappings
+Plugin 'cscope_macros.vim'
+
+" GNU info documentation browser.
+Plugin 'info.vim'
+
+" a javascript source code formatter
+Plugin 'jsbeautify'
+
+" Send Octave code from a VIM buffer to Octave
+Plugin 'octave.vim'
+
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+Plugin 'taglist.vim'
+
+Plugin 'tmhedberg/matchit'
+Plugin 'scrooloose/syntastic'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'honza/vim-snippets'
+Plugin 'jamescarr/snipmate-nodejs'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'jstemmer/gotags'
+Plugin 'lukerandall/haskellmode-vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'mfukar/robotframework-vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'Pychimp/vim-luna'
+Plugin 'Shougo/vimfiler.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'aklt/plantuml-syntax'
+Plugin 'bitc/vim-hdevtools'
+Plugin 'bling/vim-airline'
+Plugin 'blue119/ultisnips'
+Plugin 'chrisbra/csv.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'briancollins/vim-jst'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'gkz/vim-ls'
+Plugin 'godlygeek/tabular'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'mbriggs/mark.vim'
+Plugin 'michalliu/sourcebeautify.vim'
+Plugin 'othree/xml.vim'
+Plugin 'wavded/vim-stylus'
+
+Plugin 'blue119/EnhCommentify.vim'
+Plugin 'blue119/cs-mgmt.vim'
+Plugin 'blue119/occur.vim'
+Plugin 'blue119/perforce.vim'
+Plugin 'blue119/vim-rooter'
+
+Plugin 'tsukkee/unite-help'
+Plugin 'h1mesuke/unite-outline'
+Plugin 'tsukkee/unite-tag'
+Plugin 'Shougo/unite.vim'
+Plugin 'YamasakiKenta/unite-perforce.vim'
+Plugin 'Shougo/unite-build'
+Plugin 'Sixeight/unite-grep'
+
+Plugin 'blue119/unite-rf'
+Plugin 'Shougo/vimproc.vim'
+
+Plugin 'Valloric/YouCompleteMe'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " Set augroup
 augroup MyAutoCmd
@@ -24,9 +154,9 @@ augroup END
 set backup
 set backupdir=$HOME/.vim/backup
 
-if has ('vim_starting')
-    set runtimepath+=~/.vim
-endif
+" if has ('vim_starting')
+    " set runtimepath+=~/.vim
+" endif
 
 " ----------------------------------------------------------------------------
 " [ Font, Theme & Color Setting ]                                              {{{
@@ -1526,8 +1656,9 @@ cabbrev vh vertical help
     " [ airline ]
     "
     " let g:airline_theme='wombat'
-    let g:airline_enable_branch=1
-    let g:airline_enable_syntastic=1
+    " let g:airline_enable_branch=1
+    let g:airline#extensions#branch#enabled=1
+    let g:airline#extensions#syntastic#enabled = 1
     let g:airline_detect_paste=1
 
     let g:airline_theme='tomorrow'
@@ -1547,12 +1678,13 @@ cabbrev vh vertical help
     set noshowmode
 
     " unicode symbols
+    let g:airline_symbols = {}
     " let g:airline_left_sep = '»'
     " let g:airline_left_sep = '▶'
     " let g:airline_right_sep = '«'
     " let g:airline_right_sep = '◀'
     " let g:airline_linecolumn_prefix = '␊ '
-    let g:airline_linecolumn_prefix = '␤ '
+    let g:airline_symbols.linenr = '␤ '
     " let g:airline_linecolumn_prefix = '¶ '
     let g:airline#extensions#branch#symbol = '⎇ '
     let g:airline#extensions#paste#symbol = 'ρ'

@@ -2,6 +2,7 @@
 .vim/backup/*~
 .vim/tags/
 .vim/view/
+.vim/bundle/
 .vim/doc/tags
 *.swp
 *.pyc
