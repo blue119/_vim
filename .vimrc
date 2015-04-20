@@ -140,6 +140,7 @@ Plugin 'blue119/unite-rf'
 Plugin 'Shougo/vimproc.vim'
 
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -1412,11 +1413,11 @@ cabbrev vh vertical help
     " }}}
     "
     " -------------------------------------------------------------------------
-    " [ Auto Commplete Pop: ACP ]                                           {{{
+    " [ UltiSnips ]                                           {{{
     "
-    " let g:UltiSnipsExpandTrigger="<tab>"
-    " let g:UltiSnipsJumpForwardTrigger="<tab>"
-    " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -1801,7 +1802,8 @@ cabbrev vh vertical help
     " [ YouCompletMe.vim ]                                                          {{{
     "
         let g:ycm_global_ycm_extra_conf = '~/.vim/plugin/ycm_extra_conf.py'
-        let g:ycm_key_invoke_completion = '<C-n>'
+        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
     " -------------------------------------------------------------------------
     " [ makr.vim ]                                                          {{{
@@ -1825,6 +1827,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
     "
+        let g:SuperTabDefaultCompletionType = '<C-n>'
     "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
         " let g:SuperTabDefaultCompletionType = "context"
     " }}}
