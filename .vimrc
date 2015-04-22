@@ -1564,8 +1564,8 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ NERD_TREE ]                                                        {{{
     "
-    let NERDTreeChDirMode=2
-    nnoremap <Leader>nt :NERDTreeToggle<CR>
+    " let NERDTreeChDirMode=2
+    " nnoremap <Leader>nt :NERDTreeToggle<CR>
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -1802,6 +1802,7 @@ cabbrev vh vertical help
     "
         let g:ycm_global_ycm_extra_conf = '~/.vim/plugin/ycm_extra_conf.py'
         let g:ycm_key_invoke_completion = '<C-n>'
+        let g:loaded_youcompleteme = 0
 
     " -------------------------------------------------------------------------
     " [ makr.vim ]                                                          {{{
