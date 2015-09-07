@@ -162,7 +162,6 @@ Plugin 'Rykka/InstantRst'
 
 Plugin 'scrooloose/nerdtree'
 
-
 " gitv is a 'gitk clone' plugin for the text editor Vim.
 Plugin 'gregsexton/gitv'
 
@@ -1843,6 +1842,7 @@ cabbrev vh vertical help
         let g:syntastic_always_populate_loc_list = 1
         " You can let YCM read the tags file. But the tags file must be create from the command “ctags –fileds=+l”.
         let g:ycm_collect_identifiers_from_tags_files = 1
+
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
