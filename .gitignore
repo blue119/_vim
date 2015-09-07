@@ -4,6 +4,7 @@
 .vim/view/
 .vim/bundle/
 .vim/doc/tags
+.vim/swp/
 *.swp
 *.pyc
 

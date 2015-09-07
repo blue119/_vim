@@ -1,7 +1,7 @@
 "
 " Author: Yao-Po Wang
 " Web:
-" Last Modified: 四  5月 26, 2011  11:43上午
+" Modified: 2015-06-06 15:25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ============================================================================
@@ -22,6 +22,11 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Bundle Configuration
+"
+" Plugin install: vim +PluginInstall +qall
+"
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
@@ -39,11 +44,14 @@ Plugin 'tpope/vim-fugitive'
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-surround'
 
+" jdaddy.vim: JSON manipulation and pretty printing
+Plugin 'tpope/vim-jdaddy'
+
 " Some utility functions for VIM
 Plugin 'tomtom/tlib_vim'
 
 " Markdown Vim Mode
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'plasticboy/vim-markdown'
 
 " json Vim Mode
 Plugin 'elzr/vim-json'
@@ -97,7 +105,13 @@ Plugin 'jstemmer/gotags'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'mfukar/robotframework-vim'
+
+"
 Plugin 'nathanaelkane/vim-indent-guides'
+
+" A vim plugin to display the indention levels with thin vertical lines
+" Plugin 'Yggdroot/indentLine'
+
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Pychimp/vim-luna'
@@ -115,6 +129,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'gkz/vim-ls'
 Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'mbriggs/mark.vim'
@@ -140,6 +155,18 @@ Plugin 'blue119/unite-rf'
 Plugin 'Shougo/vimproc.vim'
 
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'ervandew/supertab'
+
+Plugin 'Rykka/riv.vim'
+Plugin 'Rykka/InstantRst'
+
+Plugin 'scrooloose/nerdtree'
+
+
+" gitv is a 'gitk clone' plugin for the text editor Vim.
+Plugin 'gregsexton/gitv'
+
+""""""""""""""""""" Bundle End
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -153,6 +180,9 @@ augroup END
 " auto generated file: filename~
 set backup
 set backupdir=$HOME/.vim/backup
+
+" List of directory names for the swap file, separated with commas.
+set dir=$HOME/.vim/swp
 
 " if has ('vim_starting')
     " set runtimepath+=~/.vim
@@ -175,13 +205,10 @@ if has("gui_running")
 else
     " Light
     " colorscheme summerfruit256
-    " colorscheme Tomorrow
 
     " Dark
-    " colorscheme jellybeans
     " colorscheme desert256
     " colorscheme luna
-    " colorscheme lucius
 
     " {{{
     " let g:pencil_higher_contrast_ui = 0   " 0=low (def), 1=high
@@ -1412,11 +1439,11 @@ cabbrev vh vertical help
     " }}}
     "
     " -------------------------------------------------------------------------
-    " [ Auto Commplete Pop: ACP ]                                           {{{
+    " [ UltiSnips ]                                           {{{
     "
-    " let g:UltiSnipsExpandTrigger="<tab>"
-    " let g:UltiSnipsJumpForwardTrigger="<tab>"
-    " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        let g:UltiSnipsExpandTrigger="<tab>"
+        let g:UltiSnipsJumpForwardTrigger="<tab>"
+        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -1554,10 +1581,12 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ vim-indent-guides ]                                                {{{
     "
+    let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_auto_colors = 0
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
-    hi IndentGuidesOdd  ctermbg=black
+    let g:indent_guides_color_change_percent = 10
+    hi IndentGuidesOdd  ctermbg=gray
     hi IndentGuidesEven ctermbg=darkgrey
     " }}}
     "
@@ -1800,9 +1829,22 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ YouCompletMe.vim ]                                                          {{{
     "
+    " refer: http://wiki.yangleo.me/2013/10/27/YouCompleteMe-installation-and-configurations.html
+
         let g:ycm_global_ycm_extra_conf = '~/.vim/plugin/ycm_extra_conf.py'
-        let g:ycm_key_invoke_completion = '<C-n>'
-        let g:loaded_youcompleteme = 0
+        " let g:ycm_global_ycm_extra_conf = '~/.vim/plugin/ycm_pppc.py'
+        " let g:ycm_extra_conf_globlist = ['~/.vim/plugin/*',]
+        " let g:ycm_key_invoke_completion = '<C-n>'
+        " let g:loaded_youcompleteme = 0
+
+        " Set it to 0 to ignore the confirmation of loading file
+        let g:ycm_confirm_extra_conf = 0
+        " Set to 1 if you installed plugin “syntastic”
+        let g:syntastic_always_populate_loc_list = 1
+        " You can let YCM read the tags file. But the tags file must be create from the command “ctags –fileds=+l”.
+        let g:ycm_collect_identifiers_from_tags_files = 1
+        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
     " -------------------------------------------------------------------------
     " [ makr.vim ]                                                          {{{
@@ -1826,6 +1868,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
     "
+        let g:SuperTabDefaultCompletionType = '<C-n>'
     "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
         " let g:SuperTabDefaultCompletionType = "context"
     " }}}
@@ -1875,26 +1918,32 @@ cabbrev vh vertical help
     " if exists('+autochdir')
         " set autochdir
     " else
-        augroup MyAutoCmd
-            autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-        augroup END
+        " augroup MyAutoCmd
+            " autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+        " augroup END
     " endif
     " }}}
 
     " -------------------------------------------------------------------------
-    " Automatically update 'Last Modified' field {{{
+    " Automatically update 'Modified' field {{{
     " If buffer modified, update any 'Last modified: ' in the first 20 lines.
     "
-    " function! LastModified()
-    "   if &modified
-    "     normal ms
-    "     let n = min([20, line("$")])
-    "     exe '1,' . n . 's#^\(.\{,10}Last Modified: \).*#\1' .
-    "           \ strftime('%a %b %d, %Y  %I:%M%p') . '#e'
-    "     normal `s
-    "   endif
-    " endfun
-    " autocmd BufWritePre * call LastModified()
+    function! LastModified()
+        " if &modified
+            normal ms
+            let n = min([20, line("$")])
+            exe '1,' . n . 's#^\(.\{,10}:Modified: \).*#\1' .
+                        \ strftime('%Y-%m-%d %H:%M') . '#e'
+            normal `s
+        " endif
+    endfun
+    command! LastModified call LastModified()
+
+                        " \ strftime('%a %b %d, %Y  %I:%M%p') . '#e'
+    " augroup MyAutoCmd
+        " autocmd BufWritePre * call LastModified()
+    " augroup End
+
     " }}}
 
     " -------------------------------------------------------------------------
