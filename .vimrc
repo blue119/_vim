@@ -140,9 +140,9 @@ Plugin 'wavded/vim-stylus'
 Plugin 'blue119/EnhCommentify.vim'
 Plugin 'blue119/cs-mgmt.vim'
 Plugin 'blue119/occur.vim'
-Plugin 'blue119/perforce.vim'
 Plugin 'blue119/vim-rooter'
 
+" Unite
 Plugin 'tsukkee/unite-help'
 Plugin 'h1mesuke/unite-outline'
 Plugin 'tsukkee/unite-tag'
@@ -150,13 +150,13 @@ Plugin 'Shougo/unite.vim'
 Plugin 'YamasakiKenta/unite-perforce.vim'
 Plugin 'Shougo/unite-build'
 Plugin 'Sixeight/unite-grep'
-
-Plugin 'blue119/unite-rf'
 Plugin 'Shougo/vimproc.vim'
+Plugin 'blue119/unite-rf'
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ervandew/supertab'
 
+" instant rst preview in browser
 Plugin 'Rykka/riv.vim'
 Plugin 'Rykka/InstantRst'
 
@@ -164,7 +164,6 @@ Plugin 'scrooloose/nerdtree'
 
 " gitv is a 'gitk clone' plugin for the text editor Vim.
 Plugin 'gregsexton/gitv'
-
 """"""""""""""""""" Bundle End
 
 " All of your Plugins must be added before the following line
@@ -242,7 +241,7 @@ set smartindent     " Smart Indent
 set cindent         " C-style Indent
 set nowrap
 " set whichwrap+=h,l,<,>,[,]
-" set textwidth=78    " Set text width
+set textwidth=78    " Set text width
 " set linebreak
 
 " Tab settings
@@ -1542,7 +1541,7 @@ cabbrev vh vertical help
     nnoremap <silent> [unite]/ :Unite vimgrep:**<cr>
     nnoremap <silent> [unite]g :Unite grep:. -buffer-name=search-buffer`<cr>
     " カーソル位置の単語をgrep検索
-    nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+    nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
 
     " grep検索結果の再呼出
     nnoremap <silent> [unite]rg :UniteResume search-buffer<cr>
