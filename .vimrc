@@ -1504,17 +1504,18 @@ cabbrev vh vertical help
     let g:unite_data_directory             = '~/.vim/.cache'
     let g:unite_prompt                     = '» '
 
-    if executable('ag')
-        let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
-        let g:unite_source_grep_recursive_opt=''
-    elseif executable('ack-grep')
-        let g:unite_source_grep_command='ack-grep'
-        let g:unite_source_grep_default_opts='--no-group --no-color'
-        let g:unite_source_grep_recursive_opt=''
-    else
+    " if executable('ag')
+        " let g:unite_source_grep_command='ag'
+        " let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
+        " let g:unite_source_grep_recursive_opt=''
+    " elseif executable('ack-grep')
+        " let g:unite_source_grep_command='ack-grep'
+        " let g:unite_source_grep_default_opts='--no-group --no-color'
+        " let g:unite_source_grep_recursive_opt=''
+    " else
+        " let g:unite_source_grep_default_opts = '-iRHn'
+    " endif
         let g:unite_source_grep_default_opts = '-iRHn'
-    endif
     let g:unite_source_grep_max_candidates = 200
 
     function! s:unite_settings()
