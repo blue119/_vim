@@ -187,7 +187,11 @@ NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
 
 " auto completion
-NeoBundleLazy 'Valloric/YouCompleteMe', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
+NeoBundleLazy 'Valloric/YouCompleteMe', {
+            \ 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] },
+            \  'build' : { 'unix' : './install.sh --clang-completer --gocode-completer',}
+            \ }
+
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
 NeoBundle 'ervandew/supertab'
 
@@ -230,7 +234,8 @@ NeoBundle 'blue119/vim-rooter'
 " Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
-NeoBundle 'Sixeight/unite-grep'
+" NeoBundle 'Sixeight/unite-grep'
+NeoBundle 'tsukkee/unite-tag'
 
 
 " NeoBundle 'tsukkee/unite-help'
@@ -1147,7 +1152,7 @@ cabbrev vh vertical help
     " [ Diff related ]                                                      {{{
     "
     "force vim diff to ignore whitespace
-    set diffopt+=iwhite
+    " set diffopt+=iwhite
     " highlight diff color
     hi diffchange ctermbg=236
     hi diffadd ctermbg=4
