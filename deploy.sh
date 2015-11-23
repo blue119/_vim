@@ -22,7 +22,8 @@ do
 		ln -s ${PWD}/${f} ${HOME}/${f}
 done
 
-vim +PluginInstall +qall
-cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
-cd $HOME/.vim/bundle/vimproc.vim && make
+vim +NeoBundleInstall +qall
+#vim +PluginInstall +qall
+#cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
+#cd $HOME/.vim/bundle/vimproc.vim && make
 
