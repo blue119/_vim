@@ -13,161 +13,244 @@
 
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
-set nocompatible
-filetype off                  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" filetype off                  " required
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=/home/blue119/.vim/bundle/neobundle.vim/
+endif
+
+let g:make = 'gmake'
+if system('uname -o') =~ '^GNU/'
+    let g:make = 'make'
+endif
 
 " alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call neobundle#begin(expand('/home/blue119/.vim/bundle'))
+
 " Bundle Configuration
 "
 " Plugin install: vim +PluginInstall +qall
 "
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Plugin 'gmarik/Vundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-Plugin 'blue119/molokai'
+" Color Scheme
+NeoBundle 'blue119/molokai'
+" NeoBundle 'summerfruit256.vim'
+" NeoBundle 'desert256.vim'
+" NeoBundle 'Pychimp/vim-luna'
+" A vim plugin for libclang-based highlighting in C, C++, ObjC
+" NeoBundleLazy 'jeaye/color_coded', {
+  " \ 'build': {
+    " \   'unix': 'cmake . && make && make install',
+  " \ },
+  " \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
+  " \ 'build_commands' : ['cmake', 'make']
+" \}
 
-" colorscheme
-Plugin 'summerfruit256.vim'
 
-" colorscheme
-Plugin 'desert256.vim'
+" lean & mean status/tabline for vim that's light as air
+NeoBundle 'bling/vim-airline'
+
+" git
+" fugitive.vim: a Git wrapper so awesome, it should be illegal
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'gregsexton/gitv' " gitv is a 'gitk clone' plugin for the text editor Vim.
+
 
 " surround.vim: quoting/parenthesizing made simple
-Plugin 'tpope/vim-fugitive'
-
-" fugitive.vim: a Git wrapper so awesome, it should be illegal
-Plugin 'tpope/vim-surround'
-
-" jdaddy.vim: JSON manipulation and pretty printing
-Plugin 'tpope/vim-jdaddy'
-
-" Some utility functions for VIM
-Plugin 'tomtom/tlib_vim'
-
-" Markdown Vim Mode
-" Plugin 'plasticboy/vim-markdown'
-
-" json Vim Mode
-Plugin 'elzr/vim-json'
-
-" go Vim Mode
-Plugin 'fatih/vim-go'
+" NeoBundle 'tpope/vim-surround'
 
 " Vim plugin for the Perl module / CLI script 'ack'
-Plugin 'mileszs/ack.vim'
+" NeoBundle 'mileszs/ack.vim'
 
-" Tools and environment to make Vim superb for developing with Node.js.
-Plugin 'moll/vim-node'
+
 
 " Vim script internal debugger (output in separate window, tab, or remote vim)
-Plugin 'Decho'
+NeoBundle 'Decho'
 
 " Visualize your undo tree.
-Plugin 'Gundo'
+" NeoBundle 'Gundo'
 
 " Vim-script library
-Plugin 'L9'
+NeoBundle 'L9'
+" vim: interpret a file by function and cache file automatically
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+" Some utility functions for VIM
+NeoBundle 'tomtom/tlib_vim'
 
-" Eclipse like task list
-Plugin 'TaskList.vim'
 
-" Produce increasing/decreasing columns of numbers, dates, or daynames
-Plugin 'VisIncr'
+" search the file for FIXME, TODO, and XXX
+NeoBundle 'TaskList.vim'
 
-" basic cscope settings and key mappings
-Plugin 'cscope_macros.vim'
 
-" GNU info documentation browser.
-Plugin 'info.vim'
+" Java Script
+NeoBundle 'jsbeautify'       " a javascript source code formatter
+NeoBundle 'tpope/vim-jdaddy' " JSON manipulation and pretty printing
+" Beautify your javascript ,html,css source code inside Vim
+NeoBundle 'michalliu/sourcebeautify.vim'
 
-" a javascript source code formatter
-Plugin 'jsbeautify'
+" Markdown Vim Mode
+NeoBundle 'plasticboy/vim-markdown'
 
-" Send Octave code from a VIM buffer to Octave
-Plugin 'octave.vim'
+" json Vim Mode
+NeoBundle 'elzr/vim-json'
 
-" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-Plugin 'taglist.vim'
+" go Vim Mode
+NeoBundleLazy 'fatih/vim-go', { 'autoload': { 'filetypes' : ['go'] }, }
+NeoBundle 'jstemmer/gotags'
 
-Plugin 'tmhedberg/matchit'
-Plugin 'scrooloose/syntastic'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'honza/vim-snippets'
-Plugin 'jamescarr/snipmate-nodejs'
-Plugin 'jgdavey/tslime.vim'
-Plugin 'jstemmer/gotags'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'mfukar/robotframework-vim'
+" Node JS
+" Tools and environment to make Vim superb for developing with Node.js.
+NeoBundle 'moll/vim-node'
+" A vim plugin for highlighting and indenting JST/EJS syntax.
+NeoBundle 'briancollins/vim-jst'
+" Various snippets for developing node.js from vim
+NeoBundle 'jamescarr/snipmate-nodejs'
 
-"
-Plugin 'nathanaelkane/vim-indent-guides'
+" Octave
+NeoBundle 'octave.vim'    " Send Octave code from a VIM buffer to Octave
 
-" A vim plugin to display the indention levels with thin vertical lines
-" Plugin 'Yggdroot/indentLine'
+" Haskell
+NeoBundle 'lukerandall/haskellmode-vim'
+" Vim plugin for Haskell development.
+NeoBundle 'bitc/vim-hdevtools'
+" A completion plugin for Haskell, using ghc-mod.
+NeoBundle 'eagletmt/neco-ghc'
 
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Pychimp/vim-luna'
-Plugin 'Shougo/vimfiler.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'aklt/plantuml-syntax'
-Plugin 'bitc/vim-hdevtools'
-Plugin 'bling/vim-airline'
-Plugin 'blue119/ultisnips'
-Plugin 'chrisbra/csv.vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'briancollins/vim-jst'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'gkz/vim-ls'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'mbriggs/mark.vim'
-Plugin 'michalliu/sourcebeautify.vim'
-Plugin 'othree/xml.vim'
-Plugin 'wavded/vim-stylus'
+" CSV
+NeoBundleLazy 'chrisbra/csv.vim', { 'autoload': { 'filetypes' : ['csv'] }, }
 
-Plugin 'blue119/EnhCommentify.vim'
-Plugin 'blue119/cs-mgmt.vim'
-Plugin 'blue119/occur.vim'
-Plugin 'blue119/vim-rooter'
+" CPP
+NeoBundle 'octol/vim-cpp-enhanced-highlight'
 
-" Unite
-Plugin 'tsukkee/unite-help'
-Plugin 'h1mesuke/unite-outline'
-Plugin 'tsukkee/unite-tag'
-Plugin 'Shougo/unite.vim'
-Plugin 'YamasakiKenta/unite-perforce.vim'
-Plugin 'Shougo/unite-build'
-Plugin 'Sixeight/unite-grep'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'blue119/unite-rf'
+" Markdown
+NeoBundle 'plasticboy/vim-markdown'
 
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'ervandew/supertab'
+" CSS
+NeoBundle 'hail2u/vim-css3-syntax'
+
+" vim syntax file for plantuml
+NeoBundle 'aklt/plantuml-syntax'
+
+" Docker
+NeoBundle 'ekalinin/Dockerfile.vim'
+
+" LiveScript support for Vim
+NeoBundle 'gkz/vim-ls'
+
+" XML
+NeoBundle 'othree/xml.vim'
 
 " instant rst preview in browser
-Plugin 'Rykka/riv.vim'
-Plugin 'Rykka/InstantRst'
+NeoBundle 'Rykka/riv.vim'
+NeoBundle 'Rykka/InstantRst'
 
-Plugin 'scrooloose/nerdtree'
+" GNU info documentation browser.
+NeoBundle 'info.vim'
 
-" gitv is a 'gitk clone' plugin for the text editor Vim.
-Plugin 'gregsexton/gitv'
-""""""""""""""""""" Bundle End
+
+
+
+
+
+
+
+" Snippet
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'blue119/ultisnips'
+
+
+
+
+
+
+
+
+
+
+
+
+" basic cscope settings and key mappings
+NeoBundle 'cscope_macros.vim'
+
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+NeoBundle 'taglist.vim'
+NeoBundle 'majutsushi/tagbar'
+
+" auto completion
+NeoBundleLazy 'Valloric/YouCompleteMe', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
+NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
+NeoBundle 'ervandew/supertab'
+
+
+" extended % matching for HTML, LaTeX, and many other languages
+NeoBundle 'tmhedberg/matchit'
+
+
+" NeoBundle 'scrooloose/syntastic'
+
+
+
+
+" Indent Guides is a plugin for visually displaying indent levels in Vim.
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" Vim motions on speed!
+NeoBundle 'Lokaltog/vim-easymotion'
+
+" Editor Config Plugin
+NeoBundle 'editorconfig/editorconfig-vim'
+
+" Vim script for text filtering and alignment
+NeoBundle 'godlygeek/tabular'
+
+" to highlight several words in different colors simultaneously
+NeoBundle 'mbriggs/mark.vim'
+
+
+
+
+
+" NeoBundle 'wavded/vim-stylus'
+
+NeoBundle 'blue119/EnhCommentify.vim'
+NeoBundle 'blue119/cs-mgmt.vim', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h'] }, }
+NeoBundle 'blue119/occur.vim'
+NeoBundle 'blue119/vim-rooter'
+
+" Unite
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+NeoBundle 'Sixeight/unite-grep'
+
+
+" NeoBundle 'tsukkee/unite-help'
+" NeoBundle 'h1mesuke/unite-outline'
+" NeoBundle 'tsukkee/unite-tag'
+" NeoBundle 'Shougo/unite-build'
+
+" robot framework
+" NeoBundle 'blue119/unite-rf'
+" NeoBundle 'mfukar/robotframework-vim'
+
+" file tree
+" NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'scrooloose/nerdtree'
+
+
+call neobundle#end()
+"""""""""""""""""""" Bundle End
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Set augroup
@@ -1542,10 +1625,12 @@ cabbrev vh vertical help
     nnoremap <silent> [unite]/ :Unite vimgrep:**<cr>
     nnoremap <silent> [unite]g :Unite grep:. -buffer-name=search-buffer`<cr>
     " カーソル位置の単語をgrep検索
-    nnoremap <silent> [unite]cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
+    nnoremap <silent> [unite]gc :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
 
     " grep検索結果の再呼出
-    nnoremap <silent> [unite]rg :UniteResume search-buffer<cr>
+    nnoremap <silent> [unite]gr :UniteResume<cr>
+    nnoremap <silent> [unite]gn :UniteNext<cr>
+    nnoremap <silent> [unite]gp :UnitePrevious<cr>
 
     " Yank history like yankring
     let g:unite_source_history_yank_enable = 1
