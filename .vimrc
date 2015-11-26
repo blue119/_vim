@@ -170,7 +170,11 @@ NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
 
 " auto completion
-NeoBundleLazy 'Valloric/YouCompleteMe', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
+NeoBundleLazy 'Valloric/YouCompleteMe', {
+            \ 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] },
+            \  'build' : { 'unix' : './install.sh --clang-completer --gocode-completer',}
+            \ }
+
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
 NeoBundle 'ervandew/supertab'
 
@@ -205,8 +209,8 @@ NeoBundle 'blue119/vim-rooter'
 " Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
-" NeoBundle 'Sixeight/unite-grep'
 NeoBundle 'Shougo/unite-build'
+NeoBundle 'tsukkee/unite-tag'
 
 " Run commands quickly.
 NeoBundle 'thinca/vim-quickrun'
@@ -1119,7 +1123,7 @@ cabbrev vh vertical help
     " [ Diff related ]                                                      {{{
     "
     "force vim diff to ignore whitespace
-    set diffopt+=iwhite
+    " set diffopt+=iwhite
     " highlight diff color
     hi diffchange ctermbg=236
     hi diffadd ctermbg=4
@@ -1559,17 +1563,18 @@ cabbrev vh vertical help
     let g:unite_data_directory             = '~/.vim/.cache'
     let g:unite_prompt                     = '» '
 
-    if executable('ag')
-        let g:unite_source_grep_command='ag'
-        let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
-        let g:unite_source_grep_recursive_opt=''
-    elseif executable('ack-grep')
-        let g:unite_source_grep_command='ack-grep'
-        let g:unite_source_grep_default_opts='--no-group --no-color'
-        let g:unite_source_grep_recursive_opt=''
-    else
+    " if executable('ag')
+        " let g:unite_source_grep_command='ag'
+        " let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
+        " let g:unite_source_grep_recursive_opt=''
+    " elseif executable('ack-grep')
+        " let g:unite_source_grep_command='ack-grep'
+        " let g:unite_source_grep_default_opts='--no-group --no-color'
+        " let g:unite_source_grep_recursive_opt=''
+    " else
+        " let g:unite_source_grep_default_opts = '-iRHn'
+    " endif
         let g:unite_source_grep_default_opts = '-iRHn'
-    endif
     let g:unite_source_grep_max_candidates = 200
 
     function! s:unite_settings()
