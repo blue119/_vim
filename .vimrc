@@ -72,7 +72,6 @@ NeoBundle 'gregsexton/gitv' " gitv is a 'gitk clone' plugin for the text editor 
 " NeoBundle 'mileszs/ack.vim'
 
 
-
 " Vim script internal debugger (output in separate window, tab, or remote vim)
 NeoBundle 'Decho'
 
@@ -92,38 +91,38 @@ NeoBundle 'TaskList.vim'
 
 
 " Java Script
-NeoBundle 'jsbeautify'       " a javascript source code formatter
-NeoBundle 'tpope/vim-jdaddy' " JSON manipulation and pretty printing
+" NeoBundle 'jsbeautify'       " a javascript source code formatter
 " Beautify your javascript ,html,css source code inside Vim
-NeoBundle 'michalliu/sourcebeautify.vim'
-
-" Markdown Vim Mode
-NeoBundle 'plasticboy/vim-markdown'
+" NeoBundle 'michalliu/sourcebeautify.vim'
+NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json'] }, }
 
 " json Vim Mode
-NeoBundle 'elzr/vim-json'
+NeoBundleLazy 'elzr/vim-json' , { 'autoload': { 'filetypes' : ['json'] }, }
+" JSON manipulation and pretty printing
+NeoBundleLazy 'tpope/vim-jdaddy' , { 'autoload': { 'filetypes' : ['json'] }, }
 
 " go Vim Mode
-NeoBundleLazy 'fatih/vim-go', { 'autoload': { 'filetypes' : ['go'] }, }
-NeoBundle 'jstemmer/gotags'
+NeoBundleLazy 'fatih/vim-go' , { 'autoload': { 'filetypes' : ['go'] }, }
+NeoBundleLazy 'jstemmer/gotags' , { 'autoload': { 'filetypes' : ['go'] }, }
 
 " Node JS
 " Tools and environment to make Vim superb for developing with Node.js.
-NeoBundle 'moll/vim-node'
+NeoBundleLazy 'moll/vim-node', { 'autoload': { 'filetypes' : ['javascript'] }, }
 " A vim plugin for highlighting and indenting JST/EJS syntax.
-NeoBundle 'briancollins/vim-jst'
+NeoBundleLazy 'briancollins/vim-jst', { 'autoload': { 'filetypes' : ['ejs'] }, }
 " Various snippets for developing node.js from vim
-NeoBundle 'jamescarr/snipmate-nodejs'
+NeoBundleLazy 'jamescarr/snipmate-nodejs', { 'autoload': { 'filetypes' : ['javascript'] }, }
 
 " Octave
-NeoBundle 'octave.vim'    " Send Octave code from a VIM buffer to Octave
+" Send Octave code from a VIM buffer to Octave
+NeoBundleLazy 'octave.vim', { 'autoload': { 'filetypes' : ['m'] }, }
 
 " Haskell
-NeoBundle 'lukerandall/haskellmode-vim'
+NeoBundleLazy 'lukerandall/haskellmode-vim' , { 'autoload': { 'filetypes' : ['hs'] }, }
 " Vim plugin for Haskell development.
-NeoBundle 'bitc/vim-hdevtools'
+NeoBundleLazy 'bitc/vim-hdevtools' , { 'autoload': { 'filetypes' : ['hs'] }, }
 " A completion plugin for Haskell, using ghc-mod.
-NeoBundle 'eagletmt/neco-ghc'
+NeoBundleLazy 'eagletmt/neco-ghc' , { 'autoload': { 'filetypes' : ['hs'] }, }
 
 " CSV
 NeoBundleLazy 'chrisbra/csv.vim', { 'autoload': { 'filetypes' : ['csv'] }, }
@@ -132,51 +131,35 @@ NeoBundleLazy 'chrisbra/csv.vim', { 'autoload': { 'filetypes' : ['csv'] }, }
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 
 " Markdown
-NeoBundle 'plasticboy/vim-markdown'
+NeoBundleLazy 'plasticboy/vim-markdown', { 'autoload': { 'filetypes' : ['markdown'] }, }
 
 " CSS
 NeoBundle 'hail2u/vim-css3-syntax'
 
 " vim syntax file for plantuml
-NeoBundle 'aklt/plantuml-syntax'
+NeoBundleLazy 'aklt/plantuml-syntax' , { 'autoload': { 'filetypes' : ['plantuml'] }, }
 
 " Docker
-NeoBundle 'ekalinin/Dockerfile.vim'
+NeoBundleLazy 'ekalinin/Dockerfile.vim' , { 'autoload': { 'filetypes' : ['dockerfile'] }, }
 
 " LiveScript support for Vim
-NeoBundle 'gkz/vim-ls'
+NeoBundleLazy 'gkz/vim-ls' , { 'autoload': { 'filetypes' : ['ls'] }, }
 
 " XML
-NeoBundle 'othree/xml.vim'
+NeoBundleLazy 'othree/xml.vim' , { 'autoload': { 'filetypes' : ['xml'] }, }
 
 " instant rst preview in browser
-NeoBundle 'Rykka/riv.vim'
-NeoBundle 'Rykka/InstantRst'
+NeoBundleLazy 'Rykka/riv.vim' , { 'autoload': { 'filetypes' : ['rst'] }, }
+NeoBundleLazy 'Rykka/InstantRst' , { 'autoload': { 'filetypes' : ['rst'] }, }
 
 " GNU info documentation browser.
 NeoBundle 'info.vim'
-
-
-
-
-
-
 
 
 " Snippet
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'blue119/ultisnips'
-
-
-
-
-
-
-
-
-
-
 
 
 " basic cscope settings and key mappings
@@ -191,15 +174,10 @@ NeoBundleLazy 'Valloric/YouCompleteMe', { 'autoload': { 'filetypes' : ['c', 'cpp
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
 NeoBundle 'ervandew/supertab'
 
-
 " extended % matching for HTML, LaTeX, and many other languages
 NeoBundle 'tmhedberg/matchit'
 
-
 " NeoBundle 'scrooloose/syntastic'
-
-
-
 
 " Indent Guides is a plugin for visually displaying indent levels in Vim.
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -217,9 +195,6 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'mbriggs/mark.vim'
 
 
-
-
-
 " NeoBundle 'wavded/vim-stylus'
 
 NeoBundle 'blue119/EnhCommentify.vim'
@@ -230,13 +205,11 @@ NeoBundle 'blue119/vim-rooter'
 " Unite
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
-NeoBundle 'Sixeight/unite-grep'
+" NeoBundle 'Sixeight/unite-grep'
+NeoBundle 'Shougo/unite-build'
 
-
-" NeoBundle 'tsukkee/unite-help'
-" NeoBundle 'h1mesuke/unite-outline'
-" NeoBundle 'tsukkee/unite-tag'
-" NeoBundle 'Shougo/unite-build'
+" Run commands quickly.
+NeoBundle 'thinca/vim-quickrun'
 
 " robot framework
 " NeoBundle 'blue119/unite-rf'
@@ -245,7 +218,6 @@ NeoBundle 'Sixeight/unite-grep'
 " file tree
 " NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'scrooloose/nerdtree'
-
 
 call neobundle#end()
 """""""""""""""""""" Bundle End
@@ -1812,6 +1784,30 @@ cabbrev vh vertical help
     " let g:airline#extensions#branch#symbol = ' '
     " let g:airline#extensions#readonly#symbol = ''
     " let g:airline_linecolumn_prefix = ' '
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ vim-jsbeautify ]                                                    {{{
+    "
+    autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+    autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+    autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+    autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+    autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+    "Example of binding a function for js, html and css in visual mode on
+    autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+    autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+    autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+    autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+    autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ editorconfig-vim ]                                                  {{{
+    "
+    " Excluded patterns.
+    let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
     " }}}
 
     " -------------------------------------------------------------------------
