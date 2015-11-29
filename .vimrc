@@ -170,13 +170,10 @@ NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
 
 " auto completion
-NeoBundleLazy 'Valloric/YouCompleteMe', {
-            \ 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] },
-            \  'build' : { 'unix' : './install.sh --clang-completer --gocode-completer',}
-            \ }
+NeoBundle 'Valloric/YouCompleteMe'
 
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
-NeoBundle 'ervandew/supertab'
+" NeoBundle 'ervandew/supertab'
 
 " extended % matching for HTML, LaTeX, and many other languages
 NeoBundle 'tmhedberg/matchit'
@@ -1953,7 +1950,7 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
     "
-        let g:SuperTabDefaultCompletionType = '<C-n>'
+        " let g:SuperTabDefaultCompletionType = '<C-n>'
     "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
         " let g:SuperTabDefaultCompletionType = "context"
     " }}}
