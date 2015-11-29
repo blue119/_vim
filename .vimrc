@@ -195,6 +195,13 @@ NeoBundle 'godlygeek/tabular'
 " to highlight several words in different colors simultaneously
 NeoBundle 'mbriggs/mark.vim'
 
+NeoBundleLazy 'jeaye/color_coded', {
+  \ 'build': {
+    \   'unix': 'cmake . && make && make install',
+  \ },
+  \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
+  \ 'build_commands' : ['cmake', 'make']
+  \}
 
 " NeoBundle 'wavded/vim-stylus'
 
