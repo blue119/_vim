@@ -1591,7 +1591,10 @@ cabbrev vh vertical help
     nmap <Leader>u [unite]
 
     " File searching like ctrlp.vim
-    nnoremap <C-p> :Unite -start-insert file_rec/async buffer<CR>
+    " https://github.com/Shougo/unite.vim/issues/705
+    " nnoremap <C-p> :Unite -start-insert file_rec/async buffer<CR>
+    nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert buffer -input= -resume file_rec/async:!<cr>
+
 
     " shortcup
     nnoremap <silent> [unite]m :Unite -start-insert mapping<CR>
