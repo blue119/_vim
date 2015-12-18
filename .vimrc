@@ -173,7 +173,8 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Valloric/YouCompleteMe'
 
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
-" NeoBundle 'ervandew/supertab'
+NeoBundle 'ervandew/supertab'
+" NeoBundle 'othree/vim-autocomplpop'
 
 " extended % matching for HTML, LaTeX, and many other languages
 NeoBundle 'tmhedberg/matchit'
@@ -1928,12 +1929,14 @@ cabbrev vh vertical help
         " Set it to 0 to ignore the confirmation of loading file
         let g:ycm_confirm_extra_conf = 0
         " Set to 1 if you installed plugin “syntastic”
-        let g:syntastic_always_populate_loc_list = 1
+        " let g:syntastic_always_populate_loc_list = 1
         " You can let YCM read the tags file. But the tags file must be create from the command “ctags –fileds=+l”.
-        let g:ycm_collect_identifiers_from_tags_files = 1
+        " let g:ycm_collect_identifiers_from_tags_files = 1
 
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+        let g:ycm_key_invoke_completion = '<C-o>'
 
     " -------------------------------------------------------------------------
     " [ makr.vim ]                                                          {{{
@@ -1957,8 +1960,8 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
     "
-        " let g:SuperTabDefaultCompletionType = '<C-n>'
-    "   let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+        let g:SuperTabDefaultCompletionType = '<C-n>'
+        " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
         " let g:SuperTabDefaultCompletionType = "context"
     " }}}
     "
