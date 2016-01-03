@@ -104,6 +104,12 @@ NeoBundleLazy 'tpope/vim-jdaddy' , { 'autoload': { 'filetypes' : ['json'] }, }
 " go Vim Mode
 NeoBundleLazy 'fatih/vim-go' , { 'autoload': { 'filetypes' : ['go'] }, }
 NeoBundleLazy 'jstemmer/gotags' , { 'autoload': { 'filetypes' : ['go'] }, }
+NeoBundleLazy 'garyburd/go-explorer' , { 
+    \ 'build': {
+        \   'unix': 'go get github.com/garyburd/go-explorer/src/getool',
+    \ },
+    \ 'autoload': { 'filetypes' : ['go'] },
+    \ }
 
 " Node JS
 " Tools and environment to make Vim superb for developing with Node.js.
@@ -196,12 +202,12 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'mbriggs/mark.vim'
 
 NeoBundleLazy 'jeaye/color_coded', {
-  \ 'build': {
-    \   'unix': 'cmake . && make && make install',
-  \ },
-  \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
-  \ 'build_commands' : ['cmake', 'make']
-  \}
+    \ 'build': {
+        \   'unix': 'cmake . && make && make install',
+    \ },
+    \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
+    \ 'build_commands' : ['cmake', 'make']
+    \}
 
 " NeoBundle 'wavded/vim-stylus'
 
