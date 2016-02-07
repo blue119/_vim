@@ -177,6 +177,7 @@ NeoBundle 'majutsushi/tagbar'
 
 " auto completion
 NeoBundle 'Valloric/YouCompleteMe'
+" NeoBundle 'Shougo/neocomplete.vim' " for vimshell
 
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
 NeoBundle 'ervandew/supertab'
@@ -231,8 +232,11 @@ NeoBundle 'thinca/vim-quickrun'
 " NeoBundle 'mfukar/robotframework-vim'
 
 " file tree
-" NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'scrooloose/nerdtree'
+
+" shell
+NeoBundle 'Shougo/vimshell.vim'
 
 call neobundle#end()
 """""""""""""""""""" Bundle End
@@ -1216,6 +1220,20 @@ cabbrev vh vertical help
     " }}}
 
     " -------------------------------------------------------------------------
+    " [ help ]                                                              {{{
+    "
+    function! s:help_custom()
+        nnoremap q :q<CR>
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype help call s:help_custom()
+        augroup END
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
     " [ python ]                                                            {{{
     "
     function! s:python_custom()
@@ -1845,23 +1863,25 @@ cabbrev vh vertical help
     " -------------------------------------------------------------------------
     " [ neocomplete ]                                                            {{{
     " https://github.com/Shougo/neocomplete.vim
+    " let g:ycm_filetype_blacklist = { 'vimshell': 1 }
+    " autocmd FileType vimshell NeoCompleteUnlock
     "
     " Disable AutoComplPop.
     " let g:acp_enableAtStartup = 0
     " Use neocomplete.
-    "let g:neocomplete#enable_at_startup = 1
+    " let g:neocomplete#enable_at_startup = 1
     "" Use smartcase.
     "let g:neocomplete#enable_smart_case = 1
     "" Set minimum syntax keyword length.
     "let g:neocomplete#sources#syntax#min_keyword_length = 3
-    "let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " let g:neocomplete#lock_buffer_name_pattern = '\*'
 
     "" Define dictionary.
-    "let g:neocomplete#sources#dictionary#dictionaries = {
-    "    \ 'default' : '',
-    "    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    "    \ 'scheme' : $HOME.'/.gosh_completions'
-    "    \ }
+    " let g:neocomplete#sources#dictionary#dictionaries = {
+       " \ 'default' : '',
+       " \ 'vimshell' : $HOME.'/.vimshell_hist',
+       " \ 'scheme' : $HOME.'/.gosh_completions'
+       " \ }
 
     "" Define keyword.
     "if !exists('g:neocomplete#keyword_patterns')
