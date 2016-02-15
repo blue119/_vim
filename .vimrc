@@ -1509,6 +1509,16 @@ cabbrev vh vertical help
     " }}}
     "
     " -------------------------------------------------------------------------
+    " [ git-fugitive ]                                                {{{
+    "
+        autocmd FileType git :setlocal foldlevel=99
+        " let g:Gitv_OpenHorizontal = 1
+        let g:Gitv_TruncateCommitSubjects = 1
+        let g:Gitv_DoNotMapCtrlKey = 0
+        " highlight diffAdded guifg=#00bf00
+        " highlight diffRemoved guifg=#bf0000
+    " }}}
+    " -------------------------------------------------------------------------
     " [ Ack ]                                                {{{
     "
     if executable("ag")
@@ -1564,7 +1574,8 @@ cabbrev vh vertical help
     let g:unite_enable_ignore_case         = 1
     let g:unite_enable_smart_case          = 1
     let g:unite_source_rec_max_cache_files = 5000
-    let g:unite_source_rec_async_command   = 'ag --nocolor --nogroup --hidden -g ""'
+    " let g:unite_source_rec_async_command   = ['ag', '--nocolor', '--nogroup', --'--hidden', '-g', '']
+    let g:unite_source_rec_async_command   =  'ag --nocolor --nogroup --ignore ".o" --ignore ".cmd" --hidden -g ""'
     let g:unite_data_directory             = '~/.vim/.cache'
     let g:unite_prompt                     = '» '
 
@@ -1593,7 +1604,9 @@ cabbrev vh vertical help
     " File searching like ctrlp.vim
     " https://github.com/Shougo/unite.vim/issues/705
     " nnoremap <C-p> :Unite -start-insert file_rec/async buffer<CR>
-    nnoremap <C-P> :<C-u>Unite -buffer-name=files -start-insert buffer -input= -resume file_rec/async:!<cr>
+    " nnoremap <C-P> :Unite -buffer-name=files -start-insert buffer -input= -resume file_rec:!<cr>
+    " nnoremap <C-P> :Unite -buffer-name=files -start-insert buffer -input= -resume file_rec<cr>
+    nnoremap <C-P> :Unite -buffer-name=files -start-insert buffer -input= file_rec/async<cr>
 
 
     " shortcup
@@ -1629,6 +1642,44 @@ cabbrev vh vertical help
     nnoremap <silent> [unite]y :Unite -buffer-name=register register<CR>
     nnoremap <silent> [unite]a :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 
+
+    let g:unite_source_menu_menus = {}
+    let g:unite_source_menu_menus.git = {
+        \ 'description' : '            gestionar repositorios git
+            \                            ⌘ [espacio]g',
+        \}
+    let g:unite_source_menu_menus.git.command_candidates = [
+        \['▷ tig                                                        ⌘ ,gt',
+            \'normal ,gt'],
+        \['▷ git status       (Fugitive)                                ⌘ ,gs',
+            \'Gstatus'],
+        \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+            \'Gdiff'],
+        \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+            \'Gcommit'],
+        \['▷ git log          (Fugitive)                                ⌘ ,gl',
+            \'exe "silent Glog | Unite quickfix"'],
+        \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+            \'Gblame'],
+        \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+            \'Gwrite'],
+        \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+            \'Gread'],
+        \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+            \'Gremove'],
+        \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+            \'exe "Gmove " input("destino: ")'],
+        \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+            \'Git! push'],
+        \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+            \'Git! pull'],
+        \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+            \'exe "Git! " input("comando git: ")'],
+        \['▷ git cd           (Fugitive)',
+            \'Gcd'],
+        \]
+
+    nnoremap <silent>[unite]mg :Unite -silent -start-insert menu:git<CR>
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -2052,12 +2103,22 @@ cabbrev vh vertical help
             \ endif
 
             autocmd BufWinLeave *
-                \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+                \   if (v:progname != "vimdiff") &&
+                \       expand("%") != "" &&
+                \       expand("%") !~ "gitv-" &&
+                \       expand("%") !~ ".tmp" &&
+                \       expand("%") !~ "__MRU_Files__"
+                \
                 \|       mkview
                 \|  endif
 
             autocmd BufWinEnter *
-                \   if (v:progname != "vimdiff") && expand("%") != "" && expand("%") !~ ".tmp" && expand("%") !~ "__MRU_Files__"
+                \   if (v:progname != "vimdiff") &&
+                \       expand("%") != "" &&
+                \       expand("%") !~ "gitv-" &&
+                \       expand("%") !~ ".tmp" &&
+                \       expand("%") !~ "__MRU_Files__"
+                \
                 \|      loadview
                 \|  endif
 
