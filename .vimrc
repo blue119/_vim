@@ -57,6 +57,7 @@ NeoBundle 'blue119/molokai'
 
 " lean & mean status/tabline for vim that's light as air
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 " git
 " fugitive.vim: a Git wrapper so awesome, it should be illegal
@@ -1833,7 +1834,8 @@ cabbrev vh vertical help
     let g:airline#extensions#syntastic#enabled = 1
     let g:airline_detect_paste=1
 
-    let g:airline_theme='tomorrow'
+    " let g:airline_theme='tomorrow'
+    let g:airline_theme='molokai'
     let g:airline_powerline_fonts = 1
     if ! has('gui_running')
         set ttimeoutlen=10
