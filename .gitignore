@@ -13,3 +13,7 @@
 .vim/bundle/unite-rf/
 .vim/haskellmode.config
 .vim/swp/
+
+# nvim
+.vim/.init.vim-rplugin~
+.vim/init.vim

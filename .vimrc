@@ -15,8 +15,10 @@
 " This must be first, because it changes other options as a side effect.
 " filetype off                  " required
 if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
+  if !has('nvim')
+    if &compatible
+      set nocompatible               " Be iMproved
+    endif
   endif
 
   " Required:
@@ -27,6 +29,8 @@ let g:make = 'gmake'
 if system('uname -o') =~ '^GNU/'
     let g:make = 'make'
 endif
+
+let g:python2_host_prog = "/usr/bin/python"
 
 " alternatively, pass a path where Vundle should install plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -165,9 +169,8 @@ NeoBundle 'info.vim'
 
 " Snippet
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'blue119/ultisnips'
-
+" NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'SirVer/ultisnips'
 
 " basic cscope settings and key mappings
 NeoBundle 'cscope_macros.vim'
@@ -367,7 +370,6 @@ set foldnestmax=5
 
 " file encoding setting
 set encoding=utf-8
-set termencoding=utf-8
 set fileencoding=utf-8
 
 " tmux will send xterm-style keys when its xterm-keys option is on
@@ -410,6 +412,7 @@ endif
 " Favorite file types
 filetype plugin indent on
 syntax on
+
 set ffs=unix,dos,mac
 
 hi Folded ctermbg=237
@@ -461,6 +464,7 @@ nnoremap <left> <nop>
 nnoremap <right> <nop>
 nnoremap <down> <nop>
 
+
 " -----------------------------------------------------------------------------
 " [ Mouse + gVim-Killer Related Setting ]                                   {{{
 "
@@ -470,7 +474,9 @@ nnoremap <down> <nop>
 set mouse=nv
 
 " To function correctly in Screen
-set ttymouse=xterm
+if !has('nvim')
+    set ttymouse=xterm
+endif
 
 " ,p and shift-insert will paste the X buffer, even on the command line
 nmap <LocalLeader>p i<S-MiddleMouse><ESC>
@@ -2137,7 +2143,7 @@ cabbrev vh vertical help
                 \       expand("%") !~ ".tmp" &&
                 \       expand("%") !~ "__MRU_Files__"
                 \
-                \|       mkview
+                \|       silent! mkview
                 \|  endif
 
             autocmd BufWinEnter *
@@ -2147,7 +2153,7 @@ cabbrev vh vertical help
                 \       expand("%") !~ ".tmp" &&
                 \       expand("%") !~ "__MRU_Files__"
                 \
-                \|      loadview
+                \|      silent! loadview
                 \|  endif
 
             " Restore cursor to file position in previous editing session
