@@ -204,18 +204,18 @@ NeoBundle 'godlygeek/tabular'
 " to highlight several words in different colors simultaneously
 NeoBundle 'mbriggs/mark.vim'
 
-NeoBundleLazy 'jeaye/color_coded', {
-    \ 'build': {
-        \   'unix': 'cmake . && make && make install',
-    \ },
-    \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
-    \ 'build_commands' : ['cmake', 'make']
-    \}
+" NeoBundleLazy 'jeaye/color_coded', {
+    " \ 'build': {
+        " \   'unix': 'cmake . && make && make install',
+    " \ },
+    " \ 'autoload': { 'filetypes' : ['c', 'cpp', 'objc', 'objcpp'] },
+    " \ 'build_commands' : ['cmake', 'make']
+    " \}
 
 " NeoBundle 'wavded/vim-stylus'
 
 NeoBundle 'blue119/EnhCommentify.vim'
-NeoBundle 'blue119/cs-mgmt.vim', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h'] }, }
+NeoBundle 'blue119/cs-mgmt.vim'
 NeoBundle 'blue119/occur.vim'
 NeoBundle 'blue119/vim-rooter'
 
