@@ -190,7 +190,12 @@ NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
 
 " auto completion
-NeoBundle 'Valloric/YouCompleteMe'
+let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
+NeoBundle 'Valloric/YouCompleteMe', {
+            \ 'build' : {
+            \   'unix' : 'python ./install.py'
+            \ },
+\ }
 " NeoBundle 'Shougo/neocomplete.vim' " for vimshell
 
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
@@ -227,6 +232,7 @@ NeoBundle 'mbriggs/mark.vim'
 
 " NeoBundle 'wavded/vim-stylus'
 
+" NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'blue119/EnhCommentify.vim'
 NeoBundle 'blue119/cs-mgmt.vim'
 NeoBundle 'blue119/occur.vim'
@@ -997,7 +1003,7 @@ cabbrev vh vertical help
     inoremap <c-c> <c-o>o
 
     " Ctrl-v: Paste. For some reason, <c-o> is not creating an undo point in the mapping
-    inoremap <c-v> <c-g>u<c-o>gP
+    " inoremap <c-v> <c-g>u<c-o>gP
 
     " Ctrl-b: TODO
     " Ctrl-n: Auto complete next
@@ -1050,7 +1056,7 @@ cabbrev vh vertical help
     cnoremap <m-d> <c-w>
 
     " Ctrl-v: Paste
-    cnoremap <c-v> <c-r>"
+    " cnoremap <c-v> <c-r>"
 
     " w!!: Writes using sudo
     cnoremap w!! w !sudo tee % >/dev/null
