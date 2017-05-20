@@ -96,10 +96,17 @@ NeoBundle 'TaskList.vim'
 
 
 " Java Script
-" NeoBundle 'jsbeautify'       " a javascript source code formatter
 " Beautify your javascript ,html,css source code inside Vim
 " NeoBundle 'michalliu/sourcebeautify.vim'
-NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json'] }, }
+NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json', 'js', 'html', 'css'] }, }
+" NeoBundle 'maksimr/vim-jsbeautify'
+
+NeoBundle 'pangloss/vim-javascript'
+" NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
+
+" JSX
+NeoBundle 'mxw/vim-jsx'
+" NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
 
 " json Vim Mode
 NeoBundleLazy 'elzr/vim-json' , { 'autoload': { 'filetypes' : ['json'] }, }
@@ -109,7 +116,7 @@ NeoBundleLazy 'tpope/vim-jdaddy' , { 'autoload': { 'filetypes' : ['json'] }, }
 " go Vim Mode
 NeoBundleLazy 'fatih/vim-go' , { 'autoload': { 'filetypes' : ['go'] }, }
 NeoBundleLazy 'jstemmer/gotags' , { 'autoload': { 'filetypes' : ['go'] }, }
-NeoBundleLazy 'garyburd/go-explorer' , { 
+NeoBundleLazy 'garyburd/go-explorer' , {
     \ 'build': {
         \   'unix': 'go get github.com/garyburd/go-explorer/src/getool',
     \ },
@@ -143,6 +150,9 @@ NeoBundle 'octol/vim-cpp-enhanced-highlight'
 
 " Markdown
 NeoBundleLazy 'plasticboy/vim-markdown', { 'autoload': { 'filetypes' : ['markdown'] }, }
+
+" TOML
+NeoBundle 'cespare/vim-toml'
 
 " CSS
 NeoBundle 'hail2u/vim-css3-syntax'
@@ -618,8 +628,8 @@ cabbrev vh vertical help
     " <Leader>' TODO
     "--------------------------------------------------------------------------
     " <Leader>z TODO
-    " <Leader>x VisualTraditional EnhancedCommentify.vim
-    " <Leader>c VisualTraditionalj EnhancedCommentify.vim
+    " <Leader>x
+    " <Leader>c
     " <Leader>cs CsMgmt
     " <Leader>cq for cscopequickfix
     " <Leader>v TODO
@@ -1359,6 +1369,12 @@ cabbrev vh vertical help
             " autocmd FileType json setlocal syntax=javascript
         " augroup END
     " endif
+    " }}}
+    "
+    " -------------------------------------------------------------------------
+    " [ Javascript ]                                                       {{{
+    let g:jsx_ext_required = 0
+
     " }}}
 
     " -------------------------------------------------------------------------
