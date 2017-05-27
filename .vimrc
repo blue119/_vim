@@ -258,6 +258,10 @@ NeoBundle 'scrooloose/nerdtree'
 " shell
 NeoBundle 'Shougo/vimshell.vim'
 
+" zim
+NeoBundle 'blue119/vim-zim'
+
+
 call neobundle#end()
 """""""""""""""""""" Bundle End
 
@@ -1270,7 +1274,7 @@ cabbrev vh vertical help
         setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
 
         iabbr iii import IPython; IPython.embed()
-        iabbr ddd import pdb; pdb.set_trace()
+        iabbr ddd import ipdb; ipdb.set_trace()
 
         noremap <F2> :% w !python<CR>
         " let g:pymode_lint_write = 0
@@ -2268,8 +2272,8 @@ cabbrev vh vertical help
     " }}}
 
     " vim as a calcuator"                                                  {{{
-    :command! -nargs=+ Calc :py print <args>
-    :py from math import *
+    :command! -nargs=+ Calc :py3 print(<args>)
+    :py3 from math import *
     " }}}
 
     " Script test                                                          {{{
