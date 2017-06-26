@@ -109,7 +109,7 @@ NeoBundleLazy 'tpope/vim-jdaddy' , { 'autoload': { 'filetypes' : ['json'] }, }
 " go Vim Mode
 NeoBundleLazy 'fatih/vim-go' , { 'autoload': { 'filetypes' : ['go'] }, }
 NeoBundleLazy 'jstemmer/gotags' , { 'autoload': { 'filetypes' : ['go'] }, }
-NeoBundleLazy 'garyburd/go-explorer' , { 
+NeoBundleLazy 'garyburd/go-explorer' , {
     \ 'build': {
         \   'unix': 'go get github.com/garyburd/go-explorer/src/getool',
     \ },
@@ -1053,6 +1053,7 @@ cabbrev vh vertical help
     " [ Window Operations ]                                                  {{{
     " Use Ctrl+hjkl to switch between Window
     nnoremap <C-h> <C-w>h
+    " nnoremap <BS>  <C-w>h
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
@@ -1354,11 +1355,14 @@ cabbrev vh vertical help
     " [ Javascript ]                                                       {{{
     "
     " json = javascript syntax highlight
-    " if has("autocmd")
-        " augroup MyAutoCmd
-            " autocmd FileType json setlocal syntax=javascript
-        " augroup END
-    " endif
+    function! s:js_custom()
+        setlocal tabstop=2 shiftwidth=2
+    endfunction
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd FileType json,javascript call s:js_custom()
+        augroup END
+    endif
     " }}}
 
     " -------------------------------------------------------------------------
@@ -1605,23 +1609,35 @@ cabbrev vh vertical help
     let g:unite_enable_ignore_case         = 1
     let g:unite_enable_smart_case          = 1
     let g:unite_source_rec_max_cache_files = 5000
-    " let g:unite_source_rec_async_command   = ['ag', '--nocolor', '--nogroup', --'--hidden', '-g', '']
-    let g:unite_source_rec_async_command   =  'ag --nocolor --nogroup --ignore ".o" --ignore ".cmd" --hidden -g ""'
     let g:unite_data_directory             = '~/.vim/.cache'
     let g:unite_prompt                     = '» '
 
-    " if executable('ag')
-        " let g:unite_source_grep_command='ag'
-        " let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
-        " let g:unite_source_grep_recursive_opt=''
-    " elseif executable('ack-grep')
-        " let g:unite_source_grep_command='ack-grep'
-        " let g:unite_source_grep_default_opts='--no-group --no-color'
-        " let g:unite_source_grep_recursive_opt=''
-    " else
-        " let g:unite_source_grep_default_opts = '-iRHn'
-    " endif
+
+
+    " let g:unite_source_rec_async_command   = ['ag', '--nocolor', '--nogroup', '--ignore', '".o"', '--ignore', '".cmd"', '--hidden', '-g', '']
+    " let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
+    " let g:unite_source_rec_async_command   =  'ag --nocolor --nogroup --ignore ".o" --ignore ".cmd" --hidden -g ""'
+
+    let my_ag_opts = [
+        \ '--nocolor', '--vimgrep',
+        \ '--ignore', '.git', '--ignore', '.idea', '--ignore', '.stversions',
+        \ '--ignore', '\.\*.cmd', '--ignore', '\*.o', '--ignore', 'dependencies',
+        \ '--ignore', 'bower_modules', '--ignore', 'node_modules', '--ignore', '.tmp'
+        \ ]
+
+    if executable('ag')
+        let g:unite_source_grep_command='ag'
+        let g:unite_source_grep_default_opts=join(my_ag_opts)
+        let g:unite_source_grep_recursive_opt=''
+        let g:unite_source_rec_async_command =
+                    \ [ 'ag', '--follow', '-g', '' ] + my_ag_opts
+    elseif executable('ack-grep')
+        let g:unite_source_grep_command='ack-grep'
+        let g:unite_source_grep_default_opts='--no-group --no-color'
+        let g:unite_source_grep_recursive_opt=''
+    else
         let g:unite_source_grep_default_opts = '-iRHn'
+    endif
     let g:unite_source_grep_max_candidates = 200
 
     function! s:unite_settings()
@@ -1717,7 +1733,7 @@ cabbrev vh vertical help
     " [ vimfiler ]                                                         {{{
     "
     let g:vimfiler_as_default_explorer = 1
-    let g:vimfiler_enable_auto_cd = 1
+    let g:vimfiler_enable_auto_cd = 0
     let g:vimfiler_split_rule = "topleft"
     let g:vimfiler_split_action = 'right'
     " }}}
