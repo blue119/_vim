@@ -96,10 +96,17 @@ NeoBundle 'TaskList.vim'
 
 
 " Java Script
-" NeoBundle 'jsbeautify'       " a javascript source code formatter
 " Beautify your javascript ,html,css source code inside Vim
 " NeoBundle 'michalliu/sourcebeautify.vim'
-NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json'] }, }
+NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json', 'js', 'html', 'css'] }, }
+" NeoBundle 'maksimr/vim-jsbeautify'
+
+NeoBundle 'pangloss/vim-javascript'
+" NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
+
+" JSX
+NeoBundle 'mxw/vim-jsx'
+" NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
 
 " json Vim Mode
 NeoBundleLazy 'elzr/vim-json' , { 'autoload': { 'filetypes' : ['json'] }, }
@@ -144,6 +151,9 @@ NeoBundle 'octol/vim-cpp-enhanced-highlight'
 " Markdown
 NeoBundleLazy 'plasticboy/vim-markdown', { 'autoload': { 'filetypes' : ['markdown'] }, }
 
+" TOML
+NeoBundle 'cespare/vim-toml'
+
 " CSS
 NeoBundle 'hail2u/vim-css3-syntax'
 
@@ -180,7 +190,12 @@ NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
 
 " auto completion
-NeoBundle 'Valloric/YouCompleteMe'
+let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
+NeoBundle 'Valloric/YouCompleteMe', {
+            \ 'build' : {
+            \   'unix' : 'python ./install.py'
+            \ },
+\ }
 " NeoBundle 'Shougo/neocomplete.vim' " for vimshell
 
 NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
@@ -217,6 +232,7 @@ NeoBundle 'mbriggs/mark.vim'
 
 " NeoBundle 'wavded/vim-stylus'
 
+" NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'blue119/EnhCommentify.vim'
 NeoBundle 'blue119/cs-mgmt.vim'
 NeoBundle 'blue119/occur.vim'
@@ -241,6 +257,10 @@ NeoBundle 'scrooloose/nerdtree'
 
 " shell
 NeoBundle 'Shougo/vimshell.vim'
+
+" zim
+NeoBundle 'blue119/vim-zim'
+
 
 call neobundle#end()
 """""""""""""""""""" Bundle End
@@ -618,8 +638,8 @@ cabbrev vh vertical help
     " <Leader>' TODO
     "--------------------------------------------------------------------------
     " <Leader>z TODO
-    " <Leader>x VisualTraditional EnhancedCommentify.vim
-    " <Leader>c VisualTraditionalj EnhancedCommentify.vim
+    " <Leader>x
+    " <Leader>c
     " <Leader>cs CsMgmt
     " <Leader>cq for cscopequickfix
     " <Leader>v TODO
@@ -987,7 +1007,7 @@ cabbrev vh vertical help
     inoremap <c-c> <c-o>o
 
     " Ctrl-v: Paste. For some reason, <c-o> is not creating an undo point in the mapping
-    inoremap <c-v> <c-g>u<c-o>gP
+    " inoremap <c-v> <c-g>u<c-o>gP
 
     " Ctrl-b: TODO
     " Ctrl-n: Auto complete next
@@ -1040,7 +1060,7 @@ cabbrev vh vertical help
     cnoremap <m-d> <c-w>
 
     " Ctrl-v: Paste
-    cnoremap <c-v> <c-r>"
+    " cnoremap <c-v> <c-r>"
 
     " w!!: Writes using sudo
     cnoremap w!! w !sudo tee % >/dev/null
@@ -1255,7 +1275,7 @@ cabbrev vh vertical help
         setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
 
         iabbr iii import IPython; IPython.embed()
-        iabbr ddd import pdb; pdb.set_trace()
+        iabbr ddd import ipdb; ipdb.set_trace()
 
         noremap <F2> :% w !python<CR>
         " let g:pymode_lint_write = 0
@@ -1363,6 +1383,12 @@ cabbrev vh vertical help
             autocmd FileType json,javascript call s:js_custom()
         augroup END
     endif
+    " }}}
+    "
+    " -------------------------------------------------------------------------
+    " [ Javascript ]                                                       {{{
+    let g:jsx_ext_required = 0
+
     " }}}
 
     " -------------------------------------------------------------------------
@@ -2262,8 +2288,8 @@ cabbrev vh vertical help
     " }}}
 
     " vim as a calcuator"                                                  {{{
-    :command! -nargs=+ Calc :py print <args>
-    :py from math import *
+    :command! -nargs=+ Calc :py3 print(<args>)
+    :py3 from math import *
     " }}}
 
     " Script test                                                          {{{

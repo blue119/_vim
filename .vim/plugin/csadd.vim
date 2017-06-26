@@ -2,7 +2,7 @@
 " http://brainacle.com/how-to-write-vim-plugins-with-python.html
 " http://www.slideshare.net/c9s/vim-script-programming
 
-if !has('python')
+if !has('python3')
   echo "Error: Required vim compiled with +python"
   finish
 endif
@@ -18,7 +18,7 @@ endif
 function! CSADD(CPNT, ...)
 
 " We start the python code like the next line.
-python << EOF
+python3 << EOF
 import vim, os, sys
 from copy import copy
 
@@ -44,7 +44,7 @@ try:
     #vim.command("echomsg '%s - %s'" % (vim.eval("a:CPNT"), vim.eval("a:1")))
     vim.command("cs add %s" % cscope_db)
 
-except Exception, e:
+except Exception as e:
   pass
 
 EOF
