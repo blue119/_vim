@@ -190,15 +190,19 @@ NeoBundle 'taglist.vim'
 NeoBundle 'majutsushi/tagbar'
 
 " auto completion
-let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
-NeoBundle 'Valloric/YouCompleteMe', {
-            \ 'build' : {
-            \   'unix' : 'python ./install.py'
-            \ },
-\ }
-" NeoBundle 'Shougo/neocomplete.vim' " for vimshell
+" let g:neobundle#install_process_timeout = 1800  "YouCompleteMe is so slow
+" NeoBundle 'Valloric/YouCompleteMe', {
+"             \ 'build' : {
+"             \   'unix' : 'python ./install.py'
+"             \ },
+" \ }
+NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'roxma/nvim-yarp'
+NeoBundle 'roxma/vim-hug-neovim-rpc'
+NeoBundle 'zchee/deoplete-jedi'
+"
 
-NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
+" NeoBundleLazy 'rdnetto/YCM-Generator', { 'autoload': { 'filetypes' : ['c', 'cpp', 'h', 'go'] }, }
 NeoBundle 'ervandew/supertab'
 " NeoBundle 'othree/vim-autocomplpop'
 
@@ -2051,6 +2055,13 @@ cabbrev vh vertical help
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
         let g:ycm_key_invoke_completion = '<C-o>'
+    " }}}
+
+    " -------------------------------------------------------------------------
+    " [ deoplete.nvim ]                                                     {{{
+    "
+        let g:deoplete#enable_at_startup = 1
+    " }}}
 
     " -------------------------------------------------------------------------
     " [ makr.vim ]                                                          {{{
