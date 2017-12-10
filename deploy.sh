@@ -4,6 +4,10 @@ fs+=(.vim)
 fs+=(.vimrc)
 
 date=`date +"%s"`
+
+# for dein.vim
+mkdir -p .vim/bundle/repos/github.com/Shougo
+
 # move same filename to end up with _data.bak for backup old file.
 git submodule init
 git submodule update
