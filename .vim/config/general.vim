@@ -3,14 +3,15 @@ if system('uname -o') =~ '^GNU/'
     let g:make = 'make'
 endif
 
-
 " auto generated file: filename~
 set backup
-set backupdir=$HOME/.vim/backup
+set backupdir=$VARPATH/backup
 
 " List of directory names for the swap file, separated with commas.
-set dir=$HOME/.vim/swp
-
+set directory=$VARPATH/swp
+set undodir=$VARPATH/undo
+set viewdir=$VARPATH/view
+set viminfo+=n$VARPATH/viminfo
 
 " Searching
 set hlsearch        " enable search highlight globally

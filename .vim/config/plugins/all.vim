@@ -109,54 +109,97 @@
     "
     " -------------------------------------------------------------------------
     " [ unite ]                                                             {{{
+    " https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/denite.rc.vim
 
-    " Change file_rec command.
-    call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    if executable('rg')
+        call denite#custom#var('file_rec', 'command',
+              \ ['rg', '--files', '--glob', '!.git'])
+        call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'final_opts', [])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'default_opts',
+              \ ['--vimgrep', '--no-heading'])
+    else
+        call denite#custom#var('file_rec', 'command',
+              \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+    endif
 
-    " For ripgrep
-    " Note: It is slower than ag
-    " call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
+    call denite#custom#source('file_old', 'matchers',
+        \ ['matcher_fuzzy', 'matcher_project_files'])
+    call denite#custom#source('tag', 'matchers', ['matcher_substring'])
 
-    " For Pt(the platinum searcher)
-    " NOTE: It also supports windows.
-    " call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup',  (has('win32') ? '-g:' : '-g='), ''])
+    if has('nvim')
+        call denite#custom#source('file_rec,grep', 'matchers',
+            \ ['matcher_cpsm'])
+    endif
+
+    call denite#custom#source('file_old', 'converters',
+        \ ['converter_relative_word'])
 
     "For python script scantree.py (works if python 3.5+ in path)
     "Read bellow on this file to learn more about scantree.py
     " call denite#custom#var('file_rec', 'command', ['scantree.py'])
 
     " Change mappings.
-    call denite#custom#map(
-          \ 'insert', '<C-j>',
-          \ '<denite:move_to_next_line>',
-          \ 'noremap' )
-    call denite#custom#map(
-          \ 'insert', '<C-k>',
-          \ '<denite:move_to_previous_line>',
-          \ 'noremap' )
-	call denite#custom#map(
-	      \ 'insert', '<Down>',
-	      \ '<denite:move_to_next_line>',
-          \ 'noremap' )
-	call denite#custom#map(
-	      \ 'insert', '<Up>',
-	      \ '<denite:move_to_previous_line>',
-          \ 'noremap' )
-	call denite#custom#map(
-	      \ 'insert', '<PageDown>',
-	      \ '<denite:scroll_page_forwards>',
-          \ 'noremap' )
-	call denite#custom#map(
-	      \ 'insert', '<PageUp>',
-	      \ '<denite:scroll_page_backwards>',
-          \ 'noremap' )
+    call denite#custom#map('insert', '<C-r>',
+        \ '<denite:toggle_matchers:matcher_substring>', 'noremap')
+    call denite#custom#map('insert', '<C-s>',
+        \ '<denite:toggle_sorters:sorter_reverse>', 'noremap')
+    call denite#custom#map( 'insert', '<C-j>',
+        \ '<denite:move_to_next_line>', 'noremap' )
+    call denite#custom#map( 'insert', '<C-k>',
+        \ '<denite:move_to_previous_line>', 'noremap' )
+    call denite#custom#map( 'insert', '<Down>',
+        \ '<denite:move_to_next_line>', 'noremap' )
+    call denite#custom#map( 'insert', '<Up>',
+        \ '<denite:move_to_previous_line>', 'noremap' )
+    call denite#custom#map( 'insert', '<PageDown>',
+        \ '<denite:scroll_page_forwards>', 'noremap' )
+    call denite#custom#map( 'insert', '<PageUp>',
+        \ '<denite:scroll_page_backwards>', 'noremap' )
+    call denite#custom#map('insert', ';',
+        \ 'vimrc#sticky_func()', 'expr')
 
-    " Change matchers.
-    call denite#custom#source( 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
-    call denite#custom#source( 'file_rec', 'matchers', ['matcher_cpsm'])
+    call denite#custom#map( 'normal', '<PageDown>',
+        \ '<denite:scroll_page_forwards>', 'noremap' )
+    call denite#custom#map( 'normal', '<PageUp>',
+        \ '<denite:scroll_page_backwards>', 'noremap' )
+    call denite#custom#map('normal', 'r',
+        \ '<denite:do_action:quickfix>', 'noremap')
 
-    " Change sorters.
-    call denite#custom#source( 'file_rec', 'sorters', ['sorter_sublime'])
+    " Define alias
+    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+    call denite#custom#var('file_rec/git', 'command',
+        \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+    " call denite#custom#alias('source', 'file_rec/py', 'file_rec')
+    " call denite#custom#var('file_rec/py', 'command', ['scantree.py'])
+
+    " Change default prompt
+    call denite#custom#option('default', {
+        \ 'mode' : 'insert',
+        \ 'prompt': '>',
+        \ 'empty': 0,
+        \ 'auto_resize': 1,
+        \ 'auto_resume': 1,
+        \ 'short_source_names': v:true
+        \ })
+
+    " call denite#custom#option('default', 'prompt', '>')
+
+    " denite option
+    " let s:denite_options = {
+    "       \ 'default' : {
+    "       \ 'winheight' : 25,
+    "       \ 'mode' : 'insert',
+    "       \ 'quit' : 'true',
+    "       \ 'highlight_matched_char' : 'MoreMsg',
+    "       \ 'highlight_matched_range' : 'MoreMsg',
+    "       \ 'direction': 'rightbelow',
+    "       \ 'statusline' : has('patch-7.4.1154') ? v:false : 0,
+    "       \ 'prompt' : '➭',
+    "       \ }}
 
     " Add custom menus
     let s:menus = {}
@@ -173,74 +216,22 @@
         \ ['Open zsh menu', 'Denite menu:zsh'],
         \ ]
 
+    let s:menus.vim = {
+        \ 'description': 'Vim',
+        \ }
+    let s:menus.vim.file_candidates = [
+        \ ['    > Edit configuation file (init.vim)', '~/.vimrc']
+        \ ]
+
     call denite#custom#var('menu', 'menus', s:menus)
 
-    " Ag command on grep source
-    call denite#custom#var('grep', 'command', ['ag'])
-    call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
+    " Change matchers.
+    call denite#custom#source( 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+    call denite#custom#source( 'file_rec', 'matchers', ['matcher_cpsm'])
 
-    " Ack command on grep source
-    " call denite#custom#var('grep', 'command', ['ack'])
-    " call denite#custom#var('grep', 'default_opts',
-            " \ ['--ackrc', $HOME.'/.ackrc', '-H',
-            " \  '--nopager', '--nocolor', '--nogroup', '--column'])
-    " call denite#custom#var('grep', 'recursive_opts', [])
-    " call denite#custom#var('grep', 'pattern_opt', ['--match'])
-    " call denite#custom#var('grep', 'separator', ['--'])
-    " call denite#custom#var('grep', 'final_opts', [])
+    " Change sorters.
+    call denite#custom#source( 'file_rec', 'sorters', ['sorter_sublime'])
 
-    " Ripgrep command on grep source
-    " call denite#custom#var('grep', 'command', ['rg'])
-    " call denite#custom#var('grep', 'default_opts',
-            " \ ['--vimgrep', '--no-heading'])
-    " call denite#custom#var('grep', 'recursive_opts', [])
-    " call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    " call denite#custom#var('grep', 'separator', ['--'])
-    " call denite#custom#var('grep', 'final_opts', [])
-
-    " Pt command on grep source
-    " call denite#custom#var('grep', 'command', ['pt'])
-    " call denite#custom#var('grep', 'default_opts',
-            " \ ['--nogroup', '--nocolor', '--smart-case'])
-    " call denite#custom#var('grep', 'recursive_opts', [])
-    " call denite#custom#var('grep', 'pattern_opt', [])
-    " call denite#custom#var('grep', 'separator', ['--'])
-    " call denite#custom#var('grep', 'final_opts', [])
-
-    " jvgrep command on grep source
-    " call denite#custom#var('grep', 'command', ['jvgrep'])
-    " call denite#custom#var('grep', 'default_opts', [])
-    " call denite#custom#var('grep', 'recursive_opts', ['-R'])
-    " call denite#custom#var('grep', 'pattern_opt', [])
-    " call denite#custom#var('grep', 'separator', [])
-    " call denite#custom#var('grep', 'final_opts', [])
-
-    " Define alias
-    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-    call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
-    call denite#custom#alias('source', 'file_rec/py', 'file_rec')
-    call denite#custom#var('file_rec/py', 'command',['scantree.py'])
-
-    " Change default prompt
-    " call denite#custom#option('default', 'prompt', '>')
-
-    " denite option
-    " let s:denite_options = {
-    "       \ 'default' : {
-    "       \ 'winheight' : 25,
-    "       \ 'mode' : 'insert',
-    "       \ 'quit' : 'true',
-    "       \ 'highlight_matched_char' : 'MoreMsg',
-    "       \ 'highlight_matched_range' : 'MoreMsg',
-    "       \ 'direction': 'rightbelow',
-    "       \ 'statusline' : has('patch-7.4.1154') ? v:false : 0,
-    "       \ 'prompt' : '➭',
-    "       \ }}
 
     " function! s:profile(opts) abort
     "   for fname in keys(a:opts)
@@ -252,9 +243,6 @@
 
     " call s:profile(s:denite_options)
 
-
-
-
     " Change ignore_globs
     call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
           \ [ '.git/', '.ropeproject/', '__pycache__/',
@@ -263,16 +251,19 @@
     " Custom action
     call denite#custom#action('file', 'test', {context -> execute('let g:foo = 1')})
     call denite#custom#action('file', 'test2',
-          \ {context -> denite#do_action(
-          \  context, 'open', context['targets'])})
+          \ {context -> denite#do_action(context, 'open', context['targets'])})
 
+
+    " HotKeys
     nnoremap [denite] <Nop>
     nmap <Leader>u [denite]
-	" HotKeys
     "" File searching like ctrlp.vim
-    nnoremap <C-p> :Denite -buffer-name=files buffer -input= file_rec<cr>
-    nnoremap <silent> [denite]gc :<C-u>Denite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
+    nnoremap <C-p> :Denite -mode=normal -buffer-name=files buffer -input= file_rec<cr>
+    nnoremap <silent> [denite]g  :<C-u>Denite grep:. -mode=normal -buffer-name=search-buffer<CR>
+    nnoremap <silent> [denite]gc :<C-u>DeniteCursorWord grep:. -mode=normal -buffer-name=search-buffer<CR>
 
+    nnoremap <silent> [denite]j  :<C-u>Denite -resume -cursor-pos=+1 -immediately -buffer-name=search-buffer<CR>
+    nnoremap <silent> [denite]k  :<C-u>Denite -resume -cursor-pos=-1 -immediately -buffer-name=search-buffer<CR>
     " }}}
 
     " -------------------------------------------------------------------------
@@ -533,52 +524,55 @@
         augroup END
     endif
 
-    " Always show statusline
-    set laststatus=2
+    " " Always show statusline
+    " set laststatus=2
 
-    " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-    set noshowmode
+    " " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+    " set noshowmode
 
     " unicode symbols
-    let g:airline_symbols = {}
-    " let g:airline_left_sep = '»'
-    " let g:airline_left_sep = '▶'
-    " let g:airline_right_sep = '«'
-    " let g:airline_right_sep = '◀'
-    " let g:airline_linecolumn_prefix = '␊ '
-    let g:airline_symbols.linenr = '␤ '
-    " let g:airline_linecolumn_prefix = '¶ '
-    let g:airline#extensions#branch#symbol = '⎇ '
-    let g:airline#extensions#paste#symbol = 'ρ'
-    " let g:airline#extensions#paste#symbol = 'Þ'
-    " let g:airline#extensions#paste#symbol = '∥'
-    let g:airline#extensions#whitespace#symbol = 'Ξ'
+    " let g:airline_symbols = {}
+    " " let g:airline_left_sep = '»'
+    " " let g:airline_left_sep = '▶'
+    " " let g:airline_right_sep = '«'
+    " " let g:airline_right_sep = '◀'
+    " " let g:airline_linecolumn_prefix = '␊ '
+    " " let g:airline_linecolumn_prefix = '¶ '
+    " " let g:airline#extensions#paste#symbol = 'Þ'
+    " " let g:airline#extensions#paste#symbol = '∥'
+    " let g:airline_symbols.linenr = '␤ '
+    " let g:airline#extensions#branch#symbol = '⎇ '
+    " let g:airline#extensions#whitespace#symbol = 'Ξ'
+    " let g:airline_symbols.space = ' '
 
     " powerline symbols
     let g:airline_left_sep = ''
     let g:airline_left_alt_sep = ''
     let g:airline_right_sep = ''
     let g:airline_right_alt_sep = ''
-    " let g:airline#extensions#branch#symbol = ' '
-    " let g:airline#extensions#readonly#symbol = ''
-    " let g:airline_linecolumn_prefix = ' '
+    let g:airline#extensions#branch#symbol = ' '
+    let g:airline#extensions#readonly#symbol = ''
+    let g:airline_linecolumn_prefix = ' '
+    let g:airline#extensions#paste#symbol = 'ρ'
     " }}}
 
     " -------------------------------------------------------------------------
     " [ vim-jsbeautify ]                                                    {{{
     "
-    autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-    autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-    autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-    autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-    autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+    autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
+    autocmd FileType js         noremap <buffer> <c-f> :call JsBeautify()<cr>
+    autocmd FileType json       noremap <buffer> <c-f> :call JsonBeautify()<cr>
+    autocmd FileType jsx        noremap <buffer> <c-f> :call JsxBeautify()<cr>
+    autocmd FileType html       noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+    autocmd FileType css        noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
     "Example of binding a function for js, html and css in visual mode on
-    autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-    autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-    autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-    autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-    autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+    autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
+    autocmd FileType js         vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
+    autocmd FileType json       vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+    autocmd FileType jsx        vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+    autocmd FileType html       vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+    autocmd FileType css        vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
     " }}}
 
     " -------------------------------------------------------------------------
@@ -714,7 +708,15 @@
     "
         let g:deoplete#enable_at_startup = 1
     " }}}
-
+    "
+    " [ xolox/vim-lua-ftplugin ]                                                     {{{
+    "
+        let g:lua_check_syntax = 0
+        let g:lua_complete_omni = 1
+        let g:lua_complete_dynamic = 0
+        let g:lua_define_completion_mappings = 0
+    " }}}
+    "
     " -------------------------------------------------------------------------
     " [ makr.vim ]                                                          {{{
     "
@@ -762,6 +764,7 @@
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
         autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType js setlocal omnifunc=javascriptcomplete#CompleteJS
         autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
         autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete

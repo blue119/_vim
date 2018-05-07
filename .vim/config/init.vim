@@ -16,18 +16,20 @@ nnoremap ,        <Nop>
 xnoremap ,        <Nop>
 nnoremap ;        <Nop>
 xnoremap ;        <Nop>
-nnoremap m        <Nop>
-xnoremap m        <Nop>
+" nnoremap m        <Nop>
+" xnoremap m        <Nop>
 
 " }}}
+"
 " Ensure cache directory "{{{
 if ! isdirectory(expand($VARPATH))
 	" Create missing dirs i.e. cache/{undo,backup}
 	call mkdir(expand('$VARPATH/undo'), 'p')
 	call mkdir(expand('$VARPATH/backup'))
+	call mkdir(expand('$VARPATH/swp'))
 endif
-
 " }}}
+"
 " Load vault settings "{{{
 " if filereadable(expand('$VIMPATH/.vault.vim'))
     " execute 'source' expand('$VIMPATH/.vault.vim')

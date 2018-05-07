@@ -79,6 +79,10 @@ if dein#load_state(s:path)
     " Java Script
     " Beautify your javascript ,html,css source code inside Vim
     "NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json', 'js', 'html', 'css'] }, }
+    " call dein#add('maksimr/vim-jsbeautify', {
+                " \ 'on_ft': ['json', 'js', 'html', 'css'],
+                " \ 'build': 'git submodule update --init --recursive'})
+    call dein#add('maksimr/vim-jsbeautify')
 
     "NeoBundle 'pangloss/vim-javascript'
     "" NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
@@ -92,15 +96,13 @@ if dein#load_state(s:path)
     "" JSON manipulation and pretty printing
     "NeoBundleLazy 'tpope/vim-jdaddy' , { 'autoload': { 'filetypes' : ['json'] }, }
 
-    "" go Vim Mode
-    "NeoBundleLazy 'fatih/vim-go' , { 'autoload': { 'filetypes' : ['go'] }, }
-    "NeoBundleLazy 'jstemmer/gotags' , { 'autoload': { 'filetypes' : ['go'] }, }
-    "NeoBundleLazy 'garyburd/go-explorer' , {
-    "    \ 'build': {
-    "        \   'unix': 'go get github.com/garyburd/go-explorer/src/getool',
-    "    \ },
-    "    \ 'autoload': { 'filetypes' : ['go'] },
-    "    \ }
+    " go Vim Mode
+    call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], })
+    call dein#add('jstemmer/gotags' , { 'on_ft': ['go'], })
+    call dein#add('garyburd/go-explorer' , {
+        \ 'build': 'go get github.com/garyburd/go-explorer/src/getool',
+        \ 'on_ft': ['go'] ,
+        \ })
 
     "" Node JS
     "" Tools and environment to make Vim superb for developing with Node.js.
@@ -151,6 +153,10 @@ if dein#load_state(s:path)
     "" instant rst preview in browser
     "NeoBundleLazy 'Rykka/riv.vim' , { 'autoload': { 'filetypes' : ['rst'] }, }
     "NeoBundleLazy 'Rykka/InstantRst' , { 'autoload': { 'filetypes' : ['rst'] }, }
+    "
+    "
+    " nginx conf
+    call dein#add('chr4/nginx.vim')
 
     " Editor Config Plugin
     call dein#add('editorconfig/editorconfig-vim')
@@ -171,12 +177,23 @@ if dein#load_state(s:path)
     call dein#add('vim-scripts/taglist.vim')
     call dein#add('majutsushi/tagbar')
 
-    " Autocompletion
+    " Autocompletion deoplete {{{
     call dein#add('Shougo/deoplete.nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+    let g:deoplete#enable_at_startup = 1
+
     " deoplete for python
     call dein#add('zchee/deoplete-jedi')
+
+    " deoplete for golang
+    call dein#add('zchee/deoplete-go', {'build': 'make'})
+
+    call dein#add('xolox/vim-lua-ftplugin')
+    call dein#add('xolox/vim-misc')
+    " }}}
 
     call dein#add('ervandew/supertab')
 
@@ -216,7 +233,8 @@ if dein#load_state(s:path)
     " NeoBundle 'mfukar/robotframework-vim'
 
     " file tree
-    call dein#add('Shougo/vimfiler.vim')
+    " call dein#add('Shougo/vimfiler.vim')
+    call dein#add('Shougo/defx.nvim')
     call dein#add('scrooloose/nerdtree')
 
     " shell

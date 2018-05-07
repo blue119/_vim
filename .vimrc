@@ -12,7 +12,12 @@ if &compatible
 endif
 
 " let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-let $VIMPATH = expand('<sfile>:h').'/.vim'
+" FIXME
+if has('nvim')
+    let $VIMPATH = expand('<sfile>:h')
+else
+    let $VIMPATH = expand('<sfile>:h').'/.vim'
+endif
 let $VARPATH = expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
 
 function! s:source_file(path, ...) abort
@@ -61,7 +66,7 @@ endif
 
 call s:source_file('plugins/all.vim')
 
-    filetype plugin indent on
+filetype plugin indent on
 syntax enable
 
 " if ! has('vim_starting')
