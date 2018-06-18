@@ -65,37 +65,29 @@ if dein#load_state(s:path)
     " Visualize your undo tree.
     "call dein#add('Gundo')
 
-    " Vim-script library
-    " call dein#add('L9')
-    " vim: interpret a file by function and cache file automatically
-    " call dein#add('MarcWeber/vim-addon-mw-utils')
-    " Some utility functions for VIM
-    " call dein#add('tomtom/tlib_vim')
-
     " search the file for FIXME, TODO, and XXX
     " call dein#add('TaskList.vim')
 
     " For Program Language {{{
     " Java Script
     " Beautify your javascript ,html,css source code inside Vim
-    "NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload': { 'filetypes' : ['json', 'js', 'html', 'css'] }, }
-    " call dein#add('maksimr/vim-jsbeautify', {
-                " \ 'on_ft': ['json', 'js', 'html', 'css'],
-                " \ 'build': 'git submodule update --init --recursive'})
-    call dein#add('maksimr/vim-jsbeautify')
-
-    "NeoBundle 'pangloss/vim-javascript'
-    "" NeoBundleLazy 'pangloss/vim-javascript', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
-
-    "" JSX
-    "NeoBundle 'mxw/vim-jsx'
-    "" NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
-
-    "" json Vim Mode
-    "NeoBundleLazy 'elzr/vim-json' , { 'autoload': { 'filetypes' : ['json'] }, }
-    "" JSON manipulation and pretty printing
-    "NeoBundleLazy 'tpope/vim-jdaddy' , { 'autoload': { 'filetypes' : ['json'] }, }
-
+"    call dein#add('maksimr/vim-jsbeautify', {
+"                \ 'on_ft': ['json', 'js', 'html', 'css'],
+"                \ 'build': 'git submodule update --init --recursive'})
+"
+"    "" JSX
+"    "NeoBundle 'mxw/vim-jsx'
+"    "" NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
+"    call dein#add('mxw/vim-jsx', { 'on_ft': ['javascript', 'javascript.jsx'],})
+"
+"    "" Node JS
+"    "" Tools and environment to make Vim superb for developing with Node.js.
+"    call dein#add('moll/vim-node', { 'on_ft': ['javascript'],})
+"    "" A vim plugin for highlighting and indenting JST/EJS syntax.
+"    call dein#add('briancollins/vim-jst', { 'on_ft': ['ejs'],})
+"    "" Various snippets for developing node.js from vim
+"    call dein#add('jamescarr/snipmate-nodejs', { 'on_ft': ['javascript'],})
+"
     " go Vim Mode
     call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], })
     call dein#add('jstemmer/gotags' , { 'on_ft': ['go'], })
@@ -103,55 +95,49 @@ if dein#load_state(s:path)
         \ 'build': 'go get github.com/garyburd/go-explorer/src/getool',
         \ 'on_ft': ['go'] ,
         \ })
-
-    "" Node JS
-    "" Tools and environment to make Vim superb for developing with Node.js.
-    "NeoBundleLazy 'moll/vim-node', { 'autoload': { 'filetypes' : ['javascript'] }, }
-    "" A vim plugin for highlighting and indenting JST/EJS syntax.
-    "NeoBundleLazy 'briancollins/vim-jst', { 'autoload': { 'filetypes' : ['ejs'] }, }
-    "" Various snippets for developing node.js from vim
-    "NeoBundleLazy 'jamescarr/snipmate-nodejs', { 'autoload': { 'filetypes' : ['javascript'] }, }
-
-    "" Octave
-    "" Send Octave code from a VIM buffer to Octave
-    "NeoBundleLazy 'octave.vim', { 'autoload': { 'filetypes' : ['m'] }, }
-
-    "" Haskell
-    "NeoBundleLazy 'lukerandall/haskellmode-vim' , { 'autoload': { 'filetypes' : ['hs'] }, }
-    "" Vim plugin for Haskell development.
-    "NeoBundleLazy 'bitc/vim-hdevtools' , { 'autoload': { 'filetypes' : ['hs'] }, }
-    "" A completion plugin for Haskell, using ghc-mod.
-    "NeoBundleLazy 'eagletmt/neco-ghc' , { 'autoload': { 'filetypes' : ['hs'] }, }
-
-    "" CSV
-    "NeoBundleLazy 'chrisbra/csv.vim', { 'autoload': { 'filetypes' : ['csv'] }, }
-
-    "" CPP
-    "NeoBundle 'octol/vim-cpp-enhanced-highlight'
-
-    "" Markdown
-    "NeoBundleLazy 'plasticboy/vim-markdown', { 'autoload': { 'filetypes' : ['markdown'] }, }
-
+"
+"    "" Octave
+"    "" Send Octave code from a VIM buffer to Octave
+"    "NeoBundleLazy 'octave.vim', { 'autoload': { 'filetypes' : ['m'] }, }
+"    call dein#add('vim-scripts/octave.vim', { 'on_ft': ['m'], })
+"
+"    "" Haskell
+"    call dein#add('lukerandall/haskellmode-vim', { 'on_ft': ['hs'], })
+"    "" Vim plugin for Haskell development.
+"    call dein#add('bitc/vim-hdevtools', { 'on_ft': ['hs'], })
+"    "" A completion plugin for Haskell, using ghc-mod.
+"    call dein#add('eagletmt/neco-ghc', { 'on_ft': ['hs'], })
+"
+"    "" CSV
+"    "NeoBundleLazy 'chrisbra/csv.vim', { 'autoload': { 'filetypes' : ['csv'] }, }
+"
+"    "" CPP
+"    call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': ['cpp', 'c++'], })
+"
+"    "" Markdown
+"    call dein#add('plasticboy/vim-markdown', { 'on_ft': ['markdown', 'mk'], })
+"
     "" TOML
-    "NeoBundle 'cespare/vim-toml'
-
-    "" CSS
-    "NeoBundle 'hail2u/vim-css3-syntax'
-
-    "" vim syntax file for plantuml
-    "NeoBundleLazy 'aklt/plantuml-syntax' , { 'autoload': { 'filetypes' : ['plantuml'] }, }
-
-    "" Docker
-    "NeoBundleLazy 'ekalinin/Dockerfile.vim' , { 'autoload': { 'filetypes' : ['dockerfile'] }, }
-
-    "" LiveScript support for Vim
-    "NeoBundleLazy 'gkz/vim-ls' , { 'autoload': { 'filetypes' : ['ls'] }, }
+    call dein#add('cespare/vim-toml', { 'on_ft': ['toml'], })
+"
+"    "" CSS
+"    "NeoBundle 'hail2u/vim-css3-syntax'
+"
+"    "" vim syntax file for plantuml
+"    "NeoBundleLazy 'aklt/plantuml-syntax' , { 'autoload': { 'filetypes' : ['plantuml'] }, }
+"
+"    "" Docker
+"    call dein#add('ekalinin/Dockerfile.vim', { 'on_ft': ['dockerfile'], })
+"
+"    "" LiveScript support for Vim
+"    "NeoBundleLazy 'gkz/vim-ls' , { 'autoload': { 'filetypes' : ['ls'] }, }
+"    call dein#add('gkz/vim-ls', { 'on_ft': ['ls'], })
 
     "" XML
     "NeoBundleLazy 'othree/xml.vim' , { 'autoload': { 'filetypes' : ['xml'] }, }
 
     "" instant rst preview in browser
-    "NeoBundleLazy 'Rykka/riv.vim' , { 'autoload': { 'filetypes' : ['rst'] }, }
+    call dein#add('Rykka/riv.vim', { 'on_ft': ['rst'], })
     "NeoBundleLazy 'Rykka/InstantRst' , { 'autoload': { 'filetypes' : ['rst'] }, }
     "
     "
@@ -183,7 +169,6 @@ if dein#load_state(s:path)
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
-    let g:deoplete#enable_at_startup = 1
 
     " deoplete for python
     call dein#add('zchee/deoplete-jedi')
@@ -242,6 +227,13 @@ if dein#load_state(s:path)
 
     " zim
     "call dein#add('blue119/vim-zim')
+
+    "emoji
+    call dein#add('junegunn/vim-emoji')
+    set completefunc=emoji#complete
+
+    " session
+    call dein#add('lambdalisue/session.vim')
 
     " Required:
     call dein#end()

@@ -349,6 +349,14 @@
     " Ctrl-\ d, i, f, e, t, c, g, s: cscope at cscope_macros.vim
     " Ctrl-\ Ctrl-n: go to Normal mode (no-op)
     " Ctrl-\ Ctrl-g: go to mode specified with 'insertmode'
+    nmap <C-\><C-\>s :tab cs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\><C-\>g :tab cs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\><C-\>c :tab cs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\><C-\>t :tab cs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\><C-\>e :tab cs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-\><C-\>f :tab cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-\><C-\>i :tab cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-\><C-\>d :tab cs find d <C-R>=expand("<cword>")<CR><CR>
     "------------------------------------------------------------------------------
     " Ctrl-a: Remap to start of line
     nnoremap <c-a> ^
