@@ -11,7 +11,7 @@ set backupdir=$VARPATH/backup
 set directory=$VARPATH/swp
 set undodir=$VARPATH/undo
 set viewdir=$VARPATH/view
-set viminfo+=n$VARPATH/viminfo
+"set viminfo+=n$VARPATH/viminfo
 
 " Searching
 set hlsearch        " enable search highlight globally

@@ -170,6 +170,9 @@ if dein#load_state(s:path)
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
 
+    " deoplete for C/C++/Obj-C/Obj-C++
+    call dein#add('zchee/deoplete-clang')
+
     " deoplete for python
     call dein#add('zchee/deoplete-jedi')
 
@@ -234,6 +237,9 @@ if dein#load_state(s:path)
 
     " session
     call dein#add('lambdalisue/session.vim')
+
+    " Asynchronous Lint Engine
+    call dein#add('w0rp/ale')
 
     " Required:
     call dein#end()
