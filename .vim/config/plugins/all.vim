@@ -531,6 +531,20 @@
                 " \ 'ctagsbin'  : 'gotags',
                 " \ 'ctagsargs' : '-sort -silent'
                 " \ }
+
+        let g:tagbar_type_typescript = {
+          \ 'ctagstype': 'typescript',
+          \ 'kinds': [
+            \ 'c:classes',
+            \ 'n:modules',
+            \ 'f:functions',
+            \ 'v:variables',
+            \ 'v:varlambdas',
+            \ 'm:members',
+            \ 'i:interfaces',
+            \ 'e:enums',
+          \ ]
+        \ }
         let g:tagbar_autofocus = 1
     endif
     " }}}
@@ -626,6 +640,16 @@
     if dein#tap('editorconfig-vim')
         " Excluded patterns.
         let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+        function! _editconfigFiletypeHook(config)
+            if has_key(a:config, 'vim_filetype')
+                let &filetype = a:config['vim_filetype']
+            endif
+
+            return 0   " Return 0 to show no error happened
+         endfunction
+
+         call editorconfig#AddNewHook(function('_editconfigFiletypeHook'))
     endif
     " }}}
 

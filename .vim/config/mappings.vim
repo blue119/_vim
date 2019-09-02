@@ -500,7 +500,7 @@
     " -------------------------------------------------------------------------
     " [ Virtual Mode + Ctrl ]                                       {{{
     "
-    vnoremap <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
+    vnoremap <C-c> :w! /tmp/vimbuffer<CR>:!DISPLAY=:0 xclip < /tmp/vimbuffer<CR><CR>
     " Copy to System-Clipboard
     "if OS == "Linux"
     "    map <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>

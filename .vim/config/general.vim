@@ -11,7 +11,13 @@ set backupdir=$VARPATH/backup
 set directory=$VARPATH/swp
 set undodir=$VARPATH/undo
 set viewdir=$VARPATH/view
-set viminfo+=n$VARPATH/viminfo
+if !has('nvim')
+    set viminfo+=n$VARPATH/viminfo
+else
+  " Do nothing here to use the neovim default
+  " or do soemething like:
+  " set viminfo+=n~/.shada
+endif
 
 " Searching
 set hlsearch        " enable search highlight globally

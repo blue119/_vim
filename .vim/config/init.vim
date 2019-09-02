@@ -75,4 +75,7 @@ let g:loaded_zip = 1
 let g:loaded_zipPlugin = 1
 " }}}
 
+" debug nvim python
+" let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
+" let $NVIM_PYTHON_LOG_LEVEL="DEBUG"
 " vim: set foldmethod=marker ts=2 sw=2 tw=80 noet :

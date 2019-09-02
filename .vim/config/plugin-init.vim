@@ -91,10 +91,6 @@ if dein#load_state(s:path)
     " go Vim Mode
     call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], })
     call dein#add('jstemmer/gotags' , { 'on_ft': ['go'], })
-    call dein#add('garyburd/go-explorer' , {
-        \ 'build': 'go get github.com/garyburd/go-explorer/src/getool',
-        \ 'on_ft': ['go'] ,
-        \ })
 "
 "    "" Octave
 "    "" Send Octave code from a VIM buffer to Octave
@@ -135,6 +131,12 @@ if dein#load_state(s:path)
 
     "" XML
     "NeoBundleLazy 'othree/xml.vim' , { 'autoload': { 'filetypes' : ['xml'] }, }
+
+    " VUE
+    call dein#add('posva/vim-vue', { 'on_ft': ['vue'], })
+
+    " Type Script
+    call dein#add('leafgarland/typescript-vim', { 'on_ft': ['ts'], })
 
     "" instant rst preview in browser
     call dein#add('Rykka/riv.vim', { 'on_ft': ['rst'], })
