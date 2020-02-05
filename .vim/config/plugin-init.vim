@@ -58,6 +58,7 @@ if dein#load_state(s:path)
     " fugitive.vim: a Git wrapper so awesome, it should be illegal
     call dein#add('tpope/vim-fugitive')
     call dein#add('airblade/vim-gitgutter')
+    call dein#add('tpope/vim-rhubarb')
 
     " Vim script internal debugger (output in separate window, tab, or remote vim)
     "call dein#add('vim-scripts/Decho')
@@ -114,7 +115,7 @@ if dein#load_state(s:path)
 "    call dein#add('plasticboy/vim-markdown', { 'on_ft': ['markdown', 'mk'], })
 "
     "" TOML
-    call dein#add('cespare/vim-toml', { 'on_ft': ['toml'], })
+    " call dein#add('cespare/vim-toml', { 'on_ft': ['toml'], })
 "
 "    "" CSS
 "    "NeoBundle 'hail2u/vim-css3-syntax'
@@ -133,10 +134,10 @@ if dein#load_state(s:path)
     "NeoBundleLazy 'othree/xml.vim' , { 'autoload': { 'filetypes' : ['xml'] }, }
 
     " VUE
-    call dein#add('posva/vim-vue', { 'on_ft': ['vue'], })
+    " call dein#add('posva/vim-vue', { 'on_ft': ['vue'], })
 
     " Type Script
-    call dein#add('leafgarland/typescript-vim', { 'on_ft': ['ts'], })
+    " call dein#add('leafgarland/typescript-vim', { 'on_ft': ['ts'], })
 
     "" instant rst preview in browser
     call dein#add('Rykka/riv.vim', { 'on_ft': ['rst'], })
@@ -203,6 +204,10 @@ if dein#load_state(s:path)
     call dein#add('blue119/cs-mgmt.vim')
     call dein#add('blue119/occur.vim')
     call dein#add('blue119/vim-rooter')
+
+    " Jenkinsfile DSL vim syntax
+    " call dein#add('martinda/Jenkinsfile-vim-syntax')
+    call dein#add('sheerun/vim-polyglot')
 
     " Unite to denite.nvim
     " call dein#add('Shougo/unite.vim')

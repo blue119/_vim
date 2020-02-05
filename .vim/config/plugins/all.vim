@@ -635,6 +635,14 @@
     " }}}
 
     " -------------------------------------------------------------------------
+    " [ vim-polyglot ]                                                    {{{
+    "
+    if dein#tap('vim-polyglot')
+        let g:polyglot_disabled = ['python']
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
     " [ editorconfig-vim ]                                                  {{{
     "
     if dein#tap('editorconfig-vim')
