@@ -89,7 +89,8 @@ if dein#load_state(s:path)
 "    call dein#add('jamescarr/snipmate-nodejs', { 'on_ft': ['javascript'],})
 "
     " go Vim Mode
-    call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], })
+    call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], 
+        \ 'on_cmd': 'GoUpdateBinaries'})
     call dein#add('jstemmer/gotags' , { 'on_ft': ['go'], })
     call dein#add('garyburd/go-explorer' , {
         \ 'build': 'go get github.com/garyburd/go-explorer/src/getool',
@@ -163,8 +164,11 @@ if dein#load_state(s:path)
     call dein#add('vim-scripts/taglist.vim')
     call dein#add('majutsushi/tagbar')
 
+    " call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], 
+        " \ 'on_cmd': 'GoUpdateBinaries'})
+
     " Autocompletion deoplete {{{
-    call dein#add('Shougo/deoplete.nvim')
+    call dein#add('Shougo/deoplete.nvim', {'on_cmd': 'UpdateRemotePlugins'})
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
@@ -200,6 +204,9 @@ if dein#load_state(s:path)
     " to highlight several words in different colors simultaneously
     call dein#add('mbriggs/mark.vim')
 
+    " to highlight several words in different colors simultaneously
+    call dein#add('nathangrigg/vim-beancount')
+
     call dein#add('blue119/EnhCommentify.vim')
     call dein#add('blue119/cs-mgmt.vim')
     call dein#add('blue119/occur.vim')
@@ -232,8 +239,8 @@ if dein#load_state(s:path)
     "call dein#add('blue119/vim-zim')
 
     "emoji
-    call dein#add('junegunn/vim-emoji')
-    set completefunc=emoji#complete
+    " call dein#add('junegunn/vim-emoji')
+    " set completefunc=emoji#complete
 
     " session
     call dein#add('lambdalisue/session.vim')

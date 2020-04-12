@@ -774,6 +774,18 @@
     " }}}
 
     " -------------------------------------------------------------------------
+    " [ zchee/deoplete-clang ]                                                     {{{
+    "
+    if dein#tap('deoplete-go')
+        let g:deoplete#sources#go = ['vim-go']
+        let g:deoplete#sources#go#gocode_binary = '/dev/null'
+        call deoplete#custom#option('omni_patterns', {
+            \ 'go': '[^. *\t]\.\w*',
+        \})
+    endif
+    " }}}
+
+    " -------------------------------------------------------------------------
     " [ xolox/vim-lua-ftplugin ]                                                     {{{
     if dein#tap('vim-lua-ftplugin')
         let g:lua_check_syntax = 0
@@ -801,7 +813,7 @@
         endfunction
         call s:DefaultHighlightings()
         autocmd ColorScheme * call <SID>DefaultHighlightings()
-        let g:mwAutoLoadMarks = 1
+        " let g:mwAutoLoadMarks = 1
     endif
     " }}}
     " -------------------------------------------------------------------------

@@ -159,7 +159,7 @@
 
         " color/paged man
         runtime! ftplugin/man.vim
-        nmap K <esc>:Man <cword><cr>
+        nmap K :Man <c-r><c-w><cr>
     endfunction
 
     if has("autocmd")
@@ -304,6 +304,23 @@
         let &modifiable=l:oldmodifiable
     endfunction
     "nnoremap <C-x> :Hexmode<CR>
+    " }}}
+    " -------------------------------------------------------------------------
+    " [ beancount ]                                                            {{{
+    "
+    function! s:beancount_custom()
+        setlocal tabstop=4 shiftwidth=4
+        setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
+
+        iabbr tt <c-r>=strftime("%F")<cr>
+
+    endfunction
+
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd Filetype beancount call s:beancount_custom()
+        augroup END
+    endif
     " }}}
 
 " [ Programming Related ]                                  }}}
