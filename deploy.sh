@@ -7,6 +7,7 @@ date=`date +"%s"`
 
 # for dein.vim
 mkdir -p .vim/bundle/repos/github.com/Shougo
+rm -rf /home/blue119/.cache/vim/
 
 # move same filename to end up with _data.bak for backup old file.
 git submodule init

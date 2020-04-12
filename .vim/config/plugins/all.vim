@@ -117,70 +117,74 @@
     " -------------------------------------------------------------------------
     " [ unite ]                                                             {{{
     " https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/denite.rc.vim
+    " Define mappings
+
     if dein#tap('denite.nvim')
+        autocmd FileType denite call s:denite_my_settings()
+        function! s:denite_my_settings() abort
+            nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+            nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
+            nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+            nnoremap <silent><buffer><expr> q denite#do_map('quit')
+            nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+            nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+        endfunction
+
+	    autocmd FileType denite-filter call s:denite_filter_my_settings()
+	    function! s:denite_filter_my_settings() abort
+	        imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+	    endfunction
+
         if executable('rg')
-            call denite#custom#var('file_rec', 'command',
-                  \ ['rg', '--files', '--glob', '!.git'])
-            call denite#custom#var('grep', 'command',
-                  \ ['rg', '--no-ignore', '--threads', '1'])
-                  " \ ['rg', '--threads', '1'])
-            call denite#custom#var('grep', 'recursive_opts', [])
-            call denite#custom#var('grep', 'final_opts', [])
-            call denite#custom#var('grep', 'separator', ['--'])
-            call denite#custom#var('grep', 'default_opts',
-                  \ ['--vimgrep', '--no-heading'])
+            call denite#custom#var('file/rec', 'command'        , ['rg', '--files', '--glob', '!.git'])
+            " call denite#custom#var('grep'    , 'command'        , ['rg', '--no-ignore', '--threads', '1'])
+            call denite#custom#var('grep'    , 'command'        , ['rg', '--threads', '1'])
+            call denite#custom#var('grep'    , 'recursive_opts' , [])
+            call denite#custom#var('grep'    , 'final_opts'     , [])
+            call denite#custom#var('grep'    , 'separator'      , ['--'])
+            call denite#custom#var('grep'    , 'default_opts'   , ['-i', '--vimgrep', '--no-heading'])
         " else
-            " call denite#custom#var('file_rec', 'command',
-                  " \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+            " call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
         endif
 
-        call denite#custom#source('file_old', 'matchers',
-            \ ['matcher_fuzzy', 'matcher_project_files'])
-        call denite#custom#source('tag', 'matchers', ['matcher_substring'])
+
+        call denite#custom#source('file/old',     'matchers', ['matcher/fuzzy', 'matcher/project_files'])
+        call denite#custom#source('file/mru', 'matchers', ['matcher/fuzzy', 'matcher_project_files'])
+        call denite#custom#source('tag'     ,     'matchers', ['matcher/substring'])
 
         if has('nvim')
-            call denite#custom#source('file_rec,grep', 'matchers',
-                \ ['matcher_cpsm'])
+            " call denite#custom#source('file/rec', 'matchers', ['matcher/fruzzy'])
+            call denite#custom#source('file/rec', 'matchers', ['matcher/cpsm'])
         endif
 
-        call denite#custom#source('file_old', 'converters',
-            \ ['converter_relative_word'])
+        call denite#custom#source('file/old,ghq', 'converters',  ['converter/relative_word', 'converter/relative_abbr'])
+
+        " Change sorters.
+        call denite#custom#source('file/rec', 'sorters', ['sorter/sublime'])
+
 
         "For python script scantree.py (works if python 3.5+ in path)
         "Read bellow on this file to learn more about scantree.py
         " call denite#custom#var('file_rec', 'command', ['scantree.py'])
 
         " Change mappings.
-        call denite#custom#map('insert', '<C-r>',
-            \ '<denite:toggle_matchers:matcher_substring>', 'noremap')
-        call denite#custom#map('insert', '<C-s>',
-            \ '<denite:toggle_sorters:sorter_reverse>', 'noremap')
-        call denite#custom#map( 'insert', '<C-j>',
-            \ '<denite:move_to_next_line>', 'noremap' )
-        call denite#custom#map( 'insert', '<C-k>',
-            \ '<denite:move_to_previous_line>', 'noremap' )
-        call denite#custom#map( 'insert', '<Down>',
-            \ '<denite:move_to_next_line>', 'noremap' )
-        call denite#custom#map( 'insert', '<Up>',
-            \ '<denite:move_to_previous_line>', 'noremap' )
-        call denite#custom#map( 'insert', '<PageDown>',
-            \ '<denite:scroll_page_forwards>', 'noremap' )
-        call denite#custom#map( 'insert', '<PageUp>',
-            \ '<denite:scroll_page_backwards>', 'noremap' )
-        call denite#custom#map('insert', ';',
-            \ 'vimrc#sticky_func()', 'expr')
+        " call denite#custom#map('insert', '<C-r>'     , '<denite:toggle_matchers:matcher_substring>', 'noremap')
+        " call denite#custom#map('insert', '<C-s>'     , '<denite:toggle_sorters:sorter_reverse>'    , 'noremap')
+        " call denite#custom#map('insert', '<C-j>'     , '<denite:move_to_next_line>'                , 'noremap' )
+        " call denite#custom#map('insert', '<C-k>'     , '<denite:move_to_previous_line>'            , 'noremap' )
+        " call denite#custom#map('insert', '<Down>'    , '<denite:move_to_next_line>'                , 'noremap' )
+        " call denite#custom#map('insert', '<Up>'      , '<denite:move_to_previous_line>'            , 'noremap' )
+        " call denite#custom#map('insert', '<PageDown>', '<denite:scroll_page_forwards>'             , 'noremap' )
+        " call denite#custom#map('insert', '<PageUp>'  , '<denite:scroll_page_backwards>'            , 'noremap' )
+        " call denite#custom#map('insert', ';'         , 'vimrc#sticky_func()'                       , 'expr')
 
-        call denite#custom#map( 'normal', '<PageDown>',
-            \ '<denite:scroll_page_forwards>', 'noremap' )
-        call denite#custom#map( 'normal', '<PageUp>',
-            \ '<denite:scroll_page_backwards>', 'noremap' )
-        call denite#custom#map('normal', 'r',
-            \ '<denite:do_action:quickfix>', 'noremap')
+        " call denite#custom#map('normal', '<PageDown>',  '<denite:scroll_page_forwards>' , 'noremap' )
+        " call denite#custom#map('normal', '<PageUp>'  ,  '<denite:scroll_page_backwards>', 'noremap' )
+        " call denite#custom#map('normal', 'r'         ,  '<denite:do_action:quickfix>'   , 'noremap')
 
         " Define alias
-        call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-        call denite#custom#var('file_rec/git', 'command',
-            \ ['git', 'ls-files', '-co', '--exclude-standard'])
+        call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+        call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
 
         " call denite#custom#alias('source', 'file_rec/py', 'file_rec')
         " call denite#custom#var('file_rec/py', 'command', ['scantree.py'])
@@ -234,13 +238,6 @@
 
         call denite#custom#var('menu', 'menus', s:menus)
 
-        " Change matchers.
-        call denite#custom#source( 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
-        call denite#custom#source( 'file_rec', 'matchers', ['matcher_cpsm'])
-
-        " Change sorters.
-        call denite#custom#source( 'file_rec', 'sorters', ['sorter_sublime'])
-
 
         " function! s:profile(opts) abort
         "   for fname in keys(a:opts)
@@ -258,18 +255,17 @@
               \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
 
         " Custom action
-        call denite#custom#action('file', 'test', {context -> execute('let g:foo = 1')})
-        call denite#custom#action('file', 'test2',
-              \ {context -> denite#do_action(context, 'open', context['targets'])})
+        call denite#custom#action('file', 'test' , {context -> execute('let g:foo = 1')})
+        call denite#custom#action('file', 'test2', {context -> denite#do_action(context, 'open', context['targets'])})
 
 
         " HotKeys
         nnoremap [denite] <Nop>
         nmap <Leader>u [denite]
         "" File searching like ctrlp.vim
-        nnoremap <C-p> :Denite -mode=normal -buffer-name=files buffer -input= file_rec<cr>
-        nnoremap <silent> [denite]g  :<C-u>Denite grep:. -mode=normal -buffer-name=search-buffer<CR>
-        nnoremap <silent> [denite]gc :<C-u>DeniteCursorWord grep:. -mode=normal -buffer-name=search-buffer<CR>
+        nnoremap <C-p> :Denite -buffer-name=files buffer -input= file/rec<CR>
+        nnoremap <silent> [denite]g  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
+        nnoremap <silent> [denite]gc :<C-u>DeniteCursorWord grep:. -buffer-name=search-buffer<CR>
 
         nnoremap <silent> [denite]j  :<C-u>Denite -resume -cursor-pos=+1 -immediately -buffer-name=search-buffer<CR>
         nnoremap <silent> [denite]k  :<C-u>Denite -resume -cursor-pos=-1 -immediately -buffer-name=search-buffer<CR>
