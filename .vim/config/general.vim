@@ -11,6 +11,7 @@ set backupdir=$VARPATH/backup
 set directory=$VARPATH/swp
 set undodir=$VARPATH/undo
 set viewdir=$VARPATH/view
+
 if !has('nvim')
     set viminfo+=n$VARPATH/viminfo
 else
