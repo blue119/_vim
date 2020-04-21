@@ -31,8 +31,8 @@ done
 ln -sf $HOME/.vim $HOME/.config/nvim
 ln -sf $HOME/.vimrc $HOME/.config/nvim/init.vim
 
-vim +NeoBundleInstall +qall
-#vim +PluginInstall +qall
+#vim +NeoBundleInstall +qall
+vim +PluginInstall +qall
 #cd $HOME/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer
 #cd $HOME/.vim/bundle/vimproc.vim && make
 
