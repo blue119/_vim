@@ -1,268 +1,152 @@
-function! s:dein_load_yaml(filename) abort
-    " Fallback to use python3 and PyYAML
-    python3 << endpython
-import vim, yaml
-with open(vim.eval('a:filename'), 'r') as f:
-    vim.vars['denite_plugins'] = yaml.load(f.read())
-endpython
+"let g:python3_host_prog='/usr/bin/python3'
+"set rtp+=~/.cache/vim/dein/repos/github.com/Shougo/deoplete.nvim
+"let g:deoplete#enable_at_startup = 1
 
-    for plugin in g:denite_plugins
-        call dein#add(plugin['repo'], extend(plugin, {}, 'keep'))
-    endfor
-    unlet g:denite_plugins
-endfunction
-
-" Setup dein {{{
-if &runtimepath !~# '/dein.vim'
-    let s:dein_dir = expand('$VARPATH/dein').'/repos/github.com/Shougo/dein.vim'
-    if ! isdirectory(s:dein_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
-    endif
-
-    execute 'set runtimepath+='.substitute(
-        \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
+"function! s:dein_load_yaml(filename) abort
+"    " Fallback to use python3 and PyYAML
+"    python3 << endpython
+"import vim, yaml
+"with open(vim.eval('a:filename'), 'r') as f:
+"    vim.vars['denite_plugins'] = yaml.load(f.read())
+"endpython
+"
+"    for plugin in g:denite_plugins
+"        call dein#add(plugin['repo'], extend(plugin, {}, 'keep'))
+"    endfor
+"    unlet g:denite_plugins
+"endfunction
+"
+" Setup vim-plug {{{
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source '~/.vimrc'
 endif
 " }}}
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Initialize dein.vim (package manager)
-let s:path = expand('$VARPATH/dein')
-" let s:plugins_path = expand('$VIMPATH/config/plugins.yaml')
-" let s:user_plugins_path = expand('$VIMPATH/config/local.plugins.yaml')
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
-" Plugin install: vim +PluginInstall +qall
-" if dein#load_state('/home/blue119/.vim/bundle/')
-    " call dein#begin('/home/blue119/.vim/bundle/')
-if dein#load_state(s:path)
-    call dein#begin(s:path)
+Plug 'blue119/molokai'
 
-    " Let dein manage dein
-    " Required:
-    call dein#add(s:path.'/repos/github.com/Shougo/dein.vim')
+" lean & mean status/tabline for vim that's light as air
+Plug 'bling/vim-airline'
+    " A collection of themes for vim-airline
+    Plug 'vim-airline/vim-airline-themes'
 
-    " Add or remove your plugins here:
-    " call dein#add('Shougo/neosnippet.vim')
-    " call dein#add('Shougo/neosnippet-snippets')
+"""""""""""
+" golang
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
+Plug 'jstemmer/gotags', {'for': 'go'}
 
-    " You can specify revision/branch/tag.
-    " call dein#add('Shougo/deol.nvim', { 'rev': 'a1b5108fd' })
-
-    " Color Scheme
-    call dein#add('blue119/molokai')
-
-    " lean & mean status/tabline for vim that's light as air
-    call dein#add('bling/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
-
-    " git
-    " fugitive.vim: a Git wrapper so awesome, it should be illegal
-    call dein#add('tpope/vim-fugitive')
-    call dein#add('airblade/vim-gitgutter')
-    call dein#add('tpope/vim-rhubarb')
-
-    " Vim script internal debugger (output in separate window, tab, or remote vim)
-    "call dein#add('vim-scripts/Decho')
-
-    " Visualize your undo tree.
-    "call dein#add('Gundo')
-
-    " search the file for FIXME, TODO, and XXX
-    " call dein#add('TaskList.vim')
-
-    " For Program Language {{{
-    " Java Script
-    " Beautify your javascript ,html,css source code inside Vim
-"    call dein#add('maksimr/vim-jsbeautify', {
-"                \ 'on_ft': ['json', 'js', 'html', 'css'],
-"                \ 'build': 'git submodule update --init --recursive'})
-"
-"    "" JSX
-"    "NeoBundle 'mxw/vim-jsx'
-"    "" NeoBundleLazy 'mxw/vim-jsx', { 'autoload': { 'filetypes' : ['javascript', 'javascript.jsx'] }, }
-"    call dein#add('mxw/vim-jsx', { 'on_ft': ['javascript', 'javascript.jsx'],})
-"
-"    "" Node JS
-"    "" Tools and environment to make Vim superb for developing with Node.js.
-"    call dein#add('moll/vim-node', { 'on_ft': ['javascript'],})
-"    "" A vim plugin for highlighting and indenting JST/EJS syntax.
-"    call dein#add('briancollins/vim-jst', { 'on_ft': ['ejs'],})
-"    "" Various snippets for developing node.js from vim
-"    call dein#add('jamescarr/snipmate-nodejs', { 'on_ft': ['javascript'],})
-"
-    " go Vim Mode
-    call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], 
-        \ 'on_cmd': 'GoUpdateBinaries'})
-    call dein#add('jstemmer/gotags' , { 'on_ft': ['go'], })
-"
-"    "" Octave
-"    "" Send Octave code from a VIM buffer to Octave
-"    "NeoBundleLazy 'octave.vim', { 'autoload': { 'filetypes' : ['m'] }, }
-"    call dein#add('vim-scripts/octave.vim', { 'on_ft': ['m'], })
-"
-"    "" Haskell
-"    call dein#add('lukerandall/haskellmode-vim', { 'on_ft': ['hs'], })
-"    "" Vim plugin for Haskell development.
-"    call dein#add('bitc/vim-hdevtools', { 'on_ft': ['hs'], })
-"    "" A completion plugin for Haskell, using ghc-mod.
-"    call dein#add('eagletmt/neco-ghc', { 'on_ft': ['hs'], })
-"
-"    "" CSV
-"    "NeoBundleLazy 'chrisbra/csv.vim', { 'autoload': { 'filetypes' : ['csv'] }, }
-"
-"    "" CPP
-"    call dein#add('octol/vim-cpp-enhanced-highlight', { 'on_ft': ['cpp', 'c++'], })
-"
-"    "" Markdown
-"    call dein#add('plasticboy/vim-markdown', { 'on_ft': ['markdown', 'mk'], })
-"
-    "" TOML
-    " call dein#add('cespare/vim-toml', { 'on_ft': ['toml'], })
-"
-"    "" CSS
-"    "NeoBundle 'hail2u/vim-css3-syntax'
-"
-"    "" vim syntax file for plantuml
-"    "NeoBundleLazy 'aklt/plantuml-syntax' , { 'autoload': { 'filetypes' : ['plantuml'] }, }
-"
-"    "" Docker
-"    call dein#add('ekalinin/Dockerfile.vim', { 'on_ft': ['dockerfile'], })
-"
-"    "" LiveScript support for Vim
-"    "NeoBundleLazy 'gkz/vim-ls' , { 'autoload': { 'filetypes' : ['ls'] }, }
-"    call dein#add('gkz/vim-ls', { 'on_ft': ['ls'], })
-
-    "" XML
-    "NeoBundleLazy 'othree/xml.vim' , { 'autoload': { 'filetypes' : ['xml'] }, }
-
-    " VUE
-    " call dein#add('posva/vim-vue', { 'on_ft': ['vue'], })
-
-    " Type Script
-    " call dein#add('leafgarland/typescript-vim', { 'on_ft': ['ts'], })
-
-    "" instant rst preview in browser
-    call dein#add('Rykka/riv.vim', { 'on_ft': ['rst'], })
-    "NeoBundleLazy 'Rykka/InstantRst' , { 'autoload': { 'filetypes' : ['rst'] }, }
-    "
-    "
-    " nginx conf
-    call dein#add('chr4/nginx.vim')
-
-    " Editor Config Plugin
-    call dein#add('editorconfig/editorconfig-vim')
-    " }}}
-
-    " GNU info documentation browser.
-    " NeoBundle 'info.vim'
-
-    " Snippet
-    call dein#add('honza/vim-snippets')
-    " call dein#add('Shougo/neosnippet-snippets')
-    call dein#add('SirVer/ultisnips')
-
-    " basic cscope settings and key mappings
-    call dein#add('vim-scripts/cscope_macros.vim')
-
-    " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-    call dein#add('vim-scripts/taglist.vim')
-    call dein#add('majutsushi/tagbar')
-
-    " call dein#add('fatih/vim-go' ,    { 'on_ft': ['go'], 
-        " \ 'on_cmd': 'GoUpdateBinaries'})
-
-    " Autocompletion deoplete {{{
-    call dein#add('Shougo/deoplete.nvim', {'on_cmd': 'UpdateRemotePlugins'})
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
-
+" Dark powered asynchronous completion framework for neovim/Vim8
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     " deoplete for C/C++/Obj-C/Obj-C++
-    call dein#add('zchee/deoplete-clang')
+    Plug 'zchee/deoplete-clang'
 
     " deoplete for python
-    call dein#add('zchee/deoplete-jedi')
+    Plug 'zchee/deoplete-jedi'
 
     " deoplete for golang
-    call dein#add('zchee/deoplete-go', {'build': 'make'})
+    "Plug 'zchee/deoplete-go', {'do': 'make'}
 
-    call dein#add('xolox/vim-lua-ftplugin')
-    call dein#add('xolox/vim-misc')
-    " }}}
+    " Lua file type plug-in for the Vim text editor
+    Plug 'xolox/vim-lua-ftplugin'
 
-    call dein#add('ervandew/supertab')
+    " Miscellaneous auto-load Vim scripts
+    Plug 'xolox/vim-misc'
 
-    " extended % matching for HTML, LaTeX, and many other languages
-    call dein#add('tmhedberg/matchit')
+" Multiple Plug commands can be written in a single line using | separators
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    " Perform all your vim insert mode completions with Tab
+    Plug 'ervandew/supertab'
 
-    " Indent Guides is a plugin for visually displaying indent levels in Vim.
-    call dein#add('nathanaelkane/vim-indent-guides')
+" A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
+    " GitHub extension for fugitive.vim
+    Plug 'tpope/vim-rhubarb'
 
-    " Vim motions on speed!
-    call dein#add('Lokaltog/vim-easymotion')
+" A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
+Plug 'airblade/vim-gitgutter'
 
-    " Vim script for text filtering and alignment
-    call dein#add('godlygeek/tabular')
+" Any valid git URL is allowed
+Plug 'junegunn/vim-github-dashboard'
 
-    " to highlight several words in different colors simultaneously
-    call dein#add('mbriggs/mark.vim')
+""""""""""""
+" VIM as IDE
+"
+" Vim script for text filtering and alignment
+Plug 'godlygeek/tabular'
 
-    " to highlight several words in different colors simultaneously
-    call dein#add('nathangrigg/vim-beancount')
+" basic cscope settings and key mappings
+Plug 'vim-scripts/cscope_macros.vim'
+    Plug 'blue119/cs-mgmt.vim'
 
-    call dein#add('blue119/EnhCommentify.vim')
-    call dein#add('blue119/cs-mgmt.vim')
-    call dein#add('blue119/occur.vim')
-    call dein#add('blue119/vim-rooter')
+" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+" Plug 'vim-scripts/taglist.vim'
+Plug 'majutsushi/tagbar'
 
-    " Jenkinsfile DSL vim syntax
-    " call dein#add('martinda/Jenkinsfile-vim-syntax')
-    call dein#add('sheerun/vim-polyglot')
+" A tree explorer plugin for vim.
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" The dark powered file explorer implementation
+Plug 'Shougo/defx.nvim'
 
-    " Unite to denite.nvim
-    " call dein#add('Shougo/unite.vim')
-    " call dein#add('Shougo/vimproc.vim', {'build': {'unix': g:make}})
-    " call dein#add('Shougo/unite-build')
-    " call dein#add('tsukkee/unite-tag')
-    call dein#add('Shougo/denite.nvim')
-    call dein#add('Shougo/neomru.vim')
+" Dark powered asynchronous unite all interfaces for Neovim/Vim8
+Plug 'Shougo/denite.nvim'
+    " MRU plugin includes unite.vim/denite.nvim MRU sources
+    Plug 'Shougo/neomru.vim'
 
-    " Run commands quickly.
-    call dein#add('thinca/vim-quickrun')
+" comment lines in a program
+Plug 'blue119/EnhCommentify.vim'
 
-    " robot framework
-    " NeoBundle 'blue119/unite-rf'
-    " NeoBundle 'mfukar/robotframework-vim'
+" Changes Vim working directory to project root
+Plug 'blue119/vim-rooter'
 
-    " file tree
-    " call dein#add('Shougo/vimfiler.vim')
-    call dein#add('Shougo/defx.nvim')
-    call dein#add('scrooloose/nerdtree')
+" to highlight several words in different colors simultaneously
+" Plug 'inkarkat/vim-mark'
+Plug 'mbriggs/mark.vim'
 
-    " shell
-    call dein#add('Shougo/vimshell.vim')
+" Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
+Plug 'dense-analysis/ale'
 
-    " zim
-    "call dein#add('blue119/vim-zim')
+" Run commands quickly.
+Plug 'thinca/vim-quickrun'
 
-    "emoji
-    " call dein#add('junegunn/vim-emoji')
-    " set completefunc=emoji#complete
+""""""""""""""""""""""""""""""""""""""""""""""""""""
+" For language
 
-    " session
-    call dein#add('lambdalisue/session.vim')
+"""""""""""
+" rst
+" instant rst preview in browser
+Plug 'Rykka/riv.vim', {'for': ['rst']}
 
-    " Asynchronous Lint Engine
-    call dein#add('w0rp/ale')
+"""""""""""
+" beancont
+Plug 'nathangrigg/vim-beancount'
 
-    " Required:
-    call dein#end()
-    call dein#save_state()
-    if dein#check_install()
-        if ! has('nvim')
-            set nomore
-        endif
-        call dein#install()
-    endif
-endif
-" Dein.vim End }}}
+"""""""""""
+" editconfig
+" Editor Config Plugin
+Plug 'editorconfig/editorconfig-vim'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Using a non-master branch
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" Plugin options
+" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Unmanaged plugin (manually installed and updated)
+" Plug '~/my-prototype-plugin'
+
+" Initialize plugin system
+call plug#end()
+
+
+
+

@@ -18,3 +18,5 @@
 .vim/.init.vim-rplugin~
 .vim/init.vim
 .vim/.vim
+.vim/autoload/
+.vim/plugged/

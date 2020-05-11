@@ -4,12 +4,12 @@
     " -------------------------------------------------------------------------
     " [ cs-mgmt.vim ]                                                      {{{
     "
-    if dein#tap('cs-mgmt.vim')
+"    if dein#tap('cs-mgmt.vim')
         " let g:CsMgmtDebugEnable = 1
         let g:CsMgmtCscopeEnable = 1
         let g:CsMgmtCtagsEnable = 1
         let g:CsMgmtReAttach = 1
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -50,24 +50,24 @@
     " -------------------------------------------------------------------------
     " [ UltiSnips ]                                           {{{
     "
-    if dein#tap('ultisnips')
+"    if dein#tap('ultisnips')
         let g:UltiSnipsExpandTrigger="<tab>"
         let g:UltiSnipsJumpForwardTrigger="<tab>"
         let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ git-fugitive ]                                                {{{
     "
-    if dein#tap('vim-fugitive')
+"    if dein#tap('vim-fugitive')
         autocmd FileType git :setlocal foldlevel=99
         " let g:Gitv_OpenHorizontal = 1
         let g:Gitv_TruncateCommitSubjects = 1
         let g:Gitv_DoNotMapCtrlKey = 0
         " highlight diffAdded guifg=#00bf00
         " highlight diffRemoved guifg=#bf0000
-    endif
+"    endif
     " }}}
     " -------------------------------------------------------------------------
     " [ Ack ]                                                {{{
@@ -83,13 +83,13 @@
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
     "
-    if dein#tap('EnhCommentify.vim')
+"    if dein#tap('EnhCommentify.vim')
         let g:EnhCommentifyRespectIndent = 'Yes'
         let g:EnhCommentifyPretty = 'Yes'
         let g:EnhCommentifyMultiPartBlocks = 'Yes'
         let g:EnhCommentifyAlignRight = 'Yes'
         " let g:EnhCommentify = 'Yes'
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -119,7 +119,7 @@
     " https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/denite.rc.vim
     " Define mappings
 
-    if dein#tap('denite.nvim')
+"    if dein#tap('denite.nvim')
         autocmd FileType denite call s:denite_my_settings()
         function! s:denite_my_settings() abort
             nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
@@ -413,7 +413,7 @@
 
     "nnoremap <silent>[unite]mg :Unite -silent -start-insert menu:git<CR>
 
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -434,7 +434,7 @@
     " -------------------------------------------------------------------------
     " [ vim-indent-guides ]                                                {{{
     "
-    if dein#tap('vim-indent-guides')
+"    if dein#tap('vim-indent-guides')
         let g:indent_guides_enable_on_vim_startup = 1
         let g:indent_guides_auto_colors = 0
         let g:indent_guides_start_level = 2
@@ -442,14 +442,14 @@
         let g:indent_guides_color_change_percent = 10
         hi IndentGuidesOdd  ctermbg=gray
         hi IndentGuidesEven ctermbg=darkgrey
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ NERD_TREE ]                                                        {{{
     "
-    " let NERDTreeChDirMode=2
-    " nnoremap <Leader>nt :NERDTreeToggle<CR>
+        let NERDTreeChDirMode=2
+        nnoremap <Leader>nt :NERDTreeToggle<CR>
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -465,7 +465,7 @@
     " -------------------------------------------------------------------------
     " [ Tag List ]                                                         {{{
     "
-    if dein#tap('taglist.vim')
+"    if dein#tap('taglist.vim')
         " Split to the right side of the screen
         let g:Tlist_Use_Right_Window = 1
         " Sort by the order
@@ -478,13 +478,13 @@
         let g:Tlist_Show_One_File = 1
 
         let g:Tlist_WinWidth = 35
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ DoxygenToolkit.vim ]                                               {{{
     "
-    if dein#tap('DoxygenToolkit.vim')
+"    if dein#tap('DoxygenToolkit.vim')
         " Dox :call <SID>DoxygenCommentFunc()
         " DoxLic :call <SID>DoxygenLicenseFunc()
         " DoxAuthor :call <SID>DoxygenAuthorFunc()
@@ -497,13 +497,13 @@
         let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
         let g:DoxygenToolkit_authorName="Yao-Po Wang"
         let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ tagbar ]                                                     {{{
     "
-    if dein#tap('tagbar')
+"    if dein#tap('tagbar')
     " let g:tagbar_type_go = {
                 " \ 'ctagstype' : 'go',
                 " \ 'kinds'     : [
@@ -546,7 +546,7 @@
           \ ]
         \ }
         let g:tagbar_autofocus = 1
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -559,18 +559,18 @@
     " [ powerline ]                                                        {{{
     " [ airline ]
     "
-    if dein#tap('vim-airline')
+"    if dein#tap('vim-airline')
         " let g:airline_theme='wombat'
         " let g:airline_enable_branch=1
         let g:airline#extensions#branch#enabled=1
         let g:airline#extensions#syntastic#enabled = 1
         let g:airline_detect_paste=1
 
-        if dein#tap('vim-airline-themes')
+        " if dein#tap('vim-airline-themes')
             " let g:airline_theme='tomorrow'
             let g:airline_theme='molokai'
             let g:airline_powerline_fonts = 1
-        endif
+        " endif
 
         if ! has('gui_running')
             set ttimeoutlen=10
@@ -610,42 +610,42 @@
         let g:airline#extensions#readonly#symbol = ''
         let g:airline_linecolumn_prefix = ' '
         let g:airline#extensions#paste#symbol = 'ρ'
-    endif
+"    endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ vim-jsbeautify ]                                                    {{{
     "
-    if dein#tap('vim-jsbeautify')
-        autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
-        autocmd FileType js         noremap <buffer> <c-f> :call JsBeautify()<cr>
-        autocmd FileType json       noremap <buffer> <c-f> :call JsonBeautify()<cr>
-        autocmd FileType jsx        noremap <buffer> <c-f> :call JsxBeautify()<cr>
-        autocmd FileType html       noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-        autocmd FileType css        noremap <buffer> <c-f> :call CSSBeautify()<cr>
+    "if dein#tap('vim-jsbeautify')
+    "    autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
+    "    autocmd FileType js         noremap <buffer> <c-f> :call JsBeautify()<cr>
+    "    autocmd FileType json       noremap <buffer> <c-f> :call JsonBeautify()<cr>
+    "    autocmd FileType jsx        noremap <buffer> <c-f> :call JsxBeautify()<cr>
+    "    autocmd FileType html       noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+    "    autocmd FileType css        noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
-        "Example of binding a function for js, html and css in visual mode on
-        autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
-        autocmd FileType js         vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
-        autocmd FileType json       vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-        autocmd FileType jsx        vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-        autocmd FileType html       vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-        autocmd FileType css        vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
-    endif
+    "    "Example of binding a function for js, html and css in visual mode on
+    "    autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
+    "    autocmd FileType js         vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
+    "    autocmd FileType json       vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+    "    autocmd FileType jsx        vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+    "    autocmd FileType html       vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+    "    autocmd FileType css        vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+    "endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ vim-polyglot ]                                                    {{{
     "
-    if dein#tap('vim-polyglot')
-        let g:polyglot_disabled = ['python']
-    endif
+    "if dein#tap('vim-polyglot')
+    "    let g:polyglot_disabled = ['python']
+    "endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ editorconfig-vim ]                                                  {{{
     "
-    if dein#tap('editorconfig-vim')
+"    if dein#tap('editorconfig-vim')
         " Excluded patterns.
         let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
@@ -658,13 +658,13 @@
          endfunction
 
          call editorconfig#AddNewHook(function('_editconfigFiletypeHook'))
-    endif
+"    endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ rooter ]                                                            {{{
     "
-    if dein#tap('vim-rooter')
+"    if dein#tap('vim-rooter')
         " To stop vim-rooter changing directory automatically
         let g:rooter_manual_only = 1
 
@@ -673,7 +673,7 @@
 
         " own directory and file patterns like this:
         " let g:rooter_patterns = ['Rakefile', '.git/']
-    endif
+"    endif
     " }}}
 
     " -------------------------------------------------------------------------
@@ -787,46 +787,43 @@
     " -------------------------------------------------------------------------
     " [ deoplete.nvim ]                                                     {{{
     "
-    if dein#tap('deoplete.nvim')
-        let g:deoplete#enable_at_startup = 1
-    endif
+"   if dein#tap('deoplete.nvim')
+       let g:deoplete#enable_at_startup = 1
+"   endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ zchee/deoplete-clang ]                                                     {{{
     "
-    if dein#tap('deoplete-clang')
+"    if dein#tap('deoplete-clang')
         let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-8.so.1'
         let g:deoplete#sources#clang#clang_header = '/usr/lib/gcc/x86_64-linux-gnu/8/include'
-    endif
+"    endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ zchee/deoplete-clang ]                                                     {{{
     "
-    if dein#tap('deoplete-go')
-        let g:deoplete#sources#go = ['vim-go']
-        let g:deoplete#sources#go#gocode_binary = '/dev/null'
-        call deoplete#custom#option('omni_patterns', {
-            \ 'go': '[^. *\t]\.\w*',
-        \})
-    endif
+"    if dein#tap('deoplete-go')
+        "let g:deoplete#sources#go = ['vim-go']
+        "let g:deoplete#sources#go#gocode_binary = '/dev/null'
+"    endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ xolox/vim-lua-ftplugin ]                                                     {{{
-    if dein#tap('vim-lua-ftplugin')
+"    if dein#tap('vim-lua-ftplugin')
         let g:lua_check_syntax = 0
         let g:lua_complete_omni = 1
         let g:lua_complete_dynamic = 0
         let g:lua_define_completion_mappings = 0
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ mark.vim ]                                                          {{{
     "
-    if dein#tap('mark.vim')
+"    if dein#tap('mark.vim')
         function! s:DefaultHighlightings()
             highlight def MarkWord1  ctermbg=9   ctermfg=Black  guibg=#8CCBEA   guifg=Black
             highlight def MarkWord2  ctermbg=10  ctermfg=Black  guibg=#A4E57E   guifg=Black
@@ -842,7 +839,7 @@
         call s:DefaultHighlightings()
         autocmd ColorScheme * call <SID>DefaultHighlightings()
         " let g:mwAutoLoadMarks = 1
-    endif
+"    endif
     " }}}
     " -------------------------------------------------------------------------
     " [ vim-go   ]                                                          {{{
@@ -903,13 +900,15 @@
 
     " -------------------------------------------------------------------------
     " [ vim-go   ]                                                          {{{
-        let g:go_def_mode = 'guru'
+        let g:go_def_mode = "guru"
         let g:go_autodetect_gopath = 1
+        set completeopt+=noselect
+        call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
     " }}}
     " -------------------------------------------------------------------------
     " [ lambdalisue/session.vim ]                                                          {{{
     " https://github.com/lambdalisue/session.vim
-    if dein#tap('session.vim')
+"    if dein#tap('session.vim')
         let g:session_dir = '~/.cache/session.vim'
         " A directory path which all session files will be saved/searched
 
@@ -927,17 +926,17 @@
         " [n] <Plug>(session-remove)        Perform SessionRemove on a session under the cursor
         " [v] <Plug>(session-remove)        Perform SessionRemove on sessions in the selection
         "
-    endif
+"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
     "
-    if dein#tap('supertab')
+"    if dein#tap('supertab')
         let g:SuperTabDefaultCompletionType = '<C-n>'
         " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
         " let g:SuperTabDefaultCompletionType = "context"
-    endif
+"    endif
     " }}}
 
     "
