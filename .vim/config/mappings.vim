@@ -663,10 +663,10 @@
     let g:DirDiffWindowSize = 10
 
     " WinMerge-style (Alt + hjkl) mapping for vimdiff
-    nnoremap j ]c
-    nnoremap k [c
-    nnoremap h do
-    nnoremap l dp
+    nnoremap <M-j> ]c
+    nnoremap <M-k> [c
+    nnoremap <M-h> do
+    nnoremap <M-l> dp
     "
     " [ Diff related ]                                                      }}}
     "
