@@ -796,9 +796,9 @@
     " [ zchee/deoplete-clang ]                                                     {{{
     "
 "    if dein#tap('deoplete-clang')
-        let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-8.so.1'
-        let g:deoplete#sources#clang#clang_header = '/usr/lib/gcc/x86_64-linux-gnu/8/include'
-"    endif
+        let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang-11.so.1'
+        let g:deoplete#sources#clang#clang_header = '/usr/lib/gcc/x86_64-linux-gnu/10/include'
+        "    endif
     " }}}
 
     " -------------------------------------------------------------------------
