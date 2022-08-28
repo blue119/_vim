@@ -130,6 +130,15 @@ Plug 'nathangrigg/vim-beancount'
 " Editor Config Plugin
 Plug 'editorconfig/editorconfig-vim'
 
+"""""""""""
+" terraform
+Plug 'hashivim/vim-terraform'
+
+
+"""""""""""
+" rust
+Plug 'racer-rust/vim-racer'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Using a non-master branch
