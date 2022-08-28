@@ -110,6 +110,9 @@ Plug 'mbriggs/mark.vim'
 " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 Plug 'dense-analysis/ale'
 
+" LSP for vim
+" Plug 'neovim/nvim-lspconfig'
+
 " Run commands quickly.
 Plug 'thinca/vim-quickrun'
 
@@ -148,7 +151,13 @@ Plug 'racer-rust/vim-racer'
 " Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
 " Plugin outside ~/.vim/plugged with post-update hook
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" cli-ledger
+Plug 'ledger/vim-ledger'
+
+" Github copilot
+Plug 'github/copilot.vim'
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'

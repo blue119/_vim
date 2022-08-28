@@ -921,16 +921,16 @@
     " [ lambdalisue/session.vim ]                                                          {{{
     " https://github.com/lambdalisue/session.vim
 "    if dein#tap('session.vim')
-        let g:session_dir = '~/.cache/session.vim'
+        " let g:session_dir = '~/.cache/session.vim'
         " A directory path which all session files will be saved/searched
 
-        let g:session#default_opener = 'edit'
+        " let g:session#default_opener = 'edit'
         " Used when no {opener} is given to SessionList command
 
-        let g:session#default_session = 'default'
+        " let g:session#default_session = 'default'
         " Used when no {session} is given and v:this_session is empty (session has not been loaded)
 
-        let g:session#default_mappings = 1
+        " let g:session#default_mappings = 1
         " Set it to 0 if you don't need default mappings on session://list window.
         " Use the followings to define your custom mappings in that case:
         " [n] <Plug>(session-open)          Perform SessionOpen on a session under the cursor
@@ -951,12 +951,35 @@
 "    endif
     " }}}
 
+    " -------------------------------------------------------------------------
+    " [ quickrun/ale ]                                                          {{{
     "
+    " if dein#tap('quickrun')
+        let g:ale_cpp_cc_options = '-std=c++20 -Wall' 
+        let g:quickrun_config = {}
+        let g:quickrun_config['cpp/g++'] = {
+            \ 'cmdopt': '-std=c++20',
+            \ 'type': 'cpp/g++'
+            \ }
+        let g:quickrun_config['cpp'] = {'type': 'cpp/g++'}
+    " endif
+    " }}}
+    "
+    " -------------------------------------------------------------------------
+    " [ ALE ]                                                              {{{
+    "
+    let g:ale_completion_enabled = 1
+    let g:ale_completion_trigger = '.'
+    let g:ale_completion_trigger_length = 1
+    let g:ale_completion_trigger_characters = '.'
+    set omnifunc=ale#completion#OmniFunc
+    set completeopt=menuone,longest,noinsert,noselect
+    " }}}
     " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
     "
     " http://aufather.wordpress.com/2010/08/26/omni-completion-in-vim/
-    set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
+    " set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
     " let OmniCpp_GlobalScopeSearch   = 1
     " let OmniCpp_DisplayMode         = 1
     " let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
@@ -964,7 +987,7 @@
     " let OmniCpp_ShowAccess          = 1 "show access in pop-up
     " let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
     " set completeopt=longest,menuone
-    set completeopt=longest,menu
+    " set completeopt=longest,menu
 
     augroup MyAutoCmd
         autocmd FileType hs setlocal omnifunc=necoghc#omnifunc
