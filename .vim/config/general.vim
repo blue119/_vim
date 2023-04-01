@@ -103,6 +103,10 @@ endif
 
 set splitright      "splitting a window will put the right
 
+" Add to .vimrc to enable project-specific vimrc
+set exrc   " exrc allows loading local executing local rc files.
+" set secure " secure disallows the use of :autocmd, shell and write commands in local .vimrc files.
+
 " Give one virtual space at end of line
 " set virtualedit=onemore
 

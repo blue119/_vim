@@ -73,6 +73,9 @@ Plug 'airblade/vim-gitgutter'
 " Any valid git URL is allowed
 Plug 'junegunn/vim-github-dashboard'
 
+" searches for local vimrc files in the file system tree of the currently opened file.
+Plug 'embear/vim-localvimrc'
+
 """"""""""""
 " VIM as IDE
 "

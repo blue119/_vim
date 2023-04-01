@@ -975,6 +975,14 @@
     set omnifunc=ale#completion#OmniFunc
     set completeopt=menuone,longest,noinsert,noselect
     " }}}
+    "
+    " -------------------------------------------------------------------------
+    " [ LocalVimRC ]                                                              {{{
+    "
+    let g:localvimrc_enable = 1
+    let g:localvimrc_debug = 0
+    let g:localvimrc_name = [ '.lvimrc' ]
+    " }}}
     " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
     "
