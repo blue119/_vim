@@ -40,23 +40,6 @@ Plug 'bling/vim-airline'
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
 Plug 'jstemmer/gotags', {'for': 'go'}
 
-" Dark powered asynchronous completion framework for neovim/Vim8
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-    " deoplete for C/C++/Obj-C/Obj-C++
-    Plug 'zchee/deoplete-clang'
-
-    " deoplete for python
-    Plug 'zchee/deoplete-jedi'
-
-    " deoplete for golang
-    "Plug 'zchee/deoplete-go', {'do': 'make'}
-
-    " Lua file type plug-in for the Vim text editor
-    Plug 'xolox/vim-lua-ftplugin'
-
-    " Miscellaneous auto-load Vim scripts
-    Plug 'xolox/vim-misc'
-
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     " Perform all your vim insert mode completions with Tab
@@ -113,15 +96,53 @@ Plug 'mbriggs/mark.vim'
 " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 Plug 'dense-analysis/ale'
 
-" LSP for vim
-" Plug 'neovim/nvim-lspconfig'
-
 " Run commands quickly.
 Plug 'thinca/vim-quickrun'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LSP for vim
+Plug 'prabirshrestha/vim-lsp'
+
+Plug 'mattn/vim-lsp-settings'
+
+Plug 'folke/lsp-colors.nvim'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" About the ai
+Plug 'aduros/ai.vim'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" About the completetion
+" Dark powered asynchronous completion framework for neovim/Vim8
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+    " deoplete for C/C++/Obj-C/Obj-C++
+    Plug 'zchee/deoplete-clang'
+
+    " deoplete for python
+    Plug 'zchee/deoplete-jedi'
+
+    " deoplete for golang
+    "Plug 'zchee/deoplete-go', {'do': 'make'}
+
+    " Lua file type plug-in for the Vim text editor
+    Plug 'xolox/vim-lua-ftplugin'
+
+    " Miscellaneous auto-load Vim scripts
+    Plug 'xolox/vim-misc'
+
+    " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+
+
+Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'keremc/asyncomplete-racer.vim'
+        Plug 'prabirshrestha/async.vim'
+    Plug 'keremc/asyncomplete-clang.vim'
+    Plug 'andreypopp/asyncomplete-ale.vim'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " For language
-
+"
 """""""""""
 " rst
 " instant rst preview in browser
@@ -143,7 +164,10 @@ Plug 'hashivim/vim-terraform'
 
 """""""""""
 " rust
-Plug 'racer-rust/vim-racer'
+" Plug 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim'
+" depends on rust.vim
+Plug 'mattn/webapi-vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 

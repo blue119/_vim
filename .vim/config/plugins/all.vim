@@ -788,7 +788,9 @@
     " [ deoplete.nvim ]                                                     {{{
     "
 "   if dein#tap('deoplete.nvim')
-       let g:deoplete#enable_at_startup = 1
+"   there is conflic with asyncomplete.vim, it will lead the popup window
+"   weirdly disappear
+       let g:deoplete#enable_at_startup = 0
 "   endif
     " }}}
 
@@ -843,15 +845,67 @@
     " }}}
     " -------------------------------------------------------------------------
     " [ vim-racer ]                                                          {{{
-    augroup Racer
-        autocmd!
-        autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
-        autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
-        autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
-        autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
-        autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
-        autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
+    " augroup Racer
+    "     autocmd!
+    "     autocmd FileType rust nmap <buffer> gd         <Plug>(rust-def)
+    "     autocmd FileType rust nmap <buffer> gs         <Plug>(rust-def-split)
+    "     autocmd FileType rust nmap <buffer> gx         <Plug>(rust-def-vertical)
+    "     autocmd FileType rust nmap <buffer> gt         <Plug>(rust-def-tab)
+    "     autocmd FileType rust nmap <buffer> <leader>gd <Plug>(rust-doc)
+    "     autocmd FileType rust nmap <buffer> <leader>gD <Plug>(rust-doc-tab)
+    " augroup END
+    " }}}
+    " -------------------------------------------------------------------------
+    " [ vim-lsp ]                                                          {{{
+    if executable('pylsp')
+        " pip install python-lsp-server
+        au User lsp_setup call lsp#register_server({
+            \ 'name': 'pylsp',
+            \ 'cmd': {server_info->['pylsp']},
+            \ 'allowlist': ['python'],
+            \ })
+    endif
+
+    function! s:on_lsp_buffer_enabled() abort
+        setlocal omnifunc=lsp#complete
+        setlocal signcolumn=yes
+        if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+        nmap <buffer> gd <plug>(lsp-definition)
+        nmap <buffer> gs <plug>(lsp-document-symbol-search)
+        nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+        nmap <buffer> gr <plug>(lsp-references)
+        nmap <buffer> gi <plug>(lsp-implementation)
+        nmap <buffer> gt <plug>(lsp-type-definition)
+        nmap <buffer> <leader>rn <plug>(lsp-rename)
+        nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+        nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+        nmap <buffer> K <plug>(lsp-hover)
+        " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+        " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+        let g:lsp_format_sync_timeout = 1000
+        autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+        " refer to doc to add more commands
+    endfunction
+
+    augroup lsp_install
+        au!
+        " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+        autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
     augroup END
+    " }}}
+    " -------------------------------------------------------------------------
+    " [ rust.vim ]                                                          {{{
+    let g:rustfmt_autosave = 1
+    let g:rust_clip_command = 'xclip -selection clipboard'
+    " }}}
+    " -------------------------------------------------------------------------
+    " [ asyncomplete.vim ]                                                          {{{
+    " https://github.com/keremc/asyncomplete-racer.vim
+    " https://github.com/keremc/asyncomplete-clang.vim
+    autocmd User asyncomplete_setup call asyncomplete#register_source(
+    \ asyncomplete#sources#racer#get_source_options())
     " }}}
     " -------------------------------------------------------------------------
     " [ vim-go   ]                                                          {{{
@@ -955,7 +1009,7 @@
     " [ quickrun/ale ]                                                          {{{
     "
     " if dein#tap('quickrun')
-        let g:ale_cpp_cc_options = '-std=c++20 -Wall' 
+        " let g:ale_cpp_cc_options = '-std=c++20 -Wall'
         let g:quickrun_config = {}
         let g:quickrun_config['cpp/g++'] = {
             \ 'cmdopt': '-std=c++20',
