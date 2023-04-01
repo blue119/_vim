@@ -500,11 +500,7 @@
     " -------------------------------------------------------------------------
     " [ Virtual Mode + Ctrl ]                                       {{{
     "
-    vnoremap <C-c> :w! /tmp/vimbuffer<CR>:!DISPLAY=:0 xclip < /tmp/vimbuffer<CR><CR>
-    " Copy to System-Clipboard
-    "if OS == "Linux"
-    "    map <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
-    "endif
+    vnoremap <C-c> :w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>
 
     " Tab Control
     xnoremap <tab> >gv
@@ -663,14 +659,14 @@
     let g:DirDiffWindowSize = 10
 
     " WinMerge-style (Alt + hjkl) mapping for vimdiff
-    " nnoremap j ]c
-    " nnoremap k [c
-    " nnoremap h do
-    " nnoremap l dp
-    nnoremap <A-j> ]c
-    nnoremap <A-k> [c
-    nnoremap <A-h> do
-    nnoremap <A-l> dp
+    nnoremap j ]c
+    nnoremap k [c
+    nnoremap h do
+    nnoremap l dp
+    " nnoremap <A-j> ]c
+    " nnoremap <A-k> [c
+    " nnoremap <A-h> do
+    " nnoremap <A-l> dp
     "
     " [ Diff related ]                                                      }}}
     "
