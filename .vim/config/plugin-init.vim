@@ -53,9 +53,6 @@ Plug 'tpope/vim-fugitive'
 " A Vim plugin which shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks.
 Plug 'airblade/vim-gitgutter'
 
-" Any valid git URL is allowed
-Plug 'junegunn/vim-github-dashboard'
-
 " searches for local vimrc files in the file system tree of the currently opened file.
 Plug 'embear/vim-localvimrc'
 
@@ -75,13 +72,6 @@ Plug 'majutsushi/tagbar'
 
 " A tree explorer plugin for vim.
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" The dark powered file explorer implementation
-Plug 'Shougo/defx.nvim'
-
-" Dark powered asynchronous unite all interfaces for Neovim/Vim8
-Plug 'Shougo/denite.nvim'
-    " MRU plugin includes unite.vim/denite.nvim MRU sources
-    Plug 'Shougo/neomru.vim'
 
 " comment lines in a program
 Plug 'blue119/EnhCommentify.vim'
@@ -93,23 +83,21 @@ Plug 'blue119/vim-rooter'
 " Plug 'inkarkat/vim-mark'
 Plug 'mbriggs/mark.vim'
 
-" Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
-Plug 'dense-analysis/ale'
-
 " Run commands quickly.
 Plug 'thinca/vim-quickrun'
 
+" The Uncompromising Code Formatter
+Plug 'ambv/black'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " LSP for vim
 Plug 'prabirshrestha/vim-lsp'
 
 Plug 'mattn/vim-lsp-settings'
-
+"
 Plug 'folke/lsp-colors.nvim'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" About the ai
-Plug 'aduros/ai.vim'
+" Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
+Plug 'dense-analysis/ale'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About the completetion
@@ -132,6 +120,14 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 
     " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
+" The dark powered file explorer implementation
+Plug 'Shougo/defx.nvim'
+
+" Dark powered asynchronous unite all interfaces for Neovim/Vim8
+Plug 'Shougo/denite.nvim'
+        " MRU plugin includes unite.vim/denite.nvim MRU sources
+    Plug 'Shougo/neomru.vim'
+
 
 Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -141,16 +137,25 @@ Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'andreypopp/asyncomplete-ale.vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
-" For language
+" For filetype
 "
 """""""""""
 " rst
 " instant rst preview in browser
 Plug 'Rykka/riv.vim', {'for': ['rst']}
 
+" Plug 'racer-rust/vim-racer'
+Plug 'rust-lang/rust.vim'
+
+" depends on rust.vim
+Plug 'mattn/webapi-vim'
+
 """""""""""
 " beancont
 Plug 'nathangrigg/vim-beancount'
+
+" cli-ledger
+Plug 'ledger/vim-ledger'
 
 """""""""""
 " editconfig
@@ -159,15 +164,10 @@ Plug 'editorconfig/editorconfig-vim'
 
 """""""""""
 " terraform
-Plug 'hashivim/vim-terraform'
+" Plug 'hashivim/vim-terraform'
 
-
-"""""""""""
-" rust
-" Plug 'racer-rust/vim-racer'
-Plug 'rust-lang/rust.vim'
-" depends on rust.vim
-Plug 'mattn/webapi-vim'
+" csv
+" Plug 'chrisbra/csv.vim', {'for':'csv'}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -179,9 +179,6 @@ Plug 'mattn/webapi-vim'
 
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-" cli-ledger
-Plug 'ledger/vim-ledger'
 
 " Github copilot
 Plug 'github/copilot.vim'
