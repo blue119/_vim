@@ -130,10 +130,10 @@
             nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
         endfunction
 
-	    autocmd FileType denite-filter call s:denite_filter_my_settings()
-	    function! s:denite_filter_my_settings() abort
-	        imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
-	    endfunction
+        autocmd FileType denite-filter call s:denite_filter_my_settings()
+        function! s:denite_filter_my_settings() abort
+            imap <silent><buffer> <C-o> <Plug>(denite_filter_quit)
+        endfunction
 
         if executable('rg')
             call denite#custom#var('file/rec', 'command'        , ['rg', '--files', '--glob', '!.git'])
@@ -895,8 +895,8 @@
         autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
     augroup END
 
-    " let g:lsp_log_verbose = 1
-    " let g:lsp_log_file = expand('~/vim-lsp.log')
+    let g:lsp_log_verbose = 1
+    let g:lsp_log_file = expand('~/vim-lsp.log')
     " }}}
     " -------------------------------------------------------------------------
     " [ rust.vim ]                                                          {{{
@@ -912,58 +912,58 @@
     " }}}
     " -------------------------------------------------------------------------
     " [ vim-go   ]                                                          {{{
-	autocmd FileType defx call s:defx_my_settings()
-	function! s:defx_my_settings() abort
-	  " Define mappings
-	  nnoremap <silent><buffer><expr> <CR>
-	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> c
-	  \ defx#do_action('copy')
-	  nnoremap <silent><buffer><expr> m
-	  \ defx#do_action('move')
-	  nnoremap <silent><buffer><expr> p
-	  \ defx#do_action('paste')
-	  nnoremap <silent><buffer><expr> l
-	  \ defx#do_action('open')
-	  nnoremap <silent><buffer><expr> E
-	  \ defx#do_action('open', 'vsplit')
-	  nnoremap <silent><buffer><expr> P
-	  \ defx#do_action('open', 'pedit')
-	  nnoremap <silent><buffer><expr> K
-	  \ defx#do_action('new_directory')
-	  nnoremap <silent><buffer><expr> N
-	  \ defx#do_action('new_file')
-	  nnoremap <silent><buffer><expr> d
-	  \ defx#do_action('remove')
-	  nnoremap <silent><buffer><expr> r
-	  \ defx#do_action('rename')
-	  nnoremap <silent><buffer><expr> x
-	  \ defx#do_action('execute_system')
-	  nnoremap <silent><buffer><expr> yy
-	  \ defx#do_action('yank_path')
-	  nnoremap <silent><buffer><expr> .
-	  \ defx#do_action('toggle_ignored_files')
-	  nnoremap <silent><buffer><expr> h
-	  \ defx#do_action('cd', ['..'])
-	  nnoremap <silent><buffer><expr> ~
-	  \ defx#do_action('cd')
-	  nnoremap <silent><buffer><expr> q
-	  \ defx#do_action('quit')
-	  nnoremap <silent><buffer><expr> <Space>
-	  \ defx#do_action('toggle_select') . 'j'
-	  nnoremap <silent><buffer><expr> *
-	  \ defx#do_action('toggle_select_all')
-	  nnoremap <silent><buffer><expr> j
-	  \ line('.') == line('$') ? 'gg' : 'j'
-	  nnoremap <silent><buffer><expr> k
-	  \ line('.') == 1 ? 'G' : 'k'
-	  nnoremap <silent><buffer><expr> <C-l>
-	  \ defx#do_action('redraw')
-	  nnoremap <silent><buffer><expr> <C-g>
-	  \ defx#do_action('print')
-	  nnoremap <silent><buffer><expr> cd
-	  \ defx#do_action('change_vim_cwd')
-	endfunction
+    autocmd FileType defx call s:defx_my_settings()
+    function! s:defx_my_settings() abort
+      " Define mappings
+      nnoremap <silent><buffer><expr> <CR>
+      \ defx#do_action('open')
+      nnoremap <silent><buffer><expr> c
+      \ defx#do_action('copy')
+      nnoremap <silent><buffer><expr> m
+      \ defx#do_action('move')
+      nnoremap <silent><buffer><expr> p
+      \ defx#do_action('paste')
+      nnoremap <silent><buffer><expr> l
+      \ defx#do_action('open')
+      nnoremap <silent><buffer><expr> E
+      \ defx#do_action('open', 'vsplit')
+      nnoremap <silent><buffer><expr> P
+      \ defx#do_action('open', 'pedit')
+      nnoremap <silent><buffer><expr> K
+      \ defx#do_action('new_directory')
+      nnoremap <silent><buffer><expr> N
+      \ defx#do_action('new_file')
+      nnoremap <silent><buffer><expr> d
+      \ defx#do_action('remove')
+      nnoremap <silent><buffer><expr> r
+      \ defx#do_action('rename')
+      nnoremap <silent><buffer><expr> x
+      \ defx#do_action('execute_system')
+      nnoremap <silent><buffer><expr> yy
+      \ defx#do_action('yank_path')
+      nnoremap <silent><buffer><expr> .
+      \ defx#do_action('toggle_ignored_files')
+      nnoremap <silent><buffer><expr> h
+      \ defx#do_action('cd', ['..'])
+      nnoremap <silent><buffer><expr> ~
+      \ defx#do_action('cd')
+      nnoremap <silent><buffer><expr> q
+      \ defx#do_action('quit')
+      nnoremap <silent><buffer><expr> <Space>
+      \ defx#do_action('toggle_select') . 'j'
+      nnoremap <silent><buffer><expr> *
+      \ defx#do_action('toggle_select_all')
+      nnoremap <silent><buffer><expr> j
+      \ line('.') == line('$') ? 'gg' : 'j'
+      nnoremap <silent><buffer><expr> k
+      \ line('.') == 1 ? 'G' : 'k'
+      nnoremap <silent><buffer><expr> <C-l>
+      \ defx#do_action('redraw')
+      nnoremap <silent><buffer><expr> <C-g>
+      \ defx#do_action('print')
+      nnoremap <silent><buffer><expr> cd
+      \ defx#do_action('change_vim_cwd')
+    endfunction
 
     " }}}
 
@@ -1029,6 +1029,62 @@
     let g:ale_completion_trigger = '.'
     let g:ale_completion_trigger_length = 1
     let g:ale_completion_trigger_characters = '.'
+    let g:ale_lint_on_enter = 1
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_text_changed = 'always'
+    let g:ale_set_highlights = 1
+    let g:ale_set_signs = 1
+    let g:ale_fix_on_save = 1
+    let g:ale_python_flake8_options = '--ignore=E501'
+    let g:ale_sign_error = '>>'
+    let g:ale_sign_warning = '--'
+    let g:ale_sign_info = '=='
+    let g:ale_sign_style_error = '>>'
+    let g:ale_sign_style_warning = '--'
+    let g:ale_sign_style_info = '=='
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_cpp_cc_options = '-std=c++17 -Wall'
+    let g:ale_cpp_clangd_options = '-std=c++17'
+    let g:ale_fixers = {
+        \   'python': ['black', 'autoimport'],
+        \   'cpp': ['clang-format'],
+        \   'c': ['clang-format'],
+        \   'sh': ['shfmt'],
+        \   'go': ['gofmt', 'goimports'],
+        \   'rust': ['rustfmt'],
+        \   'lua': ['stylua'],
+        \}
+        " \   'vim': ['vint'],
+      " \   'dart': ['dartfmt'],
+      " \   'javascript': ['prettier'],
+      " \   'typescript': ['prettier'],
+      " \   'html': ['prettier'],
+      " \   'css': ['prettier'],
+      " \   'json': ['prettier'],
+      " \   'yaml': ['prettier'],
+      " \   'markdown': ['prettier'],
+    let g:ale_linters = {
+                \   'python': [],
+                \}
+    " let g:ale_linters = {
+                " \   'python': ['pylint',],
+                " \   'cpp': ['clang-tidy'],
+                " \   'c': ['clang-tidy'],
+                " \   'javascript': ['eslint'],
+                " \   'typescript': ['eslint'],
+                " \   'html': ['tidy'],
+                " \   'css': ['stylelint'],
+                " \   'json': ['jsonlint'],
+                " \   'yaml': ['yamllint'],
+                " \   'markdown': ['markdownlint'],
+                " \   'sh': ['shellcheck'],
+                " \   'vim': ['vint'],
+                " \   'go': ['golangci-lint'],
+                " \   'rust': ['rustc'],
+                " \   'lua': ['luacheck'],
+                " \}
     set omnifunc=ale#completion#OmniFunc
     set completeopt=menuone,longest,noinsert,noselect
     " }}}

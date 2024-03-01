@@ -88,6 +88,9 @@ Plug 'thinca/vim-quickrun'
 
 " The Uncompromising Code Formatter
 Plug 'ambv/black'
+
+" Vim plugin for clang-format, a formatter for C, C++, Obj-C, Java, JavaScript, and so on.
+Plug 'rhysd/vim-clang-format'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " LSP for vim
 Plug 'prabirshrestha/vim-lsp'
