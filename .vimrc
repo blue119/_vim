@@ -44,7 +44,7 @@ endfunction
 " Set augroup
 augroup MyAutoCmd
     autocmd!
-    autocmd CursorHold *? syntax sync minlines=300
+    autocmd CursorHold * syntax sync minlines=300
 augroup END
 
 " Initialize base requirements
@@ -61,18 +61,13 @@ endif
 
 " load plugin system(package manager)
 if has('vim_starting')
-    call s:source_file('plugin-init.vim')
+    call s:source_file('plugins/init.vim')
 endif
 
-call s:source_file('plugins/all.vim')
+call s:source_file('plugins/setting.vim')
 
 filetype plugin indent on
 syntax enable
-
-" if ! has('vim_starting')
-    " call dein#call_hook('source')
-    " call dein#call_hook('post_source')
-" endif
 
 " Loading configuration modules
 call s:source_file('general.vim')
