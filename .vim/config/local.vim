@@ -3,17 +3,6 @@
 " [ Functions & autocmd ]                                                  {{{
 "
     " -------------------------------------------------------------------------
-    " set vim to chdir for each file                                       {{{
-    " if exists('+autochdir')
-        " set autochdir
-    " else
-        " augroup MyAutoCmd
-            " autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
-        " augroup END
-    " endif
-    " }}}
-
-    " -------------------------------------------------------------------------
     " Automatically update 'Modified' field {{{
     " If buffer modified, update any 'Last modified: ' in the first 20 lines.
     "
@@ -28,10 +17,6 @@
     endfun
     command! LastModified call LastModified()
 
-                        " \ strftime('%a %b %d, %Y  %I:%M%p') . '#e'
-    " augroup MyAutoCmd
-        " autocmd BufWritePre * call LastModified()
-    " augroup End
 
     " }}}
 
@@ -111,64 +96,3 @@
 
     autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
     " }}}
-
-    " -------------------------------------------------------------------------
-    " vim macro to jump to devhelp topics. {{{
-    "
-    "function! DevHelpCurrentWord()
-    "    let word = expand("<cword>")
-    "    exe "!devhelp -s " . word
-    "endfunction
-    "
-    "nmap hdh :call DevHelpCurrentWord()<CR>
-    " }}}
-
-"
-" [ Functions & autocmd ]                                                  }}}
-" =============================================================================
-
-" =============================================================================
-" [ MISC ]                                                                 {{{
-"
-    "  Search code sample from Google code                                 {{{
-    "
-    "function! OnlineDoc()
-    "    let s:browser = "google-chrome"
-    "    let s:wordUnderCursor = expand("<cword>")
-    "
-    "    if &ft == "cpp" || &ft == "c" || &ft == "ruby" || &ft == "php" || &ft == "python"
-    "        let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor."+lang:".&ft
-    "    elseif &ft == "vim"
-    "        let s:url = "http://www.google.com/codesearch?q=".s:wordUnderCursor
-    "    else
-    "        return
-    "    endif
-    "
-    "    let s:cmd = "silent !" . s:browser . " " . s:url
-    "    "echo  s:cmd
-    "    execute  s:cmd
-    "    redraw!
-    "endfunction
-
-    " online doc search
-    " map <LocalLeader>k :call OnlineDoc()<CR>
-    " }}}
-
-    " vim as a calcuator"                                                  {{{
-    :command! -nargs=+ Calc :py3 print(<args>)
-    :py3 from math import *
-    " }}}
-
-    " Script test                                                          {{{
-    "
-    " function! CapitalizeCenterAndMoveDown()
-        " s/\<./\u&/g "Built-in substitution capitalizes each word
-        " center      "Built-in center command centers entire line
-        " +1          "Built-in relative motion (+1 line down)
-    " endfunction
-
-    " nmap <silent><LocalLeader>C :call CapitalizeCenterAndMoveDown()<CR>
-    " }}}
-"
-" [ MISC ]                                                                 }}}
-" =============================================================================

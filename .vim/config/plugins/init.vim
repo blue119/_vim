@@ -1,21 +1,3 @@
-"let g:python3_host_prog='/usr/bin/python3'
-"set rtp+=~/.cache/vim/dein/repos/github.com/Shougo/deoplete.nvim
-"let g:deoplete#enable_at_startup = 1
-
-"function! s:dein_load_yaml(filename) abort
-"    " Fallback to use python3 and PyYAML
-"    python3 << endpython
-"import vim, yaml
-"with open(vim.eval('a:filename'), 'r') as f:
-"    vim.vars['denite_plugins'] = yaml.load(f.read())
-"endpython
-"
-"    for plugin in g:denite_plugins
-"        call dein#add(plugin['repo'], extend(plugin, {}, 'keep'))
-"    endfor
-"    unlet g:denite_plugins
-"endfunction
-"
 " Setup vim-plug {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -60,10 +42,10 @@ Plug 'embear/vim-localvimrc'
 " VIM as IDE
 "
 " Vim script for text filtering and alignment
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 
 " basic cscope settings and key mappings
-Plug 'vim-scripts/cscope_macros.vim'
+Plug 'dhananjaylatkar/cscope_maps.nvim'
     Plug 'blue119/cs-mgmt.vim'
 
 " Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
@@ -71,13 +53,13 @@ Plug 'vim-scripts/cscope_macros.vim'
 Plug 'majutsushi/tagbar'
 
 " A tree explorer plugin for vim.
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " comment lines in a program
 Plug 'blue119/EnhCommentify.vim'
 
 " Changes Vim working directory to project root
-Plug 'blue119/vim-rooter'
+" Plug 'blue119/vim-rooter'
 
 " to highlight several words in different colors simultaneously
 " Plug 'inkarkat/vim-mark'
@@ -124,7 +106,7 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
 " The dark powered file explorer implementation
-Plug 'Shougo/defx.nvim'
+" Plug 'Shougo/defx.nvim'
 
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plug 'Shougo/denite.nvim'
@@ -173,13 +155,6 @@ Plug 'editorconfig/editorconfig-vim'
 " Plug 'chrisbra/csv.vim', {'for':'csv'}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Using a non-master branch
-" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -191,7 +166,4 @@ Plug 'github/copilot.vim'
 
 " Initialize plugin system
 call plug#end()
-
-
-
 

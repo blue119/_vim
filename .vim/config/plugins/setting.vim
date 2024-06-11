@@ -3,50 +3,10 @@
 "
     " -------------------------------------------------------------------------
     " [ cs-mgmt.vim ]                                                      {{{
-    "
-"    if dein#tap('cs-mgmt.vim')
-        " let g:CsMgmtDebugEnable = 1
         let g:CsMgmtCscopeEnable = 1
         let g:CsMgmtCtagsEnable = 1
         let g:CsMgmtReAttach = 1
-"    endif
     " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ cscope ]                                                           {{{
-    "
-        " put result into QFix Window{{{
-        "
-        if v:version >= 700 && has("cscope")
-            function! CSCOPE_QuickFixToogle()
-                if exists("g:__cscopequickfix")
-                    set cscopequickfix&
-                    unmap <C-t>
-                    unlet g:__cscopequickfix
-                else
-                    " cscope search resule save into quickfix
-                    set cscopequickfix=c-,d-,e-,g-,i-,s-,t-
-                    " Ctrl-t remapping for cscope with quickfix
-                    nmap <C-t> :colder<CR>:cc<CR>
-                    let g:__cscopequickfix = bufnr("$")
-                endif
-            endfunction
-
-            nmap <Leader>cq :call CSCOPE_QuickFixToogle()<CR>
-        endif
-        " }}}
-        "
-    " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ Auto Commplete Pop: ACP ]                                           {{{
-    "
-    " nnoremap <Leader>af :AcpDisable<CR>
-    " nnoremap <Leader>an :AcpEnable<CR>
-    " let g:acp_behaviorSnipmateLength = 1
-    " let g:acp_enableAtStartup = 0
-    " }}}
-    "
     " -------------------------------------------------------------------------
     " [ UltiSnips ]                                           {{{
     "
@@ -60,62 +20,21 @@
     " -------------------------------------------------------------------------
     " [ git-fugitive ]                                                {{{
     "
-"    if dein#tap('vim-fugitive')
         autocmd FileType git :setlocal foldlevel=99
-        " let g:Gitv_OpenHorizontal = 1
         let g:Gitv_TruncateCommitSubjects = 1
         let g:Gitv_DoNotMapCtrlKey = 0
-        " highlight diffAdded guifg=#00bf00
-        " highlight diffRemoved guifg=#bf0000
-"    endif
     " }}}
-    " -------------------------------------------------------------------------
-    " [ Ack ]                                                {{{
-    "
-    "if executable("ag")
-    "    let g:ackprg = 'ag --nogroup --nocolor --column'
-    "endif
-
-    "" nnoremap <silent> <leader>a/ :Ack<CR><C-R><C-W>
-    "nnoremap <silent> <leader>a/ :Ack<CR>
-    " }}}
-    "
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
     "
-"    if dein#tap('EnhCommentify.vim')
         let g:EnhCommentifyRespectIndent = 'Yes'
         let g:EnhCommentifyPretty = 'Yes'
         let g:EnhCommentifyMultiPartBlocks = 'Yes'
         let g:EnhCommentifyAlignRight = 'Yes'
-        " let g:EnhCommentify = 'Yes'
-"    endif
     " }}}
     "
     " -------------------------------------------------------------------------
-    " [ bufExplorer plugin ]                                                {{{
-    "
-    "let g:bufExplorerDefaultHelp = 0
-    "let g:bufExplorerShowRelativePath = 1
-    "let g:bufExplorerSortBy = "fullpath"
-    "nnoremap <leader>o :BufExplorer<cr>
-    " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ CtrlP ]                                                             {{{
-    "
-    " let g:ctrlp_working_path_mode = 'ra'
-    " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-    " let g:ctrlp_custom_ignore = {
-        " \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-        " \ 'file': '\v\.(exe|so|dll)$',
-        " \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-        " \ }
-    " let g:ctrlp_user_command = 'find %s -type f'
-    " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ unite ]                                                             {{{
+    " [ denite ]                                                             {{{
     " https://github.com/Shougo/shougo-s-github/blob/master/vim/rc/plugins/denite.rc.vim
     " Define mappings
 
@@ -295,143 +214,6 @@
     " }}}
 
     " -------------------------------------------------------------------------
-    " [ unite ]                                                             {{{
-    " http://goo.gl/Uq95Wj #Unite.vim, the Plugin You Didn't Know You Need
-    "
-
-    "call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    "call unite#filters#sorter_default#use(['sorter_rank'])
-    "" call unite#set_profile('files', 'smartcase', 1)
-    "let g:unite_enable_start_insert        = 0
-    "let g:unite_enable_ignore_case         = 1
-    "let g:unite_enable_smart_case          = 1
-    "let g:unite_source_rec_max_cache_files = 5000
-    "" let g:unite_source_rec_async_command   = ['ag', '--nocolor', '--nogroup', --'--hidden', '-g', '']
-    "let g:unite_source_rec_async_command   =  'ag --nocolor --nogroup --ignore ".o" --ignore ".cmd" --hidden -g ""'
-    "let g:unite_data_directory             = '~/.vim/.cache'
-    "let g:unite_prompt                     = '» '
-
-    "" if executable('ag')
-    "    " let g:unite_source_grep_command='ag'
-    "    " let g:unite_source_grep_default_opts='--nocolor --nogroup --column'
-    "    " let g:unite_source_grep_recursive_opt=''
-    "" elseif executable('ack-grep')
-    "    " let g:unite_source_grep_command='ack-grep'
-    "    " let g:unite_source_grep_default_opts='--no-group --no-color'
-    "    " let g:unite_source_grep_recursive_opt=''
-    "" else
-    "    " let g:unite_source_grep_default_opts = '-iRHn'
-    "" endif
-    "    let g:unite_source_grep_default_opts = '-iRHn'
-    "let g:unite_source_grep_max_candidates = 200
-
-    "function! s:unite_settings()
-    "    imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-    "    imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-    "endfunction
-    "autocmd FileType unite call s:unite_settings()
-    "nnoremap [unite] <Nop>
-    "nmap <Leader>u [unite]
-
-    "" File searching like ctrlp.vim
-    "" https://github.com/Shougo/unite.vim/issues/705
-    "" nnoremap <C-p> :Unite -start-insert file_rec/async buffer<CR>
-    "" nnoremap <C-P> :Unite -buffer-name=files -start-insert buffer -input= -resume file_rec:!<cr>
-    "" nnoremap <C-P> :Unite -buffer-name=files -start-insert buffer -input= -resume file_rec<cr>
-    "nnoremap <C-P> :Unite -buffer-name=files -start-insert buffer -input= file_rec/async<cr>
-
-
-    "" shortcup
-    "nnoremap <silent> [unite]m :Unite -start-insert mapping<CR>
-
-    "" Execute help.
-    "nnoremap <silent> [unite]h :Unite -start-insert help<CR>
-
-    "" outline
-    "nnoremap <leader>uo :Unite outline<CR>
-
-    "" Content searching like ack.vim
-    "nnoremap <silent> [unite]/ :Unite vimgrep:**<cr>
-    "nnoremap <silent> [unite]g :Unite grep:. -buffer-name=search-buffer`<cr>
-    "" カーソル位置の単語をgrep検索
-    "nnoremap <silent> [unite]gc :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
-
-    "" grep検索結果の再呼出
-    "nnoremap <silent> [unite]gr :UniteResume<cr>
-    "nnoremap <silent> [unite]gn :UniteNext<cr>
-    "nnoremap <silent> [unite]gp :UnitePrevious<cr>
-
-    "" Yank history like yankring
-    "let g:unite_source_history_yank_enable = 1
-    "nnoremap <silent> [unite]y :Unite history/yank<CR>
-
-    "" Buffer switching like LustyJuggler
-    "nnoremap <silent> [unite]b :Unite -quick-match buffer<cr>
-    "" nnoremap <silent> [unite]b :Unite buffer<CR>
-
-    "nnoremap <silent> [unite]f :UniteWithBufferDir -buffer-name=files file<CR>
-    "nnoremap <silent> [unite]r :Unite file_mru<CR>
-    "nnoremap <silent> [unite]y :Unite -buffer-name=register register<CR>
-    "nnoremap <silent> [unite]a :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-
-
-    "let g:unite_source_menu_menus = {}
-    "let g:unite_source_menu_menus.git = {
-    "    \ 'description' : '            gestionar repositorios git
-    "        \                            ⌘ [espacio]g',
-    "    \}
-    "let g:unite_source_menu_menus.git.command_candidates = [
-    "    \['▷ tig                                                        ⌘ ,gt',
-    "        \'normal ,gt'],
-    "    \['▷ git status       (Fugitive)                                ⌘ ,gs',
-    "        \'Gstatus'],
-    "    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
-    "        \'Gdiff'],
-    "    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
-    "        \'Gcommit'],
-    "    \['▷ git log          (Fugitive)                                ⌘ ,gl',
-    "        \'exe "silent Glog | Unite quickfix"'],
-    "    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
-    "        \'Gblame'],
-    "    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
-    "        \'Gwrite'],
-    "    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
-    "        \'Gread'],
-    "    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
-    "        \'Gremove'],
-    "    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
-    "        \'exe "Gmove " input("destino: ")'],
-    "    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
-    "        \'Git! push'],
-    "    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
-    "        \'Git! pull'],
-    "    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
-    "        \'exe "Git! " input("comando git: ")'],
-    "    \['▷ git cd           (Fugitive)',
-    "        \'Gcd'],
-    "    \]
-
-    "nnoremap <silent>[unite]mg :Unite -silent -start-insert menu:git<CR>
-
-"    endif
-    " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ vimfiler ]                                                         {{{
-    "
-    "let g:vimfiler_as_default_explorer = 1
-    "let g:vimfiler_enable_auto_cd = 1
-    "let g:vimfiler_split_rule = "topleft"
-    "let g:vimfiler_split_action = 'right'
-    " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ yankring ]                                                         {{{
-    "
-    "let g:yankring_history_file = '.yankring_history'
-    " }}}
-    "
-    " -------------------------------------------------------------------------
     " [ vim-indent-guides ]                                                {{{
     "
 "    if dein#tap('vim-indent-guides')
@@ -452,15 +234,6 @@
         nnoremap <Leader>nt :NERDTreeToggle<CR>
     " }}}
     "
-    " -------------------------------------------------------------------------
-    " [ EasyGrep ]                                                         {{{
-    "
-    "Grep 'pattern' in the indicate range (need EasyGrep.vim plugin)
-    "map <F3> <ESC>\vv
-    "let g:EasyGrepRecursive = 1
-    "let g:EasyGrepIgnoreCase= 0
-    "let g:EasyGrepJumpToMatch= 1
-    " }}}
     "
     " -------------------------------------------------------------------------
     " [ Tag List ]                                                         {{{
@@ -502,35 +275,6 @@
     "
     " -------------------------------------------------------------------------
     " [ tagbar ]                                                     {{{
-    "
-"    if dein#tap('tagbar')
-    " let g:tagbar_type_go = {
-                " \ 'ctagstype' : 'go',
-                " \ 'kinds'     : [
-                " \ 'p:package',
-                " \ 'i:imports:1',
-                " \ 'c:constants',
-                " \ 'v:variables',
-                " \ 't:types',
-                " \ 'n:interfaces',
-                " \ 'w:fields',
-                " \ 'e:embedded',
-                " \ 'm:methods',
-                " \ 'r:constructor',
-                " \ 'f:functions'
-                " \ ],
-                " \ 'sro' : '.',
-                " \ 'kind2scope' : {
-                " \ 't' : 'ctype',
-                " \ 'n' : 'ntype'
-                " \ },
-                " \ 'scope2kind' : {
-                " \ 'ctype' : 't',
-                " \ 'ntype' : 'n'
-                " \ },
-                " \ 'ctagsbin'  : 'gotags',
-                " \ 'ctagsargs' : '-sort -silent'
-                " \ }
 
         let g:tagbar_type_typescript = {
           \ 'ctagstype': 'typescript',
@@ -546,31 +290,15 @@
           \ ]
         \ }
         let g:tagbar_autofocus = 1
-"    endif
     " }}}
-    "
     " -------------------------------------------------------------------------
-    " [ LanguageTool ]                                                     {{{
+    " [ airline ]                                                        {{{
     "
-    " let g:languagetool_jar=$HOME . '/iLab/edit/languagetool/dist/LanguageTool.jar'
-    " }}}
-    "
-    " -------------------------------------------------------------------------
-    " [ powerline ]                                                        {{{
-    " [ airline ]
-    "
-"    if dein#tap('vim-airline')
-        " let g:airline_theme='wombat'
-        " let g:airline_enable_branch=1
         let g:airline#extensions#branch#enabled=1
         let g:airline#extensions#syntastic#enabled = 1
         let g:airline_detect_paste=1
-
-        " if dein#tap('vim-airline-themes')
-            " let g:airline_theme='tomorrow'
-            let g:airline_theme='molokai'
-            let g:airline_powerline_fonts = 1
-        " endif
+        let g:airline_theme='molokai'
+        let g:airline_powerline_fonts = 1
 
         if ! has('gui_running')
             set ttimeoutlen=10
@@ -579,27 +307,6 @@
                 au InsertLeave * set timeoutlen=1000
             augroup END
         endif
-
-        " " Always show statusline
-        " set laststatus=2
-
-        " " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-        " set noshowmode
-
-        " unicode symbols
-        " let g:airline_symbols = {}
-        " " let g:airline_left_sep = '»'
-        " " let g:airline_left_sep = '▶'
-        " " let g:airline_right_sep = '«'
-        " " let g:airline_right_sep = '◀'
-        " " let g:airline_linecolumn_prefix = '␊ '
-        " " let g:airline_linecolumn_prefix = '¶ '
-        " " let g:airline#extensions#paste#symbol = 'Þ'
-        " " let g:airline#extensions#paste#symbol = '∥'
-        " let g:airline_symbols.linenr = '␤ '
-        " let g:airline#extensions#branch#symbol = '⎇ '
-        " let g:airline#extensions#whitespace#symbol = 'Ξ'
-        " let g:airline_symbols.space = ' '
 
         " powerline symbols
         let g:airline_left_sep = ''
@@ -612,36 +319,6 @@
         let g:airline#extensions#paste#symbol = 'ρ'
 "    endif
     " }}}
-
-    " -------------------------------------------------------------------------
-    " [ vim-jsbeautify ]                                                    {{{
-    "
-    "if dein#tap('vim-jsbeautify')
-    "    autocmd FileType javascript noremap <buffer> <c-f> :call JsBeautify()<cr>
-    "    autocmd FileType js         noremap <buffer> <c-f> :call JsBeautify()<cr>
-    "    autocmd FileType json       noremap <buffer> <c-f> :call JsonBeautify()<cr>
-    "    autocmd FileType jsx        noremap <buffer> <c-f> :call JsxBeautify()<cr>
-    "    autocmd FileType html       noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-    "    autocmd FileType css        noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
-    "    "Example of binding a function for js, html and css in visual mode on
-    "    autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
-    "    autocmd FileType js         vnoremap <buffer> <c-f> :call RangeJsBeautify()<cr>
-    "    autocmd FileType json       vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-    "    autocmd FileType jsx        vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-    "    autocmd FileType html       vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-    "    autocmd FileType css        vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
-    "endif
-    " }}}
-
-    " -------------------------------------------------------------------------
-    " [ vim-polyglot ]                                                    {{{
-    "
-    "if dein#tap('vim-polyglot')
-    "    let g:polyglot_disabled = ['python']
-    "endif
-    " }}}
-
     " -------------------------------------------------------------------------
     " [ editorconfig-vim ]                                                  {{{
     "
@@ -675,115 +352,6 @@
         " let g:rooter_patterns = ['Rakefile', '.git/']
 "    endif
     " }}}
-
-    " -------------------------------------------------------------------------
-    " [ neocomplete ]                                                            {{{
-    " https://github.com/Shougo/neocomplete.vim
-    " let g:ycm_filetype_blacklist = { 'vimshell': 1 }
-    " autocmd FileType vimshell NeoCompleteUnlock
-    "
-    " Disable AutoComplPop.
-    " let g:acp_enableAtStartup = 0
-    " Use neocomplete.
-    " let g:neocomplete#enable_at_startup = 1
-    "" Use smartcase.
-    "let g:neocomplete#enable_smart_case = 1
-    "" Set minimum syntax keyword length.
-    "let g:neocomplete#sources#syntax#min_keyword_length = 3
-    " let g:neocomplete#lock_buffer_name_pattern = '\*'
-
-    "" Define dictionary.
-    " let g:neocomplete#sources#dictionary#dictionaries = {
-       " \ 'default' : '',
-       " \ 'vimshell' : $HOME.'/.vimshell_hist',
-       " \ 'scheme' : $HOME.'/.gosh_completions'
-       " \ }
-
-    "" Define keyword.
-    "if !exists('g:neocomplete#keyword_patterns')
-    "    let g:neocomplete#keyword_patterns = {}
-    "endif
-    "let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-    "" Plugin key-mappings.
-    "inoremap <expr><C-g>     neocomplete#undo_completion()
-    "inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-    "" Recommended key-mappings.
-    "" <CR>: close popup and save indent.
-    "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    "function! s:my_cr_function()
-    "  return neocomplete#close_popup() . "\<CR>"
-    "  " For no inserting <CR> key.
-    "  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-    "endfunction
-
-    "" <TAB>: completion.
-    "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-    "" <C-h>, <BS>: close popup and delete backword char.
-    "inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-    "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    "inoremap <expr><C-y>  neocomplete#close_popup()
-    "inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-    "" Close popup by <Space>.
-    ""inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-    "" For cursor moving in insert mode(Not recommended)
-    ""inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-    ""inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-    ""inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-    ""inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-
-    "" Or set this.
-    ""let g:neocomplete#enable_cursor_hold_i = 1
-    "" Or set this.
-    ""let g:neocomplete#enable_insert_char_pre = 1
-
-    "" AutoComplPop like behavior.
-    ""let g:neocomplete#enable_auto_select = 1
-
-    "" Shell like behavior(not recommended).
-    ""set completeopt+=longest
-    ""let g:neocomplete#enable_auto_select = 1
-    ""let g:neocomplete#disable_auto_complete = 1
-    ""inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-    "" Enable heavy omni completion.
-    "if !exists('g:neocomplete#sources#omni#input_patterns')
-    "  let g:neocomplete#sources#omni#input_patterns = {}
-    "endif
-    ""let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    ""let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    ""let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-    ""
-    "" }}}
-
-    " -------------------------------------------------------------------------
-    " [ YouCompletMe.vim ]                                                          {{{
-    "
-    " refer: http://wiki.yangleo.me/2013/10/27/YouCompleteMe-installation-and-configurations.html
-
-        "let g:ycm_global_ycm_extra_conf = '~/.vim/plugin/ycm_extra_conf.py'
-        "" let g:ycm_global_ycm_extra_conf = '~/.vim/plugin/ycm_pppc.py'
-        "" let g:ycm_extra_conf_globlist = ['~/.vim/plugin/*',]
-        "" let g:ycm_key_invoke_completion = '<C-n>'
-        "" let g:loaded_youcompleteme = 0
-
-        "" Set it to 0 to ignore the confirmation of loading file
-        "let g:ycm_confirm_extra_conf = 0
-        "" Set to 1 if you installed plugin “syntastic”
-        "" let g:syntastic_always_populate_loc_list = 1
-        "" You can let YCM read the tags file. But the tags file must be create from the command “ctags –fileds=+l”.
-        "" let g:ycm_collect_identifiers_from_tags_files = 1
-
-        "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-        "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
-        "let g:ycm_key_invoke_completion = '<C-o>'
-    " }}}
-
     " -------------------------------------------------------------------------
     " [ deoplete.nvim ]                                                     {{{
     "
@@ -802,16 +370,6 @@
         let g:deoplete#sources#clang#clang_header = '/usr/lib/gcc/x86_64-linux-gnu/10/include'
         "    endif
     " }}}
-
-    " -------------------------------------------------------------------------
-    " [ zchee/deoplete-clang ]                                                     {{{
-    "
-"    if dein#tap('deoplete-go')
-        "let g:deoplete#sources#go = ['vim-go']
-        "let g:deoplete#sources#go#gocode_binary = '/dev/null'
-"    endif
-    " }}}
-
     " -------------------------------------------------------------------------
     " [ xolox/vim-lua-ftplugin ]                                                     {{{
 "    if dein#tap('vim-lua-ftplugin')
@@ -820,6 +378,10 @@
         let g:lua_complete_dynamic = 0
         let g:lua_define_completion_mappings = 0
 "    endif
+    " }}}
+    " -------------------------------------------------------------------------
+    " [ dhananjaylatkar/cscope_maps.nvim ]                                                     {{{
+        lua require("cscope_maps").setup({})
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -912,114 +474,25 @@
     " }}}
     " -------------------------------------------------------------------------
     " [ vim-go   ]                                                          {{{
-    autocmd FileType defx call s:defx_my_settings()
-    function! s:defx_my_settings() abort
-      " Define mappings
-      nnoremap <silent><buffer><expr> <CR>
-      \ defx#do_action('open')
-      nnoremap <silent><buffer><expr> c
-      \ defx#do_action('copy')
-      nnoremap <silent><buffer><expr> m
-      \ defx#do_action('move')
-      nnoremap <silent><buffer><expr> p
-      \ defx#do_action('paste')
-      nnoremap <silent><buffer><expr> l
-      \ defx#do_action('open')
-      nnoremap <silent><buffer><expr> E
-      \ defx#do_action('open', 'vsplit')
-      nnoremap <silent><buffer><expr> P
-      \ defx#do_action('open', 'pedit')
-      nnoremap <silent><buffer><expr> K
-      \ defx#do_action('new_directory')
-      nnoremap <silent><buffer><expr> N
-      \ defx#do_action('new_file')
-      nnoremap <silent><buffer><expr> d
-      \ defx#do_action('remove')
-      nnoremap <silent><buffer><expr> r
-      \ defx#do_action('rename')
-      nnoremap <silent><buffer><expr> x
-      \ defx#do_action('execute_system')
-      nnoremap <silent><buffer><expr> yy
-      \ defx#do_action('yank_path')
-      nnoremap <silent><buffer><expr> .
-      \ defx#do_action('toggle_ignored_files')
-      nnoremap <silent><buffer><expr> h
-      \ defx#do_action('cd', ['..'])
-      nnoremap <silent><buffer><expr> ~
-      \ defx#do_action('cd')
-      nnoremap <silent><buffer><expr> q
-      \ defx#do_action('quit')
-      nnoremap <silent><buffer><expr> <Space>
-      \ defx#do_action('toggle_select') . 'j'
-      nnoremap <silent><buffer><expr> *
-      \ defx#do_action('toggle_select_all')
-      nnoremap <silent><buffer><expr> j
-      \ line('.') == line('$') ? 'gg' : 'j'
-      nnoremap <silent><buffer><expr> k
-      \ line('.') == 1 ? 'G' : 'k'
-      nnoremap <silent><buffer><expr> <C-l>
-      \ defx#do_action('redraw')
-      nnoremap <silent><buffer><expr> <C-g>
-      \ defx#do_action('print')
-      nnoremap <silent><buffer><expr> cd
-      \ defx#do_action('change_vim_cwd')
-    endfunction
-
-    " }}}
-
-    " -------------------------------------------------------------------------
-    " [ vim-go   ]                                                          {{{
         let g:go_def_mode = "guru"
         let g:go_autodetect_gopath = 1
         set completeopt+=noselect
         call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
     " }}}
     " -------------------------------------------------------------------------
-    " [ lambdalisue/session.vim ]                                                          {{{
-    " https://github.com/lambdalisue/session.vim
-"    if dein#tap('session.vim')
-        " let g:session_dir = '~/.cache/session.vim'
-        " A directory path which all session files will be saved/searched
-
-        " let g:session#default_opener = 'edit'
-        " Used when no {opener} is given to SessionList command
-
-        " let g:session#default_session = 'default'
-        " Used when no {session} is given and v:this_session is empty (session has not been loaded)
-
-        " let g:session#default_mappings = 1
-        " Set it to 0 if you don't need default mappings on session://list window.
-        " Use the followings to define your custom mappings in that case:
-        " [n] <Plug>(session-open)          Perform SessionOpen on a session under the cursor
-        " [n] <Plug>(session-open-force)    Perform SessionOpen on a session under the cursor
-        " [n] <Plug>(session-remove)        Perform SessionRemove on a session under the cursor
-        " [v] <Plug>(session-remove)        Perform SessionRemove on sessions in the selection
-        "
-"    endif
-    " }}}
-    "
-    " -------------------------------------------------------------------------
     " [ supertab ]                                                          {{{
-    "
-"    if dein#tap('supertab')
         let g:SuperTabDefaultCompletionType = '<C-n>'
-        " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-        " let g:SuperTabDefaultCompletionType = "context"
-"    endif
     " }}}
 
     " -------------------------------------------------------------------------
     " [ quickrun/ale ]                                                          {{{
     "
-    " if dein#tap('quickrun')
-        " let g:ale_cpp_cc_options = '-std=c++20 -Wall'
         let g:quickrun_config = {}
         let g:quickrun_config['cpp/g++'] = {
             \ 'cmdopt': '-std=c++20',
             \ 'type': 'cpp/g++'
             \ }
         let g:quickrun_config['cpp'] = {'type': 'cpp/g++'}
-    " endif
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -1099,17 +572,6 @@
     " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{
     "
-    " http://aufather.wordpress.com/2010/08/26/omni-completion-in-vim/
-    " set omnifunc=syntaxcomplete#Complete " override built-in C omnicomplete with C++ OmniCppComplete plugin
-    " let OmniCpp_GlobalScopeSearch   = 1
-    " let OmniCpp_DisplayMode         = 1
-    " let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace in pop-up
-    " let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop-up
-    " let OmniCpp_ShowAccess          = 1 "show access in pop-up
-    " let OmniCpp_SelectFirstItem     = 1 "select first item in pop-up
-    " set completeopt=longest,menuone
-    " set completeopt=longest,menu
-
     augroup MyAutoCmd
         autocmd FileType hs setlocal omnifunc=necoghc#omnifunc
         " setlocal omnifunc=necoghc#omnifunc
