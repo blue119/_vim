@@ -41,15 +41,6 @@
     "
     " [ Function Key ]                                                  }}}
 
-    " -------------------------------------------------------------------------
-    " [ Leader Keys ]                                               {{{
-    "
-    " Chagne <Leader> (Default is \) to ","
-	" let mapleader = ","
-	" let g:mapleader = ","
-
-    " Chagne <LocalLeader> to "\"
-    " let maplocalleader = "\"
     " let g:maplocalleader = "\"
 
     " <Leader>1: only
@@ -61,25 +52,8 @@
     " <Leader>3: vsplit
     nnoremap <Leader>3 :vsplit<CR>
 
-    " <Leader>4-0: TODO
-    " <Leader>-: TODO
-    " <Leader>=: TODO
-    "--------------------------------------------------------------------------
-    " <Leader>q remap to QFix
     " <Leader>w Fast saving
     nnoremap <leader>w :w!<cr>
-
-    " <Leader>e TODO
-    " <Leader>r MarkRegex
-    " <Leader>rwp RestoreWinPosn
-    " <Leader>t TaskList
-    " <Leader>t* for tag Operation
-    " <Leader>y TODO
-    " <Leader>u remap to unite
-    " <Leader>i TODO
-    " <Leader>o Remmap to bufExplorer
-    " <Leader>oc Occur
-    " <Leader>p: Copy the full path of the current file to the clipboard
     nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
         \ path '".expand("%:p")."' to clipboard"<cr>
     "--------------------------------------------------------------------------
@@ -98,102 +72,7 @@
     nnoremap <Leader>he :tabedit $HOME/.vim/doc/MyNote.txt <CR>
     nnoremap <Leader>hg :helptags $HOME/.vim/doc <CR>
 
-    " <Leader>j TODO
-    " <Leader>k TODO
-    " <Leader>l TODO
-    " <Leader>; TODO
-    " <Leader>' TODO
-    "--------------------------------------------------------------------------
-    " <Leader>z TODO
-    " <Leader>x
-    " <Leader>c
-    " <Leader>cs CsMgmt
-    " <Leader>cq for cscopequickfix
-    " <Leader>v TODO
-    " <Leader>vs for View text file in two column
-    ":<C-u>              " clear command line (if in visual mode)
-    "let @z=&so          " save scrolloff in register z
-    ":set so=0 noscb     " set scrolloff to 0 and clear scrollbind
-    ":bo vs              " split window vertically, new window on right
-    "Ljzt                " jump to bottom of window + 1, scroll to top
-    ":setl scb           " setlocal scrollbind in right window
-    "<C-w>p              " jump to previous window
-    ":setl scb           " setlocal scrollbind in left window
-    ":let &so=@z         " restore scrolloff
     noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
-    " <Leader>v* EasyGrep
-
-    " <Leader>vv remap to EasyGrep
-    " <Leader>b TODO
-    " <Leader>bv bufexplorer.vim
-    " <Leader>bs bufexplorer.vim
-    " <Leader>be bufexplorer.vim
-
-    " <Leader>n Remap to mark MarkClear
-    " <Leader>nt Remap to NERDTree
-    " <Leader>m MarkSet
-    " <Leader>mo: :Moccur
-    " <Leader>, TODO
-    " <Leader>. TODO
-    " <Leader>/ MarkSearchAnyNext
-    "
-    " [ Leader Keys ]                                                   }}}
-
-    " -------------------------------------------------------------------------
-    " [ Leader Keys + Shift]                                               {{{
-    "
-    " <Leader>~: TODO
-    " <Leader>!: TODO
-    " <Leader>@: TODO
-    " <Leader>#: MarkSearchCurrentPrev
-    " <Leader>$: TODO
-    " <Leader>%: TODO
-    " <Leader>^: TODO
-    " <Leader>&: TODO
-    " <Leader>*: MarkSearchCurrentNext
-    " <Leader>(: TODO
-    " <Leader>): TODO
-    " <Leader>_: TODO
-    " <Leader>+: TODO
-    "--------------------------------------------------------------------------
-    " <Leader>Q: TODO
-    " <Leader>W: TODO
-    " <Leader>E: TODO
-    " <Leader>R: TODO
-    " <Leader>T: TODO
-    " <Leader>Y: TODO
-    " <Leader>U: TODO
-    " <Leader>I: TODO
-    " <Leader>O: TODO
-    " <Leader>P: TODO
-    " <Leader>{: TODO
-    " <Leader>}: TODO
-    " <Leader>|: TODO
-    "--------------------------------------------------------------------------
-    " <Leader>A: TODO
-    " <Leader>S: TODO
-    " <Leader>D: TODO
-    " <Leader>F: TODO
-    " <Leader>G: TODO
-    " <Leader>H: TODO
-    " <Leader>J: TODO
-    " <Leader>K: TODO
-    " <Leader>L: TODO
-    " <Leader>:: TODO
-    " <Leader>": TODO
-    "--------------------------------------------------------------------------
-    " <Leader>Z: TODO
-    " <Leader>X: TODO
-    " <Leader>C: TODO
-    " <Leader>V: TODO
-    " <Leader>B: TODO
-    " <Leader>N: TODO
-    " <Leader>M: TODO
-    " <Leader><: TODO
-    " <Leader>>: TODO
-    " <Leader>?: MarkSearchAnyPrev
-    "
-    " [ Leader Keys ]                                                   }}}
 
     " -------------------------------------------------------------------------
     " [ Normal Mode ]                                                   {{{
@@ -361,52 +240,6 @@
     " Ctrl-a: Remap to start of line
     nnoremap <c-a> ^
 
-    " Ctrl-s: TODO
-    " Ctrl-d: scroll down lines
-    " Ctrl-f: scroll screens forward
-    " Ctrl-g: display current file name and position
-    " Ctrl-h: Remap to 'Window Operations'
-    " Ctrl-j: Remap to 'Window Operations'
-    " Ctrl-k: Remap to 'Window Operations'
-    " Ctrl-l: Remap to 'Window Operations'
-    " Ctrl-;: Vim can't map this
-    " Ctrl-': Vim can't map this
-    "------------------------------------------------------------------------------
-    " Ctrl-z: suspend program
-    " Ctrl-x: Remap to Hexmode
-    " Ctrl-c: interrupt current (search) command
-    " Ctrl-v: start blockwise Visual mode
-    " Ctrl-b: scroll N screens Backwards
-    " Ctrl-n: remap to cnext
-    " Ctrl-m: Remap to 'Window Operations'
-    " Ctrl-,: Vim can't map this
-    " Ctrl-.: Vim can't map this
-    " Ctrl-/: TODO
-    "
-    " [ Normal Mode + Ctrl ]                                          }}}
-
-    " -------------------------------------------------------------------------
-    " [ Insert Mode ]                                                   {{{
-    "
-    " 0 CTRL-D delete all indent in the current line
-    " ^ CTRL-D delete all indent in the current line, restore it in the next line
-    "
-    " <F1>: : same as <Help>
-    " <Help>: stop insert mode and display help window
-    " <Insert>: toggle Insert/Replace mode
-    "
-    " <C-Home>: cursor to start of file
-    " <C-End>: cursor past end of file
-    " <C-Left>: cursor one word left
-    " <C-Right>: cursor one word right
-    "
-    " <S-Up>: same as <PageUp>
-    " <S-Down>: same as <PageDown>
-    " <S-Left>: cursor one word left
-    " <S-Right>: cursor one word right
-    "
-    " [ Inhsert Mode ]                                                  }}}
-
     " -------------------------------------------------------------------------
     " [ Insert Mode + Ctrl ]                                             {{{
     " Ctrl-@: insert previously inserted text and stop insert
@@ -427,14 +260,6 @@
     " Ctrl-u: Delete til beginning of line, create undo point
     inoremap <c-u> <c-g>u<c-u>
 
-    " Ctrl-i: Tab
-    " Ctrl-o: Execute one normal mode command and return to insert mode
-    " Ctrl-p: Auto complete previous
-    " Ctrl-[: <esc>
-    " Ctrl-]: trigger abbreviation
-    " Ctrl-\: others not used
-    " Ctrl-\ ctrl-N: go to Normal mode
-    " Ctrl-\ ctrl-G: go to mode specified with 'insertmode'
     " -----------------------------------------------------------------------------
     " Ctrl-a: Go to begin of line
     inoremap <c-a> <esc>I
@@ -456,27 +281,6 @@
     inoremap <c-k> <c-o>k
     inoremap <c-l> <c-o>l
 
-    " Ctrl-;: TODO
-    " Ctrl-': TODO
-    " -----------------------------------------------------------------------------
-    " Ctrl-z: suspend Vim
-    " Ctrl-x: enter ctrl-x sub mode
-    " ctrl-x ctrl-d:    complete defined identifiers
-    " ctrl-x ctrl-e:    scroll up
-    " ctrl-x ctrl-f:    complete file names
-    " ctrl-x ctrl-i:    complete identifiers
-    " ctrl-x ctrl-k:    complete identifiers from dictionary
-    " ctrl-x ctrl-l:    complete whole lines
-    " ctrl-x ctrl-n:    next completion
-    " ctrl-x ctrl-o:    omni completion
-    " ctrl-x ctrl-p:    previous completion
-    " ctrl-x ctrl-s:    spelling suggestions
-    " ctrl-x ctrl-t:    complete identifiers from thesaurus
-    " ctrl-x ctrl-y:    scroll down
-    " ctrl-x ctrl-u:    complete with 'completefunc'
-    " ctrl-x ctrl-v:    complete like in : command line
-    " ctrl-x ctrl-]:    complete tags
-    " ctrl-x s:         spelling suggestions
 
     " Ctrl-c: quit insert mode, without checking for abbr that remap to inserts line below
     inoremap <c-c> <c-o>o
@@ -600,38 +404,6 @@
     nnoremap <Leader>fN :cp <CR>
     " [ VimGrep ]                                                            }}}
     "
-    " [ EasyGrep ]                                                           {{{
-    " EasyGrep.vim
-    " ,vy* <SNR>27_ToggleFileAssociationsInExplorer()<CR>
-    " ,vy| <SNR>27_EchoOptionsSet()<CR>
-    " ,vyv <SNR>27_EchoGrepCommand()<CR>
-    " ,vy? <SNR>27_ToggleOptionsDisplay()<CR>
-    " ,vym <SNR>27_ToggleReplaceWindowMode()<CR>
-    " ,vys <SNR>27_Sort()<CR>
-    " ,vye <SNR>27_EchoFilesSearched()<CR>
-    " ,vy! <SNR>27_ToggleWholeWord()<CR>
-    " ,vyp <SNR>27_ToggleJumpToMatch()<CR>
-    " ,vyg <SNR>27_ToggleEveryMatch()<CR>
-    " ,vyo <SNR>27_ToggleOpenWindow()<CR>
-    " ,vyw <SNR>27_ToggleWindow()<CR>
-    " ,vyh <SNR>27_ToggleHidden()<CR>
-    " ,vyi <SNR>27_ToggleIgnoreCase()<CR>
-    " ,vyd <SNR>27_ToggleBufferDirectories()<CR>
-    " ,vyr <SNR>27_ToggleRecursion()<CR>
-    " ,vyc <SNR>27_ToggleCommand()<CR>
-    " ,vyx <SNR>27_SetFilesToExclude()<CR>
-    " ,vyu <SNR>27_ActivateUser()<CR>
-    " ,vyt <SNR>27_ActivateTracked()<CR>
-    " ,vyb <SNR>27_ActivateBuffers()<CR>
-    " ,vya <SNR>27_ActivateAll()<CR>
-    " ,vR  <Plug>EgMapReplaceSelection_R
-    " ,vr  <Plug>EgMapReplaceSelection_r
-    " ,vA  <Plug>EgMapGrepSelection_A
-    " ,va  <Plug>EgMapGrepSelection_a
-    " ,vV  <Plug>EgMapGrepSelection_V
-    " ,vv  <Plug>EgMapGrepSelection_v
-    " ,vo  <Plug>EgMapGrepOptions
-    " [ EasyGrep ]                                                           }}}
     "
     " [ Diff related ]                                                      {{{
     "

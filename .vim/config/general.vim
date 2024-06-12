@@ -1,7 +1,7 @@
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-    let g:make = 'make'
-endif
+" let g:make = 'gmake'
+" if system('uname -o') =~ '^GNU/'
+    " let g:make = 'make'
+" endif
 
 " auto generated file: filename~
 set backup
@@ -91,12 +91,12 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " tmux will send xterm-style keys when its xterm-keys option is on
-if &term =~ '^screen'
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
+" if &term =~ '^screen'
+    " execute "set <xUp>=\e[1;*A"
+    " execute "set <xDown>=\e[1;*B"
+    " execute "set <xRight>=\e[1;*C"
+    " execute "set <xLeft>=\e[1;*D"
+" endif
 
 " Solid line for vsplit separator
 " set fcs=vert:│
@@ -126,10 +126,8 @@ augroup END
 set backspace=indent,eol,start
 
 " colorcolumn
-if v:version >= 703
-    :set colorcolumn=80
-    :hi colorcolumn guibg=lightgreen
-endif
+:set colorcolumn=80
+:hi colorcolumn guibg=lightgreen
 
 " Favorite file types
 filetype plugin indent on
@@ -144,11 +142,11 @@ highlight CursorLine guifg=red guibg=background
 set cursorline
 
 "  Status Line
-set ls=2
-set statusline=\ [%F]
-set statusline+=\ [%{&encoding}, " encoding
-set statusline+=%{&fileformat}]%m " file format
-set statusline+=%=\ %y\ %l,\ %c\ \<\ %P\ \>
+" set ls=2
+" set statusline=\ [%F]
+" set statusline+=\ [%{&encoding}, " encoding
+" set statusline+=%{&fileformat}]%m " file format
+" set statusline+=%=\ %y\ %l,\ %c\ \<\ %P\ \>
 
 " Change special highlight
 highlight Search term=reverse ctermbg=4 ctermfg=7

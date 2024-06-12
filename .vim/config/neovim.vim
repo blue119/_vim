@@ -1,5 +1,5 @@
 " Write history on idle, for sharing among different sessions
-autocmd MyAutoCmd CursorHold * if exists(':rshada') | rshada | wshada | endif
+" autocmd MyAutoCmd CursorHold * if exists(':rshada') | rshada | wshada | endif
 
 " Search and use environments specifically made for Neovim.
 " if isdirectory($VARPATH.'/venv/neovim2')
@@ -10,4 +10,4 @@ autocmd MyAutoCmd CursorHold * if exists(':rshada') | rshada | wshada | endif
 " endif
 
 " let g:python_host_prog = "/usr/bin/python"
-let g:python3_host_prog = "/usr/bin/python3"
+" let g:python3_host_prog = "/usr/bin/python3"

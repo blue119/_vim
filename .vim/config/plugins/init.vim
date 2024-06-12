@@ -10,6 +10,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'blue119/molokai'
+Plug 'EdenEast/nightfox.nvim'
 
 " lean & mean status/tabline for vim that's light as air
 Plug 'bling/vim-airline'
@@ -54,6 +55,9 @@ Plug 'majutsushi/tagbar'
 
 " A tree explorer plugin for vim.
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Neovim plugin to manage the file system and other tree like structures.
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
 
 " comment lines in a program
 Plug 'blue119/EnhCommentify.vim'
@@ -84,6 +88,8 @@ Plug 'folke/lsp-colors.nvim'
 " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 Plug 'dense-analysis/ale'
 
+" Nvim Treesitter configurations and abstraction layer
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " About the completetion
 " Dark powered asynchronous completion framework for neovim/Vim8

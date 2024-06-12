@@ -230,10 +230,14 @@
     " -------------------------------------------------------------------------
     " [ NERD_TREE ]                                                        {{{
     "
-        let NERDTreeChDirMode=2
-        nnoremap <Leader>nt :NERDTreeToggle<CR>
+        " let NERDTreeChDirMode=2
+        " nnoremap <Leader>nt :NERDTreeToggle<CR>
     " }}}
     "
+    " -------------------------------------------------------------------------
+    " [ nvim-tree.lua ]                                                        {{{
+        luafile $VIMPATH/config/plugins/setting.lua
+    " }}}
     "
     " -------------------------------------------------------------------------
     " [ Tag List ]                                                         {{{
@@ -457,8 +461,8 @@
         autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
     augroup END
 
-    let g:lsp_log_verbose = 1
-    let g:lsp_log_file = expand('~/vim-lsp.log')
+    " let g:lsp_log_verbose = 1
+    " let g:lsp_log_file = expand('~/vim-lsp.log')
     " }}}
     " -------------------------------------------------------------------------
     " [ rust.vim ]                                                          {{{
