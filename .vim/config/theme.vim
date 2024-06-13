@@ -15,4 +15,5 @@
 "     colorscheme molokai
 "     "}}}
 " endif
-colorscheme nightfox
+" colorscheme nightfox
+colorscheme kanagawa

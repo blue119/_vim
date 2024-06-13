@@ -9,8 +9,9 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'blue119/molokai'
-Plug 'EdenEast/nightfox.nvim'
+" Plug 'blue119/molokai'
+" Plug 'EdenEast/nightfox.nvim'
+Plug 'rebelot/kanagawa.nvim'
 
 " lean & mean status/tabline for vim that's light as air
 Plug 'bling/vim-airline'
