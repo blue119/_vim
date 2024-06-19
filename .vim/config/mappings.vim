@@ -57,17 +57,7 @@
     nnoremap <silent> <Leader>p :let @+=expand("%:p")<cr>:echo "Copied current file
         \ path '".expand("%:p")."' to clipboard"<cr>
     "--------------------------------------------------------------------------
-    " <Leader>a for Auto Commplete Pop: ACP
-    " <Leader>s remap to Spell Checking
-    " <Leader>sb 48_beautify sourcebeautify.vim
-    " <Leader>swp SaveWinPosn
-    " <Leader>d remap to DiffSaved
-    " <Leader>ds DrawItStop
-    " <Leader>di DrawItStart
-    " <Leader>f Remap to VimGrep
-    " <Leader>ff Jsbeautify
 
-    " <Leader>g TODO
     " <Leader>h for Edit(e) & Generate(g) help tags
     nnoremap <Leader>he :tabedit $HOME/.vim/doc/MyNote.txt <CR>
     nnoremap <Leader>hg :helptags $HOME/.vim/doc <CR>
@@ -75,81 +65,9 @@
     noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
 
     " -------------------------------------------------------------------------
-    " [ Normal Mode ]                                                   {{{
-    "
-    " `: cursor to the mark {a-zA-Z0-9}
-    " 1~0: TODO
-    " -: Remap to 'Window Operations'
-    " =: Remap to 'Window Operations'
-    " -----------------------------------------------------------------------------
-    " q: record typed characters into named register {0-9a-zA-Z"} (uppercase to append)
-    " w: cursor N words forward
-    " e: cursor forward to the end of word N
-    " r: replace N chars with {char}
-    " t: cursor till before Nth occurrence of {char} to the right
-    " y: yank Nmove text [into buffer x]
-    " yy: yank N lines [into buffer x]
-    " u: undo changes
-    " i: insert text before the cursor N times
-    " o: begin a new line below the cursor and insert text, repeat N times
-    " p: put the text [from register x] after the cursor N times
-    " [: square bracket command
-    " ]: square bracket command
-    " \: TODO
-    " \c: show colorscheme name
-    " \n: change to next colorscheme
-    " \p: change to previous colorscheme
-    " -----------------------------------------------------------------------------
-    " a: append text after the cursor N times
-    " s: (substitute) delete N characters [into buffer x] and start insert
-    " addition another search work hls
-    " map sa :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
-
-    " Add new keyword in search under cursor (*)
-    " map a* :exec "/\\(".getreg('/')."\\)\\\\|".expand("<cword>")<CR>
-
-    " d: delete Nmove text [into buffer x]
-    " dd: delete N lines [into buffer x]
-    " f: cursor to Nth occurrence of {char} to the right
-    " g: extended commands
-    " gx: NetrwBrowseX
-    " h: cursor N chars to the left
-    " j: cursor N lines downward
-    " k: cursor N lines upward
-    " l: cursor N chars to the right
-    " ;: Remap to ':'
-    " ': Go to word of make
-    " -----------------------------------------------------------------------------
-    " z: commands starting with 'z'
-    " x: delete N characters under and after the cursor [into buffer x]
-    " c: delete Nmove text [into buffer x] and start insert
-    " cc: delete N lines [into buffer x] and start insert
-    " v: start characterwise Visual mode
-    " b: cursor N words backward
-    " n: repeat the latest '/' or '?' N times
-    " m: set mark {A-Za-z} at cursor position
-    " ,: Remap to '<Leader>'
-    " .: repeat last change with count replaced with N
-    " /: search forward for the Nth occurrence of {pattern}
-    "
-    " [ Normal Mode ]                                                  }}}
 
     " -------------------------------------------------------------------------
     " [ Normal Mode + Shift ]                                        {{{
-    "
-    " ~: 'tildeop' off: switch case of N characters under cursor and move the cursor N characters to the right
-    " !: filter Nmove text through the {filter} command
-    " @{a-z}: execute the contents of register {a-z} N times
-    " @:: repeat the previous ":" command N times
-    " @@: repeat the previous @{a-z} N times
-    " #: remap to make.vim
-    " $: cursor to the end of Nth next line
-    " %: find the next (curly/square) bracket on this line and go to its match, or go to matching comment bracket, or go to matching preprocessor directive.
-    " ^: cursor to the first CHAR of the line
-    " &: repeat last :s
-    " *: remap to make.vim
-    " (: cursor N sentences backward
-    " ): cursor N sentences forward
     " +/_: Remap to 'In/decrement number'
     nnoremap + <c-a>
     nnoremap _ <c-x>
@@ -157,46 +75,11 @@
     " Q: Remap to 'Closes the window'
     nnoremap Q :q<CR>
 
-    " W: Move word forward
-    " E: Move to end of word forward
-    " R: Enter replace mode
-    " T: Finds till backwards
-    " Y: yank N lines, like as yy
     " U: Remap to 'Redo' since 'u' undos
     nnoremap U <c-r>
 
-    " I: Insert at beginning of line
-    " O: Insert line above
-    " P: Paste above line
-    " {: Beginning of paragraph
-    " }: End of paragraph
     " | : Remap to Quick 'vertical splits'
     nnoremap <bar> :vsp<cr>
-    " -----------------------------------------------------------------------------
-    " A: Insert at end of line
-    " S: Delete line and start insert
-    " D: Deletes til the end of line
-    " F: Finds backwards
-    " G: Go to end of file
-    " H: Go to top of screen
-    " J: Join lines
-    " K: Remap to 'Man'
-    " L: Go to bottom of screen
-    " :: start entering an Ex command
-    " ": Handles registers
-    " -----------------------------------------------------------------------------
-    " Z: TODO
-    " X: Deletes character backward
-    " X*: for cscope at cscope_macros.vim
-    " C: Deletes rest of line and go to insert mode
-    " V: Visual line mode
-    " B: Move word backward (TODO Replaced by <C-H>, maybe remap?)
-    " N: Remap to 'Find next occurrence backward'
-    nnoremap N Nzzzv
-
-    " M: Move cursor to mid screen
-    " <: remap to Indent left
-    " >: remap to Indent right
     " ?: Search backwards
     "
     " [ Normal Mode + Shift ]                                        }}}
@@ -204,98 +87,13 @@
     " -------------------------------------------------------------------------
     " [ Normal Mode + Ctrl ]                                         {{{
     "
-    " Ctrl-@: TODO
-    " Ctrl-`: TODO
-    " Ctrl-1~0: TODO
-    " Ctrl-^: edit Nth alternate file (equivalent to ":e #N")
-    " Ctrl-_: TODO
-    "--------------------------------------------------------------------------
-    " Ctrl-q: TODO
-    " Ctrl-w: Window Command
     " Ctrl-e: Remap to 'end of line'
     nnoremap <c-e> $
 
-    " Ctrl-r: Redo
-    " Ctrl-t: Jump to previously tag
-    " Ctrl-y: scroll downwards
-    " Ctrl-u: scroll upwards
-    " Ctrl-i: <Tab>
-    " Ctrl-o: Go to older entry
-    " Ctrl-p: remap to :cprev
-    " Ctrl-[: <Esc>
-    " Ctrl-]: Go forward in tag stack
-    " Ctrl-\: TODO
-    " Ctrl-\ d, i, f, e, t, c, g, s: cscope at cscope_macros.vim
-    " Ctrl-\ Ctrl-n: go to Normal mode (no-op)
-    " Ctrl-\ Ctrl-g: go to mode specified with 'insertmode'
-    nmap <C-\><C-\>s :tab cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\><C-\>g :tab cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\><C-\>c :tab cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\><C-\>t :tab cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\><C-\>e :tab cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\><C-\>f :tab cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-\><C-\>i :tab cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\><C-\>d :tab cs find d <C-R>=expand("<cword>")<CR><CR>
     "------------------------------------------------------------------------------
     " Ctrl-a: Remap to start of line
     nnoremap <c-a> ^
 
-    " -------------------------------------------------------------------------
-    " [ Insert Mode + Ctrl ]                                             {{{
-    " Ctrl-@: insert previously inserted text and stop insert
-    " Ctrl-1~0: TODO
-    " Ctrl--: TODO
-    " Ctrl-=: TODO
-    " -----------------------------------------------------------------------------
-    " Ctrl-q: Quoted insert. Useful for doing key binding
-    " Ctrl-w: Delete previous word, create undo point
-    inoremap <c-w> <c-g>u<c-w>
-
-    " Ctrl-e: insert the character which is below the cursor that remap to go to end of line
-    inoremap <c-e> <esc>A
-
-    " Ctrl-r: insert the contents of a register
-    " Ctrl-t: Indent shiftwidth
-    " Ctrl-y: Insert char above cursor
-    " Ctrl-u: Delete til beginning of line, create undo point
-    inoremap <c-u> <c-g>u<c-u>
-
-    " -----------------------------------------------------------------------------
-    " Ctrl-a: Go to begin of line
-    inoremap <c-a> <esc>I
-
-    " Ctrl-s: Save
-    inoremap <c-s> <esc>:w<CR>
-
-    " Ctrl-d: Unindent shiftwidth
-    " Ctrl-f: TODO
-    " Ctrl-g: TODO
-
-    " move your cursor like as in normal mode
-    " Ctrl-h: <BS> that remap to <left>
-    " Ctrl-j: <CR> that remap to <down>
-    " Ctrl-k: {char1} {char2} enter digraph that remap to <up>
-    " Ctrl-l: Leave Insert mode that remap to <right>
-    inoremap <c-h> <c-o>h
-    inoremap <c-j> <c-o>j
-    inoremap <c-k> <c-o>k
-    inoremap <c-l> <c-o>l
-
-
-    " Ctrl-c: quit insert mode, without checking for abbr that remap to inserts line below
-    inoremap <c-c> <c-o>o
-
-    " Ctrl-v: Paste. For some reason, <c-o> is not creating an undo point in the mapping
-    " inoremap <c-v> <c-g>u<c-o>gP
-
-    " Ctrl-b: TODO
-    " Ctrl-n: Auto complete next
-    " Ctrl-m: Same as Enter
-
-    " Ctrl-,: TODO
-    " Ctrl-.: TODO
-    " Ctrl-/: Undo
-    inoremap <c-_> <c-o>u
     " -----------------------------------------------------------------------------
     " Ctrl-space: TODO
     "
@@ -396,12 +194,6 @@
     "
     " [ Tag Operations ]                                                     }}}
     "
-    " [ VimGrep ]                                                            {{{
-    nnoremap <Leader>fv :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.vala' <CR>
-    nnoremap <Leader>fp :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.py' <CR>
-    nnoremap <Leader>fc :exec 'vimgrep /\<'.expand('<cword>').'\>/g **/*.[ch]' <CR>
-    nnoremap <Leader>fn :cn <CR>
-    nnoremap <Leader>fN :cp <CR>
     " [ VimGrep ]                                                            }}}
     "
     "
@@ -435,11 +227,6 @@
     nnoremap k [c
     nnoremap h do
     nnoremap l dp
-    " nnoremap <A-j> ]c
-    " nnoremap <A-k> [c
-    " nnoremap <A-h> do
-    " nnoremap <A-l> dp
-    "
     " [ Diff related ]                                                      }}}
     "
     " [ Specific Hot-Key Group ]                                       }}}

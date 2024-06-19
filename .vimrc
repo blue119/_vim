@@ -7,9 +7,9 @@
 " ============================================================================
 " [ General Setting ]                                                      {{{
 "
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" if &compatible
+  " set nocompatible               " Be iMproved
+" endif
 
 " let $VIMPATH = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 " FIXME
@@ -60,10 +60,17 @@ if has('vim_starting')
 endif
 
 " load plugin system(package manager)
-if has('vim_starting')
-    call s:source_file('plugins/init.vim')
-endif
 
+let $VIM_PLUGIN_LUA = 1
+if $VIM_PLUGIN_LUA == 1
+"    luafile /home/blue119/iConfig/_vim/.vim/config/plugins/init.lua
+    luafile /home/blue119/iConfig/_vim/.vim/config/init.lua
+else
+    if has('vim_starting')
+        call s:source_file('plugins/init.vim')
+    endif
+    luafile /home/blue119/iConfig/_vim/.vim/config/plugins/setting.lua
+endif
 call s:source_file('plugins/setting.vim')
 
 filetype plugin indent on
@@ -80,6 +87,4 @@ if filereadable(expand('$VIMPATH/config/local.vim'))
     call s:source_file('local.vim')
 endif
 set secure
-
-" vim:fdm=marker:et:fdl=0:
 

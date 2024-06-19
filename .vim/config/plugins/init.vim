@@ -18,11 +18,14 @@ Plug 'bling/vim-airline'
     " A collection of themes for vim-airline
     Plug 'vim-airline/vim-airline-themes'
 
-"""""""""""
-" golang
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
-Plug 'jstemmer/gotags', {'for': 'go'}
+""""""""""""
+" VIM as IDE
+"
+" deno
+" An ecosystem for Vim/Neovim enabling developers to write plugins in Deno.
+Plug 'vim-denops/denops.vim'
+    Plug 'vim-denops/denops-shared-server.vim', {'do': ':call denops_shared_server#install()'}
+    Plug 'vim-denops/denops-helloworld.vim'
 
 " Multiple Plug commands can be written in a single line using | separators
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -40,19 +43,12 @@ Plug 'airblade/vim-gitgutter'
 " searches for local vimrc files in the file system tree of the currently opened file.
 Plug 'embear/vim-localvimrc'
 
-""""""""""""
-" VIM as IDE
-"
 " Vim script for text filtering and alignment
 " Plug 'godlygeek/tabular'
 
 " basic cscope settings and key mappings
 Plug 'dhananjaylatkar/cscope_maps.nvim'
     Plug 'blue119/cs-mgmt.vim'
-
-" Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-" Plug 'vim-scripts/taglist.vim'
-Plug 'majutsushi/tagbar'
 
 " A tree explorer plugin for vim.
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -73,11 +69,6 @@ Plug 'mbriggs/mark.vim'
 " Run commands quickly.
 Plug 'thinca/vim-quickrun'
 
-" The Uncompromising Code Formatter
-Plug 'ambv/black'
-
-" Vim plugin for clang-format, a formatter for C, C++, Obj-C, Java, JavaScript, and so on.
-Plug 'rhysd/vim-clang-format'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " LSP for vim
 Plug 'prabirshrestha/vim-lsp'
@@ -110,10 +101,6 @@ Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     " Miscellaneous auto-load Vim scripts
     Plug 'xolox/vim-misc'
 
-    " Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-
-" The dark powered file explorer implementation
-" Plug 'Shougo/defx.nvim'
 
 " Dark powered asynchronous unite all interfaces for Neovim/Vim8
 Plug 'Shougo/denite.nvim'
@@ -131,30 +118,37 @@ Plug 'prabirshrestha/asyncomplete.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " For filetype
 "
-"""""""""""
+" Vim plugin for clang-format, a formatter for C, C++, Obj-C, Java, JavaScript, and so on.
+Plug 'rhysd/vim-clang-format'
+"
 " rst
 " instant rst preview in browser
 Plug 'Rykka/riv.vim', {'for': ['rst']}
 
 " Plug 'racer-rust/vim-racer'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " depends on rust.vim
-Plug 'mattn/webapi-vim'
+Plug 'mattn/webapi-vim', {'for': 'rust'}
 
-"""""""""""
 " beancont
-Plug 'nathangrigg/vim-beancount'
+Plug 'nathangrigg/vim-beancount', {'for': 'beancount'}
 
 " cli-ledger
-Plug 'ledger/vim-ledger'
+Plug 'ledger/vim-ledger', {'for': 'ledger'}
 
-"""""""""""
+" golang
+" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries', 'for': 'go'}
+Plug 'jstemmer/gotags', {'for': 'go'}
+
 " editconfig
 " Editor Config Plugin
-Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim', {'for': 'editorconfig'}
 
-"""""""""""
+" The Uncompromising Code Formatter
+Plug 'ambv/black', {'for': 'py'}
+
 " terraform
 " Plug 'hashivim/vim-terraform'
 
