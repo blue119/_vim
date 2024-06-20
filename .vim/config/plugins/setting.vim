@@ -3,34 +3,34 @@
 "
     " -------------------------------------------------------------------------
     " [ cs-mgmt.vim ]                                                      {{{
-        let g:CsMgmtCscopeEnable = 1
-        let g:CsMgmtCtagsEnable = 1
-        let g:CsMgmtReAttach = 1
+     "   let g:CsMgmtCscopeEnable = 1
+     "   let g:CsMgmtCtagsEnable = 1
+     "   let g:CsMgmtReAttach = 1
     " }}}
     " -------------------------------------------------------------------------
     " [ UltiSnips ]                                           {{{
     "
 "    if dein#tap('ultisnips')
-        let g:UltiSnipsExpandTrigger="<tab>"
-        let g:UltiSnipsJumpForwardTrigger="<tab>"
-        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"        let g:UltiSnipsExpandTrigger="<tab>"
+"        let g:UltiSnipsJumpForwardTrigger="<tab>"
+"        let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 "    endif
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ git-fugitive ]                                                {{{
     "
-        autocmd FileType git :setlocal foldlevel=99
-        let g:Gitv_TruncateCommitSubjects = 1
-        let g:Gitv_DoNotMapCtrlKey = 0
+"        autocmd FileType git :setlocal foldlevel=99
+"        let g:Gitv_TruncateCommitSubjects = 1
+"        let g:Gitv_DoNotMapCtrlKey = 0
     " }}}
     " -------------------------------------------------------------------------
     " [ EnhancedCommentify ]                                                {{{
     "
-        let g:EnhCommentifyRespectIndent = 'Yes'
-        let g:EnhCommentifyPretty = 'Yes'
-        let g:EnhCommentifyMultiPartBlocks = 'Yes'
-        let g:EnhCommentifyAlignRight = 'Yes'
+"        let g:EnhCommentifyRespectIndent = 'Yes'
+"        let g:EnhCommentifyPretty = 'Yes'
+"        let g:EnhCommentifyMultiPartBlocks = 'Yes'
+"        let g:EnhCommentifyAlignRight = 'Yes'
     " }}}
     "
     " -------------------------------------------------------------------------
@@ -217,13 +217,13 @@
     " [ vim-indent-guides ]                                                {{{
     "
 "    if dein#tap('vim-indent-guides')
-        let g:indent_guides_enable_on_vim_startup = 1
-        let g:indent_guides_auto_colors = 0
-        let g:indent_guides_start_level = 2
-        let g:indent_guides_guide_size = 1
-        let g:indent_guides_color_change_percent = 10
-        hi IndentGuidesOdd  ctermbg=gray
-        hi IndentGuidesEven ctermbg=darkgrey
+"        let g:indent_guides_enable_on_vim_startup = 1
+"        let g:indent_guides_auto_colors = 0
+"        let g:indent_guides_start_level = 2
+"        let g:indent_guides_guide_size = 1
+"        let g:indent_guides_color_change_percent = 10
+"        hi IndentGuidesOdd  ctermbg=gray
+"        hi IndentGuidesEven ctermbg=darkgrey
 "    endif
     " }}}
     "
@@ -267,13 +267,13 @@
         " DoxAuthor :call <SID>DoxygenAuthorFunc()
         " DoxUndoc :call <SID>DoxygenUndocumentFunc(<q-args>)
         " DoxBlock :call <SID>DoxygenBlockFunc()
-        let g:DoxygenToolkit_briefTag_pre="@Synopsis "
-        let g:DoxygenToolkit_paramTag_pre="@Param "
-        let g:DoxygenToolkit_returnTag="@Returns  "
-        let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-        let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
-        let g:DoxygenToolkit_authorName="Yao-Po Wang"
-        let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
+"        let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+"        let g:DoxygenToolkit_paramTag_pre="@Param "
+"        let g:DoxygenToolkit_returnTag="@Returns  "
+"        let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+"        let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------"
+"        let g:DoxygenToolkit_authorName="Yao-Po Wang"
+"        let g:DoxygenToolkit_licenseTag="Ruckus Wireless"
 "    endif
     " }}}
     "
@@ -298,29 +298,29 @@
     " -------------------------------------------------------------------------
     " [ airline ]                                                        {{{
     "
-        let g:airline#extensions#branch#enabled=1
-        let g:airline#extensions#syntastic#enabled = 1
-        let g:airline_detect_paste=1
-        let g:airline_theme='molokai'
-        let g:airline_powerline_fonts = 1
+"        let g:airline#extensions#branch#enabled=1
+"        let g:airline#extensions#syntastic#enabled = 1
+"        let g:airline_detect_paste=1
+"        let g:airline_theme='molokai'
+"        let g:airline_powerline_fonts = 1
 
-        if ! has('gui_running')
-            set ttimeoutlen=10
-            augroup MyAutoCmd
-                au InsertEnter * set timeoutlen=0
-                au InsertLeave * set timeoutlen=1000
-            augroup END
-        endif
+"        if ! has('gui_running')
+"            set ttimeoutlen=10
+"            augroup MyAutoCmd
+"                au InsertEnter * set timeoutlen=0
+"                au InsertLeave * set timeoutlen=1000
+"            augroup END
+"        endif
 
-        " powerline symbols
-        let g:airline_left_sep = ''
-        let g:airline_left_alt_sep = ''
-        let g:airline_right_sep = ''
-        let g:airline_right_alt_sep = ''
-        let g:airline#extensions#branch#symbol = ' '
-        let g:airline#extensions#readonly#symbol = ''
-        let g:airline_linecolumn_prefix = ' '
-        let g:airline#extensions#paste#symbol = 'ρ'
+"         powerline symbols
+"        let g:airline_left_sep = ''
+"        let g:airline_left_alt_sep = ''
+"        let g:airline_right_sep = ''
+"        let g:airline_right_alt_sep = ''
+"        let g:airline#extensions#branch#symbol = ' '
+"        let g:airline#extensions#readonly#symbol = ''
+"        let g:airline_linecolumn_prefix = ' '
+"        let g:airline#extensions#paste#symbol = 'ρ'
 "    endif
     " }}}
     " -------------------------------------------------------------------------
@@ -328,7 +328,7 @@
     "
 "    if dein#tap('editorconfig-vim')
         " Excluded patterns.
-        let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+"        let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
         " function! _editconfigFiletypeHook(config)
         "    if has_key(a:config, 'vim_filetype')
@@ -377,35 +377,35 @@
     " -------------------------------------------------------------------------
     " [ xolox/vim-lua-ftplugin ]                                                     {{{
 "    if dein#tap('vim-lua-ftplugin')
-        let g:lua_check_syntax = 0
-        let g:lua_complete_omni = 1
-        let g:lua_complete_dynamic = 0
-        let g:lua_define_completion_mappings = 0
+"        let g:lua_check_syntax = 0
+"        let g:lua_complete_omni = 1
+"        let g:lua_complete_dynamic = 0
+"        let g:lua_define_completion_mappings = 0
 "    endif
     " }}}
     " -------------------------------------------------------------------------
     " [ dhananjaylatkar/cscope_maps.nvim ]                                                     {{{
-        lua require("cscope_maps").setup({})
+"        lua require("cscope_maps").setup({})
     " }}}
     "
     " -------------------------------------------------------------------------
     " [ mark.vim ]                                                          {{{
     "
 "    if dein#tap('mark.vim')
-        function! s:DefaultHighlightings()
-            highlight def MarkWord1  ctermbg=9   ctermfg=Black  guibg=#8CCBEA   guifg=Black
-            highlight def MarkWord2  ctermbg=10  ctermfg=Black  guibg=#A4E57E   guifg=Black
-            highlight def MarkWord3  ctermbg=11  ctermfg=Black  guibg=#FFDB72   guifg=Black
-            highlight def MarkWord4  ctermbg=12  ctermfg=Black  guibg=#FF7272   guifg=Black
-            highlight def MarkWord5  ctermbg=13  ctermfg=Black  guibg=#FFB3FF   guifg=Black
-            highlight def MarkWord6  ctermbg=14  ctermfg=Black  guibg=#9999FF   guifg=Black
-            highlight def MarkWord7  ctermbg=15  ctermfg=Black  guibg=#9999FF   guifg=Black
-            highlight def MarkWord8  ctermbg=178 ctermfg=Black  guibg=#9999FF   guifg=Black
-            highlight def MarkWord9  ctermbg=105 ctermfg=Black  guibg=#9999FF   guifg=Black
-            highlight def MarkWord10 ctermbg=50  ctermfg=Black  guibg=#9999FF   guifg=Black
-        endfunction
-        call s:DefaultHighlightings()
-        autocmd ColorScheme * call <SID>DefaultHighlightings()
+"        function! s:DefaultHighlightings()
+"            highlight def MarkWord1  ctermbg=9   ctermfg=Black  guibg=#8CCBEA   guifg=Black
+"            highlight def MarkWord2  ctermbg=10  ctermfg=Black  guibg=#A4E57E   guifg=Black
+"            highlight def MarkWord3  ctermbg=11  ctermfg=Black  guibg=#FFDB72   guifg=Black
+"            highlight def MarkWord4  ctermbg=12  ctermfg=Black  guibg=#FF7272   guifg=Black
+"            highlight def MarkWord5  ctermbg=13  ctermfg=Black  guibg=#FFB3FF   guifg=Black
+"            highlight def MarkWord6  ctermbg=14  ctermfg=Black  guibg=#9999FF   guifg=Black
+"            highlight def MarkWord7  ctermbg=15  ctermfg=Black  guibg=#9999FF   guifg=Black
+"            highlight def MarkWord8  ctermbg=178 ctermfg=Black  guibg=#9999FF   guifg=Black
+"            highlight def MarkWord9  ctermbg=105 ctermfg=Black  guibg=#9999FF   guifg=Black
+"            highlight def MarkWord10 ctermbg=50  ctermfg=Black  guibg=#9999FF   guifg=Black
+"        endfunction
+"        call s:DefaultHighlightings()
+"        autocmd ColorScheme * call <SID>DefaultHighlightings()
         " let g:mwAutoLoadMarks = 1
 "    endif
     " }}}
@@ -466,8 +466,8 @@
     " }}}
     " -------------------------------------------------------------------------
     " [ rust.vim ]                                                          {{{
-    let g:rustfmt_autosave = 1
-    let g:rust_clip_command = 'xclip -selection clipboard'
+"    let g:rustfmt_autosave = 1
+"    let g:rust_clip_command = 'xclip -selection clipboard'
     " }}}
     " -------------------------------------------------------------------------
     " [ asyncomplete.vim ]                                                          {{{
@@ -478,9 +478,9 @@
     " }}}
     " -------------------------------------------------------------------------
     " [ vim-go   ]                                                          {{{
-        let g:go_def_mode = "guru"
-        let g:go_autodetect_gopath = 1
-        set completeopt+=noselect
+"        let g:go_def_mode = "guru"
+"        let g:go_autodetect_gopath = 1
+"        set completeopt+=noselect
 "        call deoplete#custom#option('omni_patterns', { 'go': '[^. *\t]\.\w*' })
     " }}}
     " -------------------------------------------------------------------------
@@ -573,9 +573,9 @@
     " -------------------------------------------------------------------------
     " [ LocalVimRC ]                                                              {{{
     "
-    let g:localvimrc_enable = 1
-    let g:localvimrc_debug = 0
-    let g:localvimrc_name = [ '.lvimrc' ]
+"    let g:localvimrc_enable = 1
+"    let g:localvimrc_debug = 0
+"    let g:localvimrc_name = [ '.lvimrc' ]
     " }}}
     " -------------------------------------------------------------------------
     " [ OmniCppComplete ]                                                  {{{

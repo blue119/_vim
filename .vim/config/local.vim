@@ -6,18 +6,16 @@
     " Automatically update 'Modified' field {{{
     " If buffer modified, update any 'Last modified: ' in the first 20 lines.
     "
-    function! LastModified()
-        " if &modified
-            normal ms
-            let n = min([20, line("$")])
-            exe '1,' . n . 's#^\(.\{,10}:Modified: \).*#\1' .
-                        \ strftime('%Y-%m-%d %H:%M') . '#e'
-            normal `s
-        " endif
-    endfun
-    command! LastModified call LastModified()
-
-
+    " function! LastModified()
+    "     " if &modified
+    "         normal ms
+    "         let n = min([20, line("$")])
+    "         exe '1,' . n . 's#^\(.\{,10}:Modified: \).*#\1' .
+    "                     \ strftime('%Y-%m-%d %H:%M') . '#e'
+    "         normal `s
+    "     " endif
+    " endfun
+    " command! LastModified call LastModified()
     " }}}
 
     " -------------------------------------------------------------------------
@@ -79,23 +77,32 @@
 
     " -------------------------------------------------------------------------
     " [Highlight column matching { } pattern], A very cool stuff(Kent) {{{
-    let s:hlflag=0
+    " let s:hlflag=0
 
-    function! ColumnHighlight()
-        let c=getline(line('.'))[col('.') - 1]
-        if c=='{' || c=='}'
-            set cuc
-            let s:hlflag=1
-        else
-            if s:hlflag==1
-                set nocuc
-                let s:hlflag=0
-            endif
-        endif
-    endfunction
+    " function! ColumnHighlight()
+    "     let c=getline(line('.'))[col('.') - 1]
+    "     if c=='{' || c=='}'
+    "         set cuc
+    "         let s:hlflag=1
+    "     else
+    "         if s:hlflag==1
+    "             set nocuc
+    "             let s:hlflag=0
+    "         endif
+    "     endif
+    " endfunction
 
-    autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
+    " autocmd MyAutoCmd CursorMoved * call ColumnHighlight()
     " }}}
     " -------------------------------------------------------------------------
     " Write history on idle, for sharing among different sessions
-    autocmd MyAutoCmd CursorHold * if exists(':rshada') | rshada | wshada | endif
+"    autocmd MyAutoCmd CursorHold * if exists(':rshada') | rshada | wshada | endif
+"    vim.api.nvim_create_autocmd('CursorHold', {
+"  pattern = '*',
+"  callback = function()
+"    if vim.fn.exists(':rshada') == 2 then
+"      vim.cmd('rshada')
+"      vim.cmd('wshada')
+"    end
+"  end,
+"})

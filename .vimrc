@@ -70,8 +70,8 @@ else
         call s:source_file('plugins/init.vim')
     endif
     luafile /home/blue119/iConfig/_vim/.vim/config/plugins/setting.lua
+    call s:source_file('plugins/setting.vim')
 endif
-call s:source_file('plugins/setting.vim')
 
 filetype plugin indent on
 syntax enable

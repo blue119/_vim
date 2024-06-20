@@ -6,4 +6,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 package.path = package.path .. ";/home/blue119/iConfig/_vim/.vim/config/lua/?.lua"
+require("generals")
+require("keymaps")
 require("ypwang.plugins.init")
