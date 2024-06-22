@@ -24,14 +24,18 @@ vim.opt.viewdir = vim.env.VARPATH .. "/view"
 -- augroup END
 
 -- Function to clear key mappings in normal and visual modes
-local function clear_keymap(key)
-    vim.api.nvim_set_keymap("n", key, "<Nop>", { noremap = true, silent = true })
-    vim.api.nvim_set_keymap("x", key, "<Nop>", { noremap = true, silent = true })
-end
+-- local function clear_keymap(key)
+--     vim.api.nvim_set_keymap("n", key, "<Nop>", { noremap = true, silent = true })
+--     vim.api.nvim_set_keymap("x", key, "<Nop>", { noremap = true, silent = true })
+-- end
 
-clear_keymap("<Space>")
-clear_keymap(",")
-clear_keymap(";")
+-- clear_keymap("<Space>")
+-- clear_keymap(",")
+-- clear_keymap(";")
+
+require("generals")
+require("keymaps")
+require("filetypes")
 
 --------------------------------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -40,10 +44,6 @@ if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
-
-require("generals")
-require("keymaps")
-require("filetypes")
 
 require("ypwang.plugins.init")
 require("theme")

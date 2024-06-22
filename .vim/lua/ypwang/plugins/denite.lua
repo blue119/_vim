@@ -1,7 +1,7 @@
-return {
-    "Shougo/denite.nvim",
-    -- MRU plugin includes unite.vim/denite.nvim MRU sources
-    dependencies = {
-        { "Shougo/neomru.vim" },
-    },
-}
+-- return {
+--     "Shougo/denite.nvim",
+--     -- MRU plugin includes unite.vim/denite.nvim MRU sources
+--     dependencies = {
+--         { "Shougo/neomru.vim" },
+--     },
+-- }
