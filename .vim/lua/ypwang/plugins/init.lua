@@ -35,7 +35,7 @@ require("lazy").setup({
     -- Run commands quickly
     { "thinca/vim-quickrun" },
 
-    -- comment lines in a program
+    --     comment lines in a program
     {
         "blue119/EnhCommentify.vim",
         config = function()
@@ -104,7 +104,7 @@ require("lazy").setup({
     -- Lightweight yet powerful formatter plugin for Neovim
     require("ypwang.plugins.conform"),
 
-    -- About the completetion ------------------------------------------------
+    -- About the completion ------------------------------------------------
     -- Dark powered asynchronous completion framework for neovim/Vim8
     --    require("ypwang.plugins.deoplete"),
 

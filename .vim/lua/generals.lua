@@ -1,3 +1,11 @@
+vim.opt.secure = true
+vim.opt.showmode = false
+vim.opt.clipboard = "unnamedplus"
+
+-- Decrease mapped sequence wait time
+-- Displays which-key popup sooner
+vim.opt.timeoutlen = 300
+
 -- Searching options
 vim.opt.hlsearch = true -- Enable search highlight globally
 vim.opt.showmatch = true -- Show matching brackets when typing
@@ -13,7 +21,7 @@ vim.opt.smartindent = true -- Smart Indent
 vim.opt.cindent = true -- C-style Indent
 vim.opt.wrap = false
 -- set whichwrap+=h,l,<,>,[,]
-vim.opt.textwidth = 78 -- Set text width
+vim.opt.textwidth = 119 -- Set text width
 -- set linebreak
 --
 -- Tab settings
@@ -30,8 +38,8 @@ vim.opt.ruler = true -- Show the cursor position all the time
 -- Performance settings
 vim.opt.lazyredraw = true -- Do not redraw while running macros
 
--- vim.opt.list = true          -- Display unprintable with '^' and put $ after the line.
 vim.opt.confirm = true -- Confirm before exiting modified buffer
+-- vim.opt.relativenumber = true
 vim.opt.number = true -- Turn on line numbers
 vim.opt.numberwidth = 1 -- Minimum width of the number column
 
@@ -83,8 +91,17 @@ vim.opt.foldnestmax = 5
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
+-- Visualize some special characters
+vim.opt.list = true -- Display unprintable with '^' and put $ after the line.
+vim.opt.listchars = { tab = ">-", trail = "-", eol = "$", nbsp = "%", extends = ">", precedes = "<" }
+vim.opt.showbreak = "↪"
+
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
+
 -- Window splitting settings
 vim.opt.splitright = true -- Splitting a window will put it on the right
+vim.opt.splitbelow = true -- Splitting a window will put it on the bottom
 
 -- Enable project-specific vimrc
 vim.opt.exrc = true -- Allows loading and executing local rc files
@@ -104,11 +121,6 @@ vim.opt.ffs = { "unix", "dos", "mac" }
 
 -- Use mouse in normal and visual modes
 vim.opt.mouse = "nv"
-
--- To function correctly in Screen
-if not vim.fn.has("nvim") == 1 then
-    vim.opt.ttymouse = "xterm"
-end
 
 -----------------------------------------------------------------------------
 -- [ Mouse + gVim-Killer Related Setting ]
@@ -145,3 +157,91 @@ vim.api.nvim_create_autocmd("CursorHold", {
         end
     end,
 })
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight when yanking (copying) text",
+    group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
+-----------------------------------------------------------------------------
+-- Remove unnecessary spaces in the end of line
+vim.api.nvim_create_user_command("YPRemoveTailingSpace", function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, true) -- Get all lines in the buffer
+    for i, line in ipairs(lines) do
+        lines[i] = string.gsub(line, "%s+$", "") -- Remove trailing spaces using Lua's string.gsub
+    end
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines) -- Set the modified lines back to the buffer
+end, { desc = "Remove Tailing Space" })
+
+-- listchar=trail is not as flexible, use the below to highlight trailing
+-- whitespace. Don't do it for unite windows or readonly files
+-- vim.cmd([[
+--     highlight ExtraWhitespace ctermbg=red guibg=red
+--     match ExtraWhitespace /\s\+$/
+--     autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+--     autocmd BufWinEnter * if &modifiable && &ft!='unite' | match ExtraWhitespace /\s\+$/ | endif
+--     autocmd InsertEnter * if &modifiable && &ft!='unite' | match ExtraWhitespace /\s\+\%#\@<!$/ | endif
+--     autocmd InsertLeave * if &modifiable && &ft!='unite' | match ExtraWhitespace /\s\+$/ | endif
+--     autocmd BufWinLeave * if &modifiable && &ft!='unite' | call clearmatches() | endif
+-- ]])
+
+-------------------------------------------------------------------------
+-- Remember the line number been edited last time {{{
+vim.cmd([[
+    if has("autocmd")
+        augroup MyAutoCmd
+            autocmd BufRead *.txt set tw=78
+            autocmd BufReadPost *
+            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+            \   exe "normal g'\"" |
+            \ endif
+
+            autocmd BufWinLeave *
+                \   if (v:progname != "vimdiff") &&
+                \       expand("%") != "" &&
+                \       expand("%") !~ "gitv-" &&
+                \       expand("%") !~ ".tmp" &&
+                \       expand("%") !~ "__MRU_Files__"
+                \
+                \|       silent! mkview
+                \|  endif
+
+            autocmd BufWinEnter *
+                \   if (v:progname != "vimdiff") &&
+                \       expand("%") != "" &&
+                \       expand("%") !~ "gitv-" &&
+                \       expand("%") !~ ".tmp" &&
+                \       expand("%") !~ "__MRU_Files__"
+                \
+                \|      silent! loadview
+                \|  endif
+
+            " Restore cursor to file position in previous editing session
+            autocmd BufReadPost *
+                \   if line ("'\"") > 0 && line ("'\"") <= line("$")
+                \|      exe "normal g'\""
+                \|  endif
+        augroup END
+    endif
+]])
+
+-----------------------------------------------------
+-- " QUICKFIX WINDOW for :make {{{
+-- function! QFixToggle(forced)
+--     if exists("g:qfix_win") && a:forced == 0
+--         cclose
+--         unlet g:qfix_win
+--     else
+--         copen 6
+--         let g:qfix_win = bufnr("$")
+--     endif
+-- endfunction
+--
+-- command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+-- nnoremap <leader>q :QFix<CR>
