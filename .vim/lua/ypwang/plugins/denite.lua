@@ -1,3 +1,4 @@
+return {}
 -- return {
 --     "Shougo/denite.nvim",
 --     -- MRU plugin includes unite.vim/denite.nvim MRU sources

@@ -5,6 +5,7 @@ vim.opt.clipboard = "unnamedplus"
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
+vim.opt.termguicolors = true
 
 -- Searching options
 vim.opt.hlsearch = true -- Enable search highlight globally
@@ -36,7 +37,8 @@ vim.opt.history = 10000 -- Keep 10000 lines of command line history
 vim.opt.ruler = true -- Show the cursor position all the time
 
 -- Performance settings
-vim.opt.lazyredraw = true -- Do not redraw while running macros
+-- conflicat to notify plugin
+-- vim.opt.lazyredraw = true -- Do not redraw while running macros
 
 vim.opt.confirm = true -- Confirm before exiting modified buffer
 -- vim.opt.relativenumber = true
@@ -101,7 +103,7 @@ vim.opt.inccommand = "split"
 
 -- Window splitting settings
 vim.opt.splitright = true -- Splitting a window will put it on the right
-vim.opt.splitbelow = true -- Splitting a window will put it on the bottom
+-- vim.opt.splitbelow = true -- Splitting a window will put it on the bottom
 
 -- Enable project-specific vimrc
 vim.opt.exrc = true -- Allows loading and executing local rc files
