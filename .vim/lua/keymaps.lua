@@ -61,6 +61,9 @@ map("n", "<", "<C-w><", { noremap = true, silent = true }) -- Decrease the width
 map("n", ">", "<C-w>>", { noremap = true, silent = true }) -- Increase the width of the current window
 
 ---------------------------------------------------------------------------
+-- Insert mode mappings
+map("i", "<C-a>", "<Home>", { noremap = true, silent = true }) -- Move cursor to the beginning of the line
+map("i", "<C-e>", "<End>", { noremap = true, silent = true }) -- Move cursor to the end of the line
 
 -- Visual mode mappings
 ---------------------------------------------------------------------------

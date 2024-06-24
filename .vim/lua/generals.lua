@@ -38,7 +38,7 @@ vim.opt.ruler = true -- Show the cursor position all the time
 
 -- Performance settings
 -- conflicat to notify plugin
--- vim.opt.lazyredraw = true -- Do not redraw while running macros
+vim.opt.lazyredraw = true -- Do not redraw while running macros
 
 vim.opt.confirm = true -- Confirm before exiting modified buffer
 -- vim.opt.relativenumber = true

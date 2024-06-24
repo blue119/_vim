@@ -44,6 +44,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {
     --    dev = { path = require("kyoh86.conf.lazy").dev_path },
+    change_detection = { enabled = false },
     performance = {
         rtp = {
             disabled_plugins = {
