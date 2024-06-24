@@ -94,7 +94,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
 -- Visualize some special characters
-vim.opt.list = true -- Display unprintable with '^' and put $ after the line.
+vim.opt.list = false -- Display unprintable with '^' and put $ after the line.
 vim.opt.listchars = { tab = ">-", trail = "-", eol = "$", nbsp = "%", extends = ">", precedes = "<" }
 vim.opt.showbreak = "↪"
 

@@ -168,7 +168,7 @@ return { -- LSP Configuration & Plugins
                     ".git"
                 ),
             },
-            -- gopls = {},
+            gopls = {},
             -- pyright = {},
             -- rust_analyzer = {},
             -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -208,14 +208,22 @@ return { -- LSP Configuration & Plugins
         -- for you, so that they are available from within Neovim.
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
-            "stylua", -- Used to format Lua code
-            "rust-analyzer", -- Used for Rust LSP
-            "clangd", -- Used for C/C++ LSP
-            "gopls", -- Used for Go LSP
-            "pyright", -- Used for Python LSP
-            "bashls", -- Used for Bash LSP
+            "stylua",
+            "rust-analyzer",
+            "clangd",
+            "pyright",
+            "bashls",
+            "gopls",
+            "golangci-lint",
+            "gofumpt",
+            "misspell",
         })
-        require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+        require("mason-tool-installer").setup({
+            ensure_installed = ensure_installed,
+            run_on_start = true,
+            auto_update = false,
+            start_delay = 1000, -- 1 second delay
+        })
 
         require("mason-lspconfig").setup({
             handlers = {
