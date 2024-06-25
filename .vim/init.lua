@@ -5,7 +5,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--------------------------------------------------------------------------------
 vim.env.VARPATH = vim.fn.stdpath("cache")
 vim.opt.backupdir = vim.env.VARPATH .. "/backup"
 vim.opt.backup = true -- Enable backup
@@ -20,6 +19,7 @@ vim.opt.undofile = true
 ---- Sync clipboard between OS and Neovim.
 vim.opt.viewdir = vim.env.VARPATH .. "/view"
 
+-------------------------------------------------------------------------------
 -- Function to clear key mappings in normal and visual modes
 -- local function clear_keymap(key)
 --     vim.api.nvim_set_keymap("n", key, "<Nop>", { noremap = true, silent = true })
@@ -30,12 +30,14 @@ vim.opt.viewdir = vim.env.VARPATH .. "/view"
 -- clear_keymap(",")
 -- clear_keymap(";")
 
-require("generals")
-require("keymaps")
-require("filetypes")
+-- require("generals")
+-- require("keymaps")
+-- require("filetypes")
+
+require("ypwang.init")
 
 --------------------------------------------------------------------------------
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = ypwang.lazydir("lazy.nvim") -- lazydir is defined in preload.lua
 if not vim.loop.fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
     vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
@@ -81,5 +83,10 @@ local opts = {
         },
     },
 }
-require("lazy").setup({ { import = "ypwang.plugins" } }, opts)
-require("theme")
+
+ypwang.ensure("lazy", function(m)
+    m.setup({
+        { import = "ypwang.plugins" },
+    }, opts)
+end)
+-- require("lazy").setup({ { import = "ypwang.plugins" } }, opts)
