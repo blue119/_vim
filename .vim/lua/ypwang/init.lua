@@ -19,7 +19,7 @@ extension.lazydir = function(name)
     return vim.fs.normalize(vim.fn.stdpath("data") .. "/lazy/" .. name)
 end
 
-vim.treesitter.start = function() end
+-- vim.treesitter.start = function() end
 vim.cmd.runtime({ args = { "lua/ypwang/conf/*.lua" }, bang = true })
 
 _G["ypwang"] = extension

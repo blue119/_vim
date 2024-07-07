@@ -26,8 +26,20 @@ return {
             end,
         })
 
-        vim.keymap.set("n", "<leader>l", function()
-            lint.try_lint()
-        end, { desc = "Trigger linting for current file" })
+        local lint_on = true
+        local toggle_lint = function()
+            if lint_on == true then
+                lint_on = false
+                vim.diagnostic.reset(nil, 0)
+            else
+                lint_on = true
+                require("lint").try_lint()
+            end
+        end
+        vim.keymap.set({ "n" }, "<leader>l", toggle_lint, { noremap = true, desc = "Lint" })
+
+        -- Set pylint to work in virtualenv
+        require("lint").linters.pylint.cmd = "python"
+        require("lint").linters.pylint.args = { "-m", "pylint", "-f", "json" }
     end,
 }

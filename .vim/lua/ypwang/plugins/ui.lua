@@ -1,12 +1,15 @@
 return {
     {
         "rebelot/kanagawa.nvim",
+        --         "catppuccin/nvim",
         config = function()
             -- Set highlight for Folded text
             vim.api.nvim_set_hl(0, "Folded", { ctermbg = 237 })
 
             -- Set colorscheme
             vim.cmd("colorscheme kanagawa")
+            --             vim.cmd("colorscheme catppuccin-macchiato")
+            --             colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
             -- Set color column at column 120
             vim.o.colorcolumn = "120"
