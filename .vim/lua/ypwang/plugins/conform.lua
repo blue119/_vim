@@ -42,6 +42,11 @@ return {
             -- have other formatters configured.
             ["_"] = { "trim_whitespace" },
         },
+        formatters = {
+            stylua = {
+                prepend_args = { "--indent-type", "Spaces" },
+            },
+        },
     },
     --    config = function() end,
 }

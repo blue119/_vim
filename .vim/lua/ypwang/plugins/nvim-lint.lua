@@ -41,5 +41,19 @@ return {
         -- Set pylint to work in virtualenv
         require("lint").linters.pylint.cmd = "python"
         require("lint").linters.pylint.args = { "-m", "pylint", "-f", "json" }
+
+        vim.api.nvim_create_user_command("ActiveLinters", function()
+            local ft = vim.bo.filetype
+            local active_linters = lint.linters_by_ft[ft] or {}
+
+            if #active_linters == 0 then
+                print("No active linters for filetype: " .. ft)
+            else
+                print("Active linters for " .. ft .. ":")
+                for _, linter in ipairs(active_linters) do
+                    print("- " .. linter)
+                end
+            end
+        end, {})
     end,
 }

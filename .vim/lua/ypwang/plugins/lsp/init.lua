@@ -156,7 +156,15 @@ return { -- LSP Configuration & Plugins
         --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
         local servers = {
             clangd = {
-                cmd = { "clangd", "--background-index", "--offset-encoding=utf-16" },
+                cmd = {
+                    "clangd",
+                    "--background-index",
+                    "--offset-encoding=utf-16",
+                    "--clang-tidy",
+                    "--suggest-missing-includes",
+                },
+                filetypes = { "c", "cpp", "objc", "objcpp" },
+                init_options = { fallbackFlags = { "-std=c++20" } },
                 single_file_support = true,
                 root_dir = require("lspconfig").util.root_pattern(
                     ".clangd",
