@@ -19,9 +19,9 @@ return {
             -- Disable "format_on_save lsp_fallback" for languages that don't
             -- have a well standardized coding style. You can add additional
             -- languages here or re-enable it for the disabled ones.
-            local disable_filetypes = { proto = true }
+            local disable_filetypes = { proto = true, c = true, cpp = true }
             return {
-                timeout_ms = 500,
+                timeout_ms = 5000,
                 --                 lsp_fallback = true,
                 lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
             }
@@ -46,7 +46,11 @@ return {
             stylua = {
                 prepend_args = { "--indent-type", "Spaces" },
             },
+            --             black = {
+            --                 prepend_args = { "--fast" },
+            --             },
         },
+        log_level = vim.log.levels.DEBUG,
     },
     --    config = function() end,
 }
