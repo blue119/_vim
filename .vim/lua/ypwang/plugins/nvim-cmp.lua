@@ -24,6 +24,13 @@ return { -- Autocompletion
                         require("luasnip.loaders.from_vscode").lazy_load()
                     end,
                 },
+                {
+                    "blue119/yp-snippets",
+                    branch = "dev",
+                    config = function()
+                        require("luasnip.loaders.from_vscode").lazy_load()
+                    end,
+                },
             },
         },
         "saadparwaiz1/cmp_luasnip",
