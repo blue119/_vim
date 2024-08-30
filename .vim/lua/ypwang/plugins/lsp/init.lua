@@ -155,6 +155,27 @@ return { -- LSP Configuration & Plugins
         --  - settings (table): Override the default settings passed when initializing the server.
         --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
         local servers = {
+            --clangd = {
+            --    cmd = {
+            --        "clangd",
+            --        "--background-index",
+            --        "--offset-encoding=utf-16",
+            --        "--clang-tidy",
+            --        "--suggest-missing-includes",
+            --    },
+            --    filetypes = { "c" },
+            --    init_options = { fallbackFlags = { "-std=c17" } },
+            --    single_file_support = true,
+            --    root_dir = require("lspconfig").util.root_pattern(
+            --        ".clangd",
+            --        ".clang-tidy",
+            --        ".clang-format",
+            --        "compile_commands.json",
+            --        "compile_flags.txt",
+            --        "configure.ac",
+            --        ".git"
+            --    ),
+            --},
             clangd = {
                 cmd = {
                     "clangd",
@@ -163,7 +184,7 @@ return { -- LSP Configuration & Plugins
                     "--clang-tidy",
                     "--suggest-missing-includes",
                 },
-                filetypes = { "c", "cpp", "objc", "objcpp" },
+                filetypes = { "cpp", "objc", "objcpp" },
                 init_options = { fallbackFlags = { "-std=c++20" } },
                 single_file_support = true,
                 root_dir = require("lspconfig").util.root_pattern(
