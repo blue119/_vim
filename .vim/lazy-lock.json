@@ -1,4 +1,5 @@
 {
+  "CopilotChat.nvim": { "branch": "canary", "commit": "9333944fde3c65868818e245c73aa29eef826e9b" },
   "EnhCommentify.vim": { "branch": "master", "commit": "109cc11f36bd9af54eedba2e32b70e3696ece8da" },
   "LuaSnip": { "branch": "master", "commit": "ce0a05ab4e2839e1c48d072c5236cce846a387bc" },
   "aerial.nvim": { "branch": "master", "commit": "4e77964569ef47a70f9bb76c668dcfea2d089d5a" },
