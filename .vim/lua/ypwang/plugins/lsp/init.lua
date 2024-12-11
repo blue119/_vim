@@ -1,7 +1,8 @@
-return { -- LSP Configuration & Plugins
-    "neovim/nvim-lspconfig",
+return {
+    "neovim/nvim-lspconfig", -- LSP Configuration & Plugins
     dependencies = {
         -- Automatically install LSPs and related tools to stdpath for Neovim
+        -- Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP servers, DAP servers, linters, and formatters.
         { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -238,7 +239,7 @@ return { -- LSP Configuration & Plugins
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
             "stylua",
-            "rust-analyzer",
+            -- "rust-analyzer",
             "clangd",
             "pyright",
             "bashls",

@@ -1,5 +1,5 @@
 return {
-    "stevearc/conform.nvim",
+    "stevearc/conform.nvim", -- Lightweight yet powerful formatter plugin for Neovim
     lazy = false,
     keys = {
         {
@@ -31,13 +31,15 @@ return {
             lua = { "stylua" },
             cpp = { "clang_format" },
             c = { "clang_format" },
+            json = { "jq" },
             -- Conform can also run multiple formatters sequentially
             python = { "isort", "black" },
             -- You can use a sub-list to tell conform to run *until* a formatter
             -- is found.
-            -- javascript = { { "prettierd", "prettier" } },
+            javascript = { { "prettierd", "prettier" } },
+            rust = { "rustfmt" },
             -- Use the "*" filetype to run formatters on all filetypes.
-            ["*"] = { "codespell" },
+            -- ["*"] = { "codespell" },
             -- Use the "_" filetype to run formatters on filetypes that don't
             -- have other formatters configured.
             ["_"] = { "trim_whitespace" },

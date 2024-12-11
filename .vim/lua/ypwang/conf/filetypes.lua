@@ -72,6 +72,16 @@ au("FileType", {
     end,
 })
 
+au("FileType", {
+    pattern = "rust",
+    callback = function()
+        vim.cmd([[
+        setlocal tabstop=4 shiftwidth=4
+        setlocal foldmethod=indent foldcolumn=4 foldlevel=3 foldnestmax=3
+        ]])
+    end,
+})
+
 --     " -------------------------------------------------------------------------
 --     " [ Hex/Binary Edit ]                                       {{{
 --     "
