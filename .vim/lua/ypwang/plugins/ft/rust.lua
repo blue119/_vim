@@ -17,22 +17,23 @@ return {
         version = "^5", -- Recommended
         lazy = false, -- This plugin is already lazy
         ft = { "rust" },
-        config = function()
-            local mason_registry = require("mason-registry")
-            local ra_binary
+        -- config = function()
+        --     local mason_registry = require("mason-registry")
+        --     local ra_binary
 
-            if mason_registry.is_installed("rust-analyzer") then
-                ra_binary = mason_registry.get_package("rust-analyzer"):get_install_path()
-                    .. "/rust-analyzer-x86_64-unknown-linux-gnu"
-            else
-                ra_binary = "rust-analyzer"
-            end
+        --     if mason_registry.is_installed("rust-analyzer") then
+        --         ra_binary = mason_registry.get_package("rust-analyzer"):get_install_path()
+        --             .. "/rust-analyzer-x86_64-unknown-linux-gnu"
+        --     else
+        --         ra_binary = "rust-analyzer"
+        --     end
 
-            vim.g.rustaceanvim = {
-                server = {
-                    cmd = { ra_binary }, -- You can add args to the list, such as '--log-file'
-                },
-            }
-        end,
+        --     print(ra_binary)
+        --     vim.g.rustaceanvim = {
+        --         server = {
+        --             cmd = { ra_binary }, -- You can add args to the list, such as '--log-file'
+        --         },
+        --     }
+        -- end,
     },
 }

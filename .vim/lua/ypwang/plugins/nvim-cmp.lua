@@ -70,11 +70,14 @@ return { -- Autocompletion
                 ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
+                -- abort
+                ["<C-e>"] = cmp.mapping.abort(),
+
                 -- Accept ([y]es) the completion.
                 --  This will auto-import if your LSP supports it.
                 --  This will expand snippets if the LSP sent a snippet.
-                ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                --                     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
                 -- If you prefer more traditional completion keymaps,
                 -- you can uncomment the following lines
@@ -110,8 +113,8 @@ return { -- Autocompletion
                 --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
             }),
             sources = {
+                { name = "luasnip", priority = 9999 },
                 { name = "nvim_lsp" },
-                { name = "luasnip" },
                 { name = "path" },
                 { name = "buffer", keyword_length = 2 }, -- for buffer word completion
                 { name = "omni" },
