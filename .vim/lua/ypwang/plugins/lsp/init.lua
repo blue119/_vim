@@ -156,27 +156,6 @@ return {
         --  - settings (table): Override the default settings passed when initializing the server.
         --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
         local servers = {
-            --clangd = {
-            --    cmd = {
-            --        "clangd",
-            --        "--background-index",
-            --        "--offset-encoding=utf-16",
-            --        "--clang-tidy",
-            --        "--suggest-missing-includes",
-            --    },
-            --    filetypes = { "c" },
-            --    init_options = { fallbackFlags = { "-std=c17" } },
-            --    single_file_support = true,
-            --    root_dir = require("lspconfig").util.root_pattern(
-            --        ".clangd",
-            --        ".clang-tidy",
-            --        ".clang-format",
-            --        "compile_commands.json",
-            --        "compile_flags.txt",
-            --        "configure.ac",
-            --        ".git"
-            --    ),
-            --},
             clangd = {
                 cmd = {
                     "clangd",
@@ -184,9 +163,12 @@ return {
                     "--offset-encoding=utf-16",
                     "--clang-tidy",
                     "--suggest-missing-includes",
+                    "--completion-style=detailed",
+                    "--header-insertion=iwyu",
+                    "--log=verbose",
                 },
                 filetypes = { "cpp", "objc", "objcpp" },
-                init_options = { fallbackFlags = { "-std=c++20" } },
+                init_options = { fallbackFlags = { "-std=c++20" }, clangdFileStatus = true },
                 single_file_support = true,
                 root_dir = require("lspconfig").util.root_pattern(
                     ".clangd",
@@ -195,11 +177,20 @@ return {
                     "compile_commands.json",
                     "compile_flags.txt",
                     "configure.ac",
-                    ".git"
+                    ".git",
+                    "build"
                 ),
             },
             gopls = {},
-            -- pyright = {},
+            pyright = {
+                settings = {
+                    python = {
+                        venvPath = ".",
+                        venv = ".venv",
+                        pythonPath = ".venv/bin/python",
+                    },
+                },
+            },
             -- rust_analyzer = {},
             -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
             --

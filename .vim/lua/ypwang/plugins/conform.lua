@@ -22,8 +22,8 @@ return {
             local disable_filetypes = { proto = true, c = true, cpp = true }
             return {
                 timeout_ms = 5000,
-                --                 lsp_fallback = true,
                 lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+                -- lsp_fallback = true,
             }
         end,
 
@@ -36,7 +36,7 @@ return {
             python = { "isort", "black" },
             -- You can use a sub-list to tell conform to run *until* a formatter
             -- is found.
-            javascript = { { "prettierd", "prettier" } },
+            javascript = { "prettier" },
             rust = { "rustfmt" },
             -- Use the "*" filetype to run formatters on all filetypes.
             -- ["*"] = { "codespell" },

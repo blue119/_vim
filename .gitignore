@@ -20,3 +20,6 @@
 .vim/.vim
 .vim/autoload/
 .vim/plugged/
+
+# aider
+.aider*
