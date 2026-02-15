@@ -191,7 +191,33 @@ return {
                     },
                 },
             },
-            -- rust_analyzer = {},
+
+            bacon_ls = {
+                init_options = {
+                    updateOnSave = true,
+                    updateOnSaveWaitMillis = 1000,
+                },
+            },
+            rust_analyzer = {
+                settings = {
+                    ["rust-analyzer"] = {
+                        checkOnSave = { enable = false },
+                        diagnostics = { enable = false },
+                    },
+                },
+            },
+            -- rust_analyzer = {
+            --     settings = {
+            --         ["rust-analyzer"] = {
+            --             cargo = {
+            --                 allFeatures = true,
+            --             },
+            --             checkOnSave = {
+            --                 command = "clippy",
+            --             },
+            --         },
+            --     },
+            -- },
             -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
             --
             -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -231,6 +257,7 @@ return {
         vim.list_extend(ensure_installed, {
             "stylua",
             -- "rust-analyzer",
+            -- "bacon-ls",
             "clangd",
             "pyright",
             "bashls",
