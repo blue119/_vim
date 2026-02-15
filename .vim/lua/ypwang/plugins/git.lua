@@ -5,6 +5,7 @@ return {
         dependencies = {
             { "tpope/vim-rhubarb" },
         },
+
         config = function()
             vim.cmd([[
                 autocmd FileType git :setlocal foldlevel=99

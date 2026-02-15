@@ -56,12 +56,12 @@ return {
                     i = {
                         ["<C-s>"] = actions.select_horizontal,
                         ["<C-h>"] = layout.toggle_preview,
-                        ["<C-q>"] = actions.close,
+                        --  ["<C-q>"] = actions.close,
                     },
                     n = {
                         ["<C-s>"] = actions.select_horizontal,
                         ["<C-h>"] = layout.toggle_preview,
-                        ["<C-q>"] = actions.close,
+                        --  ["<C-q>"] = actions.close,
                     },
                 },
                 initial_mode = "normal",
