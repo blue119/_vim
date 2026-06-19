@@ -165,7 +165,6 @@ return {
                     "--suggest-missing-includes",
                     "--completion-style=detailed",
                     "--header-insertion=iwyu",
-                    "--log=verbose",
                 },
                 filetypes = { "cpp", "objc", "objcpp" },
                 init_options = { fallbackFlags = { "-std=c++20" }, clangdFileStatus = true },
@@ -265,6 +264,7 @@ return {
             "golangci-lint",
             "gofumpt",
             "misspell",
+            "ruff",
         })
         require("mason-tool-installer").setup({
             ensure_installed = ensure_installed,

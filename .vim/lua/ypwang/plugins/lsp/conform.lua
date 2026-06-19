@@ -20,9 +20,10 @@ return {
             -- have a well standardized coding style. You can add additional
             -- languages here or re-enable it for the disabled ones.
             local disable_filetypes = { proto = true, c = true, cpp = true }
+            local filetype = vim.bo[bufnr].filetype
             return {
-                timeout_ms = 5000,
-                lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+                timeout_ms = filetype == "python" and 15000 or 5000,
+                lsp_fallback = not disable_filetypes[filetype],
                 -- lsp_fallback = true,
             }
         end,
@@ -33,7 +34,7 @@ return {
             c = { "clang_format" },
             json = { "jq" },
             -- Conform can also run multiple formatters sequentially
-            python = { "isort", "black" },
+            python = { "ruff_organize_imports", "ruff_format" },
             -- You can use a sub-list to tell conform to run *until* a formatter
             -- is found.
             javascript = { "prettier" },

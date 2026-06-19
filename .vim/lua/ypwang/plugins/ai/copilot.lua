@@ -5,7 +5,12 @@ return {
     --         require("copilot").setup({})
     --     end,
     -- },
-    { "github/copilot.vim" },
+    {
+        "github/copilot.vim",
+        init = function()
+            vim.g.copilot_npx_command = ""
+        end,
+    },
     {
         -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
         "CopilotC-Nvim/CopilotChat.nvim",

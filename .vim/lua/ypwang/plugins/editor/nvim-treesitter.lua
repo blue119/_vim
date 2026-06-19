@@ -24,14 +24,10 @@ return {
             "yaml",
         }
 
-        -- Auto-install missing parsers
-        local installed = require("nvim-treesitter.config").get_installed()
-        local to_install = vim.tbl_filter(function(lang)
-            return not vim.list_contains(installed, lang)
-        end, languages)
-        if #to_install > 0 then
-            vim.cmd("TSInstall " .. table.concat(to_install, " "))
-        end
+        require("nvim-treesitter.configs").setup({
+            ensure_installed = languages,
+            auto_install = true,
+        })
 
         -- Disable treesitter highlighting for large files
         vim.api.nvim_create_autocmd("FileType", {
