@@ -18,11 +18,11 @@ Optional, depending on your development workflow:
 ## Setup
 
 ```bash
-# 1. Clone into ~/.vim
-git clone git@github.com:blue119/_vim.git ~/.vim
+# 1. Clone the repository (choose any location)
+git clone git@github.com:blue119/_vim.git ~/iConfig/_vim
 
 # 2. Symlink as Neovim config
-bash ~/.vim/deploy.sh   # creates ~/.config/nvim -> ~/.vim
+bash ~/iConfig/_vim/deploy.sh
 
 # 3. Launch Neovim
 nvim
@@ -30,19 +30,25 @@ nvim
 
 On first launch, lazy.nvim bootstraps itself, installs all plugins, and Mason auto-installs configured LSP servers, formatters, and linters.
 
+`deploy.sh` links `$XDG_CONFIG_HOME/nvim` (default: `~/.config/nvim`) directly to the repository's `.vim` directory. It can update an existing symlink, but refuses to overwrite a regular file or directory. Existing `~/.vim` symlinks can continue to be used.
+
 ## Directory Structure
 
 ```
 .vim/
-├── init.lua                    # Entry point, lazy.nvim bootstrap
+├── init.lua                    # Entry point: require("ypwang")
 ├── lazy-lock.json              # Plugin lock file
 └── lua/ypwang/
-    ├── init.lua                # Helper functions & globals
-    ├── conf/
-    │   ├── generals.lua        # General vim options
-    │   ├── keymaps.lua         # Keybindings
-    │   └── filetypes.lua       # Filetype-specific settings
+    ├── init.lua                # Explicit startup order
+    ├── config/
+    │   ├── options.lua         # Editor options and cache directories
+    │   ├── keymaps.lua         # Global keybindings
+    │   ├── commands.lua        # User commands and abbreviations
+    │   ├── autocmds.lua        # History, cursor, views, yank highlighting
+    │   ├── filetypes.lua       # Filetype options and buffer-local mappings
+    │   └── lazy.lua            # Plugin manager bootstrap and settings
     └── plugins/
+        ├── init.lua            # Plugin-category imports
         ├── ai/                 # AI-assisted coding
         ├── editor/             # Editor features & text manipulation
         ├── ft/                 # Filetype-specific plugins
@@ -52,6 +58,10 @@ On first launch, lazy.nvim bootstraps itself, installs all plugins, and Mason au
         ├── tools/              # Development tools
         └── ui/                 # Theme & statusline
 ```
+
+Core modules load in the order shown in `lua/ypwang/init.lua`, before plugins. Add global settings under `config/`; keep plugin settings and plugin keybindings in their plugin specification files. To add a plugin, create a Lua file returning its lazy.nvim specification in an existing category. For a new category, also add its import to `plugins/init.lua`.
+
+Backup, swap, undo, and view directories are created under Neovim's cache directory (`:echo stdpath('cache')`). Filetype mappings and abbreviations apply only to their buffers. Haskell tools (`ghc` and `firefox`) are resolved through `PATH`.
 
 ## Plugins
 

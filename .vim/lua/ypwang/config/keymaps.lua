@@ -1,3 +1,15 @@
+-- Paste the X buffer, even on the command line
+vim.api.nvim_set_keymap("n", "<LocalLeader>p", "i<S-MiddleMouse><ESC>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("i", "<S-Insert>", "<S-MiddleMouse>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("c", "<S-Insert>", "<S-MiddleMouse>", { noremap = true, silent = true })
+
+-- Make the mouse paste a block of text without formatting it
+vim.api.nvim_set_keymap("", "<MiddleMouse>", '<esc>"*p', { noremap = true, silent = true })
+
+-- Enable block-mode selection
+vim.api.nvim_set_keymap("n", "<C-LeftMouse>", "<LeftMouse><Esc><C-V>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-LeftDrag>", "<LeftDrag>", { noremap = true, silent = true })
+
 local map = vim.api.nvim_set_keymap
 
 -- disable direct-key
@@ -104,20 +116,6 @@ map("c", "<M-d>", "<C-w>", { noremap = true, silent = true }) -- Mimics Ctrl-Del
 -- w!!: Writes using sudo (useful for saving files with root permission)
 map("c", "w!!", "w !sudo tee % >/dev/null", { noremap = true, silent = true }) -- Execute sudo save command
 
--- " [ Diff related ]                                                      {{{
--- "
--- "force vim diff to ignore whitespace
--- " set diffopt+=iwhite
--- " highlight diff color
-vim.cmd([[
-  hi diffchange ctermbg=236
-  hi diffadd ctermbg=4
-  hi DiffDelete ctermfg=69 ctermbg=234
-  hi difftext ctermbg=3 ctermfg=0
-]])
--- "DirDiff
-vim.g.DirDiffExcludes = "*.git,*.svn,.*.swp,tags,cscope.*"
-vim.g.DirDiffWindowSize = 10
 --  WinMerge-style (Alt + hjkl) mapping for vimdiff
 -- Map Alt + j to ]c
 map("n", "<M-j>", "]c", { noremap = true, silent = true })
@@ -125,35 +123,3 @@ map("n", "<M-k>", "[c", { noremap = true, silent = true })
 
 map("n", "<M-h>", "do", { noremap = true, silent = true })
 map("n", "<M-l>", "dp", { noremap = true, silent = true })
-
--- Diagnostic keymaps
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
--- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
--- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- temp
---    " [ Tag Operations ]                                                     {{{
---    " Go to next tab
---    nnoremap <Leader>tl gt <CR>
---    inoremap <Leader>tl <ESC>gt <CR>
---    " Go to Prev tab
---    nnoremap <Leader>th gT <CR>
---    inoremap <Leader>th <ESC>gT <CR>
---    " Create a tab
---    nnoremap <Leader>tn :tabnew<CR>
---    inoremap <Leader>tn <ESC>:tabnew<CR>
---    " Remove the tab
---    nnoremap <Leader>tc :tabclose<CR>
---    inoremap <Leader>tc <ESC>:tabclose<CR>
---    " Show the tab list
---    nnoremap <Leader>ts :tabs<CR>
---    inoremap <Leader>ts <ESC>:tabs<CR>
---
---    " Spell Checking
---    nnoremap <Leader>ss :setlocal spell!<cr>
---    nnoremap <Leader>sj ]s
---    nnoremap <Leader>sk [s
---    nnoremap <Leader>sa zg]s
---    nnoremap <Leader>sd 1z=
---    nnoremap <Leader>sf z=
