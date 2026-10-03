@@ -166,7 +166,7 @@ return {
                     "--completion-style=detailed",
                     "--header-insertion=iwyu",
                 },
-                filetypes = { "cpp", "objc", "objcpp" },
+                filetypes = { "c", "cpp", "objc", "objcpp" },
                 init_options = { fallbackFlags = { "-std=c++20" }, clangdFileStatus = true },
                 single_file_support = true,
                 root_dir = require("lspconfig").util.root_pattern(
