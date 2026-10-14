@@ -1,41 +1,41 @@
 return {
     {
         "rebelot/kanagawa.nvim",
-        --         "catppuccin/nvim",
         config = function()
             -- Set highlight for Folded text
-            vim.api.nvim_set_hl(0, "Folded", { ctermbg = 237 })
+            -- vim.api.nvim_set_hl(0, "Folded", { ctermbg = 237 })
 
             -- Set colorscheme
-            vim.cmd("colorscheme kanagawa")
-            --             vim.cmd("colorscheme catppuccin-macchiato")
-            --             colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+            vim.cmd("colorscheme kanagawa-wave")
+            -- :colorscheme kanagawa-wave
+            -- :colorscheme kanagawa-dragon
+            -- :colorscheme kanagawa-lotus
 
             -- Set color column at column 120
-            vim.o.colorcolumn = "120"
+            -- vim.o.colorcolumn = "120"
 
             -- Enable cursor line
             vim.o.cursorline = true
             -- vim.cmd("hi CursorLine cterm=bold guibg=background")
 
             -- Set highlight for color column
-            vim.cmd("hi ColorColumn guibg=darkred")
+            -- vim.cmd("hi ColorColumn guibg=darkred")
 
             -- pelling highlights. Use underline in term to prevent cursorline highlights from interfering
-            if not vim.fn.has("gui_running") then
-                -- Clear existing highlights and set new ones for spell checking
-                vim.api.nvim_set_hl(0, "SpellBad", { default = true })
-                vim.api.nvim_set_hl(0, "SpellBad", { cterm = "underline", ctermfg = "red" })
+            -- if not vim.fn.has("gui_running") then
+            -- Clear existing highlights and set new ones for spell checking
+            -- vim.api.nvim_set_hl(0, "SpellBad", { default = true })
+            -- vim.api.nvim_set_hl(0, "SpellBad", { cterm = "underline", ctermfg = "red" })
 
-                vim.api.nvim_set_hl(0, "SpellCap", { default = true })
-                vim.api.nvim_set_hl(0, "SpellCap", { cterm = "underline", ctermfg = "blue" })
+            -- vim.api.nvim_set_hl(0, "SpellCap", { default = true })
+            -- vim.api.nvim_set_hl(0, "SpellCap", { cterm = "underline", ctermfg = "blue" })
 
-                vim.api.nvim_set_hl(0, "SpellLocal", { default = true })
-                vim.api.nvim_set_hl(0, "SpellLocal", { cterm = "underline", ctermfg = "blue" })
+            -- vim.api.nvim_set_hl(0, "SpellLocal", { default = true })
+            -- vim.api.nvim_set_hl(0, "SpellLocal", { cterm = "underline", ctermfg = "blue" })
 
-                vim.api.nvim_set_hl(0, "SpellRare", { default = true })
-                vim.api.nvim_set_hl(0, "SpellRare", { cterm = "underline", ctermfg = "blue" })
-            end
+            -- vim.api.nvim_set_hl(0, "SpellRare", { default = true })
+            -- vim.api.nvim_set_hl(0, "SpellRare", { cterm = "underline", ctermfg = "blue" })
+            -- end
         end,
     },
 
@@ -56,10 +56,6 @@ return {
 
                 if ! has('gui_running')
                     set ttimeoutlen=10
-                    augroup MyAutoCmd
-                        au InsertEnter * set timeoutlen=0
-                        au InsertLeave * set timeoutlen=1000
-                    augroup END
                 endif
 
                 " powerline symbols

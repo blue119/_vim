@@ -11,9 +11,6 @@ return {
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         { "j-hui/fidget.nvim", opts = {} },
 
-        -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-        -- used for completion, annotations and signatures of Neovim apis
-        { "folke/neodev.nvim", opts = {} },
     },
     config = function()
         -- Brief aside: **What is LSP?**
@@ -169,7 +166,7 @@ return {
                 filetypes = { "c", "cpp", "objc", "objcpp" },
                 init_options = { fallbackFlags = { "-std=c++20" }, clangdFileStatus = true },
                 single_file_support = true,
-                root_dir = require("lspconfig").util.root_pattern(
+                root_markers = {
                     ".clangd",
                     ".clang-tidy",
                     ".clang-format",
@@ -177,8 +174,8 @@ return {
                     "compile_flags.txt",
                     "configure.ac",
                     ".git",
-                    "build"
-                ),
+                    "build",
+                },
             },
             gopls = {},
             pyright = {
@@ -232,6 +229,8 @@ return {
                 -- capabilities = {},
                 settings = {
                     Lua = {
+                        -- Neovim provides this global; keep other undefined-global warnings.
+                        diagnostics = { globals = { "vim" } },
                         completion = {
                             callSnippet = "Replace",
                         },
@@ -273,17 +272,12 @@ return {
             start_delay = 1000, -- 1 second delay
         })
 
-        require("mason-lspconfig").setup({
-            handlers = {
-                function(server_name)
-                    local server = servers[server_name] or {}
-                    -- This handles overriding only values explicitly passed
-                    -- by the server configuration above. Useful when disabling
-                    -- certain features of an LSP (for example, turning off formatting for tsserver)
-                    server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                    require("lspconfig")[server_name].setup(server)
-                end,
-            },
-        })
+        -- Mason v2 enables native configs; its former handlers option is ignored.
+        -- Register settings before Mason enables the installed servers.
+        for server_name, server in pairs(servers) do
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+            vim.lsp.config(server_name, server)
+        end
+        require("mason-lspconfig").setup({})
     end,
 }

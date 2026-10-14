@@ -1,12 +1,12 @@
 local group = vim.api.nvim_create_augroup("ypwang", { clear = true })
 
--- Share command and search history between editor sessions.
-vim.api.nvim_create_autocmd("CursorHold", {
+-- Share history when switching between editor sessions, rather than on every pause.
+vim.api.nvim_create_autocmd({ "FocusGained", "FocusLost" }, {
     group = group,
-    callback = function()
-        if vim.fn.exists(":rshada") == 2 then
-            vim.cmd("rshada")
-            vim.cmd("wshada")
+    desc = "Synchronize shared history on focus changes",
+    callback = function(event)
+        if vim.o.shada ~= "" and vim.o.shadafile ~= "NONE" then
+            vim.cmd(event.event == "FocusGained" and "rshada" or "wshada")
         end
     end,
 })

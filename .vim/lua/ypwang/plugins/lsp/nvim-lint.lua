@@ -25,30 +25,58 @@ return {
             go = { "golangcilint" },
         }
 
-        local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+        local lint_on = true
+        local function run_lint(buffer)
+            if not lint_on or not vim.api.nvim_buf_is_valid(buffer) then
+                return
+            end
+            if vim.bo[buffer].buftype ~= "" or vim.api.nvim_buf_get_name(buffer) == "" then
+                return
+            end
+            local linters = lint.linters_by_ft[vim.bo[buffer].filetype]
+            if linters and #linters > 0 then
+                vim.api.nvim_buf_call(buffer, function()
+                    lint.try_lint(linters)
+                end)
+            end
+        end
 
-        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+        vim.api.nvim_create_autocmd("BufWritePost", {
             group = lint_augroup,
-            callback = function()
-                lint.try_lint()
+            desc = "Run external linters after saving",
+            callback = function(event)
+                run_lint(event.buf)
             end,
         })
 
-        local lint_on = true
-        local toggle_lint = function()
-            if lint_on == true then
-                lint_on = false
-                vim.diagnostic.reset(nil, 0)
+        vim.api.nvim_create_user_command("Lint", function()
+            if lint_on then
+                run_lint(vim.api.nvim_get_current_buf())
             else
-                lint_on = true
-                lint.try_lint()
+                vim.notify("Linting is off; use <leader>l to enable it", vim.log.levels.INFO)
             end
-        end
-        vim.keymap.set({ "n" }, "<leader>l", toggle_lint, { noremap = true, desc = "Lint" })
+        end, { desc = "Lint the current buffer" })
+
+        vim.keymap.set("n", "<leader>l", function()
+            lint_on = not lint_on
+            for _, linters in pairs(lint.linters_by_ft) do
+                for _, name in ipairs(linters) do
+                    local namespace = lint.get_namespace(name)
+                    -- Namespace disabling also hides results from in-flight jobs.
+                    vim.diagnostic.enable(lint_on, { ns_id = namespace })
+                    vim.diagnostic.reset(namespace)
+                end
+            end
+            vim.notify(lint_on and "Linting enabled" or "Linting disabled", vim.log.levels.INFO)
+            if lint_on then
+                run_lint(vim.api.nvim_get_current_buf())
+            end
+        end, { desc = "Toggle external linting" })
 
         -- Set pylint to work in virtualenv
         lint.linters.pylint.cmd = "python"
-        lint.linters.pylint.args = { "-m", "pylint", "-f", "json" }
+        lint.linters.pylint.args = vim.list_extend({ "-m", "pylint" }, lint.linters.pylint.args)
 
         lint.linters.golangcilint.args = {
             "run",

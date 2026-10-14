@@ -1,11 +1,12 @@
 return {
     "stevearc/conform.nvim", -- Lightweight yet powerful formatter plugin for Neovim
-    lazy = false,
+    event = "BufWritePre",
+    cmd = "ConformInfo",
     keys = {
         {
             "<leader>f",
             function()
-                require("conform").format({ async = true, lsp_fallback = true })
+                require("conform").format({ async = true, lsp_format = "fallback" })
             end,
             mode = "",
             desc = "[F]ormat buffer",
@@ -13,18 +14,16 @@ return {
     },
     opts = {
         -- Conform will notify you when a formatter errors
-        notify_on_error = false,
+        notify_on_error = true,
 
         format_on_save = function(bufnr)
-            -- Disable "format_on_save lsp_fallback" for languages that don't
-            -- have a well standardized coding style. You can add additional
-            -- languages here or re-enable it for the disabled ones.
+            -- Keep saves responsive; use <leader>f for slower, asynchronous formatting.
+            -- Preserve the existing exclusions for LSP fallback formatting.
             local disable_filetypes = { proto = true, c = true, cpp = true }
             local filetype = vim.bo[bufnr].filetype
             return {
-                timeout_ms = filetype == "python" and 15000 or 5000,
-                lsp_fallback = not disable_filetypes[filetype],
-                -- lsp_fallback = true,
+                timeout_ms = 1000,
+                lsp_format = disable_filetypes[filetype] and "never" or "fallback",
             }
         end,
 
@@ -53,7 +52,7 @@ return {
             --                 prepend_args = { "--fast" },
             --             },
         },
-        log_level = vim.log.levels.DEBUG,
+        log_level = vim.log.levels.ERROR,
     },
     --    config = function() end,
 }

@@ -1,13 +1,13 @@
--- Aider Plugin for Neovim
-
 return {
     "joshuavial/aider.nvim",
+    cmd = { "AiderOpen", "AiderAddModifiedFiles" },
+    keys = {
+        { "<leader>Ao", "<cmd>AiderOpen<CR>", desc = "Open Aider" },
+        { "<leader>Am", "<cmd>AiderAddModifiedFiles<CR>", desc = "Add modified files to Aider" },
+    },
     opts = {
-
-        -- your configuration comes here
-        -- if you don't want to use the default settings
-        auto_manage_context = true, -- automatically manage buffer context
-        default_bindings = true, -- use default <leader>A keybindings
-        debug = true, -- enable debug logging
+        auto_manage_context = true,
+        default_bindings = false, -- Lazy registers the keys before the plugin loads.
+        debug = false,
     },
 }

@@ -79,8 +79,8 @@ map("i", "<C-e>", "<End>", { noremap = true, silent = true }) -- Move cursor to 
 
 -- Visual mode mappings
 ---------------------------------------------------------------------------
--- Copy contents to clipboard via a temp file and xclip
-map("v", "<C-c>", ":w! /tmp/vimbuffer<CR>:!xclip < /tmp/vimbuffer<CR><CR>", { noremap = true, silent = true })
+-- Copy the selection using Neovim's configured clipboard provider.
+vim.keymap.set("x", "<C-c>", '"+y', { desc = "Copy selection to clipboard" })
 
 -- Visual mode tab control for indentation
 ---------------------------------------------------------------------------

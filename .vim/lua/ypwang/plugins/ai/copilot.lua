@@ -14,6 +14,13 @@ return {
     {
         -- https://github.com/CopilotC-Nvim/CopilotChat.nvim
         "CopilotC-Nvim/CopilotChat.nvim",
+        cmd = {
+            "CopilotChat", "CopilotChatOpen", "CopilotChatClose", "CopilotChatToggle",
+            "CopilotChatStop", "CopilotChatReset", "CopilotChatSave", "CopilotChatLoad",
+            "CopilotChatPrompts", "CopilotChatModels", "CopilotChatExplain", "CopilotChatReview",
+            "CopilotChatFix", "CopilotChatOptimize", "CopilotChatDocs", "CopilotChatTests",
+            "CopilotChatCommit",
+        },
         branch = "main",
         dependencies = {
             { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua

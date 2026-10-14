@@ -58,7 +58,8 @@ vim.opt.lazyredraw = true -- Do not redraw while running macros
 vim.opt.confirm = true -- Confirm before exiting modified buffer
 -- vim.opt.relativenumber = true
 vim.opt.number = true -- Turn on line numbers
-vim.opt.numberwidth = 1 -- Minimum width of the number column
+vim.opt.numberwidth = 4 -- Keep the line-number gutter readable
+vim.opt.signcolumn = "yes" -- Avoid horizontal shifts when diagnostics appear
 
 -- Turn off sound
 vim.opt.visualbell = true -- Turn off sound for visual bell
